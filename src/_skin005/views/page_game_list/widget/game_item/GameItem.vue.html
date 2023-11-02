@@ -38,7 +38,7 @@
                     <v-img class="mt-n2" width="13px" contain src="@/assets/tag/arrow.png"></v-img>
                 </span>
             </v-img>
-            <v-img v-if="getTag != ''" class="float-right" width="50px" :src="getTag"></v-img>
+            <v-img v-if="getTag" class="float-right" width="100%" :src="getTag"></v-img>
             <!-- </template> -->
             <div v-if="isNeetPlayBtn" class="egame__item__mask">
                 <div class="egame__item__play-icon">
@@ -48,12 +48,16 @@
                 </div>
             </div>
 
-            <div v-if="!isNomalState && !isNeetPlayBtn" class="mask_base d-flex justify-center align-center" :class="$mobile ? 'mob_mask' : 'pc_mask'">
+            <div
+                v-if="!isNomalState && !isNeetPlayBtn"
+                class="mask_base d-flex justify-center align-center"
+                :class="$mobile ? 'mob_mask' : 'pc_mask'"
+            >
                 <v-sheet class="d-flex justify-center align-center cursor-pointer" @click="onClickItem" color="transparent">
                     <svg-icon icon="weihu" class="primary--text text-30"></svg-icon>
                 </v-sheet>
             </div>
-            <div v-if="!isNomalState && isNeetPlayBtn" class="mask_base d-flex justify-center align-center" style="min-height: 100%;">
+            <div v-if="!isNomalState && isNeetPlayBtn" class="mask_base d-flex justify-center align-center" style="min-height: 100%">
                 <v-sheet class="d-flex justify-center align-center cursor-pointer" @click="onClickItem" color="transparent">
                     <svg-icon icon="weihu" class="primary--text text-30"></svg-icon>
                 </v-sheet>

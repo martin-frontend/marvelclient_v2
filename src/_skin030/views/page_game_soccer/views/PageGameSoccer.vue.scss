@@ -1,0 +1,94 @@
+.frame {
+    border: 0;
+    width: 100%;
+    height: calc(100vh - 142px);
+    overscroll-behavior: contain;
+}
+.frame-mobile {
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 55px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+.frame-mobile_banner {
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 70px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left: 0px;
+    top: 90px;
+}
+.frame-mobile_cricket {
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 55px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left: 0px;
+    top: 45px;
+}
+.frame-mobile_cricket_banner {
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 55px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left: 0px;
+    top: 140px;
+}
+
+.theme--dark {
+    .frame {
+        background: #202121;
+    }
+    .frame-mobile {
+        background: #202121;
+    }
+}
+.theme--light {
+    .frame {
+        background: #fff;
+    }
+    .frame-mobile {
+        background: #fff;
+    }
+}
+
+.frame-mobile-standalone {
+    border: 0;
+    width: 100vw;
+    height: calc(100vh - 120px);
+    background: #0d1525;
+    overscroll-behavior: contain;
+}
+.flow-btn {
+    position: fixed;
+    right: 55px;
+    top: 60px;
+}
+
+.box-mobile {
+    min-height: 2000px;
+}
+
+.ad_class {
+    position: fixed;
+    top: 0px;
+    // z-index: 7;
+}
+.ad_class_cricket {
+    position: fixed;
+    top: 50px;
+    // z-index: 7;
+}
+
+@media screen and (min-width: 1264px) {
+    .container {
+        max-width: 1785px;
+    }
+}
+ 

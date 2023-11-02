@@ -1,0 +1,70 @@
+<!--
+ * @Author: custer custer@xx.xx
+ * @Date: 2023-09-25 18:36:29
+ * @LastEditors: custer custer@xx.xx
+ * @LastEditTime: 2023-09-25 19:00:30
+ * @FilePath: /marvelclient_v2/src/_skin030/views/header/user_panel/UserPanel.vue.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<v-sheet color="transparent" min-width="182">
+    <v-sheet class="rounded-lg pl-6 py-4 menu_test mt-4" elevation="5" color="white" width="100%">
+        <div class="d-flex align-center justify-start">
+            <!-- <v-img class="rounded-pill" :src="commonIcon.avatar_default" max-width="56" max-height="56"></v-img> -->
+            <!-- <div
+                class="ml-4 head_color--text text-16 font-weight-bold text-decoration-underline cursor-pointer"
+                @click="onCopy(userInfo.user_id)"
+            >
+                ID:{{userInfo.user_id}}
+            </div> -->
+        </div>
+
+        <v-sheet class="rounded-lg" color="transparent" width="100%">
+            <v-sheet
+                class="d-flex align-center item text-16 my-2"
+                v-for="item of menuList"
+                :key="item.id"
+                @click="onMenuItem(item)"
+                color="transparent"
+                width="100%"
+            >
+                <svg-icon :icon="item.icon" class="text-28"></svg-icon>
+                <div class="ml-2 text-no-wrap">{{ item.name }}</div>
+                <div class="d-flex align-center ml-1" v-if="item.id == '16'">
+                    <v-icon :color="certificationStatus.color" v-if="certificationStatus.icon" small> {{certificationStatus.icon}} </v-icon>
+                    <!-- <span class="disable_text_2--text">{{certificationStatus.name}}</span> -->
+                </div>
+                <v-spacer />
+                <v-badge
+                    color="red"
+                    class="mr-4"
+                    offset-y="10"
+                    :content="red_dot_tips.is_user_mail_num.num"
+                    :value="item.id == '4' && red_dot_tips.is_user_mail_num.status==2 && red_dot_tips.is_user_mail_num.num"
+                ></v-badge>
+                <!-- <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div> -->
+            </v-sheet>
+        </v-sheet>
+
+        <div v-if="GlobalVar.instance.isShowLogout" class="d-flex align-center item text-16" @click="onLoginOut">
+            <svg-icon icon="ky_logout" class="text-28"></svg-icon>
+            <div class="ml-2">{{ LangUtil("退出登录") }}</div>
+            <!-- 
+            <v-spacer />
+            <div class="icon-box iconfont mx-3 mr-4 text-14" style="transform: rotate(-90deg)"></div> -->
+        </div>
+
+        <!-- <btn-yellow
+            v-if="GlobalVar.instance.isShowLogout"
+            class="text-16 mt-3 mb-1 font-weight-bold"
+            width="100%"
+            height="36"
+            @click.native="onLoginOut"
+            >{{LangUtil("退出登录")}}</btn-yellow
+        > -->
+
+        <!-- <div class="d-flex colorBlue--text mt-3 ml-1 cursor-pointer" @click="onLoginOut">
+        <div>{{LangUtil("退出登录")}}</div>
+        <v-spacer />
+    </div> -->
+    </v-sheet>
+</v-sheet>

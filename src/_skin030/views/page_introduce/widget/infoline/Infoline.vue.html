@@ -1,0 +1,52 @@
+<v-card color="bgBanner" class="intro-radius mt-4" flat height="100%">
+    <div class="font-weight-bold mb-3 ml-4 pt-5" :class="$mobile ? 'text-16' : 'text-20'">{{LangUtil("链上信息")}}</div>
+    <v-divider class="mb-2" />
+
+    <v-sheet
+        class="d-flex flex-column justify-space-around pl-4"
+        color="transparent"
+        :class="$mobile ? 'text-14' : 'card_height text-18'"
+        :height="$mobile ? '350' : ''"
+    >
+        <v-sheet color="transparent" class="d-flex justify-space-between" width="100%">
+            <div class="textGray--text">{{LangUtil("Token名称")}} :</div>
+            <div class="font-weight-black primary--text mr-4">{{reward_coin_info.coin_name}}</div>
+        </v-sheet>
+
+        <v-sheet color="transparent" class="d-flex justify-space-between" width="100%">
+            <div class="textGray--text">{{LangUtil("合约地址")}} :</div>
+            <v-sheet color="transparent" class="d-flex cursor-pointer font-weight-black mr-4" @click="goContractInfo">
+                <span class="textYellow--text">{{LangUtil("查看合约信息")}}</span>
+                <svg-icon icon="share" class="navIcon--text ml-2"></svg-icon>
+            </v-sheet>
+        </v-sheet>
+
+        <v-sheet color="transparent" class="d-flex justify-space-between" width="100%">
+            <div class="textGray--text">{{LangUtil("发行链")}} :</div>
+            <div class="font-weight-black primary--text mr-4">{{reward_coin_info.block_network_name}}</div>
+        </v-sheet>
+
+        <v-sheet color="transparent" class="d-flex justify-space-between" width="100%">
+            <div class="textGray--text">{{LangUtil("总供给量")}} :</div>
+            <div class="font-weight-black primary--text mr-4">{{reward_coin_info.total_supply}}</div>
+        </v-sheet>
+
+        <v-sheet color="transparent" class="d-flex justify-space-between" width="100%">
+            <div class="textGray--text">{{LangUtil("总流通量")}} :</div>
+            <div class="font-weight-black primary--text mr-4">{{reward_coin_info.total_circulate}}</div>
+        </v-sheet>
+
+        <v-sheet color="transparent" class="d-flex justify-space-between" width="100%">
+            <div class="textGray--text">{{LangUtil("当前质押")}} :</div>
+            <div class="font-weight-black primary--text mr-4">{{reward_coin_info.total_stake_amount}}</div>
+        </v-sheet>
+
+        <v-sheet color="transparent" class="d-flex justify-space-between" width="100%">
+            <div class="textGray--text">{{LangUtil("持币地址数")}} :</div>
+            <v-sheet color="transparent" class="d-flex cursor-pointer font-weight-black mr-4" @click="goContractInfo">
+                <span class="textYellow--text">{{reward_coin_info.total_holder}}</span>
+                <svg-icon icon="share" class="navIcon--text ml-2"></svg-icon>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+</v-card>

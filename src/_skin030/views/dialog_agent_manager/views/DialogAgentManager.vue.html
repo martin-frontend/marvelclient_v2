@@ -1,0 +1,408 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="1200"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="dialog_bg">
+        <!-- pc显示方式 -->
+
+        <com-dialog-title title="代理管理" @onClose="onClose" />
+
+        <v-divider class="mb-2" />
+        <v-card-text class="px-5">
+            <div class="d-flex flex-wrap justify-space-between">
+                <div class="colorText1--text text-rwd-16 ml-3 d-flex align-center">
+                    <div v-if="limitinfo.enable_all == 1">
+                        <!-- <v-btn v-if="limitinfo.is_credit_user == 1" class="btn_font rounded-lg btn_gradient"
+                                color="colorTextBlueLight4" width="115" height="30" elevation="0"
+                                @click="handlerShowAddUser">
+                                {{LangUtil("添加用户") }}</v-btn> -->
+
+                        <btn-yellow
+                            v-if="limitinfo.is_credit_user == 1"
+                            class="text-14"
+                            width="115"
+                            height="30"
+                            @click.native="handlerShowAddUser"
+                            >{{LangUtil("添加用户")}}</btn-yellow
+                        >
+                    </div>
+
+                    <template v-if="invite_user_id!=0">
+                        <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("上级ID")}}</div>
+                        <div class="ml-3 colorDialogInfo--text">{{ invite_user_id }}</div>
+                    </template>
+                    <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("直属玩家数量")}}</div>
+                    <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
+                </div>
+                <div class="d-flex align-center ml-auto mr-4">
+                    <btn-yellow class="text-14 mr-2" width="115" height="30" @click.native="opendialog_myWater"
+                        >{{LangUtil("我的返水")}}</btn-yellow
+                    >
+
+                    <btn-yellow class="text-14 mr-2" width="115" height="30" @click.native="opendialog_my"
+                        >{{LangUtil("我的推广")}}</btn-yellow
+                    >
+
+                    <btn-yellow class="text-14 mr-0" width="115" height="30" @click.native="handlerShowCreditTable"
+                        >{{LangUtil("信用报表")}}</btn-yellow
+                    >
+                </div>
+                <div class="search">
+                    <CustomInput :placeholder="LangUtil('输入查询ID/备注/账号')" v-model="pageData.search" :isBottomLine="false">
+                        <btn-yellow class="ml-auto text-16" min-width="61" height="41" :btn_type="4" @click.native="search"
+                            >{{LangUtil("查询")}}</btn-yellow
+                        >
+                    </CustomInput>
+                </div>
+            </div>
+
+            <v-sheet class="d-flex align-center justify-start mx-4" color="transparent" height="40">
+                <div class="d-flex align-center textGray--text text-16">{{LangUtil("用户筛选")}}</div>
+
+                <v-checkbox
+                    class="d-flex align-center ml-2"
+                    v-model="myProxy.checkboxValue"
+                    :label="LangUtil('正常')"
+                    color="textGray"
+                    value="1"
+                ></v-checkbox>
+                <v-checkbox
+                    class="d-flex align-center ml-2"
+                    v-model="myProxy.checkboxValue"
+                    :label="LangUtil('禁用')"
+                    color="textGray"
+                    value="98"
+                ></v-checkbox>
+            </v-sheet>
+
+            <v-sheet
+                class="d-flex align-center justify-space-around rounded-pill px-1 text-14 sheetOutlined"
+                height="38"
+                color="transparent"
+            >
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="115"> {{LangUtil("注册时间")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80"> {{LangUtil("用户ID")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="100"> {{LangUtil("用户账号")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80"> {{LangUtil("用户昵称")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="115"> {{LangUtil("直属备注")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80"> {{LangUtil("代理占成")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80"> {{LangUtil("状态")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80"> {{LangUtil("直属人数")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="80"> {{LangUtil("团队人数")}}</v-sheet>
+                <v-sheet class="d-flex justify-center primary--text" color="transparent" min-width="270"> {{LangUtil("")}}</v-sheet>
+            </v-sheet>
+
+            <v-sheet v-if="pageData.list.length>0" color="transparent" height="450" class="scroll-y">
+                <v-sheet
+                    class="d-flex align-center justify-space-around rounded-lg px-1 mt-2 text-14 sheetOutlined"
+                    color="transparent"
+                    v-for="(item, key) in pageData.list"
+                    :key="key"
+                >
+                    <v-sheet class="d-flex flex-column" color="transparent" min-width="870">
+                        <!-- 第一排 -->
+                        <v-sheet class="d-flex align-center justify-space-around text-14" height="38" color="transparent">
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="115">
+                                {{item.binded_at.replace(/^\d{4}-/,"")}}</v-sheet
+                            >
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
+                                {{item.user_id}}</v-sheet
+                            >
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="100">
+                                {{item.username}}</v-sheet
+                            >
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
+                                {{item.nick_name}}</v-sheet
+                            >
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="115">
+                                {{item.remark ? item.remark : LangUtil("-")}}</v-sheet
+                            >
+                            <v-sheet class="d-flex justify-center textYellow--text" color="transparent" min-width="80">
+                                {{ item.credit_rate}}
+                                <span v-if="item.credit_rate!='-'">%</span>
+                            </v-sheet>
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
+                                {{item.status == 1? LangUtil("正常"):LangUtil("关闭")}}</v-sheet
+                            >
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
+                                {{item.directly_users}}</v-sheet
+                            >
+                            <v-sheet class="d-flex justify-center textGray--text" color="transparent" min-width="80">
+                                {{item.group_users}}</v-sheet
+                            >
+                        </v-sheet>
+                        <!-- <div class="hackhome"></div> -->
+                        <v-divider class=" " />
+                        <!-- 第二排 -->
+                        <v-sheet class="d-flex align-center justify-space-between text-14" height="38" color="transparent">
+                            <v-sheet class="d-flex justify-start textGray--text ml-4" color="transparent" min-width="80">
+                                <div class="font-weight-bold">{{LangUtil("返水:")}}</div>
+                                {{getBackWaterTxt(item.water_config)}}
+                            </v-sheet>
+                            <v-sheet class="d-flex justify-end textGray--text mr-3" color="transparent">
+                                <v-sheet class="d-flex justify-center textGray--text font-weight-bold" color="transparent">
+                                    {{LangUtil("近24小时")}}
+                                </v-sheet>
+                                <v-sheet class="d-flex justify-center textGray--text ml-1" color="transparent">
+                                    {{LangUtil("投注额")}}
+                                </v-sheet>
+                                <v-sheet class="d-flex justify-center textGray--text" color="transparent"> ≈{{item.bet_gold}} </v-sheet>
+                                <v-sheet class="d-flex justify-center textGray--text ml-2" color="transparent">
+                                    {{LangUtil("输赢")}}≈
+                                </v-sheet>
+                                <div class="d-flex justify-center" :class="getMoneyColor(item.win_gold)" color="transparent">
+                                    {{getMoneyValue(item.win_gold)}}
+                                </div>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-sheet>
+                    <!-- 后面的按钮 -->
+                    <v-sheet id="touzhu_node_parent" class="d-flex justify-center textGray--text" color="transparent" min-width="270">
+                        <btn-yellow class="text-14 mr-0" min_width="100" height="30" @click.native="handlerShowDialogSet(item)"
+                            >{{LangUtil("设置")}}</btn-yellow
+                        >
+
+                        <btn-yellow class="text-14 ml-2" min_width="100" height="30" @click.native="handlerShowBetRecord(item.user_id)"
+                            >{{LangUtil("投注记录")}}</btn-yellow
+                        >
+
+                        <!-- <v-btn class="btn_font rounded-lg" color="colorBtnBg" height="30" min-width="100"
+                                elevation="0" @click="handlerShowDialogSet(item)">{{LangUtil("设置") }}</v-btn>
+                            <v-btn id="touzhu_node" class="btn_font rounded-lg ml-2" color="colorBtnBg" height="30"
+                                elevation="0" @click="handlerShowBetRecord(item.user_id)">{{LangUtil("投注记录") }}</v-btn> -->
+                    </v-sheet>
+                </v-sheet>
+            </v-sheet>
+            <ListNodata v-if="pageData.list.length == 0" height="411" />
+            <v-spacer />
+            <v-pagination
+                class="mx-auto mb-2"
+                v-if="pageData.pageInfo.pageCount > 1"
+                v-model="pageData.pageInfo.pageCurrent"
+                :length="pageData.pageInfo.pageCount"
+                @input="onPageChange"
+            >
+            </v-pagination>
+        </v-card-text>
+    </v-card>
+    <v-card v-else class="rounded10 d-flex flex-column" color="dialog_bg">
+        <!-- 手机显示方式 -->
+
+        <v-card-text class="pb-3 px-0 header-mobile">
+            <!-- <div class="gradient-bg d-flex align-center px-5">
+                    <div class="text-18">{{LangUtil("代理管理")}}</div>
+                    <v-spacer />
+                    <v-btn icon @click="onClose">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </div> -->
+            <com-dialog-title title="代理管理" @onClose="onClose" />
+            <div class="d-flex flex-column mb-2">
+                <div class="colorText1--text text-rwd-16 ml-3 d-flex align-center">
+                    <template v-if="invite_user_id!=0">
+                        <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("上级ID")}}</div>
+                        <div class="ml-3 colorDialogInfo--text">{{ invite_user_id }}</div>
+                    </template>
+                    <div class="ml-3 colorTextBlueLight2--text">{{LangUtil("直属玩家数量")}}</div>
+                    <div class="ml-3 colorDialogInfo--text">{{ pageData.pageInfo.pageTotal }}</div>
+                </div>
+                <div class="search_mobiel px-5 mt-2">
+                    <CustomInput height="41" :placeholder="LangUtil('输入查询ID/备注/账号')" v-model="pageData.search">
+                        <v-btn
+                            class="rounded-lg"
+                            :color="pageData.buttonActive ? 'colorTextBlueLight4' : 'colorExtensionBtn2'"
+                            min-width="61"
+                            height="30"
+                            @click="search"
+                        >
+                            <span :class="pageData.buttonActive ? 'white--text': ''">{{ LangUtil("查询") }}</span>
+                        </v-btn>
+                    </CustomInput>
+                </div>
+            </div>
+
+            <v-sheet class="d-flex align-center justify-end mx-4 pr-8 mb-2" color="transparent" height="30">
+                <div class="d-flex align-center colorTextBlueLight2--text text-16">{{LangUtil("用户筛选")}}</div>
+
+                <v-checkbox
+                    class="d-flex align-center ml-2"
+                    v-model="myProxy.checkboxValue"
+                    :label="LangUtil('正常')"
+                    color="colorTextBlueLight2"
+                    value="1"
+                ></v-checkbox>
+                <v-checkbox
+                    class="d-flex align-center ml-2"
+                    v-model="myProxy.checkboxValue"
+                    :label="LangUtil('禁用')"
+                    color="colorTextBlueLight2"
+                    value="98"
+                ></v-checkbox>
+            </v-sheet>
+            <div class="d-flex justify-end pr-8">
+                <v-btn
+                    v-if="limitinfo.enable_all == 1"
+                    class="text-12 mr-3 btn_gradient"
+                    color="colorTextBlueLight4"
+                    width="115"
+                    height="30"
+                    elevation="0"
+                    @click="handlerShowAddUser"
+                >
+                    {{LangUtil("添加用户") }}</v-btn
+                >
+
+                <v-btn
+                    class="text-12 btn_gradient"
+                    color="colorTextBlueLight4"
+                    width="115"
+                    height="30"
+                    elevation="0"
+                    @click="handlerShowCreditTable"
+                >
+                    {{LangUtil("信用报表") }}</v-btn
+                >
+            </div>
+
+            <div class="d-flex justify-end pr-8 mt-2">
+                <v-btn
+                    class="text-12 mr-3 btn_gradient"
+                    color="colorTextBlueLight4"
+                    width="115"
+                    height="30"
+                    elevation="0"
+                    @click="opendialog_my"
+                >
+                    {{LangUtil("我的推广") }}</v-btn
+                >
+                <v-btn
+                    class="text-12 btn_gradient"
+                    color="colorTextBlueLight4"
+                    width="115"
+                    height="30"
+                    elevation="0"
+                    @click="opendialog_myWater"
+                >
+                    {{LangUtil("我的返水") }}</v-btn
+                >
+            </div>
+        </v-card-text>
+
+        <v-card-text class="px-5">
+            <LoadMore1
+                @onRefresh="onRefresh"
+                @onLoad="onLoad"
+                :finished="pageData.finished"
+                :is_needfinishedtext="pageData.list.length == 0"
+                :class="limitinfo.enable_all == 1 ? 'listbox_2-mobile' :'listbox-mobile'"
+            >
+                <ListNodata v-if="pageData.list.length == 0" />
+                <v-sheet class="px-3 py-2 rounded-lg my-3 colorBlue--text" color="#16233F" v-for="(item, key) of pageData.list" :key="key">
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("注册时间")}}</div>
+                        <div>{{ item.binded_at.replace(/^\d{4}-/, "") }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("用户ID")}}</div>
+                        <div>{{ item.user_id }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("用户账号")}}</div>
+                        <div>{{ item.username }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("用户昵称")}}</div>
+                        <div>{{ item.nick_name }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("直属备注")}}</div>
+                        <div>{{ item.remark ? item.remark : LangUtil("-")}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("代理占成")}}</div>
+                        <div class="colorDialogInfo--text">
+                            {{ item.credit_rate }}
+                            <span v-if="item.credit_rate!='-'">%</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("状态")}}</div>
+                        <div>{{ item.status == 1? LangUtil("正常"):LangUtil("关闭") }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("直属人数")}}</div>
+                        <div>{{ item.directly_users }}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div class="colorBlue1--text">{{LangUtil("团队人数")}}</div>
+                        <div>{{ item.group_users }}</div>
+                    </div>
+
+                    <div class="d-flex justify-space-between" v-if="selfProxy.userInfo.is_credit_user == 1">
+                        <div class="colorBlue1--text">{{LangUtil("状态")}}</div>
+                        <div>{{ item.status == 1? LangUtil("正常"):LangUtil("关闭") }}</div>
+                    </div>
+
+                    <div class="d-flex justify-space-between colorBlue1--text">
+                        <div>
+                            <span class="font-weight-bold">{{LangUtil("返水:")}} </span>
+                            {{ getBackWaterTxt(item.water_config) }}
+                        </div>
+                    </div>
+
+                    <v-sheet class="d-flex align-center justify-space-between text-14" height="38" color="transparent">
+                        <v-sheet class="d-flex justify-end colorBlue1--text mr-3" color="transparent">
+                            <v-sheet class="d-flex justify-center colorBlue1--text font-weight-bold" color="transparent">
+                                {{LangUtil("近24小时")}}
+                            </v-sheet>
+                            <v-sheet class="d-flex justify-center colorBlue1--text ml-1" color="transparent">
+                                {{LangUtil("投注额")}}
+                            </v-sheet>
+                            <v-sheet class="d-flex justify-center colorBlue1--text" color="transparent"> ≈{{item.bet_gold}} </v-sheet>
+                            <v-sheet class="d-flex justify-center colorBlue1--text ml-2" color="transparent">
+                                {{LangUtil("输赢")}}≈
+                            </v-sheet>
+                            <div class="d-flex justify-center" :class="getMoneyColor(item.win_gold)" color="transparent">
+                                {{getMoneyValue(item.win_gold)}}
+                            </div>
+                        </v-sheet>
+                    </v-sheet>
+
+                    <div class="d-flex justify-end">
+                        <div class="mr-3">
+                            <v-btn
+                                class="text-12"
+                                color="colorTextBlueLight4"
+                                width="115"
+                                height="30"
+                                elevation="0"
+                                v-if="selfProxy.userInfo.is_credit_user == 1"
+                                @click="handlerShowDialogSet(item)"
+                            >
+                                {{LangUtil("设置") }}</v-btn
+                            >
+                        </div>
+
+                        <v-btn
+                            class="text-12"
+                            color="colorTextBlueLight4"
+                            width="115"
+                            height="30"
+                            elevation="0"
+                            @click="handlerShowBetRecord(item.user_id)"
+                            v-if="selfProxy.userInfo.is_show_agent_statistic == 1 || selfProxy.userInfo.is_credit_user == 1"
+                        >
+                            {{LangUtil("投注记录") }}</v-btn
+                        >
+                    </div>
+                </v-sheet>
+            </LoadMore1>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

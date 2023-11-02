@@ -1,0 +1,87 @@
+.text_height {
+    height: calc(100% - 190px);
+}
+
+.empty_height {
+    height: 40px;
+}
+
+.empty_space {
+    color: #97abd1;
+    white-space: nowrap;
+}
+.arrow {
+    transform: rotate(0deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(180deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mask {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 27;
+    cursor: default;
+}
+
+.select-shadow {
+    box-shadow: inset 0 0 3px 2px #feda7c;
+}
+
+.menu {
+    overflow: unset;
+    contain: unset;
+}
+
+.hackhome {
+    height: 1px;
+    background-image: linear-gradient(to right, #213354 0%, #213354 50%, transparent 50%);
+    background-size: 16px 1px;
+    background-repeat: repeat-x;
+}
+.input-text {
+    width: 130px;
+    height: 30px;
+    ::v-deep input {
+        height: 30px;
+        font-weight: normal !important;
+    }
+}
+
+.listitem {
+    div {
+        width: 120px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+    .listitem-150 {
+        width: 150px;
+        div {
+            width: 150px;
+        }
+    }
+}
+.listitem_height {
+    height: calc(100%);
+}
+
+::v-deep .money_class {
+    background-color: #fff;
+}

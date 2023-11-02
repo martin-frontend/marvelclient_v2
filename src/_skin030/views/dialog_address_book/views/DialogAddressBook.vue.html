@@ -1,0 +1,185 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="730"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card class="rounded-lg" :color="!$mobile?'dialog_bg':'dialog_bg'">
+        <!-- pc显示方式 -->
+        <template v-if="!$mobile">
+            <v-card-title class="gradient-bg d-flex justify-center" v-if="!$mobile">
+                <div class="text-20">{{LangUtil("地址薄")}}</div>
+                <!-- <v-spacer /> -->
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-divider />
+            <v-card-text v-if="!$mobile">
+                <div class="d-flex mt-3" v-if="payment_method_type != 8">
+                    <CustomSelect
+                        class="mr-3"
+                        :icons="plat_coins"
+                        :options="pageData.methodList"
+                        v-model="listQuery.coin_name_unique"
+                        @change="onChange"
+                    />
+                    <CustomSelect
+                        v-if="pageData.methodList[listQuery.coin_name_unique]"
+                        :options="pageData.methodList[listQuery.coin_name_unique].options"
+                        v-model="listQuery.block_network_id"
+                        @change="onChangeSub"
+                    />
+                </div>
+                <v-sheet v-if="pageData.list.length>0" color="transparent" height="368" class="scroll-y">
+                    <v-sheet color="transparent" class="px-4 d-flex my-5">
+                        <v-row no-gutters>
+                            <v-col v-if="payment_method_type == 8" align="center">
+                                <span>{{LangUtil("类型")}}</span>
+                            </v-col>
+                            <v-col align="center">
+                                <span>{{LangUtil("姓名")}}</span>
+                            </v-col>
+                            <v-col align="center">
+                                <span>{{payment_method_type == 8?LangUtil("CPF/手机/Email"):LangUtil("帐号")}}</span>
+                            </v-col>
+                        </v-row>
+                        <v-sheet v-if="payment_method_type != 8" class="mr-3" color="transparent" width="100px"></v-sheet>
+                        <v-sheet color="transparent" width="33.3px"></v-sheet>
+                    </v-sheet>
+                    <v-sheet
+                        class="rounded-lg px-4 d-flex mt-3 cursor align-center list"
+                        outlined
+                        height="40"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                        @click="onAddress(item.payment_method)"
+                    >
+                        <v-row no-gutters align="center">
+                            <v-col v-if="payment_method_type == 8" align="center">
+                                <span class="text-truncate"> {{convertPixType(item.payment_method.type)}} </span>
+                            </v-col>
+                            <v-col align="center">
+                                <span class="text-truncate">
+                                    {{payment_method_type == 8 ? item.payment_method.name : item.payment_method.account_name}}
+                                </span>
+                            </v-col>
+                            <v-col align="center">
+                                <span class="text-truncate"
+                                    >{{payment_method_type == 8 ? item.payment_method.pix_key : item.payment_method.account}}</span
+                                >
+                            </v-col>
+                        </v-row>
+                        <btn-yellow
+                            v-if="payment_method_type != 8"
+                            :btn_type="2"
+                            class="text-16 mr-3"
+                            width="100"
+                            height="30"
+                            @click.native="onEdit(item)"
+                            >{{LangUtil("备注")}}</btn-yellow
+                        >
+                        <btn-yellow :btn_type="2" class="text-16" min_width="30" height="30" @click.native.stop="onDelete(item)">
+                            <svg-icon icon="delete" class="text-16"></svg-icon>
+                        </btn-yellow>
+                    </v-sheet>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-spacer />
+                <v-pagination
+                    class="mt-2"
+                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    :total-visible="7"
+                    @input="onPageChange"
+                ></v-pagination>
+            </v-card-text>
+        </template>
+        <template v-else>
+            <!-- 手机显示方式 -->
+            <LoadMore1
+                v-if="pageData.bShow"
+                @onRefresh="onRefresh"
+                @onLoad="onLoad"
+                :finished="pageData.finished"
+                :is_needfinishedtext="pageData.list.length == 0"
+            >
+                <template v-slot:top>
+                    <v-sheet color="bgColor">
+                        <com-dialog-title title="地址薄" @onClose="onClose" />
+
+                        <v-divider />
+                        <div class="d-flex pa-3" v-if="payment_method_type != 8">
+                            <CustomSelect
+                                class="mr-3"
+                                :icons="plat_coins"
+                                :options="pageData.methodList"
+                                v-model="listQuery.coin_name_unique"
+                                @change="onChange"
+                            />
+                            <CustomSelect
+                                v-if="pageData.methodList[listQuery.coin_name_unique]"
+                                :options="pageData.methodList[listQuery.coin_name_unique].options"
+                                v-model="listQuery.block_network_id"
+                                @change="onChangeSub"
+                            />
+                        </div>
+                    </v-sheet>
+                </template>
+
+                <ListNodata v-if="pageData.list.length == 0" />
+                <v-sheet
+                    class="rounded-lg my-3 mx-2 colorText2--text d-flex align-center cursor list"
+                    :class="{'mt-0':payment_method_type != 8}"
+                    v-for="(item, key) of pageData.list"
+                    :key="key"
+                    outlined
+                    @click="onAddress(item.payment_method)"
+                >
+                    <v-sheet color="bgBanner" width="100%" class="mx-auto rounded-lg pa-4 text-14">
+                        <div v-if="payment_method_type == 8" class="d-flex justify-space-between align-center">
+                            <div class="leftText--text">{{LangUtil("类型")}}</div>
+                            <div class="d-flex align-center">
+                                <div class="head_btn--text">{{convertPixType(item.payment_method.type)}}</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-space-between align-center" :class="{'mt-3':payment_method_type == 8}">
+                            <div class="leftText--text">{{LangUtil("姓名")}}</div>
+                            <div class="head_btn--text">
+                                {{payment_method_type == 8 ? item.payment_method.name : item.payment_method.account_name}}
+                            </div>
+                        </div>
+                        <div class="mt-3 d-flex justify-space-between align-center">
+                            <div class="leftText--text">{{payment_method_type == 8?LangUtil("CPF/手机/Email"):LangUtil("帐号")}}</div>
+                            <div class="head_btn--text">
+                                {{payment_method_type == 8 ? item.payment_method.pix_key : item.payment_method.account}}
+                            </div>
+                        </div>
+                        <div class="mt-3 d-flex justify-space-between align-center">
+                            <div class="leftText--text"></div>
+                            <div class="d-flex">
+                                <btn-yellow
+                                    v-if="payment_method_type != 8"
+                                    :btn_type="2"
+                                    class="text-12 mr-3"
+                                    min-width="60"
+                                    height="30"
+                                    @click.native.stop="onEdit(item)"
+                                    >{{LangUtil("备注")}}</btn-yellow
+                                >
+                                <btn-yellow :btn_type="2" class="text-12" min_width="30" height="30" @click.native.stop="onDelete(item)">
+                                    <svg-icon icon="delete" class="text-12"></svg-icon>
+                                </btn-yellow>
+                            </div>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+            </LoadMore1>
+        </template>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

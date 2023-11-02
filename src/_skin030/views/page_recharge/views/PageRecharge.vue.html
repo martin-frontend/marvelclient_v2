@@ -1,0 +1,86 @@
+<v-container>
+    <v-sheet width="100%" color="transparent" class="">
+        <v-card v-if="!$mobile" flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68" width="100%" color="dialog_bg">
+            <v-sheet color="bgBanner" class="rounded-pill pa-0">
+                <v-btn-toggle mandatory group v-model="myProxy.pageData.tabIndex">
+                    <v-btn v-if="isShowRecharge" class="rounded-pill mr-2" height="36" min-width="90" value="0">
+                        <span class="text-14"> {{LangUtil("充值")}} </span>
+                    </v-btn>
+                    <v-btn v-if="isShowExchange" class="rounded-pill mr-2" height="36" min-width="90" value="1">
+                        <span class="text-14"> {{LangUtil("兑换")}} </span>
+                    </v-btn>
+                    <v-btn
+                        v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1"
+                        class="rounded-pill mr-2"
+                        height="36"
+                        min-width="90"
+                        value="11"
+                    >
+                        <span class="text-14"> {{LangUtil("划转")}} </span>
+                    </v-btn>
+                </v-btn-toggle>
+            </v-sheet>
+            <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1" color="transparent" class="d-flex ml-auto">
+                <btn-yellow v-if="pageData.tabIndex==1" class="text-16 ml-2" min_width="104" height="36" @click.native="openGoldWater"
+                    >{{LangUtil("流水审核")}}</btn-yellow
+                >
+
+                <btn-yellow class="text-16 ml-2" min_width="104" height="36" @click.native="goRecord"
+                    >{{pageData.tabIndex == 0 ? LangUtil("充值记录") : LangUtil("兑换记录")}}</btn-yellow
+                >
+            </v-sheet>
+        </v-card>
+
+        <v-sheet
+            v-else
+            flat
+            class="d-flex flex-column fix_head_mob px-2-5 justify-center pt-3"
+            :class="isSkin008 ? 'topHeight_008' : 'topHeight'"
+            width="100%"
+            color="bgColor"
+        >
+            <v-sheet class="d-flex align-center" color="transparent">
+                <v-btn-toggle :lang="core.lang" mandatory group borderless v-model="myProxy.pageData.tabIndex">
+                    <v-btn
+                        color="textGray"
+                        v-if="isShowRecharge"
+                        class="tab-btn"
+                        active-class="tab-btn-active"
+                        height="35"
+                        min_width="78"
+                        value="0"
+                        :outlined="false"
+                    >
+                        <span class="text-14"> {{LangUtil("充值")}} </span>
+                    </v-btn>
+                    <v-btn v-if="isShowExchange" class="tab-btn" active-class="tab-btn-active" height="35" min_width="78" value="1">
+                        <span class="text-14"> {{LangUtil("兑换")}} </span>
+                    </v-btn>
+                    <v-btn
+                        v-if="GlobalVar.instance.isShowTransfer && selfProxy.userInfo.is_gold_transfer == 1"
+                        class="tab-btn"
+                        height="35"
+                        min_width="78"
+                        value="11"
+                    >
+                        <span class="text-12"> {{LangUtil("划转")}} </span>
+                    </v-btn>
+                </v-btn-toggle>
+                <v-spacer />
+                <v-sheet v-if="pageData.tabIndex==0 || pageData.tabIndex==1" color="transparent" class="d-flex">
+                    <v-btn icon v-if="pageData.tabIndex==1" @click.native="openGoldWater" style="height: 30px"
+                        ><svg-icon icon="Flowaudit" class="text-20 head_btn--text"></svg-icon
+                    ></v-btn>
+                    <v-btn icon @click.native="goRecord" style="height: 30px"
+                        ><svg-icon :icon="pageData.tabIndex == 0?'recharge':'exchange'" class="text-20 head_btn--text"></svg-icon>
+                    </v-btn>
+                </v-sheet>
+            </v-sheet>
+        </v-sheet>
+
+        <!-- <HomePage v-if="pageData.tabIndex==0" ></HomePage> -->
+        <TabRecharge v-if="pageData.tabIndex==0" :class="$mobile ? 'px-2-5' : 'mt-4'"></TabRecharge>
+        <TabExchange v-if="pageData.tabIndex==1" :class="$mobile ? 'px-2-5' : 'mt-4'"></TabExchange>
+        <TabTransfer v-if="pageData.tabIndex==11" :class="$mobile ? ' ml-2' : 'mt-4'"></TabTransfer>
+    </v-sheet>
+</v-container>

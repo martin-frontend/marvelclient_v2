@@ -1,0 +1,186 @@
+<v-sheet
+    class="d-flex align-center justify-center pt-8 pb-10 foot_text_color pb-5"
+    color="#00251d"
+    style="margin-top: 100px !important"
+    :class="$mobile ? 'text-14' :'ml-n3 mr-n3 text-16 '"
+>
+    <v-container class="d-flex flex-column align-center justify-center foot_text_color">
+        <!-- 底部说明与logo的配置 pc版显示-->
+        <v-sheet v-if="!$mobile" color="transparent" class="d-flex flex-column align-center" width="100%">
+            <!-- <v-sheet color="transparent" class="px-n2" width="100%">
+            <v-divider class="my-8"></v-divider>
+        </v-sheet> -->
+            <!-- 底部说明 -->
+            <v-card flat color="transparent" class="d-flex justify-space-between" width="100%" min-width="1015">
+                <v-card flat v-for="(obj, key) of shouming_list" :key="obj.title" class="d-flex flex-column mx-2 px-2" color="transparent">
+                    <!-- 标题 -->
+                    <v-sheet
+                        v-if="obj.title && obj.title!='-' "
+                        color="transparent"
+                        class="text-16 font-weight-bold mb-2"
+                        style="color: #fff"
+                    >
+                        {{obj.title}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" class="d-flex flex-column">
+                        <template v-for="(item, index) of obj.data">
+                            <v-sheet
+                                :key="index"
+                                color="transparent"
+                                class="text-14 cursor-pointer my-0 footer_shuoming_item font-weight-bold"
+                                @click="onFooterClick(item)"
+                            >
+                                {{item.name}}
+                            </v-sheet>
+                        </template>
+                    </v-sheet>
+                </v-card>
+            </v-card>
+            <v-sheet v-if="isHaveShouming_list" color="transparent" class="px-n2" width="100%">
+                <v-divider class="my-8"></v-divider>
+            </v-sheet>
+            <!-- 底部logo -->
+            <v-card flat color="transparent" class="d-flex flex-column align-self-start" width="100%">
+                <v-card
+                    flat
+                    v-for="(obj, key) of logo_list"
+                    :key="obj.title"
+                    class="d-flex flex-column mx-2 px-2"
+                    color="transparent"
+                    width="100%"
+                >
+                    <!-- 标题 -->
+                    <v-sheet
+                        v-if="obj.title && obj.title!='-' "
+                        color="transparent"
+                        class="text-16 font-weight-bold mb-4"
+                        style="color: #fff"
+                    >
+                        {{obj.title}}
+                    </v-sheet>
+
+                    <v-sheet color="transparent" class="d-flex flex-wrap">
+                        <template v-for="(item, index) of obj.data">
+                            <v-sheet
+                                :key="index"
+                                color="transparent"
+                                class="text-14 textGray--text mr-2"
+                                :class="isCanClick(item) ? 'cursor-pointer ' : ''"
+                                @click="onFooterClick(item)"
+                            >
+                                <template v-if="isShowImg(item)">
+                                    <v-tooltip v-if="isShowTooltip(item)" top>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                            </v-sheet>
+                                        </template>
+                                        <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
+                                    </v-tooltip>
+                                    <img v-else :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                </template>
+                                <span v-else>{{item.name}}</span>
+                            </v-sheet>
+                        </template>
+                    </v-sheet>
+                    <v-sheet color="transparent" class="px-0" width="100%">
+                        <v-divider class="my-8"></v-divider>
+                    </v-sheet>
+                </v-card>
+            </v-card>
+        </v-sheet>
+        <!-- 手机版显示 -->
+        <v-sheet v-else color="transparent" class="d-flex flex-column align-center" width="100%">
+            <!-- 底部说明 -->
+            <v-row no-gutters class="d-flex flex-row mt-4" style="width: 100%">
+                <v-col cols="12">
+                    <v-expansion-panels class="btninfo" multiple accordion v-model="panel" flat>
+                        <v-expansion-panel class="text_mob" v-for="(obj, key) of shouming_list" :key="obj.title">
+                            <v-expansion-panel-header class="pa-0" style="color: #fff"> {{ obj.title }} </v-expansion-panel-header>
+                            <v-expansion-panel-content class="nomal_text_1--text text-12" eager>
+                                <v-sheet color="transparent" class="d-flex flex-column">
+                                    <template v-for="(item, index) of obj.data">
+                                        <v-lazy :key="index">
+                                            <v-sheet
+                                                color="transparent"
+                                                class="text-14 cursor-pointer my-1 footer_shuoming_item"
+                                                @click="onFooterClick(item)"
+                                            >
+                                                {{item.name}}
+                                            </v-sheet>
+                                        </v-lazy>
+                                    </template>
+                                </v-sheet>
+                            </v-expansion-panel-content>
+                            <v-sheet color="transparent" class="px-n2" width="100%">
+                                <v-divider class="my-2"></v-divider>
+                            </v-sheet>
+                        </v-expansion-panel>
+                    </v-expansion-panels>
+                </v-col>
+            </v-row>
+
+            <!-- 底部logo -->
+            <v-row no-gutters class="d-flex flex-row" style="width: 100%">
+                <v-col cols="12">
+                    <v-expansion-panels class="btninfo" multiple accordion v-model="panel_1" flat>
+                        <v-expansion-panel class="text_mob" v-for="(obj, key) of logo_list" :key="obj.title">
+                            <v-expansion-panel-header class="pa-0" style="color: #fff"> {{ obj.title }} </v-expansion-panel-header>
+                            <v-expansion-panel-content class="nomal_text_1--text text-12">
+                                <v-sheet color="transparent" class="d-flex flex-wrap">
+                                    <template v-for="(item, index) of obj.data">
+                                        <v-sheet
+                                            color="transparent"
+                                            class="text-14 textGray--text mx-1"
+                                            :class="isCanClick(item) ? 'cursor-pointer ' : ''"
+                                            @click="onFooterClick(item)"
+                                            :key="index"
+                                        >
+                                            <template v-if="isShowImg(item)">
+                                                <v-tooltip v-if="isShowTooltip(item)" top>
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                                                            <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                                        </v-sheet>
+                                                    </template>
+                                                    <div class="" v-html="LangUtil(isShowTooltip(item))"></div>
+                                                </v-tooltip>
+                                                <template v-else>
+                                                    <img :id="item.id" :src="img_url(item)" height="40" @load="load(item)" />
+                                                </template>
+                                            </template>
+                                            <!-- <img v-if="isShowImg(item)" :id="item.id" :src="img_url(item)" height="40" @load="load(item)" /> -->
+                                            <span v-else>{{item.name}}</span>
+                                        </v-sheet>
+                                    </template>
+                                </v-sheet>
+                            </v-expansion-panel-content>
+                            <v-sheet color="transparent" class="px-n2" width="100%">
+                                <v-divider class="my-2"></v-divider>
+                            </v-sheet>
+                        </v-expansion-panel>
+                    </v-expansion-panels>
+                </v-col>
+            </v-row>
+        </v-sheet>
+        <v-sheet color="transparent" class="d-flex justify-center align-center gap-x-36" width="100%">
+            <v-sheet color="transparent" class="d-flex flex-column align-center" max-height="58">
+                <v-img :src="commonIcon.logo" width="132"></v-img>
+                <div class="text-14 foot_text_color" v-html="LangUtil('logo描述信息')"></div>
+            </v-sheet>
+            <div
+                id="apg-70a616ed-d190-41c6-ab5d-9a87fa8baf6c"
+                data-apg-seal-id="70a616ed-d190-41c6-ab5d-9a87fa8baf6c"
+                data-apg-41c6-ab5d-9a87fa8baf6c
+                data--image-type="basic-light-large"
+                style="max-width: 90px"
+            ></div>
+        </v-sheet>
+        <div class="text-14 foot_text_color mt-4" style="text-align: center">{{LangUtil("网页底部信息说明")}}</div>
+        <pre class="text-14 foot_text_color mt-2">{{LangUtil("网页底部公司说明")}}</pre>
+        <div class="text-14 foot_text_color">{{LangUtil("version")}}:{{getVersion()}}</div>
+        <div class="text-14 foot_text_color">{{getChannelID()}}</div>
+        <!-- <div class="text-14 borderGameItem--text">网页底部公司说明 version:{{getVersion()}} {{getChannelID()}} -->
+    </v-container>
+</v-sheet>

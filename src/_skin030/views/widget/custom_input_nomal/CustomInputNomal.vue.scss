@@ -1,0 +1,54 @@
+@import "@/_skin030/style/input_nomal.scss";
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    height: 100%;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+::v-deep .v-btn__content {
+    color: #8e8f91;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.fontweight {
+    font-weight: 400 !important;
+}
+//针对google 自动填充的问题
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    // -webkit-text-fill-color: #fff !important;
+    // -webkit-transition-delay: 99999s;
+    // transition: background-color 99999ss ease-in-out 0s;
+    // -webkit-box-shadow: 0 0 0px 1000px white inset;
+    // -webkit-text-fill-color: #333 !important;
+    box-shadow: inset 0 0 0 500px transparent !important;
+    -webkit-text-fill-color: #fff !important;
+    &::placeholder {
+        color: #fff !important;
+        -webkit-text-fill-color: #fff !important;
+    }
+}
+input:-internal-autofill-selected {
+    box-shadow: inset 0 0 0 500px transparent !important;
+    -webkit-text-fill-color: #fff !important;
+    &::placeholder {
+        color: #fff !important;
+        -webkit-text-fill-color: #fff !important;
+    }
+}
+.placeholder-12 {
+    input::placeholder {
+        font-size: 12px !important;
+        font-weight: bold;
+    }
+}

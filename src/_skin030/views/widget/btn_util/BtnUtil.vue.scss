@@ -1,0 +1,413 @@
+$base_radius: 4px; //圆角
+$moble_radius: 2px;
+
+$sss: #3e3f41;
+
+.base_border {
+    border-radius: $base_radius;
+}
+
+.base_border::before {
+    border-radius: $base_radius;
+}
+
+.border_5 {
+    border-radius: $moble_radius;
+}
+
+.border_5::before {
+    border-radius: $moble_radius;
+}
+
+.helf_border {
+    border-radius: 0px $base_radius $base_radius 0px;
+}
+
+.helf_border::before {
+    border-radius: 0px $base_radius $base_radius 0px;
+}
+
+.game_border {
+    border-radius: 0px 0px $base_radius $base_radius;
+}
+
+.game_border::before {
+    border-radius: 0px 0px $base_radius $base_radius;
+}
+
+.btn_base::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1px;
+}
+
+.btn_base {
+    padding: 4px;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.disable_base {
+    pointer-events: none;
+}
+
+.disable_base::before {
+    pointer-events: none;
+}
+
+//------------    样式一  ----------------------
+.btn_nomal {
+    color: var(--btn_hover_text);
+}
+
+.btn_nomal:before {
+    content: "";
+    background: linear-gradient(to right, var(--yellow_color_7), var(--yellow_color_7));
+}
+
+.theme--dark {
+    .btn_nomal:hover:before {
+        // -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        // -webkit-mask-composite: xor;
+        // mask-composite: exclude;
+        background: linear-gradient(to right, var(--yellow_color_6), var(--yellow_color_6));
+    }
+
+    .btn_nomal:hover {
+        color: var(--btn_hover_text);
+    }
+
+    .btn_nomal_disable {
+        color: var(--btn_disable_text_dark);
+    }
+
+    .btn_nomal_disable::before {
+        background: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+
+    .btn_three_disable {
+        color: var(--btn_disable_text_dark);
+    }
+
+    .btn_three_disable::before {
+        background: linear-gradient(to right, #3e3f41, #3e3f41);
+    }
+}
+
+.theme--light {
+    .btn_nomal:hover:before {
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+
+    .btn_nomal_disable {
+        color: var(--btn_disable_text_light);
+    }
+
+    .btn_nomal_disable::before {
+        background: linear-gradient(90deg, #d5dce2 0%, #f4f4f4 100%);
+    }
+
+    .btn_three_disable {
+        color: var(--btn_disable_text_light);
+    }
+
+    .btn_three_disable::before {
+        background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+    }
+}
+
+//------------    样式一  end ----------------------
+
+//------------    样式二  ----------------------
+.btn_two:before {
+    content: "";
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.btn_two:hover {
+    color: var(--btn_nomal_text) !important;
+}
+
+.btn_two:hover:before {
+    -webkit-mask: none;
+    -webkit-mask-composite: none;
+    mask-composite: none;
+}
+
+.btn_two_disable::before {
+    -webkit-mask: none;
+    -webkit-mask-composite: none;
+    mask-composite: none;
+}
+
+.btn_two_disable {
+    color: var(--btn_disable_text_light);
+}
+
+.theme--dark {
+    .btn_two_disable::before {
+        background: linear-gradient(to right, #333435, #3d3d3d);
+    }
+
+    .btn_two {
+        color: var(--btn_hover_text);
+    }
+}
+
+.theme--light {
+    .btn_two_disable::before {
+        background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+    }
+
+    .btn_two {
+        color: var(--btn_nomal_text);
+    }
+}
+
+.test_my {
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    //background-image: linear-gradient(to right, #222, #222), linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+}
+
+.test_my:hover {
+    // color: var(--btn_nomal_text) !important;
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+}
+
+.theme--dark {
+    .test_my {
+        color: var(--btn_hover_text);
+        background-image: linear-gradient(to right, transparent, transparent), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+        // background-image: linear-gradient(to right, transparent, transparent);
+    }
+
+    .test_my_disable {
+        color: var(--btn_disable_text_dark);
+        background: linear-gradient(to right, #333435, #3d3d3d);
+    }
+}
+
+.theme--light {
+    .test_my {
+        color: var(--btn_nomal_text);
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    }
+
+    .test_my_disable {
+        color: var(--btn_disable_text_light);
+        background: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+}
+
+.buttton_yellow {
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: var(--btn_hover_text);
+    background-image: linear-gradient(to right, var(--yellow_color_7), var(--yellow_color_7));
+}
+
+.theme--dark {
+    .buttton_yellow:hover {
+        color: var(--btn_hover_text) !important;
+        // background-image: linear-gradient(to right, #333435, #333435) !important;
+        background-image: linear-gradient(to right, var(--yellow_color_8), var(--yellow_color_8)) !important;
+    }
+}
+
+.theme--light {
+    .buttton_yellow:hover {
+        color: var(--btn_nomal_text) !important;
+        background-image: linear-gradient(to right, #fff, #fff) !important;
+    }
+}
+
+.btnweight {
+    font-weight: var(--font-weight, 500);
+}
+
+.btn_9 {
+    cursor: pointer;
+    //border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: var(--btn_hover_text);
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+}
+
+.btn_10 {
+    cursor: pointer;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: var(--btn_hover_text);
+    background-image: linear-gradient(to right, var(--yellow_color_9), var(--yellow_color_9));
+    // color: var(--btn_nomal_text);
+    // background-image: linear-gradient(to right,  #e8e8e2, #e8e8e2);
+}
+
+.btn_11 {
+    cursor: pointer;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: var(--btn_hover_text);
+    // color: var(--btn_nomal_text);
+    // background-image: linear-gradient(to right,  #e8e8e2, #e8e8e2);
+}
+
+.theme--dark {
+    .btn_9:hover {
+        color: var(--btn_hover_text) !important;
+        // color: #202630 !important;
+        // border: 1px solid transparent;
+        // background-image: linear-gradient(to right, #272828, #272828),
+        //     linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+        background-image: linear-gradient(to right, var(--yellow_color_5), var(--yellow_color_5));
+    }
+    .btn_9_disable {
+        color: var(--btn_disable_text_light);
+        background: linear-gradient(to right, #57695d, #57695d);
+    }
+    // .btn_10 {
+    //     color: var(--btn_disable_text_light);
+    //     background-image: linear-gradient(to right, #3e3f41, #3e3f41);
+    // }
+
+    .btn_10:hover {
+        color: var(--btn_hover_text) !important;
+        background-image: linear-gradient(to right, var(--yellow_color_5), var(--yellow_color_5)) !important;
+    }
+    .btn_10_disable {
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        color: var(--btn_disable_text_light);
+        border: 1px solid transparent;
+        font-family: "GOTHAM_BOLD";
+        background-image: linear-gradient(to right, #57695d, #57695d),
+            linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    }
+    .btn_11:hover {
+        color: var(--btn_hover_text) !important;
+        // background-image: linear-gradient(to right, var(--yellow_color_5), var(--yellow_color_5));
+    }
+    .btn_11_disable {
+        color: var(--btn_disable_text_light);
+        background: linear-gradient(to right, #57695d, #57695d);
+    }
+    // .btn_11 {
+    //     color: #8e8f91 !important;
+    //     background-color: #272828;
+    //     border: 1px solid #3e3f41 !important;
+    // }
+
+    // .btn_11:hover,
+    // .btn_11_disable {
+    //     border: 1px solid #f6b400 !important;
+    //     color: #ffffff !important;
+    //     font-weight: bold !important;
+    // }
+
+}
+
+.theme--light {
+    .btn_9:hover {
+        color: var(--btn_nomal_text) !important;
+        border: 1px solid transparent;
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    }
+    .btn_9_disable {
+        color: var(--btn_disable_text_light);
+        background: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+    .btn_10 {
+        color: var(--btn_nomal_text);
+        background-image: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+    .btn_10:hover {
+        color: var(--btn_nomal_text) !important;
+
+        background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+    }
+    .btn_10_disable {
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        color: var(--btn_nomal_text);
+        border: 1px solid transparent;
+        font-family: "GOTHAM_BOLD";
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    }
+    .btn_11 {
+        color: #5d5d5d !important;
+        background-color: #272828;
+        border: 1px solid #d6dde3 !important;
+    }
+
+    .btn_11:hover,
+    .btn_11_disable {
+        border: 1px solid #f6b400 !important;
+        color: #0f1213 !important;
+        font-weight: bold !important;
+    }
+}
+
+// .btn_9_disable {
+//     color: var(--btn_disable_text_light);
+//     //background-image: linear-gradient(to right, $yellow_color_1, $yellow_color_2);
+//     background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+//     background: linear-gradient(to right, #3e3f41, #3e3f41);
+// }
+
+.btn_helf_new {
+    cursor: pointer;
+    // border: 1px solid transparent;
+    // background-clip: padding-box, border-box;
+    // background-origin: padding-box, border-box;
+
+    background-image: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+}
+
+.theme--dark {
+    .btn_helf_new:hover {
+        color: var(--btn_hover_text) !important;
+        background-image:
+            linear-gradient(to right, var(--yellow_color_5), var(--yellow_color_5));
+    }
+    .btn_helf_new_disable {
+        color: var(--btn_disable_text_light);
+        background: linear-gradient(to right, #57695d, #57695d);
+    }
+}
+
+.theme--light {
+    .btn_helf_new:hover {
+        color: var(--btn_nomal_text) !important;
+
+        background-image: linear-gradient(to right, #fff, #fff), linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2));
+    }
+
+    .btn_helf_new_disable {
+        color: var(--btn_disable_text_light);
+        background: linear-gradient(to right, #e8e8e2, #e8e8e2);
+    }
+}
+
+//------------    样式二  end ----------------------
+//------------    样式三     ----------------------
+
+//------------    样式三  end ----------------------

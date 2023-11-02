@@ -16,6 +16,17 @@ export default class GameSearch extends AbstractView {
         this.readSearchHistory();
         // this.resetItemWidth();
     }
+    /**更改币种时，清空 */
+    @Watch("gameProxy.coin_name_unique")
+    onWatchCoin() {
+        this.clearData();
+    }
+    /**路由发生变化时，清空 */
+    @Watch("$route")
+    onWatchRoute() {
+        this.clearData();
+    }
+
     // itemWidth = 181;
     // @Watch("$vuetify.breakpoint.width")
     // resetItemWidth() {

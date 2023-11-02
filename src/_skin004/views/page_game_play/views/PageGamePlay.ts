@@ -1,5 +1,5 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import { judgeClient } from "@/core/global/Functions";
+import { judgeClient, sendPostMessage } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import LangUtil from "@/core/global/LangUtil";
 import ScrollUtil from "@/core/global/ScrollUtil";
@@ -146,6 +146,7 @@ export default class PageGamePlay extends AbstractView {
         dialog_message_box.confirm({
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
+                sendPostMessage({ methodName: "showTab" });
                 const gameProxy: GameProxy = getProxy(GameProxy);
                 //如果不是游戏，就直接返回到首页, 这是成人影院
                 if (!gameProxy.currGame) {

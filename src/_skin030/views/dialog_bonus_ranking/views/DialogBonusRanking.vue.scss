@@ -1,0 +1,9 @@
+.horizontal-gradient {
+    background: linear-gradient(to right, #1d2a45, #2a3a78);
+}
+.content {
+    height: 620px;
+    @media (max-width: 600px) {
+        height: calc(100vh - 90px);
+    }
+}

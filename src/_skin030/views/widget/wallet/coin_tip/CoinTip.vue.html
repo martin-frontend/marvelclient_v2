@@ -1,0 +1,22 @@
+<v-sheet color="transparent" class="tip_test">
+    <v-sheet
+        :width="$mobile ? mobileWidth : pcWidth"
+        class="base_class rounded10 py-2 pl-2 pr-2"
+        :class="tipsClass"
+        :color="$mobile ? 'tips_color_bg' : 'tips_color_bg_2'"
+        :style="styleObj"
+        v-if="coinTipData.isShow"
+    >
+        <p class="d-flex align-center mb-1">
+            <!-- <v-img
+            src="@/assets/header/emoji.png"
+            max-width="20"
+            max-height="20"
+            class="d-inline-flex"
+        >
+        </v-img> -->
+            <span class="ml-1 tips_color--text text-12 font-weight-bold">{{ LangUtil('小贴士') }}:</span>
+        </p>
+        <p class="ml-1 mr-1 mb-0 tips_color--text text-12 font-weight-bold">{{ LangUtil('你当前游戏使用此币种') }}</p>
+    </v-sheet>
+</v-sheet>

@@ -1,0 +1,593 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="unset"
+    min-height="670"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card v-if="!$mobile" class="rounded-lg d-flex" color="dialog_bg">
+        <AdvertiseInLogin :height="723" :width="337" class="d-none d-md-flex" />
+        <v-card color="transparent" width="524">
+            <v-card-title class="d-flex justify-start pb-0 gradient-bg">
+                <div class="text-18">{{LangUtil("安全中心")}}</div>
+                <!-- <v-spacer /> -->
+                <v-btn icon @click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-divider class="mb-2" />
+            <v-card-text class="mt-2 mb-5" :style="$mobile ? 'height: 30px' : 'height: 60px'">
+                <div class="d-flex mb-10">
+                    <horizontal_scroll>
+                        <template v-slot="{data}">
+                            <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                                <v-btn
+                                    class="rounded-pill mr-2"
+                                    height="42"
+                                    min-width="110"
+                                    v-for="(item , key) of tabOptions()"
+                                    :value="Number(key)"
+                                    :key="key"
+                                >
+                                    <span class="text-14"> {{item}} </span>
+                                </v-btn>
+                                <!-- <v-btn v-if="checkValidateType(2)" class="rounded-pill mr-2" height="42" min-width="110" value="0">
+                                    <span class="text-14"> {{LangUtil("绑定手机")}} </span>
+                                </v-btn>
+                                <v-btn v-if="checkValidateType(1)" class="rounded-pill mr-2" height="42" min-width="110" value="1">
+                                    <span class="text-14"> {{LangUtil("绑定邮箱")}} </span>
+                                </v-btn>
+                                <v-btn class="rounded-pill mr-2" height="42" min-width="110" value="2">
+                                    <span class="text-14"> {{LangUtil("修改密码")}} </span>
+                                </v-btn>
+                                <v-btn
+                                    v-if="is_password_gold_transfer.is_open"
+                                    class="rounded-pill mr-2"
+                                    height="42"
+                                    min-width="110"
+                                    value="3"
+                                >
+                                    <span class="text-14"> {{LangUtil("交易密码")}} </span>
+                                </v-btn> -->
+                            </v-btn-toggle>
+                        </template>
+                    </horizontal_scroll>
+                </div>
+            </v-card-text>
+            <!-- 绑定手机 -->
+            <v-card-text v-if="pageData.tabIndex == 0" class="">
+                <v-sheet
+                    v-if="userInfo.phone"
+                    class="d-flex flex-column align-center justify-center text-16 colorText2--text"
+                    height="400"
+                    color="transparent"
+                >
+                    <v-icon color="green" size="100">mdi-check-circle</v-icon>
+                    <div class="my-2">{{LangUtil("已经绑定")}}</div>
+                    <div>{{userInfo.phone}}</div>
+                </v-sheet>
+                <div v-else>
+                    <CustomInput
+                        class="mb-6"
+                        icon="mdi-phone"
+                        :isOnlyInt="true"
+                        :placeholder="LangUtil('请输入手机号')"
+                        :maxlength="phoneLength"
+                        v-model="formBindPhone.mobile"
+                    >
+                        <template v-slot:pre>
+                            <v-sheet color="transparent" class="codeSelect">
+                                <v-autocomplete
+                                    class="ml-1"
+                                    v-model="tempSelectCode"
+                                    :items="areaCodeArr"
+                                    item-text="area_code"
+                                    :label="'+' + formBindPhone.area_code"
+                                    hide-details
+                                    solo
+                                    flat
+                                    background-color="transparent"
+                                    attach
+                                    return-object
+                                    :no-data-text="LangUtil('没有更多数据')"
+                                    :filter="customFilter"
+                                >
+                                    <template v-slot:item="data">
+                                        <v-sheet
+                                            color="transparent"
+                                            width="100%"
+                                            class="d-flex justify-space-between colorText2--text text-14"
+                                        >
+                                            <div>{{data.item.area_code}}</div>
+                                            <div>{{data.item.name}}</div>
+                                        </v-sheet>
+                                    </template>
+                                </v-autocomplete>
+                            </v-sheet>
+                            <v-menu
+                                v-if="false"
+                                v-model="areaCodeMenu"
+                                offset-y
+                                :close-on-content-click="false"
+                                nudge-bottom="20"
+                                nudge-left="38"
+                            >
+                                <template v-slot:activator="{ on, attrs }">
+                                    <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
+                                        <div class="textYellow--text mx-2">+{{formBindPhone.area_code}}</div>
+                                        <div
+                                            class="icon-box iconfont text-18 mr-2"
+                                            :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                        >
+                                            
+                                        </div>
+                                        <div class="text-20">|</div>
+                                    </div>
+                                </template>
+                                <v-sheet class="pa-3 rounded-lg" color="colorPanelTitleBg" width="400">
+                                    <v-text-field
+                                        class="rounded-pill"
+                                        outlined
+                                        dense
+                                        prepend-inner-icon="mdi-database-search-outline"
+                                        hide-details
+                                        v-model="areaCodeSearch"
+                                        @input="onAreaCodeInput"
+                                    ></v-text-field>
+
+                                    <v-list dense color="colorPanelTitleBg">
+                                        <v-list-item-group>
+                                            <v-list-item
+                                                v-for="(item, index) of areaCodeList"
+                                                :key="index"
+                                                class="colorText2--text"
+                                                @click="onItemAreaCode(item)"
+                                            >
+                                                <div>{{item.name}}</div>
+                                                <v-spacer />
+                                                <div>+{{item.area_code}}</div>
+                                            </v-list-item>
+                                        </v-list-item-group>
+                                    </v-list>
+                                </v-sheet>
+                            </v-menu>
+                        </template>
+                        <btn-yellow
+                            class="mr-n4 text-14"
+                            min_width="80"
+                            height="36"
+                            :btn_type="4"
+                            :disabled="!checkPhone(formBindPhone.mobile) || isdeisable"
+                            @click.native="sendVerithMobile"
+                            >{{verityString}}</btn-yellow
+                        >
+                    </CustomInput>
+                    <CustomInput
+                        class="mb-6"
+                        icon="mdi-shield-check"
+                        :placeholder="LangUtil('请输入验证码')"
+                        type="tel"
+                        v-model="formBindPhone.code"
+                    />
+                    <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormMobile" block @click="onBindMobile">
+                        {{LangUtil("绑定")}}
+                    </v-btn> -->
+
+                    <btn-yellow class="text-16" width="100%" height="36" :disabled="!isCheckFormMobile" @click.native="onBindMobile"
+                        >{{LangUtil("绑定")}}</btn-yellow
+                    >
+                </div>
+            </v-card-text>
+            <!-- 绑定邮箱 -->
+            <v-card-text v-if="pageData.tabIndex == 1" class="">
+                <v-sheet
+                    v-if="userInfo.email"
+                    class="d-flex flex-column align-center justify-center text-16 colorText2--text"
+                    height="400"
+                    color="transparent"
+                >
+                    <v-icon color="green" size="100">mdi-check-circle</v-icon>
+                    <div class="my-2">{{LangUtil("已经绑定")}}</div>
+                    <div>{{userInfo.email}}</div>
+                </v-sheet>
+                <div v-else>
+                    <v-sheet color="transparent" class="mb-6">
+                        <CustomInput
+                            icon="mdi-email"
+                            :placeholder="LangUtil('请输入邮箱')"
+                            v-model="formBindEmail.email"
+                            @blur="onBlurInput()"
+                        >
+                            <btn-yellow
+                                class="mr-n4 text-14"
+                                min_width="80"
+                                height="36"
+                                :btn_type="4"
+                                :disabled="!checkMail(formBindEmail.email) || isdeisable"
+                                @click.native="sendVerithMail"
+                                >{{verityString}}</btn-yellow
+                            >
+                        </CustomInput>
+                        <v-sheet class="text-12 red--text" color="transparent"> {{email_error_info}} </v-sheet>
+                    </v-sheet>
+                    <CustomInput
+                        class="mb-6"
+                        icon="mdi-shield-check"
+                        :placeholder="LangUtil('请输入验证码')"
+                        type="tel"
+                        v-model="formBindEmail.code"
+                    />
+                    <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChckFormEmail" block @click="onBindEmail">
+                        {{LangUtil("绑定")}}
+                    </v-btn> -->
+
+                    <btn-yellow class="text-16" width="100%" height="36" :disabled="!isChckFormEmail" @click.native="onBindEmail"
+                        >{{LangUtil("绑定")}}</btn-yellow
+                    >
+                </div>
+            </v-card-text>
+            <!-- 修改密码 -->
+            <v-card-text v-if="pageData.tabIndex == 2" class="">
+                <CustomPassword
+                    class="mb-6"
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('请输入原始密码')"
+                    v-model="formChangePassword.password_old"
+                />
+                <!-- <CustomPassword
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('请输入密码（6-20位）')"
+                    v-model="formChangePassword.password"
+                    @blur="onPasswordBlur"
+                />
+                <v-sheet class="text-12 red--text" color="transparent" style="position: absolute;"> {{password_error_info}} </v-sheet> -->
+
+                <v-tooltip bottom content-class="tip_main_class" attach>
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomPassword
+                            v-bind="attrs"
+                            v-on="on"
+                            icon="mdi-lock"
+                            :placeholder="LangUtil('请输入密码（6-20位）')"
+                            v-model="formChangePassword.password"
+                            @blur="onPasswordBlur"
+                            @input="onPasswordInput"
+                        />
+                    </template>
+                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                        <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
+                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                >{{LangUtil(item.title)}}</span
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-tooltip>
+                <v-tooltip bottom content-class="tip_main_class" attach>
+                    <template v-slot:activator="{ on, attrs }">
+                        <CustomPassword
+                            class="my-6"
+                            v-bind="attrs"
+                            v-on="on"
+                            icon="mdi-lock"
+                            :placeholder="LangUtil('确认密码（6-20位）')"
+                            v-model="formChangePassword.password_confirm"
+                            @blur="onPasswordConfirmBlur"
+                            @input="onPasswordConfirmInput"
+                        />
+                    </template>
+                    <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                        <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex my-1 align-center"
+                            v-for="(item, key) of passwordConfirmTips"
+                            :key="item.id"
+                        >
+                            <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                            <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                            <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                                >{{LangUtil(item.title)}}</span
+                            >
+                        </v-sheet>
+                    </v-card>
+                </v-tooltip>
+                <!-- <CustomPassword
+                    class="my-6"
+                    icon="mdi-lock"
+                    :placeholder="LangUtil('确认密码（6-20位）')"
+                    v-model="formChangePassword.password_confirm"
+                    @blur="onPasswordConfirmBlur"
+                /> -->
+                <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">
+                    {{LangUtil("确定修改")}}
+                </v-btn> -->
+                <btn-yellow class="text-16" width="100%" height="36" :disabled="!isCheckFormPassword" @click.native="onChangePassword"
+                    >{{LangUtil("确定修改")}}</btn-yellow
+                >
+            </v-card-text>
+
+            <!-- 交易密码 -->
+            <v-card-text v-if="pageData.tabIndex == 3">
+                <TradePassword></TradePassword>
+            </v-card-text>
+        </v-card>
+    </v-card>
+
+    <!-- 手机版 -->
+    <v-card v-else class=" " color="dialog_bg">
+        <com-dialog-title title="安全中心" @onClose="onClose" />
+
+        <v-card-text class="px-2 px-md-10 mt-2 mb-5" :style="$mobile ? 'height: 30px' : 'height: 60px'">
+            <div class="d-flex mb-10">
+                <!-- <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                    <v-btn v-if="checkValidateType(2)" class="rounded-pill" height="30" min-width="80" value="0">
+                        <span class="text-14"> {{LangUtil("绑定手机")}} </span>
+                    </v-btn>
+                    <v-btn v-if="checkValidateType(1)" class="rounded-pill" height="30" min-width="80" value="1">
+                        <span class="text-14"> {{LangUtil("绑定邮箱")}} </span>
+                    </v-btn>
+                    <v-btn class="rounded-pill" height="30" min-width="80" value="2">
+                        <span class="text-14"> {{LangUtil("修改密码")}} </span>
+                    </v-btn>
+                    <v-btn class="rounded-pill" height="30" min-width="80" value="3">
+                        <span class="text-14"> {{LangUtil("交易密码")}} </span>
+                    </v-btn>
+                </v-btn-toggle> -->
+
+                <CustomSelect class="mr-2" v-model="typechange" :options="tabOptions()" fontSize="14" width="100%" @change="onTimeChange" />
+            </div>
+        </v-card-text>
+        <!-- 绑定手机 -->
+        <v-sheet v-if="pageData.tabIndex == 0" class="px-5 py-5 mx-2 px-md-10 rounded10" color="wallet_bg">
+            <v-sheet
+                v-if="userInfo.phone"
+                class="d-flex flex-column align-center justify-center text-16 colorText2--text"
+                height="400"
+                color="transparent"
+            >
+                <v-icon color="green" size="100">mdi-check-circle</v-icon>
+                <div class="my-2">{{LangUtil("已经绑定")}}</div>
+                <div>{{userInfo.phone}}</div>
+            </v-sheet>
+            <div v-else>
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-phone"
+                    :isOnlyInt="true"
+                    :placeholder="LangUtil('请输入手机号')"
+                    :maxlength="phoneLength"
+                    v-model="formBindPhone.mobile"
+                >
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="codeSelect">
+                            <v-autocomplete
+                                class="ml-1"
+                                v-model="tempSelectCode"
+                                :items="areaCodeArr"
+                                item-text="area_code"
+                                :label="'+' + formBindPhone.area_code"
+                                hide-details
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                return-object
+                                :no-data-text="LangUtil('没有更多数据')"
+                                :filter="customFilter"
+                            >
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            </v-autocomplete>
+                        </v-sheet>
+                        <v-menu
+                            v-if="false"
+                            v-model="areaCodeMenu"
+                            offset-y
+                            :close-on-content-click="false"
+                            nudge-bottom="20"
+                            nudge-left="38"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <div class="d-flex colorInfo--text" v-bind="attrs" v-on="on">
+                                    <div class="textYellow--text mx-2">+{{formBindPhone.area_code}}</div>
+                                    <div
+                                        class="icon-box iconfont text-18 mr-2"
+                                        :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                                    >
+                                        
+                                    </div>
+                                    <div class="text-20">|</div>
+                                </div>
+                            </template>
+                            <v-sheet class="pa-3 rounded-lg" color="colorPanelTitleBg" width="400">
+                                <v-text-field
+                                    class="rounded-pill"
+                                    outlined
+                                    dense
+                                    prepend-inner-icon="mdi-database-search-outline"
+                                    hide-details
+                                    v-model="areaCodeSearch"
+                                    @input="onAreaCodeInput"
+                                ></v-text-field>
+
+                                <v-list dense color="colorPanelTitleBg">
+                                    <v-list-item-group>
+                                        <v-list-item
+                                            v-for="(item, index) of areaCodeList"
+                                            :key="index"
+                                            class="colorText2--text"
+                                            @click="onItemAreaCode(item)"
+                                        >
+                                            <div>{{item.name}}</div>
+                                            <v-spacer />
+                                            <div>+{{item.area_code}}</div>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-sheet>
+                        </v-menu>
+                    </template>
+                    <btn-yellow
+                        class="ml-auto text-14"
+                        min_width="80"
+                        height="36"
+                        :btn_type="4"
+                        :disabled="!checkPhone(formBindPhone.mobile) || isdeisable"
+                        @click.native="sendVerithMobile"
+                        >{{verityString}}</btn-yellow
+                    >
+                </CustomInput>
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-shield-check"
+                    :placeholder="LangUtil('请输入验证码')"
+                    type="tel"
+                    v-model="formBindPhone.code"
+                />
+                <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormMobile" block @click="onBindMobile">
+                        {{LangUtil("绑定")}}
+                    </v-btn> -->
+
+                <btn-yellow class="text-14" width="100%" height="36" :disabled="!isCheckFormMobile" @click.native="onBindMobile"
+                    >{{LangUtil("绑定")}}</btn-yellow
+                >
+            </div>
+        </v-sheet>
+        <!-- 绑定邮箱 -->
+        <v-sheet v-if="pageData.tabIndex == 1" class="px-5 py-5 mx-2 px-md-10 rounded10" color="wallet_bg">
+            <v-sheet
+                v-if="userInfo.email"
+                class="d-flex flex-column align-center justify-center text-16 colorText2--text"
+                height="400"
+                color="transparent"
+            >
+                <v-icon color="green" size="100">mdi-check-circle</v-icon>
+                <div class="my-2">{{LangUtil("已经绑定")}}</div>
+                <div>{{userInfo.email}}</div>
+            </v-sheet>
+            <div v-else>
+                <v-sheet color="transparent" class="mb-6">
+                    <CustomInput icon="mdi-email" :placeholder="LangUtil('请输入邮箱')" v-model="formBindEmail.email" @blur="onBlurInput()">
+                        <btn-yellow
+                            class="ml-auto text-14"
+                            min_width="80"
+                            height="36"
+                            :btn_type="4"
+                            :disabled="!checkMail(formBindEmail.email) || isdeisable"
+                            @click.native="sendVerithMail"
+                            >{{verityString}}</btn-yellow
+                        >
+                    </CustomInput>
+                    <v-sheet class="text-12 red--text" color="transparent"> {{email_error_info}} </v-sheet>
+                </v-sheet>
+                <CustomInput
+                    class="mb-6"
+                    icon="mdi-shield-check"
+                    :placeholder="LangUtil('请输入验证码')"
+                    type="tel"
+                    v-model="formBindEmail.code"
+                />
+                <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isChckFormEmail" block @click="onBindEmail">
+                        {{LangUtil("绑定")}}
+                    </v-btn> -->
+
+                <btn-yellow class="text-14" width="100%" height="36" :disabled="!isChckFormEmail" @click.native="onBindEmail"
+                    >{{LangUtil("绑定")}}</btn-yellow
+                >
+            </div>
+        </v-sheet>
+        <!-- 修改密码 -->
+        <v-sheet v-if="pageData.tabIndex == 2" class="px-5 py-5 mx-2 px-md-10 rounded10" color="wallet_bg">
+            <CustomPassword
+                class="mb-6"
+                icon="mdi-lock"
+                :placeholder="LangUtil('请输入原始密码')"
+                v-model="formChangePassword.password_old"
+            />
+            <!-- <CustomPassword
+                icon="mdi-lock"
+                :placeholder="LangUtil('请输入密码（6-20位）')"
+                v-model="formChangePassword.password"
+                @blur="onPasswordBlur"
+            />
+            <v-sheet class="text-12 red--text" color="transparent" style="position: absolute;"> {{password_error_info}} </v-sheet> -->
+            <v-tooltip bottom content-class="tip_main_class" attach>
+                <template v-slot:activator="{ on, attrs }">
+                    <CustomPassword
+                        v-bind="attrs"
+                        v-on="on"
+                        icon="mdi-lock"
+                        :placeholder="LangUtil('请输入密码（6-20位）')"
+                        v-model="formChangePassword.password"
+                        @blur="onPasswordBlur"
+                        @input="onPasswordInput"
+                    />
+                </template>
+                <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                    <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                    <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordTips" :key="item.id">
+                        <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                        <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                        <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                            >{{LangUtil(item.title)}}</span
+                        >
+                    </v-sheet>
+                </v-card>
+            </v-tooltip>
+            <v-tooltip bottom content-class="tip_main_class" attach>
+                <template v-slot:activator="{ on, attrs }">
+                    <CustomPassword
+                        class="my-6"
+                        v-bind="attrs"
+                        v-on="on"
+                        icon="mdi-lock"
+                        :placeholder="LangUtil('确认密码（6-20位）')"
+                        v-model="formChangePassword.password_confirm"
+                        @blur="onPasswordConfirmBlur"
+                        @input="onPasswordConfirmInput"
+                    />
+                </template>
+                <v-card color="transparent" class="d-flex flex-column px-2 py-2" min-width="100%">
+                    <!-- <v-sheet color="transparent" class="primary--text"> {{LangUtil("密码必须符合以下规则")}} </v-sheet> -->
+                    <v-sheet color="transparent" class="d-flex my-1 align-center" v-for="(item, key) of passwordConfirmTips" :key="item.id">
+                        <svg-icon v-if="item.state==0" class="mx-1 red--text" icon="close_circle"></svg-icon>
+                        <svg-icon v-else class="mx-1" icon="select"></svg-icon>
+                        <span class="ml-4" :class="item.state==0 ? 'red--text font-weight-bold' : 'textGreen--text'"
+                            >{{LangUtil(item.title)}}</span
+                        >
+                    </v-sheet>
+                </v-card>
+            </v-tooltip>
+            <!-- <CustomPassword
+                class="my-6"
+                icon="mdi-lock"
+                :placeholder="LangUtil('确认密码（6-20位）')"
+                v-model="formChangePassword.password_confirm"
+                @blur="onPasswordConfirmBlur"
+            /> -->
+            <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="48" :disabled="!isCheckFormPassword" block @click="onChangePassword">
+                    {{LangUtil("确定修改")}}
+                </v-btn> -->
+            <btn-yellow class="text-14" width="100%" height="36" :disabled="!isCheckFormPassword" @click.native="onChangePassword"
+                >{{LangUtil("确定修改")}}</btn-yellow
+            >
+        </v-sheet>
+
+        <!-- 交易密码 -->
+        <v-sheet v-if="pageData.tabIndex == 3" class="px-5 py-5 mx-2 px-md-10 rounded10" color="wallet_bg">
+            <TradePassword></TradePassword>
+        </v-sheet>
+    </v-card>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

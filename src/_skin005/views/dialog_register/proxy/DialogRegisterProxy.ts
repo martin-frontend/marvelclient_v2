@@ -29,6 +29,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             area_code: "",
             email_username: "",
             birth_date: "",
+            invite_code: "",
         },
         auth_image: "",
         auth_drag_position: -1, //滑动验证滑块所在的位置
@@ -99,6 +100,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             mobile_username,
             email_username,
             birth_date,
+            ...rest // includes invite_code
         } = this.pageData.form;
         const sendObj = <any>{
             invite_user_id,
@@ -113,7 +115,7 @@ export default class DialogRegisterProxy extends puremvc.Proxy {
             mobile_username,
             email_username,
             birth_date,
-
+            ...rest,
         };
         if (core.other_params && core.other_params.ma_token && core.other_params.ma_token.trim()) {
             const exArr = ["plat_id", "channel_id", "channelCode", "platformConfig"];

@@ -1,0 +1,10 @@
+<v-card flat class="" color="transparent" width="100%" :class="$mobile ? 'pad_top_mob' : 'pad_height'">
+    <template v-if="!pageData.isLoadData">
+        <template v-if="myProxy.exchangeProxy.isHaveData">
+            <ExchangeType9 v-if="isUnityExchange" />
+            <ExchangeTypeCommon v-else />
+        </template>
+        <ListNodata v-if="!myProxy.exchangeProxy.isHaveData" height="500" />
+    </template>
+    <v-skeleton-loader v-if="pageData.isLoadData" class="mx-auto my-auto" type="image"></v-skeleton-loader>
+</v-card>

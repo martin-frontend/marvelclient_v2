@@ -1,0 +1,60 @@
+.btnclass {
+    color: #5d5d5d;
+    padding: 4px;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    width: 110px;
+}
+
+.money-icon {
+    position: absolute;
+    height: 16px;
+    min-width: 50px;
+    right: 0;
+    top: 0;
+    line-height: 16px;
+    text-align: center;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0;
+    background-color: #0f1213;
+    color: #f6b400;
+}
+
+.theme--dark {
+    .btnclass {
+        color: #aaddcb;
+        background-color: #215844;
+    }
+    .btnclass:hover,
+    .btnclass:active,
+    .is-active {
+        // border: 1px solid #f6b400 !important;
+        color: #ffffff;
+        background-color: #3ac167;
+        .money-icon {
+            color: #0f1213;
+            background: linear-gradient(to bottom, var(--yellow_color_1), var(--yellow_color_2));
+        }
+    }
+}
+
+.theme--light {
+    .btnclass {
+        color: #0f1213;
+        background-color: #f4f4f4;
+    }
+
+    .btnclass:hover,
+    .btnclass:active,
+    .is-active {
+        border: 1px solid #f6b400 !important;
+
+        .money-icon {
+            color: #0f1213;
+            background: linear-gradient(to bottom, var(--yellow_color_1), var(--yellow_color_2));
+        }
+    }
+}

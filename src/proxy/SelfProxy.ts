@@ -112,9 +112,9 @@ export default class SelfProxy extends AbstractProxy {
             } else {
                 coin = this.defaultCoin(gameProxy.coin_name_unique);
             }
-            gameProxy.setCoin(coin);
             // 如果是刚登录
             if (this.userInfoCount == 0) {
+                gameProxy.setCoin(coin);
                 //获取弹窗列表
                 this.sendNotification(net.HttpType.api_plat_var_pop_index, { plat_id: core.plat_id, currency: gameProxy.coin_name_unique });
                 //活动配置

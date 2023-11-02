@@ -144,6 +144,13 @@ function IsShow_DownRegisterInvite() {
 }
 
 /**
+ * @returns 是否显示邀请码
+ */
+function IsShow_inviteCode() {
+    return _isValueTrue("inviteCode", false);
+}
+
+/**
  * 是否显示 真实姓名
  */
 function IsShow_HideRealName() {
@@ -312,6 +319,7 @@ export default {
     IsShow_VipShowDeal,
     IsShow_HideRegisterInvite,
     IsShow_DownRegisterInvite,
+    IsShow_inviteCode,
     IsShow_GoogleVerification,
     MyRebate,
     RebateDisplayType,

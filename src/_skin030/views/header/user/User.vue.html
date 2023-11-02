@@ -1,0 +1,60 @@
+<v-sheet color="transparent">
+    <template v-if="!$mobile || isShowFull">
+        <v-menu offset-y nudge-bottom="3" bottom nudge-left="82" @input="showUserPanel">
+            <template v-slot:activator="{ on, attrs ,value}">
+                <v-sheet color="transparent" v-bind="attrs" v-on="on" width="100%">
+                    <div class="d-flex align-center" :class="isShowFull ? 'textGray--text' : ''">
+                        <!-- <v-img
+                            class="mr-2"
+                            :class="isShowFull ? 'ml-2' : 'ml-5'"
+                            max-width="44"
+                            height="44"
+                            :src="commonIcon.avatar_default"
+                        ></v-img>
+                        <div class="text-14 d-flex flex-column">
+                            <v-sheet v-if="!isShowFull" class="mb-n1 font-weight-bold" color="transparent" width="100"
+                                >{{selfProxy.userInfo.nick_name}}</v-sheet
+                            >
+                            <v-sheet v-else class="mb-n1 font-weight-bold text-truncate" color="transparent" width="85"
+                                >{{selfProxy.userInfo.nick_name}}</v-sheet
+                            >
+                            <v-sheet v-if="IsShow_VipInfo " class="mt-1 text-12" color="transparent"
+                                >VIP {{ selfProxy.userInfo.vip_info && selfProxy.userInfo.vip_info.vip_level}}</v-sheet
+                            >
+                        </div>
+                        <v-spacer />
+                        <div class="icon-box iconfont text-16 mr-2 ml-2" :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'">
+                            
+                        </div> -->
+                        <svg-icon
+                            class="text-24"
+                            icon="my_info"
+                            :class="attrs['aria-expanded'] == 'true' ? 'wallet_btn--text' : 'white--text'"
+                        ></svg-icon>
+                    </div>
+                    <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
+                </v-sheet>
+                {{setIsFilter(value)}}
+            </template>
+            <UserPanel />
+        </v-menu>
+    </template>
+    <!-- 手机版 -->
+    <template v-else>
+        <!-- <v-img class="mx-3" max-width="40" height="40" :src="commonIcon.avatar_default" @click="showUserPanel()" ></v-img> -->
+
+        <v-menu offset-y nudge-bottom="12" content-class="content-style">
+            <template v-slot:activator="{ on, attrs ,value}">
+                <div class="d-flex align-center" v-bind="attrs" v-on="on">
+                    <svg-icon
+                        class="text-24"
+                        icon="my_info"
+                        :class="attrs['aria-expanded'] == 'true' ? 'wallet_btn--text' : 'white--text'"
+                    ></svg-icon>
+                </div>
+                {{setIsFilter(value)}}
+            </template>
+            <UserPanel />
+        </v-menu>
+    </template>
+</v-sheet>

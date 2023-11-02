@@ -193,8 +193,8 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         }
         this.pageData.listQuery.user_id = core.user_id;
         this.pageData.listQuery.coin_name_unique = this.coin_name_unique;
-        this.pageData.listQuery.start_date = Timezone.Instance.convertTime_to_Beijing(this.pageData.listQuery.start_date);
-        this.pageData.listQuery.end_date = Timezone.Instance.convertTime_to_Beijing(this.pageData.listQuery.end_date);
+        // this.pageData.listQuery.start_date = Timezone.Instance.convertTime_to_Beijing(this.pageData.listQuery.start_date);
+        // this.pageData.listQuery.end_date = Timezone.Instance.convertTime_to_Beijing(this.pageData.listQuery.end_date);
         this.sendNotification(net.HttpType.api_user_var_credit_statistic, objectRemoveNull(this.pageData.listQuery));
     }
 
@@ -215,12 +215,12 @@ export default class DialogStatisticsCreditProxy extends puremvc.Proxy {
         const startDate: any = start;
         const endDate: any = end;
         if (startDate) {
-            this.pageData.listQuery.start_date = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
+            this.pageData.listQuery.start_date = Timezone.Instance.convertTime_to_Beijing(dateFormat(startDate, "yyyy-MM-dd hh:mm:ss"));
         } else {
             this.pageData.listQuery.start_date = "";
         }
         if (endDate) {
-            this.pageData.listQuery.end_date = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
+            this.pageData.listQuery.end_date = Timezone.Instance.convertTime_to_Beijing(dateFormat(endDate, "yyyy-MM-dd hh:mm:ss"));
         } else {
             this.pageData.listQuery.end_date = "";
         }

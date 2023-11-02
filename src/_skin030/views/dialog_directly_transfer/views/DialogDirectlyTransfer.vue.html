@@ -1,0 +1,110 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="400"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card class="rounded10 regular_text d-flex flex-column" color="dialog_bg" min-width="100%">
+        <com-dialog-title :title="pageData.isAddMode ? '增加额度' : '减少额度'" @onClose="onClose" />
+
+        <v-divider class="mb-2" />
+        <!-- 页面内容 -->
+        <v-sheet color="transparent" class="px-4 pb-4">
+            <v-sheet color="transparent " class="d-flex flex-column">
+                <v-sheet class="d-flex textGray--text justify-space-between align-center" color="transparent" min-height="40">
+                    <span class="d-flex"> {{LangUtil("用户ID")}}: </span>
+                    <span class="d-flex"> {{playerInfo.user_id}} </span>
+                </v-sheet>
+                <v-sheet class="d-flex textGray--text justify-space-between align-center" color="transparent" min-height="40">
+                    <span class="d-flex"> {{LangUtil("用户昵称")}}: </span>
+                    <span class="d-flex"> {{playerInfo.nick_name}} </span>
+                </v-sheet>
+            </v-sheet>
+
+            <!-- 用户身上的币种 -->
+            <v-sheet color="transparent">
+                <goldinfo_util
+                    :class="{'regular_text':false}"
+                    balanceStrColor="textGray--text"
+                    :is_need_coin_name="true"
+                    :inside_str="insideStr"
+                    :goldInfoData="gold_info"
+                    :coin_name_unique="formData.coin_name_unique"
+                    @onItemClick="onItemClick"
+                ></goldinfo_util>
+            </v-sheet>
+
+            <div class="d-flex textGray--text justify-space-between align-center my-3 color_tips_1--text text-14">
+                <span v-if="selfProxy.userInfo.gold_info[formData.coin_name_unique]">
+                    {{LangUtil("我的余额")}}
+                    <span> {{amountFormat(selfProxy.userInfo.gold_info[formData.coin_name_unique].sum_money,true)}}</span>
+                </span>
+                <span v-if="playerInfo.gold_info[formData.coin_name_unique]">
+                    {{playerInfo.user_id}}{{LangUtil("直属余额")}}
+                    <span> {{amountFormat(playerInfo.gold_info[formData.coin_name_unique].sum_money,true)}}</span>
+                </span>
+            </div>
+            <!-- 当前选择的币种和输入 -->
+            <CustomInput
+                class="mb-6"
+                :placeholder="LangUtil('输入金额')"
+                maxlength="20"
+                type="number"
+                v-model="formData.gold"
+                @blur="onUsernameBlur"
+                inputColor="textYellow--text"
+                v-if=" playerInfo.gold_info[formData.coin_name_unique]"
+            >
+                <template v-slot:pre>
+                    <div class="d-flex align-center mx-2">
+                        <v-img
+                            :src="GamePlatConfig.config.plat_coins[formData.coin_name_unique] && GamePlatConfig.config.plat_coins[formData.coin_name_unique].icon"
+                            max-width="30"
+                            max-height="30"
+                        ></v-img>
+                        <div class="primary--text empty_space ml-2">{{ pageData.isAddMode?LangUtil("增加金额"):LangUtil("扣款金额") }}</div>
+                    </div>
+                </template>
+                <!-- <v-btn class="rounded-lg colorBtnBg" color="textGray primary--text" min-width="61" height="30"
+                        @click="onClickGetAll">
+                        <span>{{ LangUtil("全部") }}</span>
+                    </v-btn> -->
+
+                <btn-yellow class="ml-auto text-16" min_width="61" height="36" :btn_type="4" @click.native="onClickGetAll"
+                    >{{LangUtil("全部")}}</btn-yellow
+                >
+
+                <!-- <v-btn class="rounded-lg colorBtnBg" text x-small height="30" color="primary"
+                        @click="onClickGetAll">
+                        <span
+                            class="text-decoration-underline text-14 textYellow--text">{{LangUtil("全部")}}</span></v-btn> -->
+            </CustomInput>
+
+            <!-- 记录查询 -->
+            <!-- <v-sheet class="d-flex align-end flex-column mt-4 mb-6" color="transparent">
+                    <div class="text-decoration-underline cursor-pointer textYellow--text" @click="onDetailBtnClick()">
+                        {{LangUtil("查询记录")}}
+                    </div>
+                </v-sheet> -->
+
+            <!-- 确定按钮 -->
+            <v-sheet class="rounded-lg mb-2 d-flex justify-center" width="100%" color="transparent">
+                <!-- <v-btn class="rounded-lg" color="colorBtnBg" height="40" :disabled="!isChecked" block
+                    @click="onClickSure">
+                    {{LangUtil("确定")}}</v-btn> -->
+
+                <btn-yellow class="text-16 mr-2" min_width="104" height="36" :btn_type="2" @click.native="onDetailBtnClick"
+                    ><span class="font-weight-bold"> {{LangUtil("查询记录")}}</span></btn-yellow
+                >
+
+                <btn-yellow class="text-16 font-weight-bold" min_width="104" height="36" :disabled="!isChecked" @click.native="onClickSure"
+                    ><span class="font-weight-bold">{{LangUtil("确定")}}</span>
+                </btn-yellow>
+            </v-sheet>
+        </v-sheet>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

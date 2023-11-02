@@ -94,7 +94,7 @@ export default class DialogWallet extends AbstractView {
         if (this.listOptions.coinSelect == 0) {
             this.listQuery.coin_name_unique = null;
         } else {
-            this.listQuery.coin_name_unique = this.listOptions.coinOptions()[this.listOptions.coinSelect];
+            this.listQuery.coin_name_unique = this.listOptions.coinOptions()[this.listOptions.coinSelect]?.key;
         }
         this.myProxy.api_user_show_var_gold();
     }

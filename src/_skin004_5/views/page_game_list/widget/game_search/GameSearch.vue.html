@@ -1,5 +1,5 @@
 <v-sheet color="transparent" :height="$mobile?30:36" class="rounded10 d-flex align-center">
-    <v-menu offset-y nudge-bottom="2" :close-on-content-click="false" right v-model="bshow">
+    <v-menu offset-y nudge-bottom="2" :close-on-content-click="false" right v-model="bshow" z-index="4">
         <template v-slot:activator="{ on, attrs,value }">
             <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
                 <!-- <v-sheet class="align-center d-flex pr-2" color="transparent" height="36">

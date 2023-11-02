@@ -1,0 +1,71 @@
+.listinfo {
+    div {
+        width: auto;
+        margin-left: 10px;
+    }
+    div:first-child {
+        margin-left: 0;
+    }
+    @media only screen and (max-width: 750px) {
+        div:first-child {
+            width: 100%;
+        }
+        div {
+            margin-left: 0px;
+            width: 50%;
+        }
+    }
+}
+.listinfo-detail {
+    > div {
+        // width: 200px;
+        .title {
+            margin-right: 10px;
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        > div {
+            .title {
+                width: 70px;
+            }
+        }
+    }
+}
+.listitem {
+    .item-auto,
+    .item-110 {
+        width: auto;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        color: #9db1d8;
+        @media only screen and (max-width: 750px) {
+            width: calc(100% / 2);
+        }
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+    .item-110 {
+        width: 110px;
+    }
+    .listitem-90 {
+        width: 90px;
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+}
+::v-deep .v-btn__content {
+    font-size: 16px;
+    font-weight: 400;
+}
+.scroll_box {
+    max-height: calc(100vh - 150px);
+}
+.v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
+    letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
+}

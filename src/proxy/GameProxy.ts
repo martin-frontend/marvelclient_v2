@@ -97,6 +97,7 @@ export default class GameProxy extends AbstractProxy {
 
             const obj = <core.PlatLobbyIndexVO>{
                 vendor_type: 3,
+                id: 3,
                 vendor_type_name: "近期游戏",
                 list: this.gameHistoryList,
             };
@@ -104,7 +105,59 @@ export default class GameProxy extends AbstractProxy {
                 this.lobbyMenuIndex.push(obj);
             } else this.lobbyMenuIndex.unshift(obj);
         }
+        for (let index = 0; index < this.lobbyMenuIndex.length; index++) {
+            const element = this.lobbyMenuIndex[index];
+            if (!element.id) {
+                element.id = element.vendor_type;
+            }
+        }
     }
+    /**通过分类 获取 该分类下面的 厂商 信息 */
+    getVendorData_by_vendor(vendor_type: any) {
+        const newlist = [];
+        const keys = Object.keys(this.lobbyMenuIndex);
+        for (let index = 0; index < keys.length; index++) {
+            //@ts-ignore
+            const element = this.lobbyMenuIndex[keys[index]];
+            if (element.vendor_type == vendor_type) {
+                for (let n = 0; n < element.list.length; n++) {
+                    const item = element.list[n];
+                    if (item.entrance_type == 1) {
+                        newlist.push(item);
+                    }
+                }
+            }
+        }
+        // console.warn("--->>>", newlist);
+        return newlist;
+    }
+    /**menu中的厂商数据 */
+    public get menu_vendor_data(): any {
+        const data = [];
+        const keys = Object.keys(this.lobbyMenuIndex);
+        for (let index = 0; index < keys.length; index++) {
+            //@ts-ignore
+            const element = this.lobbyMenuIndex[keys[index]];
+
+            for (let n = 0; n < element.list.length; n++) {
+                const ele = element.list[n];
+                if (ele.vendor_icon && ele.vendor_icon != "" && ele.vendor_icon != "-") {
+                    let ishave = false;
+                    for (let p = 0; p < data.length; p++) {
+                        if (data[p].vendor_id === ele.vendor_id) {
+                            ishave = true;
+                            break;
+                        }
+                    }
+                    if (!ishave) {
+                        data.push(ele);
+                    }
+                }
+            }
+        }
+        return data;
+    }
+
     resetGamehistory() {
         if (ModulesHelper.IsShow_GameHistory()) {
             this.gameHistoryList = this.readGameHistory();
@@ -182,6 +235,7 @@ export default class GameProxy extends AbstractProxy {
                     break;
             }
         }
+        // console.warn("棋牌的分类", this.lobbyCategory_2);
         this.isFirstGetGameCategory = true;
     }
     setCoin(coin_name_unique: string) {
@@ -190,13 +244,15 @@ export default class GameProxy extends AbstractProxy {
         this.save_coin_to_localStorage();
         this.coin_name_unique = coin_name_unique;
         if (old_coin != this.coin_name_unique) this.sendNotification(NotificationName.UPDATE_COIN);
+        //获取大厅游戏列表
+        this.api_plat_var_lobby_index();
     }
 
     /**--大厅--获取游戏类型,游戏菜单（大厅菜单）*/
     api_plat_var_lobby_index() {
-        this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id });
-        this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id });
-        this.sendNotification(net.HttpType.api_plat_var_game_category, { plat_id: core.plat_id });
+        this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
+        this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
+        this.sendNotification(net.HttpType.api_plat_var_game_category, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/
@@ -274,6 +330,7 @@ export default class GameProxy extends AbstractProxy {
             plat_id: core.plat_id,
             uuid: core.device,
             game_name: search,
+            coin_name_unique: this.coin_name_unique,
         });
     }
     searchList = {

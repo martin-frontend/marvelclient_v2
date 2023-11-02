@@ -1,7 +1,14 @@
+/*
+ * @Author: custer
+ * @Date: 2023-07-12 09:51:56
+ * @LastEditors: custer
+ * @LastEditTime: 2023-10-07 10:34:13
+ */
 import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import Assets from "@/_skin005/assets/Assets";
 
 @Component
 export default class GameMenu extends AbstractView {
@@ -56,12 +63,13 @@ export default class GameMenu extends AbstractView {
     }
     get getImgPath(): any {
         try {
-            return require(`@/_skin005/assets/novigation/menu_icon_${this.data.vendor_type}.png`);
-          } catch (error) {
+            return Assets.navMenuImgArr[this.data.vendor_type];
+            // return require(`@/_skin005/assets/novigation/menu_icon_${this.data.vendor_type}.png`);
+        } catch (error) {
             // Handle the exception/error here
             //console.error('An error occurred while requiring the image:', error);
             return "";
-          }
+        }
 
         //return require(`@/_skin005/assets/novigation/menu_icon_16.png`);
         // return require(`@/_skin005/assets/novigation/menu_icon_${this.data.vendor_type}.png`);

@@ -1,0 +1,22 @@
+.dialog_pos {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: -200px;
+}
+
+.frame {
+    border: 0;
+    width: 100%;
+    height: calc(100vh - 142px);
+    overscroll-behavior: contain;
+}
+.frame-mobile {
+    border: 0;
+    width: 100vw;
+    // height: calc(100vh - 55px);
+    overscroll-behavior: auto;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}

@@ -9,23 +9,23 @@
             </div>
             <v-sheet
                 height="42"
-                class="my-2 d-flex align-center justify-space-between sheetOutlined regular_text"
+                class="my-2 d-flex align-center justify-space-between sheetOutlined regular_text text-12"
                 color="transparent"
                 v-for="(item, index) of pageData.list"
                 :key="index"
             >
                 <v-sheet class="d-flex ml-2" color="transparent">
                     <v-img
-                        :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon"
+                        :src="GamePlatConfig.config.plat_coins[getCoinNameUnique(item.coin_name_unique_show)].icon"
                         max-width="22"
                         max-height="22"
                         class="mr-2"
                     ></v-img>
-                    {{item.coin_name_unique}}
+                    {{getCoinAlias(item.coin_name_unique_show)}}
                 </v-sheet>
 
                 <v-sheet class="d-flex mr-2" color="transparent">
-                    {{vndCount(item)}} {{item.coin_name_unique}} = 1
+                    {{vndCount(item)}} {{getCoinAlias(item.coin_name_unique_show)}} = 1
                     <v-img class="ml-2" src="@/_skin005/assets/icon/cm.png" width="22" height="22"></v-img>
                 </v-sheet>
             </v-sheet>

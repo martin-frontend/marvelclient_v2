@@ -1,0 +1,24 @@
+:root {
+    --yellow_color_1: #3ac167;
+    --yellow_color_2: #3ac167;
+    --yellow_color_3: #ffe126;
+    --yellow_color_4: #fdc718;
+
+    --yellow_color_5: #4ce475;
+    --yellow_color_6: #4ce475;
+
+    --yellow_color_7: #6c8e64;
+    --yellow_color_8: rgb(131, 165, 114); 
+    --yellow_color_9: #62905f;
+
+
+    --btn_hover_text: #fff;
+    --btn_nomal_text: #0f1213;
+
+    --btn_disable_text_dark: #5a5a5a;
+    --btn_disable_text_light: #37453c;
+
+    --line_primary: #feba00;
+
+    --login_color_text: #202630;
+}

@@ -94,7 +94,7 @@
                                 class="ml-1"
                                 v-model="tempSelectCode"
                                 :items="areaCodeArr"
-                                item-text="area_code"
+                                item-text="id"
                                 :label="curShowCode"
                                 hide-details
                                 solo
@@ -108,7 +108,7 @@
                                 <template v-slot:item="data">
                                     <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
                                         <div>{{data.item.area_code}}</div>
-                                        <div>{{data.item.name}}</div>
+                                        <div :class="getAreaNameClass(data.item.name)">{{data.item.name}}</div>
                                     </v-sheet>
                                 </template>
                             </v-autocomplete>
@@ -202,7 +202,7 @@
                                 class="ml-1"
                                 v-model="tempSelectCode"
                                 :items="areaCodeArr"
-                                item-text="area_code"
+                                item-text="id"
                                 :label="curShowCode"
                                 hide-details
                                 solo
@@ -216,7 +216,7 @@
                                 <template v-slot:item="data">
                                     <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
                                         <div>{{data.item.area_code}}</div>
-                                        <div>{{data.item.name}}</div>
+                                        <div :class="getAreaNameClass(data.item.name)">{{data.item.name}}</div>
                                     </v-sheet>
                                 </template>
                             </v-autocomplete>
@@ -263,7 +263,7 @@
                                 class="ml-1"
                                 v-model="tempSelectCode"
                                 :items="areaCodeArr"
-                                item-text="area_code"
+                                item-text="id"
                                 :label="curShowCode"
                                 hide-details
                                 solo
@@ -277,7 +277,7 @@
                                 <template v-slot:item="data">
                                     <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
                                         <div>{{data.item.area_code}}</div>
-                                        <div>{{data.item.name}}</div>
+                                        <div :class="getAreaNameClass(data.item.name)">{{data.item.name}}</div>
                                     </v-sheet>
                                 </template>
                             </v-autocomplete>
@@ -438,6 +438,13 @@
                     v-model="form.invite_user_id"
                     :disabled="hasInviteUser()"
                 />
+                <CustomInput
+                    v-if="IsShow_inviteCode"
+                    class="mb-6"
+                    icon="mdi-account"
+                    :placeholder="LangUtil('请输入邀请码（选填）')"
+                    v-model="form.invite_code"
+                />
                 <!-- <CustomPassword
                     class="my-6"
                     icon="mdi-lock"
@@ -585,7 +592,7 @@
                             class="ml-1"
                             v-model="tempSelectCode"
                             :items="areaCodeArr"
-                            item-text="area_code"
+                            item-text="id"
                             :label="curShowCode"
                             hide-details
                             solo
@@ -599,7 +606,7 @@
                             <template v-slot:item="data">
                                 <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
                                     <div>{{data.item.area_code}}</div>
-                                    <div>{{data.item.name}}</div>
+                                    <div :class="getAreaNameClass(data.item.name)">{{data.item.name}}</div>
                                 </v-sheet>
                             </template>
                         </v-autocomplete>
@@ -684,7 +691,7 @@
                             class="ml-1"
                             v-model="tempSelectCode"
                             :items="areaCodeArr"
-                            item-text="area_code"
+                            item-text="id"
                             :label="curShowCode"
                             hide-details
                             solo
@@ -698,7 +705,7 @@
                             <template v-slot:item="data">
                                 <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
                                     <div>{{data.item.area_code}}</div>
-                                    <div>{{data.item.name}}</div>
+                                    <div :class="getAreaNameClass(data.item.name)">{{data.item.name}}</div>
                                 </v-sheet>
                             </template>
                         </v-autocomplete>
@@ -744,7 +751,7 @@
                             class="ml-1"
                             v-model="tempSelectCode"
                             :items="areaCodeArr"
-                            item-text="area_code"
+                            item-text="id"
                             :label="curShowCode"
                             hide-details
                             solo
@@ -758,7 +765,7 @@
                             <template v-slot:item="data">
                                 <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
                                     <div>{{data.item.area_code}}</div>
-                                    <div>{{data.item.name}}</div>
+                                    <div :class="getAreaNameClass(data.item.name)">{{data.item.name}}</div>
                                 </v-sheet>
                             </template>
                         </v-autocomplete>
@@ -887,6 +894,13 @@
                 :placeholder="LangUtil('请输入推荐人（选填）')"
                 v-model="form.invite_user_id"
                 :disabled="hasInviteUser()"
+            />
+            <CustomInput
+                v-if="IsShow_inviteCode"
+                class="mb-4"
+                icon="mdi-account"
+                :placeholder="LangUtil('请输入邀请码（选填）')"
+                v-model="form.invite_code"
             />
             <!-- <CustomPassword
                 icon="mdi-lock"

@@ -12,7 +12,7 @@ import LangConfig from "@/core/config/LangConfig";
 import LangUtil from "@/core/global/LangUtil";
 import { locale } from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
-import { judgeClient } from "@/core/global/Functions";
+import { judgeClient, sendPostMessage } from "@/core/global/Functions";
 import OpenLink from "@/core/global/OpenLink";
 import dialog_message_box from "@/views/dialog_message_box";
 import page_game_play from "@/_skin004/views/page_game_play";
@@ -34,6 +34,8 @@ import HeaderProxy from "../views/header/proxy/HeaderProxy";
 import dialog_notice from "@/_skin004/views/dialog_notice";
 import page_game_list from "@/_skin004/views/page_game_list";
 import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
+import { js_utils } from "custer-js-utils";
+import SkinVariable from "./SkinVariable";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -56,6 +58,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_var_red_dot_tips,
             net.EventType.api_plat_var_game_menu,
             net.EventType.api_plat_var_game_search,
+            net.EventType.api_user_third_login,
         ];
     }
 
@@ -134,8 +137,21 @@ export default class NetObserver extends AbstractMediator {
                     //@ts-ignore
                     window["vm"].$mount("#app");
 
-                    //获取用户信息
-                    this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
+                    /**69登录 */
+                    const token69 = js_utils.getQueryVariable("69token");
+                    if (token69) {
+                        this.sendNotification(net.HttpType.api_user_third_login, {
+                            plat_id: core.plat_id,
+                            channel_id: core.channel_id,
+                            code: token69,
+                            invite_user_id: core.invite_user_id,
+                            vendor_unique_name: "Game69",
+                        });
+                    } else if (core.user_id) {
+                        //获取用户信息
+                        this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
+                    }
+
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
                     //添加客服
@@ -205,11 +221,12 @@ export default class NetObserver extends AbstractMediator {
                         this.gameProxy.currGame.ori_product_id == 1
                     ) {
                         const homeProxy: PageHomeProxy = getProxy(PageHomeProxy);
+                        const page = SkinVariable.isUsePageGamePlayShowSport ? page_game_play : page_game_soccer;
                         if (homeProxy.pageData.event_id) {
-                            page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
+                            page.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
                             homeProxy.pageData.event_id = 0;
                         } else {
-                            page_game_soccer.show(body.url);
+                            page.show(body.url);
                         }
                         return;
                     }
@@ -269,6 +286,10 @@ export default class NetObserver extends AbstractMediator {
                     this.gameProxy.setSearchResult(body);
                 }
                 break;
+            // bet2dream登录
+            case net.EventType.api_user_third_login:
+                this.loginSuccess(body);
+                break;
         }
     }
 
@@ -322,5 +343,18 @@ export default class NetObserver extends AbstractMediator {
 
         const audioProxy: AudioPlayerProxy = this.getProxy(AudioPlayerProxy);
         audioProxy.isBackgroundPlaying = false;
+        sendPostMessage({ methodName: "hideTab" });
+    }
+
+    private loginSuccess(body: any) {
+        core.token = body.token;
+        core.user_id = body.user_id;
+
+        window.localStorage.setItem("token", core.token);
+        window.localStorage.setItem("user_id", core.user_id.toString());
+        window.localStorage.setItem("username", body.username);
+
+        const selfProxy: SelfProxy = this.getProxy(SelfProxy);
+        selfProxy.api_user_show_var([2, 3, 6]);
     }
 }

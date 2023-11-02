@@ -1,0 +1,71 @@
+.v-card--link,
+.v-card--link .v-chip {
+    cursor: revert;
+}
+.v-card--outlined:focus,
+.v-card--outlined:active,
+.v-card--outlined:hover {
+    box-shadow: none;
+}
+.v-card--link:focus:before {
+    opacity: 0;
+}
+.btn_close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.detail_dialog {
+    height: calc(100% - 200px);
+}
+::v-deep .v-dialog:not(.v-dialog--fullscreen) {
+    // max-height: calc(100% - 200px);
+    margin: 24px 0px !important;
+}
+.v-card {
+    max-width: none !important;
+}
+.card_node_class {
+    pointer-events: none;
+}
+.container_daily {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    // height: 100vh;
+    max-height: calc(100vh - 80px);
+}
+.main_bg {
+    position: absolute;
+    left: 0px;
+}
+
+.main_bg_recharge {
+    background: url("~@/_skin030/assets/limit_bonus/public/bg.png");
+    background-size: 100% 100%;
+}
+.recharge_btn {
+    background: url("~@/_skin030/assets/limit_bonus/public/btn.png");
+    background-size: 100% 100%;
+}
+.recharge_btn_disabled {
+    pointer-events: none;
+    filter: grayscale(100%);
+}
+.dosccale {
+    animation: doScale 0.5s ease infinite alternate;
+}
+@keyframes doScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

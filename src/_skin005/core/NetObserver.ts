@@ -32,6 +32,9 @@ import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
 import CoinTransformHelper from "./CoinTransformHelper";
 import ActivityConfig from "@/core/config/ActivityConfig";
+import Cookies from "js-cookie";
+import { clearOrbitExchangeCookie, setOrbitExchangeCookie } from "./special/orbit_exchange";
+import { js_utils } from "custer-js-utils";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -160,7 +163,17 @@ export default class NetObserver extends AbstractMediator {
                     // window["vm"].$mount("#app");
                     window["vueInit"]();
 
-                    if (core.user_id) {
+                    /**69登录 */
+                    const token69 = js_utils.getQueryVariable("69token");
+                    if (token69) {
+                        this.sendNotification(net.HttpType.api_user_third_login, {
+                            plat_id: core.plat_id,
+                            channel_id: core.channel_id,
+                            code: token69,
+                            invite_user_id: core.invite_user_id,
+                            vendor_unique_name: "Game69",
+                        });
+                    } else if (core.user_id) {
                         //获取用户信息
                         this.selfProxy.api_user_show_var([2, 3, 6]);
                     } else {
@@ -170,7 +183,7 @@ export default class NetObserver extends AbstractMediator {
                         this.sendNotification(net.HttpType.api_plat_activity_config);
                     }
 
-                    //获取大厅游戏列表
+                    // //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
 
                     //console.log("-----客服cid" ,LangUtil("客服CID" ));
@@ -203,6 +216,8 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_user_logout:
                 PanelUtil.showAppLoading(false);
                 this.selfProxy.loginout();
+                //退出登录时，清除巴西交易所的token
+                clearOrbitExchangeCookie();
 
                 PanelUtil.message_alert({
                     message: LangUtil("您的帐号已经退出"),
@@ -253,6 +268,12 @@ export default class NetObserver extends AbstractMediator {
                 {
                     this.gameProxy.loading = false;
                     PanelUtil.showAppLoading(false);
+                    /**---设置 巴西交易所 token---- */
+                    if (body.token) {
+                        setOrbitExchangeCookie(body);
+                    } else {
+                        clearOrbitExchangeCookie();
+                    }
 
                     //检测返回的游戏 是不是在 head game中的
                     let headitem;
@@ -342,7 +363,7 @@ export default class NetObserver extends AbstractMediator {
                         );
                         msgstr = LangUtil(
                             "当前币种余额{0}:{1},将会折算成{2}:{3}进入游戏",
-                            coin_name_unique,
+                            CoinTransformHelper.GetCoinAlias(coin_name_unique),
                             sum_money,
                             settle_coin_name_unique,
                             sum_money_2
@@ -351,7 +372,12 @@ export default class NetObserver extends AbstractMediator {
                         //msgstr = LangUtil("当前余额为{0}:{2}",coin_name_unique,this.selfProxy.userInfo.gold_info[coin_name_unique].sum_money);
                         isShowConfig = true;
                     } else {
-                        if (coin_name_unique) msgstr = LangUtil("当前余额为{0}:{1}", coin_name_unique, amountFormat(sum_money, true));
+                        if (coin_name_unique)
+                            msgstr = LangUtil(
+                                "当前余额为{0}:{1}",
+                                CoinTransformHelper.GetCoinAlias(coin_name_unique),
+                                amountFormat(sum_money, true)
+                            );
                     }
 
                     this.openGameUrl(body, msgstr, isShowConfig);
@@ -496,14 +522,6 @@ export default class NetObserver extends AbstractMediator {
                 }
             } else {
                 isNeetConfig = true;
-            }
-            if (body.token) {
-                console.warn("---设置 token----");
-                if (process.env.VUE_APP_ENV == "production") {
-                    document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.${window.location.host}; path=/; Secure`;
-                } else {
-                    document.cookie = `BIAB_CUSTOMER=${body.token}; domain=.testjj9.com; path=/; Secure`;
-                }
             }
 
             const message_obj = <any>{

@@ -1,0 +1,58 @@
+<v-container class="d-flex flex-column">
+    <v-sheet :class="$mobile? '' : 'rounded-lg'" width="100%" color="transparent">
+        <Activity :showDataType="myProxy.listQuery.vendor_type" />
+    </v-sheet>
+
+    <v-sheet color="transparent" width="100%" class="">
+        <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-2" color="transparent" elevation="0">
+            <v-sheet
+                v-for="(item, key) of myProxy.getCurMenuData"
+                :key="key"
+                class="mb-3"
+                color="transparent"
+                :width="$mobile ? '100%' : '49.5%'"
+            >
+                <v-card class="d-flex align-end" elevation="0" :height="!$mobile ? 260 : 150" color="transparent">
+                    <ImgLoader
+                        v-if="item"
+                        class="d-flex cursor-pointer rounded-lg align-end"
+                        :src="item.menu_icon"
+                        @click.native="onClick(item)"
+                        :height="!$mobile ? 200 : 130"
+                    >
+                        <v-sheet color="transparent" class="menu_title" :class="!$mobile ? 'text-30' : 'text-14'">{{item.alias}}</v-sheet>
+                        <v-sheet
+                            color="transparent"
+                            class="menu_title_1"
+                            :class="!$mobile ? 'text-14 mt-4' : 'text-12'"
+                            :max-width="!$mobile ? '55%' : ''"
+                        >
+                            {{item.game_desc}}
+                        </v-sheet>
+                        <btn-yellow
+                            class="mt-auto ml-6"
+                            :class="!$mobile ? 'text-16 mb-6 ' : 'text-12 mb-2'"
+                            :min_width="!$mobile ? 104 : 70"
+                            height="36"
+                            :btn_type="8"
+                        >
+                            {{LangUtil("点击进入")}}
+                        </btn-yellow>
+                    </ImgLoader>
+                    <div class="test_ball d-flex align-end justify-end">
+                        <v-sheet color="transparent">
+                            <v-img
+                                v-if="item"
+                                class=""
+                                :src="getGameIcon(item)"
+                                :height="!$mobile ? 260 : 150"
+                                :width="!$mobile ? 420 : 250"
+                            >
+                            </v-img>
+                        </v-sheet>
+                    </div>
+                </v-card>
+            </v-sheet>
+        </v-card>
+    </v-sheet>
+</v-container>

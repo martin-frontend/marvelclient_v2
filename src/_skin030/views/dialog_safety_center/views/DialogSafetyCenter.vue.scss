@@ -1,0 +1,71 @@
+.codeSelect {
+    width: 56px;
+    ::v-deep .v-input input {
+        color: #ffcd43;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0 0 !important;
+    }
+
+    ::v-deep .v-menu__content {
+        min-width: 120px !important;
+    }
+
+    ::v-deep .v-autocomplete.v-select.v-input--is-focused input {
+        min-width: 10px !important;
+    }
+
+    ::v-deep .theme--dark.v-icon {
+        color: #8e8f91;
+    }
+
+    ::v-deep .v-label {
+        color: #ffcd43;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    ::v-deep .theme--dark {
+        .v-list {
+            background: #272828;
+            border-radius: 10px !important;
+        }
+    }
+
+    ::v-deep .theme--light {
+        .v-list {
+            background: #fff;
+            border-radius: 10px !important;
+        }
+    }
+
+    ::v-deep .v-autocomplete.v-input > .v-input__control > .v-input__slot {
+        padding: 0;
+    }
+
+    .mytest {
+        min-width: 200px !important;
+    }
+}
+.v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
+    letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
+}
+::v-deep .theme--dark {
+    .tip_main_class {
+        background: #202121;
+        width: 100%;
+        left: 0px !important;
+        // top: unset !important;
+        opacity: 1;
+    }
+}
+
+::v-deep .theme--light {
+    .tip_main_class {
+        background: #fff;
+        width: 100%;
+        left: 0px !important;
+        // top: unset !important;
+        opacity: 1;
+    }
+}

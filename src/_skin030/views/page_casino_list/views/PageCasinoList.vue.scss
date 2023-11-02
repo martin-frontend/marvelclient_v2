@@ -1,0 +1,13 @@
+.checkbox_class {
+    ::v-deep .v-icon {
+        color: #aaddcb;
+    }
+}
+.mobile_bg{
+    white-space: nowrap;
+    width: calc(100vw - 357px);
+    z-index: 1;
+}
+.gap-y-4 {
+    row-gap: 16px;
+}

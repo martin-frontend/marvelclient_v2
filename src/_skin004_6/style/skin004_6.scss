@@ -1,0 +1,185 @@
+@media (max-width: 600px) {
+    html {
+        background-color: var(--page-background-color) !important;
+    }
+    .mobile-background {
+        background-color: var(--page-background-color) !important;
+    }
+    .gift_icon {
+        color: #626262 !important;
+    }
+
+    .menu-active .gift_icon {
+        color: #1678ff !important;
+    }
+
+    .menu-active {
+        background-image: unset !important;
+    }
+
+    .phonebg {
+        background-color: var(--page-background-color) !important;
+    }
+
+    .theme--dark.v-application {
+        background-color: var(--page-background-color) !important;
+    }
+
+    :-webkit-autofill,
+    :-webkit-autofill:hover,
+    :-webkit-autofill:focus,
+    :-webkit-autofill:active {
+        -webkit-text-fill-color: #50607f !important;
+    }
+
+    .blue-text {
+        color: #ffffff !important;
+    }
+
+    .custom_skin-white-text {
+        color: #ffffff !important;
+    }
+
+    .custom_skin-blue-text {
+        color: #03259c !important;
+    }
+
+    .custom_skin-blue1-text {
+        color: #6fa6fa !important;
+    }
+
+    .custom_skin-black-text {
+        color: #000000 !important;
+    }
+
+    .input-text {
+        border-color: #000000 !important;
+    }
+
+    .input-text input,
+    .input-text textarea {
+        color: #000000 !important;
+    }
+
+    .input-text input::placeholder {
+        color: #5f6368;
+    }
+
+    .theme--dark.v-divider {
+        border-color: #50607f;
+    }
+
+    .theme--dark.v-btn.v-btn--disabled.v-btn--has-bg {
+        background-color: #4c5d7f !important;
+    }
+
+    .gradient-bg {
+        background-color: #1678ff !important;
+        background-image: none;
+    }
+
+    .gradient-bg div {
+        color: #ffffff;
+    }
+
+    .header-mobile {
+        background-color: var(--page-background-color) !important;
+    }
+
+    .skin004_2 .listitem {
+        color: #000000 !important;
+    }
+
+    .skin004_2 .theme--dark.v-btn.v-btn--disabled {
+        color: #e0e0e0 !important;
+    }
+
+    .skin004_2 .sheet {
+        border: 1px solid #e0e0e0;
+        background-color: #f7f7f7;
+    }
+
+    .input_range_1 .el-input__inner,
+    .input_range_2 .el-input__inner {
+        background-color: #e0e0e0 !important;
+        color: #000000 !important;
+    }
+
+    .input_range_1 .el-input__icon,
+    .input_range_2 .el-input__icon {
+        color: #000000;
+    }
+    .theme--dark.v-input--switch .v-input--switch__track {
+        background-color: #c5c5c5;
+    }
+    .mob_item_class .v-icon.v-icon {
+        color: #000000 !important;
+    }
+    .mob_item_class .v-icon.v-icon,
+    .mob_item_class .item,
+    .mob_item_class .item:hover,
+    .mob_item_class .item:hover i {
+        color: #000000 !important;
+    }
+    .bank_box_mob .theme--dark.v-list {
+        background: #e0e0e0 !important;
+    }
+    .bank_box_mob .theme--dark.v-input input {
+        color: #000000 !important;
+    }
+    .cusinput,
+    .cusinput2,
+    .cusinput3 {
+        color: #000000 !important;
+    }
+    .payinfo {
+        background-color: #e0e0e0 !important;
+        color: #000000 !important;
+    }
+    .close-icon .v-icon {
+        color: #fff !important;
+    }
+    .game-item.box {
+        background-image: linear-gradient(180deg, #6fa9fa 0%, #6fa9fa 100%) !important;
+    }
+    .custom_skin-bold {
+        font-weight: bold;
+    }
+    .bank_box_mob {
+        .theme--dark.v-label {
+            color: #5f6368 !important;
+        }
+        .theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+            color: #000000 !important;
+        }
+    }
+}
+.logo-mob {
+    width: 83px !important;
+    object-fit: contain;
+}
+.custom_skin-hidden {
+    display: none !important;
+}
+.custom_skin-show {
+    display: block !important;
+}
+
+.search_class {
+    .input-text {
+        width: 100%;
+        border-radius: 4px;
+        background-color: #f1f1f1;
+        input {
+            width: 100%;
+        }
+    }
+}
+
+.skin004_6-hidden {
+    display: none;
+}
+
+.mssage-box .custom_skin-black-text {
+    color: #000000 !important;
+}

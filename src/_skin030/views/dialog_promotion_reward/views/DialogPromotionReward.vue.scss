@@ -1,0 +1,168 @@
+::v-deep .custom-dialog {
+    overflow: unset !important;
+}
+.content {
+    position: absolute;
+    top: 8%;
+    left: 0px;
+    width: 100%;
+    height: 92%;
+    padding: 4% 0;
+    .title-text {
+        position: absolute;
+        top: -11%;
+        left: 0;
+        right: 0;
+        color: transparent; /* 文字顏色設定透明 */
+        background-image: linear-gradient(180deg, #fefaff, #d57bff); /* 設定漸層角度及顏色 */
+        -webkit-background-clip: text; /* 背景裁剪成文字的前景色 */
+        background-clip: text;
+        line-height: 1;
+    }
+    .frame-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        .frame-box {
+            margin-top: 20%;
+        }
+    }
+    .frame-light {
+        position: absolute;
+        top: 6%;
+        left: 0;
+        right: 0;
+    }
+    .frame-get {
+        position: absolute;
+        top: 7%;
+        left: 0;
+        right: 0;
+    }
+    .rule-wrap {
+        background-color: #fff;
+        border-top-left-radius: 999px;
+        border-bottom-left-radius: 999px;
+        padding-right: 4%;
+    }
+}
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.mob.close-btn {
+    top: -5px;
+}
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}
+.z-1 {
+    z-index: 1;
+}
+.z-2 {
+    z-index: 2;
+}
+.custom-progress {
+    margin-right: 10%;
+    .custom-line,
+    .custom-active-line {
+        position: absolute;
+        width: 100%;
+        height: 6px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+}
+.custom-text {
+    position: absolute;
+    left: -14.5%;
+}
+.mt-4p {
+    margin-top: 4% !important;
+}
+.mb-3p {
+    margin-bottom: 3% !important;
+}
+.text-34 {
+    font-size: 34px;
+    line-height: 1;
+}
+.promotion-reward .text-gray {
+    color: #0f1213;
+}
+.got_img_pos {
+    position: absolute;
+    top: -3px;
+}
+.got_img_pos_mob {
+    position: absolute;
+    top: -28%;
+    transform: scale(0.8);
+}
+.get_text_class {
+    position: absolute;
+    border-radius: 5px;
+    border: solid 2px rgb(220, 54, 54) !important;
+    text-align: center;
+    transform: rotate(-32deg);
+    width: 70px;
+    top: 17px;
+    right: -5px;
+    color: rgb(220, 54, 54);
+}
+.get_text_class_mob {
+    position: absolute;
+    border-radius: 5px;
+    border: solid 2px rgb(220, 54, 54) !important;
+    text-align: center;
+    transform: rotate(-32deg);
+    width: 55px;
+    top: 13px;
+    right: -3px;
+    font-size: 12px;
+    color: rgb(220, 54, 54);
+}
+.theme--dark .custom-btn {
+    &.btn_nomal_disable {
+        color: var(--btn_disable_text_light);
+    }
+
+    &.btn_nomal_disable::before {
+        background: linear-gradient(90deg, #d5dce2 0%, #f4f4f4 100%);
+    }
+
+    &.btn_three_disable {
+        color: var(--btn_disable_text_light);
+    }
+
+    &.btn_three_disable::before {
+        background: linear-gradient(90deg, #e8e8e2 0%, #e8e8e2 100%);
+    }
+
+    &.btn_nomal:hover {
+        color: var(--btn_nomal_text);
+    }
+}
+.cursor {
+    cursor: pointer;
+}
+.bounce {
+    animation: doScale 0.5s ease infinite alternate;
+}
+@keyframes doScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

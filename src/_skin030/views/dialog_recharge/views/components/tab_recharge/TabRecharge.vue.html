@@ -1,0 +1,11 @@
+<v-card flat class="d-flex" color="transparent" width="100%" :class="$mobile ? '' : 'pad_height'">
+    <template v-if="!pageData.isLoadData">
+        <template v-if="myProxy.rechargeProxy.isHaveData">
+            <RechargeType9 v-if="isUnityRecharge" />
+
+            <RechargeTypeCommon v-else />
+        </template>
+        <ListNodata v-else height="500" />
+    </template>
+    <v-skeleton-loader v-else class="mx-auto my-auto" type="image"></v-skeleton-loader>
+</v-card>

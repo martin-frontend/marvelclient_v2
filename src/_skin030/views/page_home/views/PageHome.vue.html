@@ -1,0 +1,192 @@
+<div>
+    <v-sheet color="#234032" class="d-flex" width="100%">
+        <v-container class="pb-0 pt-0">
+            <v-row no-gutters class="" class="panel-bouns">
+                <v-col :cols="$mobile ? 12 : 4">
+                    <v-sheet v-if="core.user_id" color="transparent" width="100%" height="100%" class="py-4">
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex align-center white--text font-weight-bold mt-4"
+                            :class="!$mobile ? 'text-20' : 'text-14'"
+                        >
+                            <span>
+                                {{LangUtil("欢迎回来,{0}",selfProxy.userInfo.username ? selfProxy.userInfo.username:
+                                selfProxy.userInfo.user_id)}}</span
+                            >
+                        </v-sheet>
+                        <v-sheet color="transparent" class="mt-4 mb-3 d-flex flex-column align-start justify-center">
+                            <v-sheet
+                                width="100%"
+                                class="font-weight-bold mb-1 d-flex align-center justify-space-between px-2"
+                                :class="!$mobile ? 'text-18' : 'text-12'"
+                                color="transparent"
+                            >
+                                <div class="d-flex align-center">
+                                    <span>{{LangUtil("您的vip进度")}}</span>
+                                    <svg-icon class="ml-1" :class="!$mobile ? 'text-24' : 'text-18'" icon="ky_right"></svg-icon>
+                                </div>
+
+                                <span>{{vip_info.vipProgress }}%</span>
+                            </v-sheet>
+                            <v-sheet width="100%" color="transparent" class="mt-2">
+                                <v-progress-linear
+                                    :value="vip_info.vipProgress"
+                                    color="textGreen"
+                                    :height="progressLinear"
+                                    class="rounded-xl"
+                                ></v-progress-linear>
+                                <div class="ma-0 ml-2 mt-2 white--text text-16 d-flex justify-space-between">
+                                    <div class="d-flex align-center" :class="!$mobile ? 'text-14' : 'text-12'">
+                                        <svg-icon :class="!$mobile ? 'text-22' : 'text-18'" icon="ky_levle_none"></svg-icon>
+                                        <span class="font-weight-bold textGray--text">
+                                            {{vip_info.vipLevel ? LangUtil("Level-{0}",vip_info.vipLevel) : LangUtil("None") }}</span
+                                        >
+                                    </div>
+
+                                    <div class="d-flex align-center" :class="!$mobile ? 'text-14' : 'text-12'">
+                                        <div class="mr-1">
+                                            <v-img :src="getVipIcon(vip_info.vipLevel + 1)" :width="!$mobile ? 28 : 24"></v-img>
+                                        </div>
+                                        <span class="font-weight-bold textGray--text"
+                                            >{{!(vip_info.vipLevel == vip_info.vipMaxLevel) ? LangUtil("Level-{0}",vip_info.vipLevel +1) :
+                                            LangUtil("MAX")}}</span
+                                        >
+                                    </div>
+                                </div>
+                            </v-sheet>
+                        </v-sheet>
+                        <v-sheet v-if="!$mobile" color="transparent" class="d-flex mt-8 align-center font-weight-bold">
+                            <div class="text-16 mx-2" min_width="124" height="36">{{LangUtil("Daily Check-in")}}</div>
+                            <!-- <span class="">{{LangUtil("Daily Check-in")}}</span> -->
+                            <btn-yellow class="mx-4 text-16" min_width="124" height="36" @click.native="open_checkin"
+                                >{{LangUtil("Check-in")}}</btn-yellow
+                            >
+                        </v-sheet>
+                        <v-sheet
+                            v-else
+                            color="transparent"
+                            class="d-flex mt-4 align-center font-weight-bold justify-space-between"
+                            width="100%"
+                        >
+                            <div class="text-14" min_width="104" height="30">{{LangUtil("Daily Check-in")}}</div>
+                            <!-- <span class="">{{LangUtil("Daily Check-in")}}</span> -->
+                            <btn-yellow class="mx-2 text-14" min_width="160" height="30" @click.native="open_checkin"
+                                >{{LangUtil("Check-in")}}</btn-yellow
+                            >
+                        </v-sheet>
+                    </v-sheet>
+                    <v-sheet
+                        v-else
+                        color="transparent"
+                        width="100%"
+                        height="100%"
+                        class="py-4 d-flex align-center justify-center flex-column"
+                    >
+                        <v-sheet
+                            color="transparent"
+                            width="100%"
+                            class="d-flex align-center justify-center font-weight-bold"
+                            :class="!$mobile ? 'text-20' : 'text-14'"
+                        >
+                            {{LangUtil("Play Smarter")}}
+                        </v-sheet>
+                        <v-sheet
+                            width="80%"
+                            class="d-flex align-center justify-center mt-4 rounded-pill text-14 font-weight-bold cursor-pointer login_class"
+                            @click.native="goRegister"
+                            height="30"
+                        >
+                            {{LangUtil("Register Instantly")}}
+                        </v-sheet>
+
+                        <!-- <v-sheet color="transparent" width="100%" class="d-flex align-center justify-center home_page mt-4">
+                            <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
+                                <v-btn
+                                    class="rounded mr-2"
+                                    height="36"
+                                    min-width="70"
+                                    v-for="(item , key) of tabOptions()"
+                                    :value="Number(key)"
+                                    :key="key"
+                                >
+                                    <svg-icon class="text-24" :icon="item"></svg-icon>
+                                </v-btn>
+                            </v-btn-toggle>
+                        </v-sheet> -->
+                    </v-sheet>
+                </v-col>
+
+                <v-col v-if="!$mobile" cols="1"> </v-col>
+                <v-col v-if="!$mobile" cols="7" align-self="center">
+                    <v-sheet color="transparent" class="">
+                        <v-img src="~@/_skin030/assets/pagehome/group_1.png" height="284" width="683"> </v-img>
+                    </v-sheet>
+                </v-col>
+            </v-row>
+        </v-container>
+    </v-sheet>
+    <v-container :class="!$mobile ? 'mt-4' : 'pb-0'">
+        <v-row class="">
+            <v-col :cols="$mobile ? 12 : 6" v-for="(item , key) of game_item_data" :key="key" fill-height class="my-1">
+                <GameEnterItem :item="item" height="100%"></GameEnterItem>
+            </v-col>
+        </v-row>
+        <template v-if="!$mobile">
+            <v-sheet color="bgBanner" width="100%" class="d-flex panel_bg_1 align-center px-4 mt-8 rounded10" height="92">
+                <btn-yellow class="text-14 rounded-6" min_width="111" height="44" @click.native="goExtension" :btn_type="8"
+                    >{{LangUtil("Lean More")}}</btn-yellow
+                >
+                <v-sheet color="transparent" class="d-flex algin-center text-20 font-weight-bold ml-10 white--text">
+                    {{LangUtil("Receive an affiliate commission for every user you refer")}}</v-sheet
+                >
+            </v-sheet>
+
+            <v-sheet color="bgBanner" width="100%" class="d-flex align-center px-4 mt-8 rounded10 justify-space-between" height="92">
+                <v-sheet :width="275" color="transparent" class="d-flex algin-center text-22 font-weight-bold ml-4 white--text">
+                    {{LangUtil("No Crypto? No problem.")}}</v-sheet
+                >
+                <v-sheet color="transparent" class="d-flex">
+                    <v-img class="mx-2" src="~@/_skin030/assets/pagehome/tb_pay.png" height="58" width="181"> </v-img>
+                    <!-- <v-img class="mx-2" src="~@/_skin030/assets/pagehome/pay_2.png" height="30" width="70"> </v-img>
+                    <v-img class="mx-2" src="~@/_skin030/assets/pagehome/pay_3.png" height="30" width="87"> </v-img>
+                    <v-img class="mx-2" src="~@/_skin030/assets/pagehome/pay_4.png" height="30" width="102"> </v-img> -->
+                </v-sheet>
+                <v-sheet :width="275" color="transparent" class="d-flex justify-end">
+                    <btn-yellow class="text-16 rounded-6" min_width="160" height="50" @click.native="open_recharge" :btn_type="8"
+                        >{{LangUtil("Buy Crypto")}}</btn-yellow
+                    ></v-sheet
+                >
+            </v-sheet>
+        </template>
+
+        <template v-else>
+            <v-sheet color="bgBanner" width="100%" class="d-flex panel_bg_1 align-center px-2 mt-4 rounded10" height="76">
+                <!-- <v-sheet color="transparent" class="d-flex" width="100"> -->
+                <v-img class="mx-2 max-w-24" height="11" width="22" src="~@/_skin030/assets/pagehome/logo_small.png"> </v-img>
+                <v-divider vertical class="mt-5 h-50 min-h-50"></v-divider>
+                <!-- </v-sheet> -->
+                <v-sheet color="transparent" width="148" class="d-flex algin-center text-12 font-weight-bold ml-4 mr-11 white--text">
+                    {{LangUtil("Receive an affiliate commission for every user you refer")}}</v-sheet
+                >
+                <btn-yellow class="text-12" min_width="103" height="44" @click.native="goExtension" :btn_type="8"
+                    >{{LangUtil("Lean More")}}</btn-yellow
+                >
+            </v-sheet>
+
+            <v-sheet color="bgBanner" width="100%" height="115" class="d-flex flex-column justify-center align-center mt-4 rounded10">
+                <v-sheet color="transparent" class="d-flex algin-center text-14 font-weight-bold white--text">
+                    {{LangUtil("No Crypto? No problem.")}}</v-sheet
+                >
+                <v-sheet color="transparent" class="d-flex align-center mt-4">
+                    <v-img class="mx-2" src="~@/_skin030/assets/pagehome/tb_pay.png" height="42" width="132"> </v-img>
+                    <btn-yellow class="text-12" min_width="109" height="42" @click.native="open_recharge" :btn_type="8"
+                        >{{LangUtil("Buy Crypto")}}</btn-yellow
+                    >
+                </v-sheet>
+            </v-sheet>
+        </template>
+        <v-lazy v-if="ModulesHelper.isShow_RecentBetting()">
+            <RecentBetting :class="$xsOnly ? 'mt-3 ' : 'mt-8'" class="mb-n16" />
+        </v-lazy>
+    </v-container>
+</div>

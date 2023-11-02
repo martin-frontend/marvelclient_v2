@@ -1,0 +1,36 @@
+::v-deep .v-expansion-panels .v-expansion-panel {
+    background-color: transparent;
+}
+::v-deep .v-expansion-panel-header {
+    min-height: 10px;
+    .v-icon{
+        color: #3ac167 !important;
+    }
+}
+.line_my {
+    height: 1px;
+    border: solid 1px #0c312a;
+}
+
+.novigation_item:hover {
+    background-color: #215844 !important;
+    // background-color: #305745 !important;
+    // background-color: #223e30 !important;
+    .navIcon--text {
+        color: #3ac167 !important;
+    }
+    .white--text{
+        color: #3ac167 !important;
+    }
+}
+.active_class{
+    background-color: #215844 !important;
+    // background-color: #305745 !important;
+    // background-color: #223e30 !important;
+    .navIcon--text {
+        color: #3ac167 !important;
+    }
+    .white--text{
+        color: #3ac167 !important;
+    }
+}

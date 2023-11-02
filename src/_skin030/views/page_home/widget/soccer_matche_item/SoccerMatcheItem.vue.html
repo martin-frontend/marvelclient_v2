@@ -1,0 +1,307 @@
+<div>
+    <v-sheet color="bgBanner" class="rounded10 text-12 py-2 mt-2" v-if="$mobile" @click.native="onEnter">
+        <div class="d-flex align-center">
+            <v-sheet class="mx-2 rounded" min-width="2" height="16" color="textYellow"></v-sheet>
+            <div class="text-14 font-weight-bold">{{competition.competition_name}}</div>
+            <div v-if="!states.phase_minute" class="text-12 font-weight-bold ml-2">{{ startTime }}</div>
+            <v-spacer />
+            <btn-yellow class="mr-2" min_width="40" :btn_type="6">{{LangUtil("进入")}}</btn-yellow>
+        </div>
+        <div class="py-2 mx-2 rounded10">
+            <div class="d-flex primary--text rounded10 pa-1 text-12 align-center" style="white-space: nowrap">
+                <div :class="{'red--text': states.match_phase == '-'}">{{ statusString }}</div>
+                <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">{{ states.phase_minute }}{{LangUtil("分钟")}}</div>
+                <div v-if="!states.phase_minute" class="min-text ml-n1 flex-1">{{downcount()}}</div>
+                <v-spacer v-if="states.match_phase == '-'" />
+                <img v-if="states.corners_ft" src="@/_skin001/assets/icon/icon_corner.png" width="13" height="13" />
+                <div v-if="states.corners_ft" class="primary--text">{{states.corners_ft}}</div>
+                <v-spacer v-if="states.corners_ft" />
+                <v-sheet color="transparent" width="154px" class="d-flex fixTestParent">
+                    <div class="primary--text mx-4 left_item">{{LangUtil("让球")}}</div>
+                    <div class="primary--text right_item">{{LangUtil("大小")}}</div>
+                </v-sheet>
+            </div>
+            <div class="pt-1 colorTextBlack1--text">
+                <div class="d-flex align-center">
+                    <!-- <img :src="getResponseIcon(matche.home_team_icon)" width="20" height="20" /> -->
+
+                    <v-sheet
+                        outlined
+                        width="30"
+                        height="30"
+                        class="rounded-circle overflow-hidden d-flex align-center justify-center"
+                        style="background: transparent !important"
+                    >
+                        <v-img :src="getResponseIcon(matche.home_team_icon)" contain max-width="30" width="30" height="30"></v-img>
+                    </v-sheet>
+
+                    <div class="ml-1 text-truncate text-12 font-weight-bold">{{matche.home_team}}</div>
+                    <div class="d-flex ml-1">
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card red-card"
+                            min-width="13"
+                            v-if="states.red_cards_ft && getValues(states.red_cards_ft)[0] != '0'"
+                            >{{getValues(states.red_cards_ft)[0]}}</v-sheet
+                        >
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card yellow-card"
+                            min-width="13"
+                            v-if="states.yellow_cards_ft && getValues(states.yellow_cards_ft)[0] != '0' "
+                            >{{getValues(states.yellow_cards_ft)[0]}}</v-sheet
+                        >
+                    </div>
+                    <v-spacer />
+                    <div class="mr-1 text-12 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[0]}}</div>
+
+                    <BtnFixedBet class="mr-1" :selection="getSelections('ASIAN_HANDICAP')[0]">
+                        <div class="ml-0 text-no-wrap text-12">
+                            {{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[0] )}}
+                        </div>
+                    </BtnFixedBet>
+                    <BtnFixedBet :selection="getSelections('ASIAN_OVER_UNDER')[0]">
+                        <div class="ml-0 text-no-wrap text-12">
+                            {{MarketUtils.getSelectionName("ASIAN_OVER_UNDER", getSelections('ASIAN_OVER_UNDER')[0] )}}
+                        </div>
+                    </BtnFixedBet>
+                </div>
+                <div class="d-flex align-center mt-1">
+                    <!-- <img :src="getResponseIcon(matche.away_team_icon)" width="20" height="20" /> -->
+                    <v-sheet
+                        outlined
+                        width="30"
+                        height="30"
+                        class="rounded-circle overflow-hidden d-flex align-center justify-center"
+                        style="background: transparent !important"
+                    >
+                        <v-img :src="getResponseIcon(matche.away_team_icon)" contain max-width="30" width="30" height="30"></v-img>
+                    </v-sheet>
+                    <div class="ml-1 text-truncate text-12 font-weight-bold">{{matche.away_team}}</div>
+                    <div class="d-flex ml-1">
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card red-card"
+                            min-width="13"
+                            color="transparents"
+                            v-if="states.red_cards_ft && getValues(states.red_cards_ft)[1] != '0' "
+                            >{{getValues(states.red_cards_ft)[1]}}</v-sheet
+                        >
+                        <v-sheet
+                            class="rounded d-flex justify-center min-card yellow-card"
+                            min-width="13"
+                            color="transparents"
+                            v-if="states.yellow_cards_ft && getValues(states.yellow_cards_ft)[1] != '0' "
+                            >{{getValues(states.yellow_cards_ft)[1]}}</v-sheet
+                        >
+                    </div>
+                    <v-spacer />
+                    <div class="mr-1 text-12 font-weight-bold" v-if="states.goals_ft">{{getValues(states.goals_ft)[1]}}</div>
+
+                    <BtnFixedBet class="mr-1" :selection="getSelections('ASIAN_HANDICAP')[1]">
+                        <div class="ml-0 text-12">
+                            {{MarketUtils.getSelectionName("ASIAN_HANDICAP", getSelections('ASIAN_HANDICAP')[1] )}}
+                        </div>
+                    </BtnFixedBet>
+                    <BtnFixedBet :selection="getSelections('ASIAN_OVER_UNDER')[1]">
+                        <div class="ml-0 text-12">
+                            {{MarketUtils.getSelectionName("ASIAN_OVER_UNDER", getSelections('ASIAN_OVER_UNDER')[1] )}}
+                        </div>
+                    </BtnFixedBet>
+                </div>
+            </div>
+        </div>
+    </v-sheet>
+
+    <div v-else class="mt-4 text-14">
+        <v-sheet class="d-flex align-center pl-3 pt-2 rounded-t-lg text-14" style="padding-right: 65px" color="bgHeaderBox" height="50">
+            <v-sheet class="mr-3 rounded" min-width="3" height="24" color="textYellow"></v-sheet>
+            <v-sheet class="d-flex align-center text-16 font-weight-bold" color="transparent" min-width="250"
+                >{{competition.competition_name}}</v-sheet
+            >
+            <v-sheet class="d-flex align-center justify-center mr-2 primary--text" color="transparent" width="100%">
+                {{LangUtil("独赢")}}
+            </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2 primary--text" color="transparent" width="100%">
+                {{LangUtil("让球")}}
+            </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2 primary--text" color="transparent" width="100%">
+                {{LangUtil("大小")}}
+            </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2 primary--text" color="transparent" width="100%">
+                {{LangUtil("半场独赢")}}
+            </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2 primary--text" color="transparent" width="100%">
+                {{LangUtil("半场让球")}}
+            </v-sheet>
+            <v-sheet class="d-flex align-center justify-center mr-2 primary--text" color="transparent" width="100%">
+                {{LangUtil("半场大小")}}
+            </v-sheet>
+        </v-sheet>
+        <v-sheet class="d-flex rounded-b-lg pb-2 cursor-pointer" color="bgHeaderBox" @click.native="onEnter">
+            <v-sheet class="d-flex flex-column align-center text-14" width="80" min-width="80" color="transparent">
+                <template v-if="!states.match_phase">
+                    <div>{{LangUtil("未开赛")}}</div>
+                    <div>{{ startTime.substring(0, 5) }}</div>
+                    <div>{{ startTime.substring(5, 11) }}</div>
+                </template>
+                <template v-else>
+                    <div :class="{'red--text': states.match_phase == '-'}" style="text-align: center">{{ statusString }}</div>
+                    <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">
+                        {{ states.phase_minute }}{{LangUtil("分钟")}}
+                    </div>
+                </template>
+            </v-sheet>
+            <v-divider vertical class="mx-1 mb-2" />
+
+            <v-sheet min-width="180" class="d-flex flex-column align-center mr-3" color="transparent">
+                <v-sheet width="100%" class="d-flex text-14" color="transparent">
+                    <v-sheet class="mx-2 mr-4 d-flex flex-column align-space-around" color="transparent" max-width="170" min-width="170">
+                        <v-sheet class="d-flex align-center mb-1 pt-1 flex-1 mb-2" min-height="38" color="transparent">
+                            <v-sheet
+                                outlined
+                                min-width="34"
+                                max-width="34"
+                                height="34"
+                                class="rounded-circle overflow-hidden d-flex align-center justify-center"
+                                style="background: transparent !important"
+                            >
+                                <v-img :src="getResponseIcon(matche.home_team_icon)" contain max-width="34" width="34" height="34"></v-img>
+                            </v-sheet>
+                            <div class="ml-2 text-truncate font-weight-bold">{{matche.home_team}}</div>
+                            <v-spacer />
+                            <v-sheet
+                                v-if="states.red_cards_ft && getValues(states.red_cards_ft)[0]>0"
+                                class="d-flex align-center justify-center mx-2 rounded white--text num_red_width"
+                                color="red"
+                                >{{getValues(states.red_cards_ft)[0]}}</v-sheet
+                            >
+                            <div v-if="states.goals_ft" class="num_width text-16 ml-2 primary--text">{{getValues(states.goals_ft)[0]}}</div>
+                        </v-sheet>
+                        <v-sheet class="d-flex align-center mb-1 flex-1 mb-2" min-height="38" color="transparent">
+                            <v-sheet
+                                outlined
+                                min-width="34"
+                                max-width="34"
+                                height="34"
+                                class="rounded-circle overflow-hidden d-flex align-center justify-center"
+                                style="background: transparent !important"
+                            >
+                                <v-img :src="getResponseIcon(matche.away_team_icon)" contain max-width="34" width="34" height="34"></v-img>
+                            </v-sheet>
+                            <div class="ml-2 text-truncate font-weight-bold">{{matche.away_team}}</div>
+                            <v-spacer />
+                            <v-sheet
+                                v-if="states.red_cards_ft && getValues(states.red_cards_ft)[1]>0"
+                                class="d-flex align-center justify-center mx-2 rounded white--text num_red_width"
+                                color="red"
+                                >{{getValues(states.red_cards_ft)[1]}}</v-sheet
+                            >
+                            <div v-if="states.goals_ft" class="num_width text-16 ml-2 primary--text">{{getValues(states.goals_ft)[1]}}</div>
+                        </v-sheet>
+                        <v-sheet class="d-flex align-center justify-start" min-height="38" color="transparent">
+                            <v-sheet
+                                class="d-flex align-center justify-center rounded-pill primary--text text-14"
+                                width="26"
+                                height="26"
+                                color="transparent"
+                                >{{LangUtil("和")}}</v-sheet
+                            >
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+            </v-sheet>
+
+            <!-- <v-divider vertical class="mx-5 mt-1 mb-2" /> -->
+
+            <v-sheet width="100%" class="d-flex flex-column align-center" color="transparent">
+                <v-sheet width="100%" class="d-flex text-20" color="transparent">
+                    <!-- 独赢 -->
+                    <v-sheet width="100%" class="mr-2 pt-1" color="transparent">
+                        <div>
+                            <BtnFixedBet
+                                v-for="(sel, skey) of getSelections('MATCH_ODDS')"
+                                :key="skey"
+                                :selection="sel"
+                                class="mb-2 text-15"
+                            >
+                            </BtnFixedBet>
+                        </div>
+                    </v-sheet>
+                    <!-- 让球 -->
+                    <v-sheet width="100%" class="mr-2 pt-1" color="transparent">
+                        <div>
+                            <BtnFixedBet
+                                v-for="(sel, skey) of getSelections('ASIAN_HANDICAP')"
+                                :key="skey"
+                                :selection="sel"
+                                class="mb-2 text-12"
+                                :class="(skey == 2) ? 'mt-37' : ''"
+                            >
+                                <div class="ml-2 colorTextBlue1--text">{{MarketUtils.getSelectionName("ASIAN_HANDICAP", sel)}}</div>
+                            </BtnFixedBet>
+                        </div>
+                    </v-sheet>
+                    <!-- 大小 -->
+                    <v-sheet width="100%" class="mr-2 pt-1" color="transparent">
+                        <div>
+                            <BtnFixedBet
+                                v-for="(sel, skey) of getSelections('ASIAN_OVER_UNDER')"
+                                :key="skey"
+                                :selection="sel"
+                                class="mb-2 text-12"
+                                :class="(skey == 2) ? 'mt-37' : ''"
+                            >
+                                <div class="ml-2 colorTextBlue1--text">{{MarketUtils.getSelectionName("ASIAN_OVER_UNDER", sel)}}</div>
+                            </BtnFixedBet>
+                        </div>
+                    </v-sheet>
+                    <!-- 半场独赢 -->
+                    <v-sheet width="100%" class="mr-2 pt-1" color="transparent">
+                        <div>
+                            <BtnFixedBet
+                                :selection="sel"
+                                v-for="(sel, skey) of getSelections('MATCH_ODDS_HALF_TIME')"
+                                :key="skey"
+                                class="mb-2 text-12"
+                            >
+                            </BtnFixedBet>
+                        </div>
+                    </v-sheet>
+                    <!-- 半场让球 -->
+                    <v-sheet width="100%" class="mr-2 pt-1" color="transparent">
+                        <div>
+                            <BtnFixedBet
+                                v-for="(sel, skey) of getSelections('ASIAN_HANDICAP_HALF_TIME')"
+                                :key="skey"
+                                :selection="sel"
+                                class="mb-2 text-12"
+                                :class="(skey == 2) ? 'mt-37' : ''"
+                            >
+                                <div class="ml-2 colorTextBlue1--text">
+                                    {{MarketUtils.getSelectionName("ASIAN_HANDICAP_HALF_TIME", sel)}}
+                                </div>
+                            </BtnFixedBet>
+                        </div>
+                    </v-sheet>
+                    <!-- 半场大小 -->
+                    <v-sheet width="100%" class="mr-2 pt-1" color="transparent">
+                        <div>
+                            <BtnFixedBet
+                                v-for="(sel, skey) of getSelections('ASIAN_OVER_UNDER_HALF_TIME')"
+                                :key="skey"
+                                :selection="sel"
+                                class="mb-2 text-12"
+                                :class="skey == 2 ? 'mt-37' : ''"
+                            >
+                                <div class="ml-2 colorTextBlue1--text">
+                                    {{MarketUtils.getSelectionName("ASIAN_OVER_UNDER_HALF_TIME", sel)}}
+                                </div>
+                            </BtnFixedBet>
+                        </div>
+                    </v-sheet>
+                    <div class="d-flex align-center">
+                        <btn-yellow class="mr-2 text-14" min_width="54" width="54" height="36">{{LangUtil('进入')}}</btn-yellow>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+        </v-sheet>
+    </div>
+</div>

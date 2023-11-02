@@ -1,0 +1,15 @@
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 0px;
+}
+.cursor {
+    cursor: pointer;
+}
+.list:hover {
+    border-color: #f6b400 !important;
+}

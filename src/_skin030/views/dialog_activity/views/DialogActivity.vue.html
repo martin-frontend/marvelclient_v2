@@ -1,0 +1,103 @@
+<v-dialog v-if="!pageData.bHidden" width="unset" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$mobile" persistent>
+    <v-card class="d-flex rounded-lg" color="bgBanner">
+        <v-sheet color="transparent" width="366" class="d-none d-md-flex">
+            <v-carousel height="auto" cycle hide-delimiter-background show-arrows-on-hover :show-arrows="false">
+                <v-carousel-item v-for="(item, index) of noticeProxy.data.listType2" :key="index">
+                    <v-img :src="item.img_url" width="366" height="610"></v-img>
+                </v-carousel-item>
+            </v-carousel>
+        </v-sheet>
+        <v-card width="494" color="transparent">
+            <!-- pc显示方式 -->
+            <template v-if="!$mobile">
+                <v-card-title class="gradient-bg d-flex justify-start" v-if="!$mobile">
+                    <div class="text-20">{{LangUtil("精彩活动")}}</div>
+                    <!-- <v-spacer /> -->
+                    <v-btn class="mr-2" icon @click="onClose">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-divider class="mb-2" />
+                <v-card-text v-if="!$mobile">
+                    <v-sheet color="transparent" height="468" class="scroll-y">
+                        <v-sheet
+                            class="d-flex align-center justify-space-between py-2 px-4 rounded-lg mb-3"
+                            outlined
+                            style="background-color: transparent !important"
+                            height="80"
+                            v-for="(item, index) of pageData.list"
+                            :key="index"
+                        >
+                            <div class="text-16">
+                                <div class="primary--text mb-2">{{item.activity_name}}</div>
+                                <div class="textGray--text">{{item.start_time}} ~ {{item.end_time}}</div>
+                            </div>
+                            <!-- <v-btn color="colorBtnBg" small @click="onDetail(item)">{{LangUtil("查看详情")}}</v-btn> -->
+                            <btn-yellow class="text-16" min-width="110" height="40" @click.native="onDetail(item)"
+                                >{{LangUtil("查看详情")}}</btn-yellow
+                            >
+                        </v-sheet>
+                    </v-sheet>
+                </v-card-text>
+                <v-card-actions class="justify-center" v-if="!$mobile">
+                    <v-pagination
+                        v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 600"
+                        v-model="pageData.pageInfo.pageCurrent"
+                        :length="pageData.pageInfo.pageCount"
+                        :total-visible="7"
+                        @input="onPageChange"
+                    ></v-pagination>
+                </v-card-actions>
+            </template>
+            <template v-else>
+                <!-- 手机显示方式 -->
+                <!-- <v-card-text class="pb-3 pa-0" v-if="$mobile">
+
+                    <div class="gradient-bg_mob d-flex align-center  justify-center">
+                        <div class="text-16 primary--text">{{LangUtil("精彩活动")}}</div>
+                        <v-btn icon @click="onClose">
+                            <svg-icon icon="arrow_right" class="text-14 back_btn_icon textGray--text"></svg-icon>
+                        </v-btn>
+                    </div>
+                </v-card-text> -->
+                <com-dialog-title title="精彩活动" @onClose="onClose" />
+
+                <v-divider class="mb-2" />
+                <!-- <v-sheet v-if="$mobile" color="transparent" class="overflow-y-auto px-5 "
+                    style="height: calc(100vh - 90px);"> -->
+                <LoadMore1
+                    v-if="$mobile"
+                    @onRefresh="onRefresh"
+                    @onLoad="onLoad"
+                    :finished="pageData.finished"
+                    :_class="'listbox-mobile'"
+                    :is_needfinishedtext="pageData.list.length == 0"
+                >
+                    <ListNodata v-if="pageData.list.length == 0" height="411" />
+                    <v-sheet color="transparent">
+                        <v-sheet
+                            class="d-flex align-center justify-space-between px-3 py-2 rounded-lg mb-3"
+                            height="80"
+                            v-for="(item, index) of pageData.list"
+                            :key="index"
+                            outlined
+                            style="background-color: transparent !important"
+                        >
+                            <div class="text-16">
+                                <div class="primary--text mb-2">{{item.activity_name}}</div>
+                                <div class="textGray--text">{{item.start_time}} ~ {{item.end_time}}</div>
+                            </div>
+                            <!-- <v-btn color="colorBtnBg" small @click="onDetail(item)">{{LangUtil("查看详情")}}</v-btn> -->
+
+                            <btn-yellow class="text-12" min-width="80" height="30" @click.native="onDetail(item)"
+                                >{{LangUtil("查看详情")}}</btn-yellow
+                            >
+                        </v-sheet>
+                    </v-sheet>
+                </LoadMore1>
+                <!-- </v-sheet> -->
+            </template>
+        </v-card>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

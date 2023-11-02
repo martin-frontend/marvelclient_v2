@@ -8,4 +8,8 @@ function show(url: string) {
     proxy.pageData.url = url;
 }
 
-export default { show };
+function openOrbitExchange() {
+    (window as any).vm.$router.push("/orbit_exchange");
+}
+
+export default { show, openOrbitExchange };

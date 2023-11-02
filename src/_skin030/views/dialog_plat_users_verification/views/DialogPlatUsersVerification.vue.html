@@ -1,0 +1,152 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="unset"
+    v-model="pageData.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card class="d-flex rounded10" color="dialog_bg">
+        <v-card color="transparent" width="600">
+            <com-dialog-title title="用户认证" @onClose="onClose" />
+            <v-divider class="mb-2" />
+
+            <v-card-text class="px-5 mt-2">
+                <v-autocomplete
+                    class="custom-autocomplete mb-6 text-14"
+                    :disabled="isFormDisabled"
+                    background-color="wallet_bg"
+                    solo
+                    hide-details
+                    attach
+                    flat
+                    item-text="name"
+                    item-value="id"
+                    :items="pageData.countryList"
+                    v-model="form.country"
+                    :placeholder="LangUtil('请选择国家')"
+                    :no-data-text="LangUtil('没有更多数据')"
+                    auto-select-first
+                    @change="onCountryChange"
+                ></v-autocomplete>
+                <CustomInput class="mb-6" :disabled="isFormDisabled" :placeholder="LangUtil('请输入省份/洲')" v-model="form.province">
+                </CustomInput>
+
+                <!-- <v-autocomplete
+                    class="custom-autocomplete mb-6 text-14"
+                    :disabled="isFormDisabled"
+                    background-color="wallet_bg"
+                    solo
+                    attach
+                    hide-details
+                    flat
+                    item-text="name"
+                    item-value="id"
+                    :items="pageData.cityList"
+                    v-model="form.city"
+                    :placeholder="LangUtil('请选择城市')"
+                    :no-data-text="LangUtil('没有更多数据')"
+                ></v-autocomplete> -->
+                <CustomInput
+                    maxlength="50"
+                    class="mb-6"
+                    :disabled="isFormDisabled"
+                    :placeholder="LangUtil('请输入城市')"
+                    v-model="form.city"
+                >
+                </CustomInput>
+                <CustomInput
+                    maxlength="50"
+                    class="mb-6"
+                    :disabled="isFormDisabled"
+                    :placeholder="LangUtil('请输入邮编')"
+                    v-model="form.post_code"
+                >
+                </CustomInput>
+                <CustomInput
+                    maxlength="50"
+                    class="mb-6"
+                    :disabled="isFormDisabled"
+                    :placeholder="LangUtil('请输入姓名')"
+                    v-model="form.verification_name"
+                >
+                </CustomInput>
+                <CustomInput
+                    class="mb-6"
+                    :disabled="isFormDisabled"
+                    icon="mdi-phone"
+                    type="tel"
+                    :placeholder="LangUtil('请输入手机号')"
+                    v-model="form.mobile"
+                >
+                    <template v-slot:pre>
+                        <v-sheet color="transparent" class="codeSelect">
+                            <!-- <v-autocomplete
+                                class="ml-1"
+                                v-model="form.area_code"
+                                :items="areaCodeArr"
+                                :disabled="true"
+                                item-text="area_code"
+                                hide-details
+                                solo
+                                flat
+                                background-color="transparent"
+                                attach
+                                :no-data-text="LangUtil('没有更多数据')"
+                                :filter="customFilter"
+                            >
+                                <template #prepend> + </template>
+                                <template v-slot:item="data">
+                                    <v-sheet color="transparent" width="100%" class="d-flex justify-space-between colorText2--text text-14">
+                                        <div>{{data.item.area_code}}</div>
+                                        <div>{{data.item.name}}</div>
+                                    </v-sheet>
+                                </template>
+                            </v-autocomplete> -->
+                            <CustomInput maxlength="5" :isNeedCloseBtn="false" :disabled="true" v-model="form.area_code">
+                                <template #pre> + </template>
+                            </CustomInput>
+                        </v-sheet>
+                    </template>
+                </CustomInput>
+                <CustomInput
+                    maxlength="50"
+                    class="mb-6"
+                    :placeholder="LangUtil('请输入邮箱')"
+                    :disabled="isFormDisabled"
+                    v-model="form.email"
+                >
+                </CustomInput>
+                <!-- <div class="input-text py-2 pa-3 mb-5" style="height: 150px !important">
+                    <textarea maxlength="300" :autofocus="false" :placeholder="LangUtil('请输入地址')" v-model="form.address" />
+                </div> -->
+                <CustomInput
+                    class="mb-6"
+                    :disabled="isFormDisabled"
+                    type="textarea"
+                    :placeholder="LangUtil('请输入地址')"
+                    v-model="form.address"
+                    maxlength="500"
+                >
+                </CustomInput>
+
+                <btn-yellow v-if="!isFormDisabled" class="text-16" width="100%" height="36" :disabled="!isCheck" @click.native="onSubmit">
+                    {{list.status == 0?LangUtil("提交"):LangUtil("重新认证")}}
+                </btn-yellow>
+                <!-- <div v-if="list.status != 0" class="d-flex flex-column mt-2"> -->
+                <div class="d-flex flex-column mt-2">
+                    <span class="d-flex align-center">
+                        <v-icon small v-if="certificationStatus.icon" :color="certificationStatus.color" class="text-12 mr-1">
+                            {{certificationStatus.icon}}
+                        </v-icon>
+                        <span :class="{'red--text':list.status == 2}">{{certificationStatus.name}}</span>
+                    </span>
+                    <span class="red--text" v-if="list.status == 2"> {{LangUtil("失败原因")}}:{{list.remark}} </span>
+                </div>
+            </v-card-text>
+        </v-card>
+    </v-card>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

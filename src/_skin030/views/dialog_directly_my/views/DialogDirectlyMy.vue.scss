@@ -1,0 +1,30 @@
+.cursor {
+    cursor: pointer;
+}
+.qrcode {
+    background-color: white;
+    border-radius: 20px;
+    padding: 16px;
+    width: 180px;
+    height: 180px;
+    ::v-deep img {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 10px;
+        padding: 4px;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.rounded-card {
+    @media (max-width: 600px) {
+        border-radius: 10px !important;
+    }
+}
+.rounded-button {
+    @media (max-width: 600px) {
+        border-radius: 5px !important;
+    }
+}

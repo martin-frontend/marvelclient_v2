@@ -1,0 +1,10 @@
+::v-deep .v-snack__content {
+    text-align: center;
+}
+::v-deep .v-snack__wrapper {
+    min-height: 50px;
+    min-width: 340px;
+}
+.notification {
+    bottom: 50% !important;
+}

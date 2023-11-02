@@ -1,0 +1,47 @@
+.listitem {
+    .item {
+        width: 130px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        color: #9db1d8;
+        &.item_4 {
+            width: 196px;
+            &:nth-child(3) {
+                width: 128px;
+            }
+        }
+
+        @media only screen and (max-width: 750px) {
+            width: calc(100% / 2);
+        }
+        div:first-child {
+            color: #4c5d7f;
+            margin-bottom: 5px;
+        }
+        div > a {
+            color: #9db1d8;
+        }
+    }
+    .listitem-110 {
+        width: 110px;
+        @media only screen and (max-width: 750px) {
+            width: 100%;
+        }
+    }
+}
+.listbox {
+    height: 530px;
+    overflow-y: auto;
+}
+.arrow {
+    margin-bottom: -1px !important;
+}
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 0px;
+}

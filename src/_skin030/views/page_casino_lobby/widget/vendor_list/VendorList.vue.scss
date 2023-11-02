@@ -1,0 +1,16 @@
+.game_item_class:hover {
+    .move_item {
+        transform: translateY(-6px);
+        transition: 0.3s;
+    }
+}
+.game_item_class:nth-child(3n+1){
+    @media only screen and (max-width: 450px) {
+        margin-right: calc(50vw - 184px);
+    }
+}
+.game_item_class:nth-child(3n+2){
+    @media only screen and (max-width: 450px) {
+        margin-right: calc(50vw - 184px);
+    }
+}

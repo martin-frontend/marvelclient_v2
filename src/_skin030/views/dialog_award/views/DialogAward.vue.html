@@ -1,0 +1,52 @@
+<v-dialog v-if="!pageData.bHidden" width="320" v-model="pageData.bShow" :retain-focus="false" persistent>
+    <v-card class="rounded10 pt-4" flat color="transparent">
+        <!-- <com-dialog-title title="获得奖励" :isNeedClose="false" :isDialog="true" /> -->
+        <!-- <v-card-title class="gradient-bg text-18 justify-center"> {{LangUtil("获得奖励")}} </v-card-title> -->
+
+        <!-- <v-sheet width="100%" class="d-flex justify-center text-20">{{LangUtil("获得奖励")}}</v-sheet> -->
+
+        <v-card-text>
+            <v-sheet width="100%" class="d-flex justify-center" color="transparent">
+                <SvgaPlayer
+                    ref="start_anim"
+                    class="svga-player"
+                    :class="!isLoop ? 'is-show' : ''"
+                    id="award"
+                    :src="resolveSvgaSrc('get_start')"
+                    loops="1"
+                    :onFinished="onStartAnimFinish"
+                ></SvgaPlayer>
+                <SvgaPlayer
+                    ref="loop_anim"
+                    class="svga-player"
+                    :class="isLoop ? 'is-show' : ''"
+                    id="award_2"
+                    :src="resolveSvgaSrc('get_loop')"
+                ></SvgaPlayer>
+                <!-- <div ref="playerContainer"></div> -->
+            </v-sheet>
+
+            <v-sheet color="transparent" class="" style="margin-top: -82px">
+                <v-sheet width="100%" class="d-flex justify-center textYellow--text text-20 mb-4 font-weight-bold" color="transparent"
+                    >{{LangUtil("获得奖励")}}</v-sheet
+                >
+
+                <div
+                    class="d-flex justify-center textYellow--text text-16 mb-2 font-weight-bold"
+                    v-for="(item, key) of pageData.data"
+                    :key="key"
+                >
+                    <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="24" height="24"></v-img>
+                    <div class="ml-3 mr-3">{{key}}</div>
+                    <div>x{{item}}</div>
+                </div>
+            </v-sheet>
+        </v-card-text>
+
+        <v-card-actions class="mt-0 pt-0 pb-3 d-flex justify-center">
+            <!-- <btn-yellow class="text-16 mb-4" min_width="90" height="36" @click.native="ontest">{{LangUtil("测试")}}</btn-yellow> -->
+            <btn-yellow class="text-16 mb-4" min_width="120" height="36" @click.native="onClose">{{LangUtil("确定")}}</btn-yellow>
+        </v-card-actions>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

@@ -1,0 +1,123 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="838"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <!-- pc -->
+    <v-card flat v-if="!$mobile" class="rounded10" color="dialog_bg" min-height="540">
+        <com-dialog-title title="消息详情" @onClose="onClose" />
+        <v-divider class="mb-4" />
+
+        <v-sheet color="transparent" flat class="d-flex flex-column justify-space-between px-4" height="450" width="100%">
+            <v-sheet class="mt-5" color="transparent" width="100%">
+                <div class="d-flex align-center mb-2">
+                    <!-- <v-icon size="30" class="primary--text ml-2">mdi-email-open</v-icon> -->
+                    <div class="ml-2 primary--text" :class="$mobile ? 'text-14' : 'text-16'">{{pageData.data.title}}</div>
+                </div>
+
+                <v-sheet class="textGray--text pa-3" min-height="138" color="transparent"> {{pageData.data.content}} </v-sheet>
+            </v-sheet>
+
+            <v-sheet v-if="pageData.data.attachment_status != 1" color="transparent" width="100%" class="d-flex align-center mb-6">
+                <v-sheet color="transparent" width="100%">
+                    <v-sheet color="transparent" class="d-flex flex-wrap justify-space-around" max-width="100%">
+                        <template v-for="(item, key) of pageData.data.attachment_content">
+                            <v-sheet
+                                class="d-flex align-center px-2 rounded10 my-1"
+                                color="wallet_bg"
+                                min-height="36"
+                                :key="key"
+                                width="45%"
+                            >
+                                <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="24" height="24"></v-img>
+                                <div class="primary--text ml-2 mr-2">{{key}}{{LangUtil(":")}}</div>
+                                <div class="textYellow--text">{{item}}</div>
+                            </v-sheet>
+                        </template>
+
+                        <v-sheet
+                            v-if="isneedObj"
+                            class="d-flex align-center rounded10 px-3 mb-2"
+                            color="transparent"
+                            min-height="36"
+                            width="45%"
+                        >
+                        </v-sheet>
+                    </v-sheet>
+                </v-sheet>
+
+                <!-- <v-sheet color="transparent" width="100%" class="d-flex flex-wrap">
+                    <v-sheet class="d-flex align-center rounded10 mb-2 px-2 mr-2" color="wallet_bg" min-height="44" 
+                        v-for="(item, key) of pageData.data.attachment_content" :key="key" min-width="166">
+                        <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="24" height="24"></v-img>
+                        <div class="primary--text ml-2 mr-2">{{key}}{{LangUtil(":")}} </div>
+                        <div class="textYellow--text">{{item}}</div>
+                    </v-sheet>
+                </v-sheet> -->
+
+                <btn-yellow
+                    v-if="pageData.data.attachment_status == 11"
+                    class="text-14"
+                    min_width="104"
+                    height="36"
+                    @click.native="onReceive"
+                    >{{LangUtil("领取奖励")}}</btn-yellow
+                >
+            </v-sheet>
+        </v-sheet>
+    </v-card>
+    <!-- 手机显示方式 -->
+    <v-card v-else class="" color="dialog_bg">
+        <com-dialog-title title="消息详情" @onClose="onClose" />
+
+        <v-sheet class="px-3 mt-5" color="transparent" width="100%">
+            <div class="d-flex align-center mb-2">
+                <!-- <v-icon size="30" class="primary--text ml-2">mdi-email-open</v-icon> -->
+                <div class="ml-2 primary--text font-weight-bold" :class="$mobile ? 'text-14' : 'text-16'">{{pageData.data.title}}</div>
+            </div>
+
+            <v-sheet class="textGray--text pa-3" min-height="138" color="transparent"> {{pageData.data.content}} </v-sheet>
+
+            <template v-if="pageData.data.attachment_status != 1">
+                <v-sheet color="transparent" class="d-flex flex-wrap justify-space-around" max-width="100%">
+                    <template v-for="(item, key) of pageData.data.attachment_content">
+                        <v-sheet class="d-flex align-center rounded10 px-3 mb-2" color="wallet_bg_2" min-height="44" :key="key" width="45%">
+                            <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="24" height="24"></v-img>
+                            <div class="primary--text ml-2 mr-2">{{key}}{{LangUtil(":")}}</div>
+                            <div class="textYellow--text">{{item}}</div>
+                        </v-sheet>
+                    </template>
+
+                    <v-sheet
+                        v-if="isneedObj"
+                        class="d-flex align-center rounded10 px-3 mb-2"
+                        color="transparent"
+                        min-height="44"
+                        width="45%"
+                    >
+                        <!-- <v-img :src="plat_coins[key] && plat_coins[key].icon" max-width="24"
+                                    height="24"></v-img>
+                                <div class="primary--text ml-2 mr-2">{{key}}{{LangUtil(":")}} </div>
+                                <div class="textYellow--text">{{item}}</div> -->
+                    </v-sheet>
+                </v-sheet>
+            </template>
+        </v-sheet>
+
+        <v-sheet
+            v-if="pageData.data.attachment_status == 11"
+            color="transparent"
+            class="px-4"
+            width="100%"
+            :class="$mobile ? 'bottom_btn' : 'pb-4'"
+        >
+            <btn-yellow class="text-14" width="100%" height="36" @click.native="onReceive">{{LangUtil("领取奖励")}}</btn-yellow>
+        </v-sheet>
+    </v-card>
+
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

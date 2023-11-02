@@ -92,4 +92,15 @@ const verityImgArr = [
     require(`@/_skin005/assets/verify/bg_9.jpg`),
     require(`@/_skin005/assets/verify/bg_10.jpg`),
 ];
-export default { commonIcon, CategoryIcon, VipMap, CategoryIcon_sel, verityImgArr };
+
+const navMenuImgArr: any = {
+    2: require(`@/_skin005/assets/novigation/menu_icon_2.png`),
+    4: require(`@/_skin005/assets/novigation/menu_icon_4.png`),
+    8: require(`@/_skin005/assets/novigation/menu_icon_8.png`),
+    16: require(`@/_skin005/assets/novigation/menu_icon_16.png`),
+    32: require(`@/_skin005/assets/novigation/menu_icon_32.png`),
+    64: require(`@/_skin005/assets/novigation/menu_icon_64.png`),
+    128: require(`@/_skin005/assets/novigation/menu_icon_128.png`),
+};
+
+export default { commonIcon, CategoryIcon, VipMap, CategoryIcon_sel, verityImgArr, navMenuImgArr };

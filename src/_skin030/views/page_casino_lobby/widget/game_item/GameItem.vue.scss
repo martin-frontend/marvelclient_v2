@@ -1,0 +1,133 @@
+$box_height: 216px;
+$box_width: 168px;
+
+$box_height_mini: 130px;
+$box_width_mini: 98px;
+
+// @media screen and (max-width: 1260px) {
+//     .box {
+//         width: $box_width_mini !important;
+//     }
+// }
+
+.box_margin {
+    margin: 6.7px;
+}
+.box_margin_mob {
+    margin: 1px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+.box {
+    width: $box_width;
+    border-radius: 14px !important;
+    //background-image: linear-gradient(180deg, #243a5d 0%, #1f2f4b 100%);
+}
+// .box-height {
+//     height: $box_height;
+// }
+.rounded_img {
+    border-radius: 10px 10px 14px 14px !important;
+}
+.rounded_text {
+    border-radius: 0px 0px 10px 10px !important;
+}
+
+.text_bg {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.game-icon:hover {
+    .game-title {
+        color: #000;
+    }
+    .text_bg {
+        background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+    }
+}
+
+::v-deep .v-responsive__content {
+    text-align: center;
+}
+.egame__item__mask {
+    height: 100%;
+    display: grid;
+    place-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 200ms linear;
+
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.egame__item__mask:hover {
+    opacity: 1;
+}
+.egame__item__play-icon {
+    width: 60px;
+    height: 60px;
+    display: inline-grid;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 100px;
+    font-size: 48px;
+}
+
+.filter-gray {
+    filter: grayscale(70%);
+}
+
+.text-yellow {
+    color: #f8ff3d;
+}
+
+::v-deep .loader_class {
+    .img_loader {
+        border-radius: 20px !important;
+    }
+}
+
+.loader_class_mob {
+    ::v-deep .loader_class {
+        .img_loader {
+            height: 115px !important;
+            border-radius: 12px !important;
+        }
+    }
+}
+
+.mask_base {
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.pc_mask {
+    //backdrop-filter: grayscale(1);
+    // min-height: calc(100% - 40px);
+    min-height: calc(100%);
+}
+.mob_mask {
+    //backdrop-filter: grayscale(1);
+    min-height: calc(100% - 25px);
+}
+
+.title_text_mob {
+    line-height: 13px;
+}
+.text-with-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+.game_item_class:hover {
+    .move_item {
+        transform: translateY(-10px);
+        transition: 0.3s;
+    }
+}

@@ -1,0 +1,70 @@
+<!--
+ * @Author: custer custer@xx.xx
+ * @Date: 2023-09-25 18:36:29
+ * @LastEditors: custer custer@xx.xx
+ * @LastEditTime: 2023-09-25 18:53:31
+ * @FilePath: /marvelclient_v2/src/_skin030/views/novigation/Novigation.vue.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<div class="navbox" id="navpage">
+    <v-sheet class="navscroll d-flex flex-column" color="bgNavigation">
+        <v-sheet class="d-flex align-center overflow-hidden" :height="$mobile ? 50 : 60" color="bgHeaderNavigation">
+            <div class="d-flex align-center box pa-2 mt-2">
+                <v-sheet color="transparent" :class="mini ? 'ml-2' : ''" @click="onMiniChange">
+                    <svg-icon icon="ky_menu" class="text-30 textGray--text"></svg-icon>
+                </v-sheet>
+                <template v-if="!mini">
+                    <v-sheet
+                        class="d-flex align-center px-1 pr-2 py-1 rounded-pill mx-2 cursor-pointer"
+                        :class="isCasinoActive ? 'btn_casino_active' : 'btn_casino'"
+                        color="transparent"
+                        @click="goCasino"
+                    >
+                        <svg-icon icon="ky_casino" class="text-24"></svg-icon>
+                        <span class="white--text text-14 ml-1 font-weight-bold">{{ LangUtil("Casino") }}</span>
+                    </v-sheet>
+                    <v-sheet
+                        class="d-flex align-center btn_sports px-1 pr-2 py-1 rounded-pill cursor-pointer"
+                        :class="isSportsActive ? 'btn_sports_active' : 'btn_sports'"
+                        color="transparent"
+                        @click="goSports"
+                    >
+                        <svg-icon icon="ky_sports" class="text-24"></svg-icon>
+                        <span class="white--text text-14 ml-1 font-weight-bold">{{ LangUtil("Sports") }}</span>
+                    </v-sheet>
+                </template>
+            </div>
+        </v-sheet>
+
+        <v-sheet color="transparent" id="category_page" class="d-flex flex-column main_list overflow-y-auto">
+            <v-sheet v-if="mini" color="transparent" class="d-flex flex-column pa-2 pt-0">
+                <v-sheet
+                    class="d-flex align-center pa-2 rounded10 justify-center cursor-pointer"
+                    :class="isCasinoActive ? 'btn_casino_mini_active' : 'btn_casino_mini'"
+                    color="transparent"
+                    @click="goCasino"
+                >
+                    <svg-icon icon="ky_casino" class="text-24"></svg-icon>
+                    <!-- <span class="white--text text-14 ml-1">{{ LangUtil("Casino") }}</span> -->
+                </v-sheet>
+                <v-sheet
+                    class="d-flex align-center pa-2 rounded10 justify-center mt-2 cursor-pointer"
+                    :class="isSportsActive ? 'btn_sports_mini_active' : 'btn_sports_mini'"
+                    color="transparent"
+                    @click="goSports"
+                >
+                    <svg-icon icon="ky_sports" class="text-24"></svg-icon>
+                    <!-- <span class="white--text text-12 ml-1">{{ LangUtil("Sports") }}</span> -->
+                </v-sheet>
+            </v-sheet>
+            <novigationHome v-if="novigation_type == 1" class="pa-2 pt-0" />
+            <novigationCasino v-else-if="novigation_type == 2 || novigation_type == 3" class="pa-2 pt-0" />
+            <!-- <novigationSports v-else-if="novigation_type == 3" class="pa-2 pt-0" /> -->
+
+            <v-sheet v-if="$mobile" color="transparent" width="100%">
+                <div class="all-rights-reserved textGray--text">{{LangUtil("version")}}:{{getVersion()}}</div>
+                <div class="all-rights-reserved textGray--text">{{getChannelID()}}</div>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+</div>

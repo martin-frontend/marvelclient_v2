@@ -1,0 +1,39 @@
+<v-card v-if="isShow" ref="game_list_card" flat color="transparent" class="d-flex flex-column" width="100%">
+    <v-sheet v-if="isNeedTitle" color="transparent" class="d-flex mt-1 align-center">
+        <svg-icon :icon="CategoryIcon[vendor_type]" class="navIcon--text text-18"></svg-icon>
+        <span class="mx-2 font-weight-bold" :class="!$mobile ? 'text-16' : 'text-14'"> {{categoryName}} </span>
+    </v-sheet>
+    <v-sheet v-if="!isSingle" color="transparent" class="" width="100%">
+        <v-slide-group show-arrows class="">
+            <v-slide-item v-for="item of data" :key="item.vendor_prodcut_id">
+                <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
+            </v-slide-item>
+        </v-slide-group>
+    </v-sheet>
+    <v-sheet v-else color="transparent" class="d-flex flex-wrap justify-center" width="100%">
+        <v-sheet color="transparent" class="d-flex flex-wrap align-center" width="100%">
+            <template v-for="(item ,index) of data">
+                <GameItem :item="item" :key="index" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
+            </template>
+        </v-sheet>
+        <v-sheet v-if="isShowAllGames" color="transparent" width="100%" class="d-flex align-center justify-center mt-2">
+            <btn-yellow class="text-16 my-5" min-width="110" height="36" @click.native="getAllGame"
+            >{{LangUtil("查看全部游戏")}}</btn-yellow
+        >
+        </v-sheet>
+        <v-lazy v-if="pageInfo">
+            <div class="d-flex justify-center pt-2" v-if="pageInfo.pageCurrent < pageInfo.pageCount">
+                <div class="d-flex flex-column justify-center align-center">
+                    <div class="mb-3 textGray--text">
+                        {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageInfo.pageTotal, pageInfo.pageSize * pageInfo.pageCurrent)}}
+                    </div>
+                    <v-progress-linear color="primary" :value="(pageInfo.pageCurrent / pageInfo.pageCount) * 100" height="2">
+                    </v-progress-linear>
+                    <btn-yellow class="text-16 my-5" min-width="110" height="36" @click.native="getMore"
+                        >{{LangUtil("加载更多")}}</btn-yellow
+                    >
+                </div>
+            </div>
+        </v-lazy>
+    </v-sheet>
+</v-card>

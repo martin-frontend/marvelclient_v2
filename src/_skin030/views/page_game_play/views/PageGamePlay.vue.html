@@ -1,0 +1,47 @@
+<v-container>
+    <v-sheet color="transparent" :class="$mobile?'pa-0':'mt-2'">
+        <v-sheet class="rounded-lg" color="bgBanner">
+            <iframe id="gameFrame" ref="gameFrame" class="frame" :src="pageData.url" allowfullscreen="true"></iframe>
+
+            <v-sheet
+                v-if="noticeData && noticeData.length > 0 && !isLoadEnd"
+                class="ad_node_class d-flex justify-center align-center"
+                :class="$mobile ? 'ad_node_class_offset_mob' : 'ad_node_class_offset_pc' "
+                @click="onclick_other"
+            >
+                <div id="cardNode" class="card_node d-flex flex-column" @click.stop="onclick_img">
+                    <v-sheet
+                        id="titleNode"
+                        color="transparent"
+                        width="100%"
+                        class="title_node d-flex justify-space-between align-center px-2 py-2"
+                    >
+                        <div class="tips_color_bg--text">
+                            <span class="red--text"> {{autoCloseTime}} </span>
+                            {{LangUtil("秒后自动关闭")}}
+                        </div>
+                        <!-- <v-btn class="" icon @click="onClose">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn> -->
+                    </v-sheet>
+                    <img id="imgNode" :src="curShowLoadData.img_url" class="img_node" />
+                </div>
+            </v-sheet>
+            <div class="d-flex justify-end my-2 mr-3" v-if="!$mobile">
+                <v-btn class="my-2 ml-3" icon @click="onFullScreen">
+                    <v-icon>mdi-fullscreen</v-icon>
+                </v-btn>
+                <v-btn class="my-2 ml-3" icon @click="onBack">
+                    <v-icon>mdi-keyboard-backspace</v-icon>
+                </v-btn>
+            </div>
+        </v-sheet>
+        <!-- <RecentBetting class="mt-4" v-if="!$mobile" /> -->
+        <div class="flow-btn" ref="btnFlow" @click="onBack" v-if="$mobile">
+            <v-btn fab small color="transparent">
+                <!-- <v-icon>mdi-backup-restore</v-icon> -->
+                <v-img src="~@/_skin030/assets/btn2.png" width="40" height="40" />
+            </v-btn>
+        </div>
+    </v-sheet>
+</v-container>

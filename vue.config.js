@@ -141,6 +141,19 @@ const skinMap = {
             },
         },
     },
+    /** */
+    skin004_6: {
+        public_dir: "public_skin004_6",
+        pages: {
+            skin004_6: {
+                entry: "src/_skin004_6/main.ts",
+                template: "public_skin004_6/skin004_6.html",
+                filename: "index.html",
+                title: "69娱乐",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**96in */
     skin005: {
         public_dir: "public_skin005",
@@ -291,6 +304,26 @@ const skinMap = {
             },
         },
     },
+    /**开源 */
+    skin030: {
+        public_dir: "public_skin030",
+        pages: {
+            skin005: {
+                entry: "src/_skin030/main.ts",
+                template: "public_skin030/skin030.html",
+                filename: "index.html",
+                title: "ky.game",
+                faviconName: "favicon.ico",
+            },
+            pay_redirect: {
+                entry: "src/_skin030/pay_redirect.ts",
+                template: "public_skin030/pay_redirect.html",
+                filename: "pay_redirect.html",
+                title: "pay",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     skin100: {
         public_dir: "public_skin100",
         pages: {
@@ -357,11 +390,13 @@ module.exports = {
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
-            ["skin004_2","skin004_5","skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
+            ["skin004_2","skin004_5","skin004_6","skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
                 process.env.VUE_APP_SKIN
             )
         ) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
+        } else if (process.env.VUE_APP_SKIN == "skin030") {
+            imagesRule.exclude.add(resolve("src/_skin030/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin020") {
             imagesRule.exclude.add(resolve("src/_skin020/icons"));
         }

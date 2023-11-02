@@ -1,0 +1,16 @@
+<v-card
+    flat
+    class="text-12 px-2 d-flex align-center justify-center font-weight-bold"
+    :class="disabled ? cur_btn_class_disable : cur_btn_class"
+    color="transparent"
+    :min-width="min_width"
+    :height="height"
+    :width="width"
+>
+    <span class="text-no-wrap btnweight"><slot></slot></span>
+</v-card>
+
+<!-- :class="{
+    cur_btn_class : true,
+    'disabled_my':disabled , 
+}" -->

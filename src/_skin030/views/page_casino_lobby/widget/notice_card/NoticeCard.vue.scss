@@ -1,0 +1,115 @@
+.card_1 {
+    .bg {
+        background-image: url("~@/_skin030/assets/casino_lobby/card_bg_1.png");
+        background-size: contain;
+    }
+    .promotion_btn {
+        border-radius: 4px;
+        background-color: #fff;
+    }
+    .border {
+        border: solid 1px #fff !important;
+        border-radius: 6px !important;
+    }
+}
+::v-deep.v-carousel .v-carousel__controls {
+    height: 20px !important;
+}
+::v-deep.v-carousel .v-carousel__controls .v-item-group .v-carousel__controls__item {
+    margin: -3px;
+    transform: scale(0.5);
+}
+
+.swiper-sider-content {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    position: static;
+    .swiper-next {
+        cursor: pointer;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 2;
+        width: 30px;
+        height: 100%;
+        top: 0px;
+        outline: none;
+        position: absolute;
+        background-color: rgb(0, 0, 0, 0.4);
+        right: 0px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        img {
+            height: 17px;
+            width: 10px;
+        }
+    }
+    .swiper-prev {
+        cursor: pointer;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 2;
+        width: 30px;
+        height: 100%;
+        top: 0px;
+        outline: none;
+        position: absolute;
+        background-color: rgb(0, 0, 0, 0.4);
+        left: 0px;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        img {
+            height: 17px;
+            width: 10px;
+        }
+    }
+    .swiper-content {
+        display: flex;
+        position: relative;
+        align-items: center;
+        width: 100%;
+        .button-prev {
+            margin-right: 13px;
+        }
+        i {
+            &:focus {
+                border: 0px;
+                outline: 0px;
+            }
+        }
+        .iconfont {
+            font-size: 28px;
+            color: #747a7e;
+            outline: none;
+            cursor: pointer;
+            border: 0px;
+        }
+        .swiper-container {
+            width: 100%;
+            height: auto;
+            position: relative;
+            border-radius: 6px;
+            .swiper-wrapper {
+                text-align: center !important;
+            }
+            .swiper-img {
+                width: 100%;
+                height: 164px;
+                border-radius: 6px;
+                // cursor: pointer;
+            }
+            .swiper-slide {
+                margin-left: 0px !important;
+            }
+        }
+    }
+}
+.z-10 {
+    z-index: 10;
+}
+
+.h-20 {
+    height: 20px;
+}

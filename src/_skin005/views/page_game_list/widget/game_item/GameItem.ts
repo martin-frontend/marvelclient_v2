@@ -21,9 +21,25 @@ export default class GameItem extends AbstractView {
 
     get getTag() {
         if (!this.item.tags) return "";
-        if (this.item.tags.length == 0) return "";
         // 1-新 2-火热
-        return this.item.tags[0] == 1 ? require("@/assets/tag/new.png") : require("@/assets/tag/hot.png");
+        if (this.item.tags == 1) {
+            return require("@/_skin005/assets/game_tag/new.png");
+        }
+        if (this.item.tags == 2) {
+            return require("@/_skin005/assets/game_tag/hot.png");
+        }
+        if (this.item.tags == 3) {
+            return require("@/_skin005/assets/game_tag/hot.png");
+        }
+        if (Array.isArray(this.item.tags)) {
+            if (this.item.tags.includes(2)) {
+                return require("@/_skin005/assets/game_tag/hot.png");
+            }
+            if (this.item.tags.includes(1)) {
+                return require("@/_skin005/assets/game_tag/new.png");
+            }
+        }
+        return "";
     }
 
     getBoxClass() {

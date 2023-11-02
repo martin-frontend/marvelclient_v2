@@ -3269,6 +3269,7 @@ declare module core {
         index: number;
         vendor_type: number;
         vendor_type_name: string;
+        id: number;
     }
     /**
      * 大厅游戏菜单--分类

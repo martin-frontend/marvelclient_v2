@@ -1,0 +1,87 @@
+@import "@/scss/mixin.scss";
+
+.text-rwd-18 {
+    font-size: 16px;
+    @include sm {
+        font-size: 18px;
+    }
+}
+
+.text-rwd-16 {
+    font-size: 14px;
+    @include sm {
+        font-size: 16px;
+    }
+}
+
+.listitem {
+    color: #9db1d8;
+    div:first-child {
+        color: #4c5d7f;
+    }
+    div > a {
+        color: #9db1d8;
+    }
+}
+
+.arrow {
+    margin-bottom: -1px !important;
+}
+.search {
+    width: 207px;
+    ::v-deep .v-btn__content {
+        color: #8e8f91;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+::v-deep .input-text input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+}
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    //background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 5px;
+}
+.listbox_2-mobile {
+    overflow: hidden;
+    padding-top: 0px;
+}
+
+.input-text {
+    height: 36px !important;
+    //background-color: #F4F4F4;
+}
+
+.theme--light {
+    .search_mob {
+        width: 168px;
+        ::v-deep .v-btn__content {
+            color: #8e8f91;
+            font-size: 12px;
+        }
+        .input-text {
+            background-color: #fff;
+        }
+        ::v-deep .input-text input::placeholder {
+            font-size: 12px;
+        }
+    }
+}
+
+.theme--dark {
+    .search_mob {
+        width: 168px;
+        ::v-deep .v-btn__content {
+            font-size: 12px;
+        }
+        ::v-deep .input-text input::placeholder {
+            font-size: 12px;
+        }
+    }
+}

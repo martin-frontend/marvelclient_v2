@@ -16,6 +16,7 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import dialog_real_name from "@/_skin004/views/dialog_real_name";
 import dialog_google_settings from "@/_skin004/views/dialog_google_settings";
 import getProxy from "@/core/global/getProxy";
+import SkinVariable from "@/_skin004/core/SkinVariable";
 
 @Component
 export default class DialogUserCenter extends AbstractView {
@@ -27,6 +28,7 @@ export default class DialogUserCenter extends AbstractView {
     userInfo = this.selfProxy.userInfo;
     validate_type = GamePlatConfig.config.validate_type;
     is_password_gold_transfer = GamePlatConfig.config.is_password_gold_transfer;
+    SkinVariable = SkinVariable;
 
     constructor() {
         super(DialogUserCenterMediator);

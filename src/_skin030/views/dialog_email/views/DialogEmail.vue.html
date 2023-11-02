@@ -1,0 +1,192 @@
+<v-dialog
+    v-if="!pageData.bHidden"
+    width="838"
+    v-model="pageData.bShow"
+    :retain-focus="false"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <!-- pc显示方式 -->
+    <v-card v-if="!$mobile" class="rounded10 d-flex flex-column" color="dialog_bg" height="100%">
+        <com-dialog-title title="消息中心" @onClose="onClose" />
+
+        <v-divider class="mb-4" />
+        <v-card-text>
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-space-between mb-6">
+                <v-sheet color="bgBanner" class="rounded-pill pa-0">
+                    <v-btn-toggle mandatory group v-model="typechange" @change="onTimeChange">
+                        <v-btn class="rounded-pill mr-2" height="30" min_width="90" value="0">
+                            <span class="text-14"> {{LangUtil("全部消息")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill mr-2" height="30" min_width="90" value="1">
+                            <span class="text-14"> {{LangUtil("平台消息")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill mr-2" height="30" min_width="90" value="11">
+                            <span class="text-14"> {{LangUtil("活动消息")}} </span>
+                        </v-btn>
+                    </v-btn-toggle>
+                </v-sheet>
+                <v-sheet color="transparent" class="d-flex">
+                    <btn-yellow class="text-14" min_width="104" height="30" @click.native="onReceiveQuick" :disabled="!isCheckGet"
+                        >{{LangUtil("一键领取")}}</btn-yellow
+                    >
+
+                    <btn-yellow class="text-14 ml-2" min_width="30" height="30" @click.native="onDestroyQuick" :disabled="!isCheckDelete">
+                        <svg-icon icon="delete" class="text-16"></svg-icon>
+                    </btn-yellow>
+                </v-sheet>
+            </v-sheet>
+            <template v-if="pageData.loading">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" height="442" width="100%" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <v-sheet v-if="pageData.list.length>0" color="transparent" class="scroll-y" height="450">
+                    <v-sheet
+                        class="px-4 py-3 mb-3 d-flex cursor-pointer rounded10"
+                        v-for="(item, key) of pageData.list"
+                        :key="key"
+                        color="wallet_bg"
+                        :class="item.is_read ? 'mail_item_read' : ''"
+                        @click="onDetail(item)"
+                    >
+                        <v-img max-width="50" width="50" height="100%" class="mr-1" contain src="~@/_skin030/assets/mail/mail_close.png" />
+
+                        <div class="ml-4 regular_text" style="width: 100%">
+                            <div class="d-flex justify-space-between mb-2">
+                                <div class="text-16 primary--text">{{item.title}}</div>
+                                <svg-icon
+                                    v-if="item.attachment_status != 1"
+                                    icon="ky_promotion"
+                                    class="text-22"
+                                    :class="item.attachment_status == 11 ? 'navIcon--text' : 'git_grayscale'"
+                                ></svg-icon>
+                                <!-- <v-img
+                                    v-if="item.attachment_status != 1"
+                                    max-width="26"
+                                    width="26"
+                                    height="100%"
+                                    class="mr-1"
+                                    contain
+                                    :class="item.attachment_status == 11 ? '' : 'git_grayscale'"
+                                    src="~@/_skin030/assets/mail/git.png"
+                                /> -->
+                            </div>
+                            <div class="d-flex justify-space-between">
+                                <div class="primary--text">{{getDate(item.created_at)}}</div>
+                                <div class="text-decoration-underline cursor-pointer wallet_btn--text">
+                                    {{item.is_read ? LangUtil("已读") : LangUtil("点击阅读详情")}}
+                                </div>
+                            </div>
+                        </div>
+                    </v-sheet>
+                </v-sheet>
+                <ListNodata v-if="pageData.list.length == 0" height="450" />
+                <v-spacer />
+                <v-pagination
+                    class="mt-4"
+                    v-if="pageData.pageInfo.pageCount > 1 && $vuetify.breakpoint.width > 838"
+                    v-model="pageData.pageInfo.pageCurrent"
+                    :length="pageData.pageInfo.pageCount"
+                    :total-visible="7"
+                    @input="onPageChange"
+                ></v-pagination>
+            </template>
+        </v-card-text>
+    </v-card>
+
+    <!-- 手机显示方式 -->
+    <v-card v-else class="d-flex flex-column overflow-x-hidden" color="dialog_bg" height="100%" flat>
+        <LoadMore1
+            v-if="pageData.bShow"
+            style="height: 100%"
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="pageData.finished"
+            :is_needfinishedtext="pageData.list.length == 0 || pageData.loading"
+        >
+            <template v-slot:top>
+                <com-dialog-title title="消息中心" @onClose="onClose" />
+                <v-sheet class="headicon" color="transparent">
+                    <v-sheet class="d-flex align-center px-3" color="transparent">
+                        <btn-yellow
+                            class="text-14"
+                            min_width="35"
+                            height="35"
+                            :btn_type="2"
+                            @click.native="onDestroyQuick"
+                            :disabled="!isCheckDelete"
+                        >
+                            <svg-icon icon="delete" class="text-16"></svg-icon>
+                        </btn-yellow>
+                        <btn-yellow
+                            class="text-14 ml-2"
+                            min_width="35"
+                            height="35"
+                            :btn_type="2"
+                            @click.native="onReceiveQuick"
+                            :disabled="!isCheckGet"
+                        >
+                            <svg-icon icon="activity" class="text-16"></svg-icon>
+                        </btn-yellow>
+                    </v-sheet>
+                </v-sheet>
+                <v-sheet class="mx-3 py-3" color="dialog_bg">
+                    <v-btn-toggle
+                        :lang="core.lang"
+                        mandatory
+                        group
+                        v-model="typechange"
+                        @change="onTimeChange"
+                        class="d-flex flex-wrap scrollable-btn-group"
+                    >
+                        <v-btn class="rounded-pill" height="30" min_width="80" value="0">
+                            <span class="text-14"> {{LangUtil("全部消息")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill" height="30" min_width="80" value="1">
+                            <span class="text-14"> {{LangUtil("平台消息")}} </span>
+                        </v-btn>
+                        <v-btn class="rounded-pill" height="30" min_width="80" value="11">
+                            <span class="text-14"> {{LangUtil("活动消息")}} </span>
+                        </v-btn>
+                    </v-btn-toggle>
+                </v-sheet>
+            </template>
+            <template v-if="pageData.loading && pageData.list.length == 0">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" width="100%" height="411" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <ListNodata v-if="pageData.list.length == 0" height="411" />
+                <v-sheet
+                    class="mx-3 px-3 py-2 rounded-lg mb-3 d-flex"
+                    color="wallet_bg"
+                    @click="onDetail(item)"
+                    v-for="(item, key) of pageData.list"
+                    :class="item.is_read ? 'mail_item_read' : ''"
+                    :key="key"
+                >
+                    <v-img max-width="46" width="46" height="100%" class="mr-1" contain src="~@/_skin030/assets/mail/mail_close.png">
+                    </v-img>
+                    <div class="ml-4 text-12" style="width: 100%">
+                        <div class="d-flex justify-space-between mb-2">
+                            <div class="text-14 primary--text font-weight-bold">{{item.title}}</div>
+                            <svg-icon
+                                v-if="item.attachment_status != 1"
+                                icon="ky_promotion"
+                                class="text-22"
+                                :class="item.attachment_status == 11 ? 'navIcon--text' : 'git_grayscale'"
+                            ></svg-icon>
+                        </div>
+                        <div class="d-flex justify-space-between">
+                            <div class="textGray--text">{{getDate(item.created_at)}}</div>
+                            <div v-if="item.is_read" class="textGray--text">{{LangUtil("已读")}}</div>
+                            <div v-else class="text-decoration-underline wallet_btn--text cursor-pointer">{{LangUtil("点击阅读详情")}}</div>
+                        </div>
+                    </div>
+                </v-sheet>
+            </template>
+
+        </LoadMore1>
+    </v-card>
+
+</v-dialog>

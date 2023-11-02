@@ -1,0 +1,66 @@
+<v-card v-if="lobbyCategory && lobbyCategory.length > 0" flat color="transparent" width="100%">
+    <v-card
+        flat
+        color="transparent"
+        :class="$mobile ? '' : 'mb-3'"
+        class="d-flex flex-column mb-2"
+        v-for="(itemList, key) of categoryData"
+        :key="key"
+    >
+        <v-sheet color="transparent" class="d-flex align-center text-20">
+            <div class="font-weight-bold" :class="$mobile?'text-16':''">{{ key }}</div>
+            <template v-if="$mobile">
+                <v-spacer />
+                <v-sheet
+                    class="d-flex disable_text--text align-center cursor-pointer"
+                    :class="$mobile ? 'text-12' :'text-14'"
+                    color="transparent"
+                    @click.native="onShowAll(key)"
+                >
+                    <template v-if="!isAll(key)">
+                        <v-sheet color="transparent" class="textGray--text mr-1"> {{LangUtil("查看全部")}} </v-sheet>
+                        <svg-icon class="text-12" icon="arrow_down_2"></svg-icon>
+                    </template>
+                    <template v-else>
+                        <v-sheet color="transparent" class="textGray--text mr-1"> {{LangUtil("收起")}} </v-sheet>
+                        <svg-icon class="text-12" icon="arrow_down_2" style="transform: rotateZ(180deg)"></svg-icon>
+                    </template>
+                </v-sheet>
+            </template>
+        </v-sheet>
+
+        <v-sheet v-if="!$mobile" fluid class="ml-n1" color="transparent">
+            <v-slide-group show-arrows>
+                <v-slide-item v-for="item of itemList" :key="item.vendor_prodcut_id">
+                    <GameItem :item="item" :width="itemWidth" :height="(itemWidth-13.5)/0.8" />
+                </v-slide-item>
+            </v-slide-group>
+        </v-sheet>
+        <v-card v-else flat fluid class="mt-2" color="transparent">
+            <v-sheet v-if="!isAll(key)" fluid class="scroll-x d-flex overflow-y-hidden" color="transparent">
+                <template v-for="item of itemList">
+                    <GameItem
+                        class="game_item_margin_mob"
+                        :key="item.vendor_prodcut_id"
+                        :item="item"
+                        :width="itemWidth"
+                        :height="(itemWidth-13.5)/0.8"
+                        :isPageHome="true"
+                    />
+                </template>
+            </v-sheet>
+            <v-sheet v-else color="transparent" fluid class="d-flex flex-wrap">
+                <template v-for="item of itemList">
+                    <GameItem
+                        class="game_item_margin_mob mb-2"
+                        :key="item.vendor_prodcut_id"
+                        :item="item"
+                        :width="itemWidth"
+                        :height="(itemWidth-13.5)/0.8"
+                        :isPageHome="true"
+                    />
+                </template>
+            </v-sheet>
+        </v-card>
+    </v-card>
+</v-card>

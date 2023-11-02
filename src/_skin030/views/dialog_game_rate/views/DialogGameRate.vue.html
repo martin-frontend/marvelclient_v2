@@ -1,0 +1,36 @@
+<v-dialog v-if="!pageData.bHidden" width="350" v-model="pageData.bShow" :retain-focus="false" persistent>
+    <v-card class="rounded10" color="dialog_bg">
+        <com-dialog-title title="游戏汇率查询" @onClose="onClose" :isDialog="true" />
+
+        <v-divider class="mb-2" />
+        <v-card-text class="px-5 text-14">
+            <div class="mx-1 mb-5 textGray--text">
+                {{LangUtil("Coinfans为数字货币娱乐平台。进入游戏使用当前选中的币种，不同币种进入游戏时可以兑换的筹码数量不同，但都是币本位游戏结算。详细兑换比例如下表：")}}
+            </div>
+            <v-sheet
+                height="42"
+                class="my-2 d-flex align-center justify-space-between sheetOutlined regular_text"
+                color="transparent"
+                v-for="(item, index) of pageData.list"
+                :key="index"
+            >
+                <v-sheet class="d-flex ml-2" color="transparent">
+                    <v-img
+                        :src="GamePlatConfig.config.plat_coins[item.coin_name_unique].icon"
+                        max-width="22"
+                        max-height="22"
+                        class="mr-2"
+                    ></v-img>
+                    {{item.coin_name_unique}}
+                </v-sheet>
+
+                <v-sheet class="d-flex mr-2" color="transparent">
+                    {{vndCount(item)}} {{item.coin_name_unique}} = 1
+                    <v-img class="ml-2" src="@/_skin030/assets/icon/cm.png" width="22" height="22"></v-img>
+                </v-sheet>
+            </v-sheet>
+            <div class="d-flex justify-center disable_text--text mt-4">{{LangUtil("首页切换币种对应的币种进入游戏")}}</div>
+        </v-card-text>
+    </v-card>
+    <Overlay v-model="pageData.loading" />
+</v-dialog>

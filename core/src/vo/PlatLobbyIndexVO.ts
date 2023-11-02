@@ -13,6 +13,7 @@ module core {
         //game_menu
         vendor_type: number; //厂商游戏类型
         vendor_type_name: string;
+        id: number;
     }
     /**
      * 大厅游戏菜单--分类
@@ -39,8 +40,8 @@ module core {
         //game_menu
         vendor_type: number; //厂商游戏类型
         vendor_type_name: string;
-        icon_name:string;
-        tag_sort:number; //分类的排序
+        icon_name: string;
+        tag_sort: number; //分类的排序
     }
     /**
      * 厂商产品

@@ -1,0 +1,73 @@
+@import "@/_skin030/style/input_nomal.scss";
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    height: 100%;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+::v-deep .v-btn__content {
+    color: #8e8f91;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.fontweight {
+    font-weight: 400 !important;
+}
+
+.pr-5-5 {
+    padding-right: 22px;
+}
+
+.skin030 {
+    .login_mobile,
+    .login_pc {
+        .input-text {
+            border-radius: 0;
+            margin-bottom: 10px;
+            height: 40px !important;
+            input {
+                height: 100%;
+                padding: 10px;
+                &::placeholder {
+                    color: #b7bdc6;
+                }
+                &:focus {
+                    border: 1px solid #f0b90b;
+                    background-color: #fffdf8;
+                    margin-right: -20px;
+                }
+            }
+        }
+        .myflex {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+.skin030 {
+    .theme--dark {
+        .login_mobile,
+        .login_pc {
+            .input-text {
+                background-color: #29313d;
+                input {
+                    &::placeholder {
+                        color: #4f5867;
+                    }
+                    &:focus {
+                        border: 1px solid #f0b90b;
+                        background-color: #29313d;
+                    }
+                }
+            }
+        }
+    }
+}

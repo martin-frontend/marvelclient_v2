@@ -1,0 +1,20 @@
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+.v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
+    letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
+}
+
+.btn_class{
+    background-color: #215844 !important;
+    color: #AADDCB;
+}
+.btn_class:hover{
+    background-color: #3ac167 !important;
+    color: #fff;
+}
+.rounded-15{
+    border-radius: 15px !important;
+}

@@ -22,7 +22,11 @@
                         {{LangUtil("恭喜获得彩球奖励")}}
                     </v-sheet>
                     <v-sheet color="transparent" width="100%" class="d-flex align-center justify-center">
-                        <v-sheet color="transparent" class="title_bg d-flex align-center justify-center text-20 white--text" style="text-align: center">
+                        <v-sheet
+                            color="transparent"
+                            class="title_bg d-flex align-center justify-center text-20 white--text"
+                            style="text-align: center"
+                        >
                             <div v-html="LangUtil('恭喜获得!<br/>你获得{0} 和 {1}号球',award_coin,awardData.ball_code)"></div>
                         </v-sheet>
                     </v-sheet>
@@ -52,7 +56,12 @@
                     <v-sheet color="transparent" class="d-flex flex-column align-center">
                         <v-sheet color="transparent" height="220" width="240" class="d-flex align-center justify-center">
                             <SvgaPlayer class="svga-player" id="award_ball" :src="resolveSvgaSrc('get_award_bg')"> </SvgaPlayer>
-                            <SingleBall :data="awardData.ball_code" :img_index="`${awardData.surplus_lottery_num - 1}`" :item_width="100" :text_font="40"></SingleBall>
+                            <SingleBall
+                                :data="awardData.ball_code"
+                                :img_index="`${(awardData.surplus_lottery_num % (awardData.lottery_total_num + 1)) - 1}`"
+                                :item_width="100"
+                                :text_font="40"
+                            ></SingleBall>
                         </v-sheet>
                         <v-sheet color="transparent" width="100%" class="d-flex justify-center text-20 font-weight-bold white--text mt-2">
                             {{LangUtil("幸运号码")}}

@@ -745,6 +745,33 @@ export function recode_url(obj: any): string {
     }
     return str;
 }
+export function timeText(timecount: number, isFormatTime: boolean = false) {
+    const day = Math.floor(timecount / (60 * 60 * 24));
+    // 将剩余时间转换为时、分、秒
+    const hours = Math.floor((timecount / (60 * 60)) % 24);
+    const minutes = Math.floor((timecount % (60 * 60)) / 60);
+    const seconds = Math.floor(timecount % 60);
+
+    if (isFormatTime) {
+        return {
+            day: day,
+            hours: formatTime(hours),
+            minutes: formatTime(minutes),
+            seconds: formatTime(seconds),
+        };
+    }
+    return {
+        day: day,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds,
+    };
+}
+
+function formatTime(time: number) {
+    // 将时间格式化为两位数
+    return time < 10 ? `0${time}` : time;
+}
 /**为一个URL添加参数 */
 export function urlAddParams(uri: string, params: any): string {
     const hashIndex = uri.indexOf("#");
@@ -762,4 +789,8 @@ export function urlAddParams(uri: string, params: any): string {
     } else {
         return uri + "?" + addParamsStr + hash;
     }
+}
+//发送消息(69平台需要)
+export function sendPostMessage(data: any) {
+    if (window.parent) window.parent.postMessage(data, "*");
 }

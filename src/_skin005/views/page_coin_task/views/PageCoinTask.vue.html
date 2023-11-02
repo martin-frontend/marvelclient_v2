@@ -54,7 +54,7 @@
                                             max-width="100%"
                                         ></v-img>
                                         <span v-if="GlobalVar.skin != 'skin005'" class="coin-text white--text"
-                                            >{{convertCoinName(item.task_coin_name_unique)}}</span
+                                            >{{convertCoinName(item.task_coin_name_unique, true)}}</span
                                         >
                                     </v-sheet>
                                     <v-sheet
@@ -66,13 +66,6 @@
                                         <div class="d-flex justify-space-between">
                                             <span class="font-weight-bold">{{item.activity_name}}</span>
 
-                                            <div v-if="isCoinNotEnough(item) && isCanPlayGame(convertCoinName(item.task_coin_name_unique))" class="d-flex align-center">
-                                                <svg-icon icon="gantanhao_2" class="text-16 textYellow--text"></svg-icon>
-                                                <span class="ml-1 textYellow--text">
-                                                    <span>{{LangUtil("您的奖金余额很低!")}}</span> 
-                                                    <!-- <span class="font-weight-bold ml-1">{{isCoinNotEnough(item)}}</span> -->
-                                                </span>
-                                            </div>
                                             <div class="d-flex">
                                                 <v-tooltip top>
                                                     <template v-slot:activator="{ on, attrs }">
@@ -82,16 +75,16 @@
                                                     </template>
                                                     <span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))">
                                                         {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
-                                                        ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
+                                                        ,convertCoinName(item.task_coin_name_unique, true),convertCoinName(item.task_coin_name_unique, true))
                                                         }}
                                                     </span>
-                                                    <span v-else="">
+                                                    <span v-else>
                                                         {{
                                                         LangUtil(`当任务进度条达到100%时，您的奖金将转入您的${item.task_coin_name_unique}钱包`)}}
                                                     </span>
                                                 </v-tooltip>
                                                 <span class="ml-1">
-                                                    {{LangUtil("当前奖励币数量")}} {{convertCoinName(item.task_coin_name_unique)}}
+                                                    {{LangUtil("当前奖励币数量")}} {{convertCoinName(item.task_coin_name_unique, true)}}
                                                     <span class="font-weight-bold"
                                                         ><span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))"
                                                             >{{amountFormat(item.transfer_amount, true)}} / </span
@@ -182,7 +175,7 @@
                                     >
                                         <v-img :src="mappingImg(item.task_coin_name_unique)" height="40" width="40"></v-img>
                                         <span v-if="GlobalVar.skin != 'skin005'" class="coin-text white--text"
-                                            >{{convertCoinName(item.task_coin_name_unique)}}</span
+                                            >{{convertCoinName(item.task_coin_name_unique, true)}}</span
                                         >
                                     </v-sheet>
                                     <v-sheet
@@ -227,7 +220,7 @@
                                             </template>
                                         </v-progress-linear>
                                         <div class="d-flex justify-space-between">
-                                            <div>{{convertCoinName(item.task_coin_name_unique)}}{{LangUtil("总数")}}</div>
+                                            <div>{{convertCoinName(item.task_coin_name_unique, true)}}{{LangUtil("总数")}}</div>
                                             <div class="font-weight-bold">{{amountFormat(item.task_coin_amount, true)}}</div>
                                         </div>
                                         <div
@@ -244,7 +237,7 @@
                                                     </template>
                                                     <span v-if="isCanPlayGame(convertCoinName(item.task_coin_name_unique))">
                                                         {{ LangUtil("只有使用 {0} 增加流水，满足流水进度以后即可获对应 {1} 余额"
-                                                        ,convertCoinName(item.task_coin_name_unique),convertCoinName(item.task_coin_name_unique))
+                                                        ,convertCoinName(item.task_coin_name_unique, true),convertCoinName(item.task_coin_name_unique, true))
                                                         }}
                                                     </span>
                                                     <span v-else="">
@@ -276,13 +269,6 @@
                                             >
                                                 {{LangUtil("放弃任务")}}
                                             </span> -->
-                                        </div>
-                                        <div v-if="isCoinNotEnough(item) && isCanPlayGame(convertCoinName(item.task_coin_name_unique))" class="d-flex align-center">
-                                            <svg-icon icon="gantanhao_2" class="text-16 textYellow--text"></svg-icon>
-                                            <span class="ml-1 textYellow--text">
-                                                <span>{{LangUtil("您的奖金余额很低!")}}</span> 
-                                                <!-- <span class="font-weight-bold ml-1">{{isCoinNotEnough(item)}}</span> -->
-                                            </span>
                                         </div>
                                         <v-sheet
                                             v-if="item.status == 3 || item.status == 2"

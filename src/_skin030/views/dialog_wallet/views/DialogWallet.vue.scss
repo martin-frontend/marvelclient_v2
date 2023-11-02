@@ -1,0 +1,38 @@
+.padding_bottom {
+    padding-bottom: 12px !important;
+}
+.header-mobile {
+    position: fixed;
+    z-index: 1000;
+    background-color: #121e36;
+}
+.listbox-mobile {
+    overflow: hidden;
+    padding-top: 100px;
+}
+.select-text {
+    font-size: 14px;
+    height: 40px;
+}
+
+.fix_head_mob {
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+}
+.theme--light {
+    .fix_head_mob {
+        background-color: #f4f4f4;
+    }
+}
+.theme--dark {
+    .fix_head_mob {
+        background-color: #0c312a;
+    }
+}
+.pad_top_mob {
+    padding-top: 145px;
+}
+.v-btn-toggle .v-btn .text-14:not(:lang(zh_CN)) {
+    letter-spacing: var(--btn-letter-spacing); /* 自定义的字母间距 */
+}

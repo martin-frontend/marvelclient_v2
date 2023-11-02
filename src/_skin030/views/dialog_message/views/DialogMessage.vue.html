@@ -1,0 +1,12 @@
+<!-- <v-snackbar v-model="pageData.bShow" :value="true" light centered timeout="3000" class="text-16" height="40" color="#EFF1F7">
+    {{ pageData.message }}
+</v-snackbar> -->
+
+<notifications height="50" width="340" group="message" class="notification" position="bottom center">
+    <template slot="body" slot-scope="props">
+        <v-sheet
+            class="d-flex align-center text-16 justify-center text-center pa-2 my-1 rounded10 primary msgShowTxt_color--text font-weight-bold"
+            >{{ pageData.message }}</v-sheet
+        >
+    </template>
+</notifications>

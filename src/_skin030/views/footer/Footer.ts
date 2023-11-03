@@ -70,7 +70,7 @@ export default class Footer extends AbstractView {
     item_scale = 0; //手机版 item 的高度
     load(item: any) {
         //加载结束之后获取 这个对象
-        const baseHeight = this.$mobile ? 30 : 40;
+        const baseHeight = this.$mobile ? 50 : 40;
         const img: any = document.getElementById(item.id);
         // console.log("---加载图为", img);
         // console.log("---naturalWidth----", img.naturalWidth);

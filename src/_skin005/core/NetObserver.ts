@@ -271,6 +271,7 @@ export default class NetObserver extends AbstractMediator {
                     /**---设置 巴西交易所 token---- */
                     if (body.token) {
                         setOrbitExchangeCookie(body);
+                        PanelUtil.openpage_orbit_exchange();
                     } else {
                         clearOrbitExchangeCookie();
                     }

@@ -43,9 +43,7 @@ export default class Wallet extends AbstractView {
         this.gameProxy.setCoin(key);
         //PanelUtil.openpage_game_play();
         if (this.$route.path.includes("page_game_play")) {
-            if (core.game_domain === "96br.com" || core.plat_id === "30024") {
-                PanelUtil.openpage_orbit_exchange();
-            }
+            this.gameProxy.api_vendor_var_ori_product_show_var(this.gameProxy.currGame);
         }
         //重新获取游戏列表
         const gameListProxy: PageGameListProxy = this.getProxy(PageGameListProxy);

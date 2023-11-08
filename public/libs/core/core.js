@@ -387,6 +387,8 @@ var net;
         api_user_var_direct_register: "api/user/{user_id}/direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
+        /**--直属用户查询操作--更新全局体育投注限制*/
+        api_user_var_vendor_config_default_update: "api/user/{user_id}/vendor_config_default_update",
         /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api/user/{user_id}/notice",
         /**--充值弹窗--充值弹窗列表（无需登入）*/
@@ -748,6 +750,8 @@ var net;
         api_user_var_direct_register: "api_user_var_direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
+        /**--直属用户查询操作--更新全局体育投注限制*/
+        api_user_var_vendor_config_default_update: "api_user_var_vendor_config_default_update",
         /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api_user_var_notice",
         /**--充值弹窗--充值弹窗列表（无需登入）*/
@@ -972,6 +976,7 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_agent_credit_transfer, net.cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(net.HttpType.api_user_var_direct_register, net.cmd_api_user_var_direct_register);
         facade.registerCommand(net.HttpType.api_user_var_agent_direct_deduction_all, net.cmd_api_user_var_agent_direct_deduction_all);
+        facade.registerCommand(net.HttpType.api_user_var_vendor_config_default_update, net.cmd_api_user_var_vendor_config_default_update);
         //--充值弹窗
         facade.registerCommand(net.HttpType.api_user_var_notice, net.cmd_api_user_var_notice);
         facade.registerCommand(net.HttpType.api_plat_var_notice_popup, net.cmd_api_plat_var_notice_popup);
@@ -4658,6 +4663,28 @@ var net;
         }
     }
     net.cmd_api_user_var_swap_order_list = cmd_api_user_var_swap_order_list;
+})(net || (net = {}));
+/**
+ * 更新全局体育投注限制
+ */
+var net;
+/**
+ * 更新全局体育投注限制
+ */
+(function (net) {
+    class cmd_api_user_var_vendor_config_default_update extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_vendor_config_default_update, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_vendor_config_default_update, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_vendor_config_default_update = cmd_api_user_var_vendor_config_default_update;
 })(net || (net = {}));
 /**
  * 提取用户所有厂商的余额

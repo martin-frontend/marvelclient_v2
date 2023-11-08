@@ -52,6 +52,7 @@ export default class CustomInputNomal extends AbstractView {
     @Prop() value!: any;
     @Watch("value", { immediate: true })
     onValueChange(val: string) {
+        val = val?.toString();
         if (this.isOnlyNumber) {
             //this.inputValue = val.replace(/[^\d.]/g, "");
             this.inputValue = this.formatNumber ? amountFormat(val.replace(/[^\d]/g, "")) : val.replace(/[^\d]/g, "");

@@ -12,6 +12,12 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
             market_type_config: <any>{},
         },
         gold_info: <any>{},
+        vendor_config_default: {
+            market_type_config: <any>{},
+        },
+        vendor_config_parent: {
+            market_type_config: <any>{},
+        },
     };
     isShowGropSet: boolean = true; //是否将消息转为 消息组， 整个组的 投注设置
     private compareData = <any>{}; //比较的数据
@@ -21,6 +27,7 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
         coin_name_unique: "",
         market_type_config: <any>[],
     };
+    isGlobalSettings = false;
 
     pageData = {
         loading: false,
@@ -116,7 +123,7 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
     setCurShowCoinNameUnique() {
         //查找当前用户身上 哪些币种 有余额
         const keys = Object.keys(this.playerInfo.gold_info);
-
+        
         for (let index = 0; index < keys.length; index++) {
             const element = this.playerInfo.gold_info[keys[index]];
             if (element && element.sum_money && element.sum_money > 0) {
@@ -127,8 +134,8 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
     }
     setData(data: any) {
         this.pageData.loading = false;
-        Object.assign(this.playerInfo, data);
-        this.playerInfo.gold_info = JSON.parse(JSON.stringify(data.gold_info));
+        Object.assign(this.playerInfo, JSON.parse(JSON.stringify(data)));
+        // this.playerInfo.gold_info = JSON.parse(JSON.stringify(data.gold_info));
         //设置预设金币种类的值
         const keys = Object.keys(this.playerInfo.vendor_config.market_type_config);
 
@@ -269,6 +276,16 @@ export default class DialogDirectlyEasybetsetProxy extends puremvc.Proxy {
         };
         //console.log("发送的值", sendData);
         this.sendNotification(net.HttpType.api_user_var_agent_direct_user_update, objectRemoveNull(sendData));
+    }
+    api_user_var_vendor_config_default_update(formdata: any) {
+        this.pageData.loading = true;
+        const sendData = {
+            user_id: core.user_id,
+            coin_name_unique: this.formData.coin_name_unique,
+            market_type_config: JSON.stringify(formdata),
+        };
+        //console.log("发送的值", sendData);
+        this.sendNotification(net.HttpType.api_user_var_vendor_config_default_update, objectRemoveNull(sendData));
     }
     agent_direct_user_update_callback(msg: any = null) {
         const str = LangUtil("修改成功！");

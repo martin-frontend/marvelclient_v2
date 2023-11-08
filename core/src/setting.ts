@@ -336,6 +336,8 @@ module net {
         api_user_var_direct_register: "api/user/{user_id}/direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api/user/{user_id}/agent_direct_deduction_all",
+        /**--直属用户查询操作--更新全局体育投注限制*/
+        api_user_var_vendor_config_default_update: "api/user/{user_id}/vendor_config_default_update",
 
         /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api/user/{user_id}/notice",
@@ -731,6 +733,8 @@ module net {
         api_user_var_direct_register: "api_user_var_direct_register",
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: "api_user_var_agent_direct_deduction_all",
+        /**--直属用户查询操作--更新全局体育投注限制*/
+        api_user_var_vendor_config_default_update: "api_user_var_vendor_config_default_update",
 
         /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: "api_user_var_notice",
@@ -965,6 +969,7 @@ module net {
         facade.registerCommand(HttpType.api_user_var_agent_credit_transfer, cmd_api_user_var_agent_credit_transfer);
         facade.registerCommand(HttpType.api_user_var_direct_register, cmd_api_user_var_direct_register);
         facade.registerCommand(HttpType.api_user_var_agent_direct_deduction_all, cmd_api_user_var_agent_direct_deduction_all);
+        facade.registerCommand(HttpType.api_user_var_vendor_config_default_update, cmd_api_user_var_vendor_config_default_update);
         //--充值弹窗
         facade.registerCommand(HttpType.api_user_var_notice, cmd_api_user_var_notice);
         facade.registerCommand(HttpType.api_plat_var_notice_popup, cmd_api_plat_var_notice_popup);

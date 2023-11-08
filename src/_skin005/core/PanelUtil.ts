@@ -739,10 +739,11 @@ export default class PanelUtil {
     /**
      * EasyBet设置
      * @param agent_user 需要查看的 用户名
+     * @param isGlobalSettings 是否是全局设置
      */
-    static openpanel_directly_easybetset(agent_user: any = null) {
+    static openpanel_directly_easybetset(agent_user: any = null, isGlobalSettings: boolean = false) {
         MultDialogManager.onOpenPanel(dialog_directly_easybetset);
-        dialog_directly_easybetset.show(agent_user);
+        dialog_directly_easybetset.show(agent_user, isGlobalSettings);
     }
 
     /**

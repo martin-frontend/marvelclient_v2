@@ -209,4 +209,13 @@ export default class Agents extends AbstractView {
     onClickSearch() {
         PanelUtil.getProxy_agentmanager.search(this.pageData.search);
     }
+    esayBetSetting() {
+        PanelUtil.openpanel_directly_easybetset(
+            {
+                vendor_config: this.pageData.vendor_config_default,
+                gold_info: {},
+            },
+            true
+        );
+    }
 }

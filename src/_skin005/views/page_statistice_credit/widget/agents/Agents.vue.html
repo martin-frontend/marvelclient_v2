@@ -26,7 +26,16 @@
                 </div>
 
                 <v-sheet class="d-flex align-center justify-start mx-4" color="transparent" height="40">
-                    <div class="d-flex align-center primary--text text-16">{{LangUtil("用户筛选")}}</div>
+                    <btn-yellow
+                        v-if="pageData.enable_set_vendor_config_default"
+                        class="text-14"
+                        min_width="104"
+                        height="36"
+                        :btn_type="2"
+                        @click.native="esayBetSetting"
+                        >{{LangUtil("体育投注设置")}}</btn-yellow
+                    >
+                    <div class="d-flex align-center primary--text text-16 ml-2">{{LangUtil("用户筛选")}}</div>
 
                     <v-checkbox class="d-flex align-center ml-2" v-model="myProxy.checkboxValue" color="textYellow" value="1">
                         <template v-slot:label>
@@ -301,6 +310,15 @@
                                     >
                                 </div>
                             </v-sheet>
+                            <btn-yellow
+                                v-if="pageData.enable_set_vendor_config_default"
+                                class="text-14"
+                                min_width="90"
+                                height="30"
+                                :btn_type="2"
+                                @click.native="esayBetSetting"
+                                >{{LangUtil("体育投注设置")}}</btn-yellow
+                            >
                         </div>
                         <!-- <v-divider /> -->
                     </v-sheet>

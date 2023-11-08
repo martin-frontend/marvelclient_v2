@@ -64,7 +64,11 @@ export default class DialogDirectlyEasybetset extends AbstractView {
     onClickSure() {
         const newArr = this.myProxy.sclectChangeVaule(this.input_market_config, true);
         //console.log("修改之后的 值为" ,newArr );
-        this.myProxy.agent_direct_user_update(newArr);
+        if (this.myProxy.isGlobalSettings) {
+            this.myProxy.api_user_var_vendor_config_default_update(newArr);
+        } else {
+            this.myProxy.agent_direct_user_update(newArr);
+        }
     }
 
     onChangeItem(key: string) {
@@ -99,5 +103,30 @@ export default class DialogDirectlyEasybetset extends AbstractView {
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);
+    }
+
+    getLimit(market_type: string, fieldKey: string) {
+        if (this.myProxy.isGlobalSettings) return "-";
+        let globalItem, parentItem;
+        if (Object.keys(this.playerInfo.vendor_config_default).length > 0) {
+            globalItem = this.playerInfo.vendor_config_default.market_type_config[this.formData.coin_name_unique].find(
+                (item: any) => item.market_type === market_type
+            );
+        }
+        if (Object.keys(this.playerInfo.vendor_config_parent).length > 0) {
+            parentItem = this.playerInfo.vendor_config_parent.market_type_config[this.formData.coin_name_unique].find(
+                (item: any) => item.market_type === market_type
+            );
+        }
+        const globalVal = globalItem?.setting[fieldKey] ?? "-";
+        const parentVal = parentItem?.setting[fieldKey] ?? "-";
+
+        if (globalVal == "-") {
+            return parentVal;
+        } else if (parentVal == "-") {
+            return globalVal;
+        } else {
+            return Math.min(globalVal, parentVal);
+        }
     }
 }

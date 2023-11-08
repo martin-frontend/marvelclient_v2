@@ -23,6 +23,8 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
         is_credit_user: 0,
     };
     pageData = {
+        enable_set_vendor_config_default: false, // 有資格查看、修改全局體育投注配置
+        vendor_config_default: [],
         enable_set_promotion_floor: 0, // 是否可以为直属设置保底 0-否|1-是
         loading: false,
         bShow: false,
@@ -70,6 +72,8 @@ export default class DialogAgentManagerProxy extends puremvc.Proxy {
     }
 
     setData(data: any) {
+        this.pageData.enable_set_vendor_config_default = data.enable_set_vendor_config_default;
+        this.pageData.vendor_config_default = data.vendor_config_default;
         this.pageData.enable_set_promotion_floor = data.enable_set_promotion_floor;
         this.pageData.loading = false;
         //如果是列表，使用以下数据，否则删除

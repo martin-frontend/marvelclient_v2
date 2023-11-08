@@ -319,6 +319,8 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
+        /**--直属用户查询操作--更新全局体育投注限制*/
+        api_user_var_vendor_config_default_update: string;
         /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: string;
         /**--充值弹窗--充值弹窗列表（无需登入）*/
@@ -680,6 +682,8 @@ declare module net {
         api_user_var_direct_register: string;
         /**--直属用户查询操作--清空直属所有额度*/
         api_user_var_agent_direct_deduction_all: string;
+        /**--直属用户查询操作--更新全局体育投注限制*/
+        api_user_var_vendor_config_default_update: string;
         /**--充值弹窗--充值弹窗列表（需登入）*/
         api_user_var_notice: string;
         /**--充值弹窗--充值弹窗列表（无需登入）*/
@@ -2216,6 +2220,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_swap_order_list extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 更新全局体育投注限制
+ */
+declare module net {
+    class cmd_api_user_var_vendor_config_default_update extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

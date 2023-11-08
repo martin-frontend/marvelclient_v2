@@ -208,6 +208,7 @@
         ["api/user/{user_id}/agent_credit_transfer", "直属用户加钱"],
         ["api/user/{user_id}/direct_register", "注册直属"],
         ["api/user/{user_id}/agent_direct_deduction_all", "清空直属所有额度"],
+        ["api/user/{user_id}/vendor_config_default_update", "更新全局体育投注限制"],
 
         "--充值弹窗",
         ["api/user/{user_id}/notice", "充值弹窗列表（需登入）"],

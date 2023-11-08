@@ -16,7 +16,11 @@ export default class DialogAgentManagerMediator extends AbstractMediator {
     initViewData() {}
 
     public listNotificationInterests(): string[] {
-        return [net.EventType.api_user_var_agent_direct_list, net.EventType.api_user_var_agent_var_floor_range];
+        return [
+            net.EventType.api_user_var_agent_direct_list,
+            net.EventType.api_user_var_agent_var_floor_range,
+            net.EventType.api_user_var_vendor_config_default_update,
+        ];
     }
 
     public handleNotification(notification: puremvc.INotification): void {
@@ -27,6 +31,9 @@ export default class DialogAgentManagerMediator extends AbstractMediator {
                 break;
             case net.EventType.api_user_var_agent_var_floor_range:
                 // this.myProxy.setFloorRangeData(body);
+                break;
+            case net.EventType.api_user_var_vendor_config_default_update:
+                this.myProxy.api_user_var_agent_direct_list();
                 break;
         }
     }

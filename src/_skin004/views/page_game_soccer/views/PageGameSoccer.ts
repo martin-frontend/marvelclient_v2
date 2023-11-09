@@ -54,6 +54,7 @@ export default class PageGameSoccer extends AbstractView {
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
                 this.$router.replace("/");
+                this.$router.go(-1);
             },
         });
     }

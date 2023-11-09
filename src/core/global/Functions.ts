@@ -30,7 +30,8 @@ export function dateFormat(d: Date, fmt: string): string {
 }
 //最多保留后面2位小数
 export function GoldformatNumber(num: any) {
-    const fixedNumber = Math.floor(num * 100) / 100;
+    const numberStr = Number(num).toFixed(3).slice(0, -1);
+    const fixedNumber = numberStr.charAt(numberStr.length - 1) == "0" ? Number(numberStr.slice(0, -1)) : Number(numberStr);
     return fixedNumber % 1 === 0 ? Math.trunc(fixedNumber) : fixedNumber;
 }
 /**

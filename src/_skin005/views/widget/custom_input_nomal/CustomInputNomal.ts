@@ -117,12 +117,23 @@ export default class CustomInputNomal extends AbstractView {
                 event.target.value = event.target.value.replace(/[^0-9]/g, "");
             } else {
                 event.target.value = event.target.value.replace(/[^0-9.]/g, "");
+                const hasMoreThanOneDot =
+                    (event.target.value as string).split("").reduce((prev, cur) => (cur == "." ? prev + 1 : prev), 0) > 1;
+                if (hasMoreThanOneDot) {
+                    const regexp = /(?:\.0*|(\.\d+?)0+)$/;
+                    event.target.value = event.target.value.replace(regexp, "$1");
+                }
             }
             if (event.target.value) {
                 const [numberPart, dotPart] = this.splitLastDot(event.target.value);
                 this.originalNumber = numberPart;
                 this.originalNumber = GoldformatNumber(this.originalNumber).toString() + dotPart;
-                this.inputValue = this.originalNumber;
+                const decimalPlaces2Reg = new RegExp(`^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,${this.maxDigits}})?$`);
+                if (numberPart.match(decimalPlaces2Reg)) {
+                    this.inputValue = event.target.value;
+                } else {
+                    this.inputValue = this.originalNumber;
+                }
             } else {
                 this.inputValue = event.target.value;
             }

@@ -569,10 +569,13 @@ export default class NetObserver extends AbstractMediator {
                 url = body.url;
             }
 
-            if (url.indexOf("?") != -1) {
-                gameUrl = url + "&gOrientation=" + this.gameProxy.currGame.orientation;
-            } else {
-                gameUrl = url + "?gOrientation=" + this.gameProxy.currGame.orientation;
+            gameUrl += url;
+            if (Number(this.gameProxy.currGame.orientation) != 2) {
+                if (url.indexOf("?") != -1) {
+                    gameUrl += "&gOrientation=" + this.gameProxy.currGame.orientation;
+                } else {
+                    gameUrl += "?gOrientation=" + this.gameProxy.currGame.orientation;
+                }
             }
             gameUrl += hash;
 

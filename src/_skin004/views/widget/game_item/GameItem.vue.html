@@ -5,7 +5,7 @@
     class="game-item"
     :class="getBoxClass()"
 >
-    <v-lazy>
+    <!-- <v-lazy> -->
         <v-img v-if="item" class="game-icon cursor-pointer rounded" :src="getIcon(item)">
             <!-- 手机显示 -->
             <template v-if="$vuetify.breakpoint.xsOnly">
@@ -66,5 +66,5 @@
                 </v-row>
             </template>
         </v-img>
-    </v-lazy>
+    <!-- </v-lazy> -->
 </v-card>

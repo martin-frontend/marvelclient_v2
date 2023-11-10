@@ -140,9 +140,9 @@
                 </v-sheet> -->
                 <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
                     <div v-for="item of hotGame.list" :key="item.vendor_prodcut_id" class="mx-n1">
-                        <v-lazy>
-                            <GameItem :item="item" />
-                        </v-lazy>
+                        <!-- <v-lazy> -->
+                        <GameItem :item="item" />
+                        <!-- </v-lazy> -->
                     </div>
                     <div class="mx-n1">
                         <GameItem />
@@ -161,107 +161,35 @@
                     </div>
                 </v-card>
             </div>
-
-            <!-- <template v-if="!isNeetMenu">
-                <v-sheet
-                    class="d-flex align-center"
-                    :class="$vuetify.breakpoint.mobile ? 'rounded pr-2 my-2': 'rounded-lg px-5 my-5'"
-                    :color="$vuetify.breakpoint.mobile?'colorBackgroundGray':'colorTitleBg'"
-                    :height="$vuetify.breakpoint.mobile ? '35' : '70'"
-                >
-                    <v-img
-                        v-if="$vuetify.breakpoint.mobile"
-                        src="@/_skin001/assets/icon/icon_blue.png"
-                        :max-height="15"
-                        :max-width="15"
-                        class="mr-1 rotate ml-n1"
-                    >
-                    </v-img>
-                    <div class="d-flex ml-n1">
-                        <GameListSelect
-                            :options="myProxy.config.vendor_type"
-                            :orders="myProxy.config.vendor_type_order"
-                            v-model="listQuery.vendor_type"
-                        />
-                        <GameListSelect
-                            v-if="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
-                            :options="myProxy.config.vendor_type_vendor_id[listQuery.vendor_type]"
-                            v-model="listQuery.vendor_id"
-                        />
-                    </div>
-                    <v-spacer />
-                    <v-btn
-                        class="ml-1 rounded-pill"
-                        :small="$vuetify.breakpoint.mobile"
-                        :height="$vuetify.breakpoint.mobile?22.5:35"
-                        :color="$vuetify.breakpoint.mobile?'#213FA7':'colorBtnBg'"
-                        @click="showGameSearch"
-                    >
-                        <v-icon v-if="!$vuetify.breakpoint.mobile">mdi-search-web</v-icon>
-                        {{LangUtil("搜索")}}
-                    </v-btn>
-                </v-sheet>
-            </template> -->
-            <!-- <template v-else>
-                <v-sheet
-                    class="d-flex align-center mt-2 mb-1"
-                    :class="$vuetify.breakpoint.mobile ? 'rounded pr-2': 'rounded-lg px-5 '"
-                    :color="$vuetify.breakpoint.mobile?'colorBackgroundGray':'colorTitleBg'"
-                    :height="$vuetify.breakpoint.mobile ? '35' : '35'"
-                >
-                    <v-img
-                        v-if="$vuetify.breakpoint.mobile"
-                        src="@/_skin001/assets/icon/icon_blue.png"
-                        :max-height="15"
-                        :max-width="15"
-                        class="mr-1 rotate ml-n1"
-                    >
-                    </v-img>
-                    <div :class="$vuetify.breakpoint.mobile ? 'colorTextBlack1--text' : 'icon_text_title text-16'">
-                        {{curMenuVendorTypeName}}{{LangUtil("游戏列表")}}
-                    </div>
-        
-                    <v-spacer />
-                    <v-btn
-                        class="ml-1 btn_search color_text_1--text"
-                        :small="$vuetify.breakpoint.mobile"
-                        elevation="0"
-                        plain
-                        :height="$vuetify.breakpoint.mobile?22.5:30"
-                        :color="$vuetify.breakpoint.mobile?'#213FA7':'transparent '"
-                        @click="showGameSearch"
-                        v-if="!$vuetify.breakpoint.mobile"
-                    >
-                        <v-icon color="color_text_1">mdi-search-web</v-icon>
-                        {{LangUtil("搜索")}}
-                    </v-btn>
-                </v-sheet>
-            </template> -->
-            <template v-if="!isUseMenuData">
-                <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
-                    <div v-for="item of pageData.list" :key="item.vendor_prodcut_id" class="mx-n1">
-                        <v-lazy>
+            <template v-else>
+                <template v-if="!isUseMenuData">
+                    <v-card class="d-flex flex-wrap mb-2 justify-space-around" color="transparent" flat tile>
+                        <div v-for="item of pageData.list" :key="item.vendor_prodcut_id" class="mx-n1">
+                            <!-- <v-lazy> -->
                             <GameItem :item="item" />
-                        </v-lazy>
-                    </div>
-                    <div class="mx-n1">
-                        <GameItem />
-                    </div>
-                    <div class="mx-n1">
-                        <GameItem />
-                    </div>
-                    <div class="mx-n1">
-                        <GameItem />
-                    </div>
-                    <div class="mx-n1">
-                        <GameItem />
-                    </div>
-                    <div class="mx-n1">
-                        <GameItem />
-                    </div>
-                </v-card>
-                <v-lazy>
-                    <div class="d-flex justify-center pt-2 mr-12" v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount">
+                            <!-- </v-lazy> -->
+                        </div>
+                        <div class="mx-n1">
+                            <GameItem />
+                        </div>
+                        <div class="mx-n1">
+                            <GameItem />
+                        </div>
+                        <div class="mx-n1">
+                            <GameItem />
+                        </div>
+                        <div class="mx-n1">
+                            <GameItem />
+                        </div>
+                        <div class="mx-n1">
+                            <GameItem />
+                        </div>
+                    </v-card>
+                    <!-- <v-lazy> -->
+                    <div
+                        class="d-flex justify-center pt-2 mr-12"
+                        v-if="pageData.pageInfo.pageCurrent < pageData.pageInfo.pageCount && pageData.list.length> 0"
+                    >
                         <div class="d-flex flex-column justify-center align-center">
                             <div class="mb-3" :style="$vuetify.breakpoint.mobile?'color: #5e5e5e':'color: #ffffff66'">
                                 {{LangUtil("正显示 {0} 个游戏中的 {1} 个", pageData.pageInfo.pageTotal, pageData.pageInfo.pageSize *
@@ -283,18 +211,18 @@
                             >
                         </div>
                     </div>
-                </v-lazy>
-            </template>
-            <template v-else>
-                <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-1" color="transparent" elevation="0">
-                    <v-sheet
-                        v-for="(item, key) of menudata"
-                        :key="key"
-                        class="mb-3"
-                        color="transparent"
-                        :width="$vuetify.breakpoint.mobile ? '100%' : '49.5%'"
-                    >
-                        <v-lazy>
+                    <!-- </v-lazy> -->
+                </template>
+                <template v-else>
+                    <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-1" color="transparent" elevation="0">
+                        <v-sheet
+                            v-for="(item, key) of menudata"
+                            :key="key"
+                            class="mb-3"
+                            color="transparent"
+                            :width="$vuetify.breakpoint.mobile ? '100%' : '49.5%'"
+                        >
+                            <!-- <v-lazy> -->
                             <v-card class="transparent" elevation="0">
                                 <v-img
                                     v-if="item"
@@ -313,9 +241,10 @@
                                     </div>
                                 </v-img>
                             </v-card>
-                        </v-lazy>
-                    </v-sheet>
-                </v-card>
+                            <!-- </v-lazy> -->
+                        </v-sheet>
+                    </v-card>
+                </template>
             </template>
 
             <!-- <v-container v-if="$vuetify.breakpoint.mobile">

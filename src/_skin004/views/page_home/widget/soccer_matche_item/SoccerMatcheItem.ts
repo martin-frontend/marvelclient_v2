@@ -10,6 +10,7 @@ import MarketUtils from "../../utils/MarketUtils";
 import LoginEnter from "@/_skin004/core/global/LoginEnter";
 import GameProxy from "@/proxy/GameProxy";
 import { getResponseIcon } from "@/core/global/Functions";
+import GameConfig from "@/core/config/GameConfig";
 
 @Component
 export default class SoccerMatcheItem extends AbstractView {
@@ -104,9 +105,13 @@ export default class SoccerMatcheItem extends AbstractView {
 
     onEnter() {
         this.pageData.event_id = this.matche.id;
+        const { game_domain } = core;
+        const fbIdArr = [`${GameConfig.config.FBVendorId}`] as const;
+        const vendorIdArr = game_domain == "mg188.com" ? fbIdArr : ([] as const);
+        const configArr = [null, ...vendorIdArr] as const;
         LoginEnter(() => {
             const gameProxy: GameProxy = this.getProxy(GameProxy);
-            gameProxy.go_soccer();
+            gameProxy.go_soccer(...configArr);
         });
     }
 }

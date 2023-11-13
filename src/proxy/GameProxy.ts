@@ -284,7 +284,7 @@ export default class GameProxy extends AbstractProxy {
         }
     }
     /**直接进入体育页面，skin001专用 */
-    go_soccer(data: any = null) {
+    go_soccer(data: any = null, vendorId?: string) {
         if (data) {
             this.currGame = data;
         } else
@@ -304,7 +304,7 @@ export default class GameProxy extends AbstractProxy {
                 plat_id: 30017,
                 status: 1,
                 tags: [],
-                vendor_id: GameConfig.config.SportVendorId,
+                vendor_id: vendorId ?? GameConfig.config.SportVendorId,
                 vendor_name: "金利体育-测试",
                 vendor_product_id: 8271,
                 vendor_product_name: "足球",

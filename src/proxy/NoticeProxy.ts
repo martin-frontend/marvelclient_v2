@@ -39,8 +39,8 @@ export default class NoticeProxy extends puremvc.Proxy {
         listType17: <core.PlatNoticeVO[]>[] /**板球弹窗 */,
         listType18: <core.PlatNoticeVO[]>[] /**推广赚钱Banner */,
         /**游戏厂商 */
-        listType19: <core.PlatNoticeVO[]>[] ,
-        listType20: <core.PlatNoticeVO[]>[] /** */,
+        listType19: <core.PlatNoticeVO[]>[],
+        listType20: <core.PlatNoticeVO[]>[] /**活动Banner */,
         listType21: <core.PlatNoticeVO[]>[] /** */,
         listType22: <core.PlatNoticeVO[]>[] /** */,
         listType23: <core.PlatNoticeVO[]>[] /** */,

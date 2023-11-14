@@ -86,6 +86,8 @@ export default class Activity extends AbstractView {
                 return this.noticeProxy.data.listType16;
             case 217:
                 return this.noticeProxy.data.listType17;
+            case 20:
+                return this.noticeProxy.data.listType20;
             default:
                 break;
         }

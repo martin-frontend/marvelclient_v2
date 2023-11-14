@@ -1,5 +1,6 @@
 <v-sheet width="100%" color="transparent" class="px-4 pad_height">
     <template v-if="!pageData.isLoadData">
+        <Activity :showDataType="20" />
         <template v-if="myProxy.pageData.list && myProxy.pageData.list.length > 0">
             <v-card flat class="d-flex mt-5 align-center rounded10 px-4" min-height="68" color="bgBanner" width="100%">
                 <v-btn-toggle
@@ -57,12 +58,7 @@
                                     {{item.activity_name}}
                                 </v-sheet>
 
-                                <v-sheet
-                                    color="transparent"
-                                    width="100%"
-                                    :class="$mobile ? 'loader_class_mob' : ''"
-                                    :height="viewWidth"
-                                >
+                                <v-sheet color="transparent" width="100%" :class="$mobile ? 'loader_class_mob' : ''" :height="viewWidth">
                                     <!-- <v-img class="rounded_img" :height="$mobile ? 120 : 230"
                                         :src="item.icon"></v-img> -->
                                     <ImgLoader class="rounded_img" :height="viewWidth" :src="item.icon"></ImgLoader>

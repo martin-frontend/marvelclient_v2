@@ -266,6 +266,11 @@ export default class NetObserver extends AbstractMediator {
             case net.EventType.api_vendor_var_ori_product_visitor_show_var:
             case net.EventType.api_vendor_var_ori_product_show_var:
                 {
+                    // 如果是预发布平台，将easybet正式服地址替换为预发布地址
+                    if (location.host != core.game_domain && core.game_domain != "skin001.testjj9.com") {
+                        body.url = body.url.replace("https://trop.iqfhedf86.com", "https://staging.sport.nqsf9emow.com");
+                    }
+
                     this.gameProxy.loading = false;
                     PanelUtil.showAppLoading(false);
                     /**---设置 巴西交易所 token---- */

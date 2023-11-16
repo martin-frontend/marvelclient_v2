@@ -1,6 +1,6 @@
 <v-row v-if="!$mobile">
     <v-col cols="4" v-for="(item,index) of noticeDataList" :key="index">
-        <v-card color="transparent" class="" @click="goActivity">
+        <v-card color="transparent" class="">
             <v-img :src="getImgbg(item)">
                 <v-card color="transparent" width="100%" height="100%" class="d-flex flex-column px-4 py-6 card_1">
                     <v-sheet
@@ -32,7 +32,7 @@
 
                     <v-sheet
                         color="transparent"
-                        class="d-flex mt-auto mb-0 custom_pointer align-center justify-center border white--text text-14"
+                        class="d-flex mt-auto mb-0 cursor-pointer align-center justify-center border white--text text-14"
                         @click="onPlay(item)"
                         height="37"
                         width="184"

@@ -5,6 +5,7 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
 import gsap, { Linear } from "gsap";
 import NovigationCommonData from "@/_skin030/views/novigation/NovigationCommonData";
+import PanelUtil from "@/_skin030/core/PanelUtil";
 @Component({
     components: {
         swiper,
@@ -22,6 +23,7 @@ export default class NoticeCard extends AbstractView {
             activity_desc: "活动1说明",
             btn_text: "活动1按钮",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_1.png`),
+            key: "openpanel_dailysign",
         },
         {
             model_type: 2,
@@ -47,7 +49,10 @@ export default class NoticeCard extends AbstractView {
         return require(`@/_skin030/assets/casino_lobby/card_bg_${item.model_type}.png`);
     }
     onPlay(item: any) {
-        console.log("------点击---onPlay", item);
+        if (item.key) {
+            PanelUtil.actionByName(item.key);
+            return;
+        }
         this.goActivity();
     }
     get carouselHeight() {

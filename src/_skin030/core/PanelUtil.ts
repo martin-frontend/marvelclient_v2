@@ -1017,9 +1017,9 @@ export default class PanelUtil {
         return dialog_message.error;
     }
 
-    private static _mapList = <any>[] || undefined;
-    public static get funcMap(): any[] {
-        if (!this._mapList || this._mapList.length < 1) {
+    private static _mapList = [] as { key: string; fun: () => void }[];
+    public static get funcMap() {
+        if (!this._mapList.length) {
             this._mapList = [
                 {
                     key: "openpage_extension",
@@ -1451,10 +1451,10 @@ export default class PanelUtil {
         return PanelUtil.isCanJump(item, true);
     }
     public static actionByName(actionName: string) {
-        const fitterArr = PanelUtil.funcMap.filter((e: any, idx: any, array: any) => e.key == actionName);
+        const obj = PanelUtil.funcMap.find((e) => e.key == actionName);
         //查找是否可以跳转  或者执行
-        if (fitterArr && fitterArr.length > 0) {
-            fitterArr[0].fun();
+        if (obj) {
+            obj.fun();
         }
     }
     /**检测这个对象是否能跳转，到对应的 页面或者 功能 */

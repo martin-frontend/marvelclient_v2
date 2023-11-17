@@ -220,7 +220,7 @@ export default class ExchangeTypeCommon extends AbstractView {
             }
         }
         //检测 CPF是否绑定
-        if (ModulesHelper.IsShow_SetCPF() || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin011") {
+        if ((ModulesHelper.IsShow_SetCPF() && ModulesHelper.IsShow_ExchangeCPF() ) || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin011") {
             if (!this.selfProxy.userInfo.cpf) {
                 PanelUtil.message_confirm({
                     message: LangUtil("请先绑定CPF"),

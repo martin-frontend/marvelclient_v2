@@ -287,6 +287,11 @@ function isHide_MyInfo() {
 function IsShow_SetCPF() {
     return _isValueTrue("setCPF", false);
 }
+/**提现是否需要CPF */
+function IsShow_ExchangeCPF() {
+    return _isValueTrue("noNeedExchangeCPF", true);
+}
+
 /**首页投注 */
 function isShow_RechargeActivityCheckbox() {
     return _isValueTrue("rechargeActivityCheckbox", false);
@@ -343,4 +348,5 @@ export default {
     IsShow_SetCPF,
     isHide_HomeDownloadBtn,
     isShow_DailyTaskBtn,
+    IsShow_ExchangeCPF,
 };

@@ -361,6 +361,8 @@ declare module net {
         api_plat_activity_ball_rewards_var_receive: string;
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: string;
+        /**--转盘抽奖--用户抽奖*/
+        api_plat_activity_spin_lottery_award_var: string;
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: string;
     };
@@ -724,6 +726,8 @@ declare module net {
         api_plat_activity_ball_rewards_var_receive: string;
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: string;
+        /**--转盘抽奖--用户抽奖*/
+        api_plat_activity_spin_lottery_award_var: string;
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: string;
     };
@@ -816,6 +820,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_activity_show_binding extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 用户抽奖
+ */
+declare module net {
+    class cmd_api_plat_activity_spin_lottery_award_var extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

@@ -388,6 +388,9 @@ module net {
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: "api/user/{user_id}/jump/store",
 
+        /**--转盘抽奖--用户抽奖*/
+        api_plat_activity_spin_lottery_award_var: "api/plat/activity/spin_lottery_award/{id}",
+
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: "api/plat/{plat_id}/pop/index",
     };
@@ -785,6 +788,9 @@ module net {
         /**--彩球活动--跳转记录*/
         api_user_var_jump_store: "api_user_var_jump_store",
 
+        /**--转盘抽奖--用户抽奖*/
+        api_plat_activity_spin_lottery_award_var: "api_plat_activity_spin_lottery_award_var",
+
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: "api_plat_var_pop_index",
     };
@@ -999,6 +1005,8 @@ module net {
         facade.registerCommand(HttpType.api_plat_activity_ball_info_var, cmd_api_plat_activity_ball_info_var);
         facade.registerCommand(HttpType.api_plat_activity_ball_rewards_var_receive, cmd_api_plat_activity_ball_rewards_var_receive);
         facade.registerCommand(HttpType.api_user_var_jump_store, cmd_api_user_var_jump_store);
+        //--转盘抽奖
+        facade.registerCommand(HttpType.api_plat_activity_spin_lottery_award_var, cmd_api_plat_activity_spin_lottery_award_var);
         //--获取弹窗 登录时要打开的弹窗列表
         facade.registerCommand(HttpType.api_plat_var_pop_index, cmd_api_plat_var_pop_index);
     };

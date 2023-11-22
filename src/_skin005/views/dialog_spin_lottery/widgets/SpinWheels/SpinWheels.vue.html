@@ -1,0 +1,90 @@
+<v-sheet color="transparent">
+    <v-sheet v-if="!$mobile" color="transparent" width="1250" height="1250" class="yellowLightBg">
+        <v-sheet color="transparent" width="910" height="800" class="relative grid place-items-center z-10">
+            <v-img :src="arrowImg" width="95" class="absolute arrow"></v-img>
+            <v-img :src="spinBtnImg" width="190" class="absolute spinBtn cursor-pointer" @click="clickSpin"></v-img>
+            <v-sheet
+                color="transparent"
+                width="798"
+                height="798"
+                class="relative wheelCircle z-10"
+                :style="`background-image: url(${circleImg})`"
+            >
+                <PointedSector></PointedSector>
+                <v-sheet
+                    color="transparent"
+                    width="708"
+                    height="708"
+                    class="wheelCircle roundShape"
+                    :class="{spin: pageData.isSpinning && award_index > -1, [`award_index_${award_index}`]: true}"
+                    :style="`background-image: url(${roundImg})`"
+                >
+                </v-sheet>
+                <div
+                    class="texts z-12"
+                    style="width: 708px; height: 708px"
+                    :class="{spin: pageData.isSpinning && award_index > -1, [`award_index_${award_index}`]: true, [colorClass]: true}"
+                >
+                    <div
+                        v-for="(item, index) of awards"
+                        :key="index"
+                        class="sector-text z-12"
+                        :class="{[`text_${item.name.length}`]: item.name.length > 3 && item.name.length < 10, hoverPointed: index == award_index}"
+                    >
+                        <span
+                            v-for="(i, idx) in item.name"
+                            :key="idx"
+                            :class="{
+                                '-mb-7.5': item.name[item.name.length - idx - 2] == 'i',
+                                'mt-2': idx == item.name.length - item.digits && item.type == '3'}"
+                            >{{item.name[item.name.length-idx-1]}}</span
+                        >
+                    </div>
+                </div>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+    <v-sheet v-if="$mobile" color="transparent" width="800" height="800" class="yellowLightBg">
+        <v-sheet color="transparent" width="700" height="700" class="relative grid place-items-center">
+            <v-img :src="arrowImg" width="73" class="absolute arrow arrow_mobile"></v-img>
+            <v-img :src="spinBtnImg" width="160" class="absolute spinBtn spinBtn_mobile cursor-pointer" @click="clickSpin"></v-img>
+            <v-sheet
+                color="transparent"
+                width="600"
+                height="600"
+                class="relative wheelCircle"
+                :style="`background-image: url(${circleImg})`"
+            >
+                <PointedSector></PointedSector>
+                <v-sheet
+                    color="transparent"
+                    width="534"
+                    height="534"
+                    class="wheelCircle roundShape"
+                    :class="{spin: pageData.isSpinning && award_index > -1, [`award_index_${award_index}`]: true}"
+                    :style="`background-image: url(${roundImg})`"
+                >
+                </v-sheet>
+                <div
+                    class="texts texts_mobile z-12"
+                    style="width: 534px; height: 534px"
+                    :class="{spin: pageData.isSpinning && award_index > -1, [`award_index_${award_index}`]: true, [colorClass]: true}"
+                >
+                    <div
+                        v-for="(item, index) of awards"
+                        :key="index"
+                        class="sector-text z-12"
+                        :class="{[`text_${item.name.length}`]: item.name.length > 3 && item.name.length < 10, hoverPointed: index == award_index}"
+                    >
+                        <span
+                            v-for="(i, idx) in item.name"
+                            :key="idx"
+                            :class="{'mt-2': idx == item.name.length - item.digits && item.type == '3'}"
+                            >{{item.name[item.name.length-idx-1]}}</span
+                        >
+                    </div>
+                </div>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+</v-sheet>

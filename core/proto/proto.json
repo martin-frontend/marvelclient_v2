@@ -249,6 +249,9 @@
         ["api/plat/activity/ball_rewards/{id}/receive", "领取奖励"],
         ["api/user/{user_id}/jump/store", "跳转记录"],
 
+        "--转盘抽奖",
+        ["api/plat/activity/spin_lottery_award/{id}", "用户抽奖"],
+
         "--获取弹窗 登录时要打开的弹窗列表",
         ["api/plat/{plat_id}/pop/index", "获取弹窗"]
     ]

@@ -151,6 +151,7 @@ import DialogNoticeRecharge from "@/_skin005/views/dialog_notice_recharge";
 import dialog_limited_bonus from "@/_skin005/views/dialog_limited_bonus";
 import dialog_award_ball from "@/_skin005/views/dialog_award_ball";
 import dialog_daily_task from "@/_skin005/views/dialog_daily_task";
+import dialog_spin_lottery from "@/_skin005/views/dialog_spin_lottery";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -862,6 +863,12 @@ export default class PanelUtil {
         dialog_daily_task.show();
         // });
     }
+    /**打开 幸运转盘 */
+    static openpanel_spin_lottery() {
+        MultDialogManager.onOpenPanel(dialog_spin_lottery);
+        PanelUtil.showNovigation(false);
+        dialog_spin_lottery.show();
+    }
     /**打开 验证界面 */
     static openpanel_speed_verification(successFun: Function | null, failFun: Function | null = null, verification: number = -1) {
         MultDialogManager.onOpenPanel(DialogSpeedVerification);
@@ -1466,6 +1473,12 @@ export default class PanelUtil {
                     key: "openpanel_limited_bonus",
                     fun: () => {
                         PanelUtil.openpanel_limited_bonus();
+                    },
+                },
+                {
+                    key: "openpanel_spin_lottery",
+                    fun: () => {
+                        PanelUtil.openpanel_spin_lottery();
                     },
                 },
             ];

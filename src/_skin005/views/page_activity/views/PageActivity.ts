@@ -76,8 +76,10 @@ export default class PageActivity extends AbstractView {
             return;
         }
         if (this.myProxy.activityDetailData && this.myProxy.activityDetailData[item.id]) {
+            console.warn("line 79");
             PanelUtil.openpanel_activity_detail(this.myProxy.activityDetailData[item.id]);
         } else {
+            console.warn("line 82");
             PanelUtil.showAppLoading(true);
             this.myProxy.api_plat_activity_var(item.id);
         }

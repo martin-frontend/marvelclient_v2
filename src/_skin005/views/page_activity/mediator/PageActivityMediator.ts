@@ -20,6 +20,10 @@ export default class PageActivityMediator extends AbstractMediator {
                 break;
             case net.EventType.api_plat_activity_var:
                 console.log("--收到详情----", body);
+                if (body.model_type == 13) {
+                    PanelUtil.openpanel_spin_lottery();
+                    return;
+                }
                 PanelUtil.showAppLoading(false);
                 if (!myProxy.activityDetailData) {
                     myProxy.activityDetailData = <any>{};

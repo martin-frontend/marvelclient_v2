@@ -241,7 +241,13 @@ export default class APP extends AbstractView {
     onClicBtnkDailyTask() {
         PanelUtil.openpanel_dailytask();
     }
+    onClickBtnSpin() {
+        PanelUtil.openpanel_spin_lottery();
+    }
     get isUseColorfullIcon() {
         return GlobalVar.skin == "skin008";
+    }
+    get showSpinLottery() {
+        return this.activityConfig.spin.is_open;
     }
 }

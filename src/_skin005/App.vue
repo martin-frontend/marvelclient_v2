@@ -72,6 +72,10 @@
                 </v-badge>
             </div>
 
+            <v-btn v-if="showSpinLottery" class="btn-activity-spin" :class="{'show-partner': ModulesHelper.isShow_PartnerKefu(), 'show-dailytask': novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()}" id="activitySpinBtn" icon @click="onClickBtnSpin">
+                <v-img src="~@/_skin005/assets/activity_spin/spin_icon.png" width="62"></v-img>
+            </v-btn>
+
             <v-btn class="btn-top" id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
                 <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">
                     <svg-icon icon="arrow_top" class="text-14"></svg-icon>
@@ -106,6 +110,10 @@
                     </div>
                 </v-badge>
             </div>
+
+            <v-btn v-if="showSpinLottery" class="btn-activity-spin spin_mob" :class="{'show-partner': ModulesHelper.isShow_PartnerKefu(), 'show-dailytask': novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()}" id="activitySpinBtn" icon @click="onClickBtnSpin">
+                <v-img src="~@/_skin005/assets/activity_spin/spin_icon.png" width="54"></v-img>
+            </v-btn>
 
             <v-btn
                 v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter"
@@ -243,6 +251,35 @@ export default class extends App {
     bottom: 30px;
     right: 20px;
     z-index: 7;
+}
+
+.btn-activity-spin {
+    position: fixed;
+    bottom: 143px;
+    right: 20px;
+    z-index: 7;
+}
+
+.btn-activity-spin.spin_mob.show-partner {
+    bottom: 183px;
+}
+.btn-activity-spin.spin_mob.show-dailytask {
+    bottom: 183px;
+}
+.btn-activity-spin.spin_mob.show-partner.show-dailytask {
+    bottom: 227px;
+}
+
+.btn-activity-spin.show-partner {
+    bottom: 195px;
+}
+
+.btn-activity-spin.show-dailytask {
+    bottom: 195px;
+}
+
+.btn-activity-spin.show-partner.show-dailytask {
+    bottom: 242px;
 }
 
 //以下都是在代码中调用的样式 Novigation.ts

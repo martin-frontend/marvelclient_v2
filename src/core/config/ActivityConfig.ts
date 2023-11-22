@@ -11,6 +11,7 @@ export default class ActivityConfig {
         sign_info: { is_open: false }, // 是否开启签到
         every_day: { is_open: false }, // 是否开启每日任务
         ball_rank: { is_open: false }, // 是否开启彩球
+        spin: { is_open: false }, // 是否开启转盘
     };
 
     static init(data: any) {

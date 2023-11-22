@@ -14,6 +14,7 @@ import Constant from "@/core/global/Constant";
 import SkinVariable from "@/_skin030/core/SkinVariable";
 import { track_error_event } from "@/core/config/ErrorEvent";
 import GameConfig from "@/core/config/GameConfig";
+import ActivityConfig from "@/core/config/ActivityConfig";
 @Component
 export default class APP extends AbstractView {
     commonIcon = Assets.commonIcon;
@@ -27,6 +28,7 @@ export default class APP extends AbstractView {
     Constant = Constant;
     SkinVariable = SkinVariable;
     notice = PanelUtil.getProxy_noticeProxy;
+    activityConfig = ActivityConfig.config;
     constructor() {
         super();
         this.onWatchTheme();
@@ -195,8 +197,7 @@ export default class APP extends AbstractView {
         if (!this.$mobile || !this.myProxy.isShowGuide) return false;
 
         // if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/" || this.$route.path.includes("page_my_info"))
-        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/")
-            return true;
+        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
 
         if (
             this.$route.path.includes("cricket") ||
@@ -228,5 +229,11 @@ export default class APP extends AbstractView {
     }
     onCloseGuide() {
         this.myProxy.guideDrawer = false;
+    }
+    onClickBtnSpin() {
+        PanelUtil.openpanel_spin_lottery();
+    }
+    get showSpinLottery() {
+        return this.activityConfig.spin.is_open;
     }
 }

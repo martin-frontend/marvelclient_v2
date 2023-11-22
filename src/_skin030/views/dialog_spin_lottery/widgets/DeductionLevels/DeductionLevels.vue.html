@@ -1,0 +1,104 @@
+<v-sheet color="transparent">
+    <v-sheet
+        v-if="!$mobile"
+        color="transparent"
+        width="810"
+        class="d-flex justify-space-between px-11 py-8 rounded-20 -mt-40 text-[2.375rem]"
+        :class="{'text-[2.75rem]': isLanguageZh}"
+    >
+        <v-sheet
+            color="transparent"
+            width="215"
+            height="135"
+            class="coin-btn blueBtn"
+            @click="setLocation(1)"
+            :class="{disable: spinLotteryData.location != 1}"
+        >
+            <div class="overlay"></div>
+            <div class="text-white bold-text pt-2">{{LangUtil(getLocationName(1))}}</div>
+            <v-sheet color="transparent" class="d-flex align-center gap-x-2">
+                <v-img :src="getLocationIcon(1)" max-width="43" height="43"></v-img>
+                <div class="text-white text-[2.5rem] font-weight-bold">{{myProxy.coinAmountByLocation[1]}}</div>
+            </v-sheet>
+        </v-sheet>
+        <v-sheet
+            color="transparent"
+            width="215"
+            class="coin-btn redBtn"
+            :class="{disable: spinLotteryData.location != 2}"
+            @click="setLocation(2)"
+        >
+            <div class="overlay"></div>
+            <div class="text-white bold-text pt-2">{{LangUtil(getLocationName(2))}}</div>
+            <v-sheet color="transparent" class="d-flex align-center gap-x-2">
+                <v-img :src="getLocationIcon(2)" max-width="43" height="43"></v-img>
+                <div class="text-white text-[2.5rem] font-weight-bold">{{myProxy.coinAmountByLocation[2]}}</div>
+            </v-sheet>
+        </v-sheet>
+        <v-sheet
+            color="transparent"
+            width="215"
+            class="coin-btn yellowBtn"
+            :class="{disable: spinLotteryData.location != 3}"
+            @click="setLocation(3)"
+        >
+            <div class="overlay"></div>
+            <div class="text-white bold-text pt-2">{{LangUtil(getLocationName(3))}}</div>
+            <v-sheet color="transparent" class="d-flex align-center gap-x-2">
+                <v-img :src="getLocationIcon(3)" max-width="43" height="43"></v-img>
+                <div class="text-white text-[2.5rem] font-weight-bold">{{myProxy.coinAmountByLocation[3]}}</div>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+    <v-sheet
+        v-if="$mobile"
+        color="transparent"
+        width="680"
+        class="d-flex justify-space-between px-11 py-8 rounded-20 -mt-30 text-[2rem]"
+        :class="{'text-[2.375rem]': isLanguageZh}"
+    >
+        <v-sheet
+            color="transparent"
+            width="184"
+            height="115"
+            class="coin-btn coin-btn-mob blueBtn"
+            @click="setLocation(1)"
+            :class="{disable: spinLotteryData.location != 1}"
+        >
+            <div class="overlay"></div>
+            <div class="text-white bold-text pt-2">{{LangUtil(getLocationName(1))}}</div>
+            <v-sheet color="transparent" class="d-flex align-center gap-x-2">
+                <v-img :src="getLocationIcon(1)" max-width="38" height="38"></v-img>
+                <div class="text-white text-[2.25rem] font-weight-bold">{{myProxy.coinAmountByLocation[1]}}</div>
+            </v-sheet>
+        </v-sheet>
+        <v-sheet
+            color="transparent"
+            width="184"
+            class="coin-btn coin-btn-mob redBtn"
+            @click="setLocation(2)"
+            :class="{disable: spinLotteryData.location != 2}"
+        >
+            <div class="overlay"></div>
+            <div class="text-white bold-text pt-2">{{LangUtil(getLocationName(2))}}</div>
+            <v-sheet color="transparent" class="d-flex align-center gap-x-2">
+                <v-img :src="getLocationIcon(2)" max-width="38" height="38"></v-img>
+                <div class="text-white text-[2.25rem] font-weight-bold">{{myProxy.coinAmountByLocation[2]}}</div>
+            </v-sheet>
+        </v-sheet>
+        <v-sheet
+            color="transparent"
+            width="184"
+            class="coin-btn coin-btn-mob yellowBtn"
+            @click="setLocation(3)"
+            :class="{disable: spinLotteryData.location != 3}"
+        >
+            <div class="overlay"></div>
+            <div class="text-white bold-text pt-2">{{LangUtil(getLocationName(3))}}</div>
+            <v-sheet color="transparent" class="d-flex align-center gap-x-2">
+                <v-img :src="getLocationIcon(3)" max-width="38" height="38"></v-img>
+                <div class="text-white text-[2.25rem] font-weight-bold">{{myProxy.coinAmountByLocation[3]}}</div>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+</v-sheet>

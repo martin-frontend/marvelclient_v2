@@ -31,6 +31,7 @@ import GlobalVar from "@/core/global/GlobalVar";
 import { getVersion } from "@/core/global/Functions";
 import SelfProxy from "@/proxy/SelfProxy";
 import CoinTransformHelper from "./CoinTransformHelper";
+import ActivityConfig from "@/core/config/ActivityConfig";
 // import HeaderProxy from "../views/header/proxy/HeaderProxy";
 
 export default class NetObserver extends AbstractMediator {
@@ -65,6 +66,7 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_user_login,
             net.EventType.api_user_var_notice,
             net.EventType.api_user_var_coin_task_index,
+            net.EventType.api_plat_activity_config,
         ];
     }
 
@@ -159,6 +161,8 @@ export default class NetObserver extends AbstractMediator {
 
                     //获取用户信息
                     this.selfProxy.api_user_show_var([2, 3, 6]);
+                    //活动配置
+                    this.sendNotification(net.HttpType.api_plat_activity_config);
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
 
@@ -409,6 +413,9 @@ export default class NetObserver extends AbstractMediator {
             // 奖励任务列表
             case net.EventType.api_user_var_coin_task_index:
                 this.selfProxy.setCoinTaskData(body);
+                break;
+            case net.EventType.api_plat_activity_config:
+                ActivityConfig.init(body);
                 break;
         }
     }

@@ -1,0 +1,13 @@
+<v-sheet color="transparent">
+    <v-sheet v-if="!$mobile" color="transparent" width="256" height="395" class="sector" :style="`background-image: url(${sectorImg})`">
+    </v-sheet>
+    <v-sheet
+        v-if="$mobile"
+        color="transparent"
+        width="200"
+        height="285"
+        class="sector sector_mobile"
+        :style="`background-image: url(${sectorImg})`"
+    >
+    </v-sheet>
+</v-sheet>

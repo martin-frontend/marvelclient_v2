@@ -1,0 +1,16 @@
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" persistent @click:outside="onClose">
+    <div class="card_container" :class="{'mt-10': $mobile, card_pc: !$mobile, card_mobile: $mobile}">
+        <v-card flat color="transparent" hide-overlay ref="card_node" class="rounded10" :ripple="false">
+            <v-sheet v-if="!$mobile" class="cursor-pointer btn_close" color="transparent" @click.stop="onClose">
+                <v-img src="~@/_skin030/assets/activity_spin/btn_close.png" width="77" height="77"> </v-img>
+            </v-sheet>
+            <v-sheet v-if="$mobile" class="cursor-pointer btn_close_mobile" color="transparent" @click.stop="onClose">
+                <v-img src="~@/_skin030/assets/activity_spin/btn_close.png" width="72" height="72"> </v-img>
+            </v-sheet>
+            <v-card flat class="d-flex flex-column align-center spin_container" :class="{'justify-center': $mobile}">
+                <SpinWheels></SpinWheels>
+                <DeductionLevels></DeductionLevels>
+            </v-card>
+        </v-card>
+    </div>
+</v-dialog>

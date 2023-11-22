@@ -147,6 +147,7 @@ import PageCoinTaskProxy from "@/_skin030/views/page_coin_task/proxy/PageCoinTas
 import DialogSpeedVerification from "@/_skin030/views/dialog_speed_verification";
 import DialogSpeedVerificationProxy from "@/_skin030/views/dialog_speed_verification/proxy/DialogSpeedVerificationProxy";
 import DialogNoticeRecharge from "@/_skin030/views/dialog_notice_recharge";
+import dialog_spin_lottery from "@/_skin030/views/dialog_spin_lottery";
 import dialog_limited_bonus from "@/_skin030/views/dialog_limited_bonus";
 import PageCasinoLobbyProxy from "@/_skin030/views/page_casino_lobby/proxy/PageCasinoLobbyProxy";
 import page_casino_list from "../views/page_casino_list";
@@ -852,6 +853,12 @@ export default class PanelUtil {
             PanelUtil.showNovigation(false);
             dialog_promotion_reward.show();
         });
+    }
+    /**打开 幸运转盘 */
+    static openpanel_spin_lottery() {
+        MultDialogManager.onOpenPanel(dialog_spin_lottery);
+        PanelUtil.showNovigation(false);
+        dialog_spin_lottery.show();
     }
     /**打开 验证界面 */
     static openpanel_speed_verification(successFun: Function | null, failFun: Function | null = null, verification: number = -1) {

@@ -1,12 +1,11 @@
 import GamePlatConfig from "@/core/config/GamePlatConfig";
-import getProxy from "@/core/global/getProxy";
 import GlobalVar from "@/core/global/GlobalVar";
-import SelfProxy from "@/proxy/SelfProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 
 export default class PageMineProxy extends puremvc.Proxy {
     static NAME = "PageMineProxy";
     gameProxy = PanelUtil.getProxy_gameproxy;
+    selfProxy = PanelUtil.getProxy_selfproxy;
     public onRegister(): void {
         this.pageData.loading = true;
         // TODO 请求初始数据
@@ -71,6 +70,9 @@ export default class PageMineProxy extends puremvc.Proxy {
 
     pageInit(data: any) {
         Object.assign(this.userInfo, data);
+        if (data.gold_info && !this.gameProxy.coin_name_unique) {
+            this.selfProxy.setUserInfo(data);
+        }
         //console.warn("this.userInfo >>>", this.userInfo);
         const vip_progress = <any>this.userInfo.vip_info?.vip_progress;
         const vip_info = <any>this.userInfo.vip_info;

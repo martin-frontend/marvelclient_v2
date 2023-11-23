@@ -18,7 +18,9 @@ export default class PageMineMediator extends AbstractMediator {
     protected initViewData(): void {
         this.pageMineProxy.api_user_var_backwater_trial();
         this.pageMineProxy.api_user_var_block_coins_scale();
-        PanelUtil.getProxy_selfproxy.api_user_show_var([3, 4, 5, 6]);
+        const goldModuleArr = core.user_id ? [2] : [];
+        const modules = [...goldModuleArr, 3, 4, 5, 6];
+        PanelUtil.getProxy_selfproxy.api_user_show_var(modules);
         if (GlobalVar.instance.isNullUser) {
             this.pageMineProxy.api_plat_var_vip_config();
         }

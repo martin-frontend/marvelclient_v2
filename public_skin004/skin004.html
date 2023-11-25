@@ -25,7 +25,7 @@
         <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.meta.twitter_title %>" />
         <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.meta.twitter_description %>" />
         <meta name="twitter:image" content="<%= htmlWebpackPlugin.options.meta.twitter_image %>" />
-        <meta name="facebook-domain-verification" content="uzy92zwe0go095iegrcdy3s4367h2g" />
+        <meta name="facebook-domain-verification" content="irui8dewwszevnjdordnqac9xoyq4c" />
         <link rel="icon" href="<%= htmlWebpackPlugin.options.faviconName %>?<%=process.env.version%>" />
         <link rel="apple-touch-icon" href="img/app004.png?<%=process.env.version%>" />
         <title><%= htmlWebpackPlugin.options.title %></title>
@@ -82,25 +82,31 @@
             })(window, document, "script", "dataLayer", "GTM-MDC52VT");
         </script>
         <!-- End Google Tag Manager -->
-
-   <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2030610437297346');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2030610437297346&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-
+        <!-- Meta Pixel Code -->
+        <script>
+            !(function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = "2.0";
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s);
+            })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+            fbq("init", "672195098351901");
+            fbq("track", "PageView");
+        </script>
+        <noscript>
+            <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=672195098351901&ev=PageView&noscript=1" />
+        </noscript>
+        <!-- End Meta Pixel Code -->
     </head>
 
     <style>

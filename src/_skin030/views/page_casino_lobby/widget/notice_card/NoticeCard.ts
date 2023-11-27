@@ -31,6 +31,7 @@ export default class NoticeCard extends AbstractView {
             activity_desc: "活动2说明",
             btn_text: "活动2按钮",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_2.png`),
+            key: "openpage_recharge",
         },
         {
             model_type: 3,
@@ -38,6 +39,7 @@ export default class NoticeCard extends AbstractView {
             activity_desc: "活动3说明",
             btn_text: "活动3按钮",
             bg_img: require(`@/_skin030/assets/casino_lobby/card_bg_3.png`),
+            key: "openpage_recharge",
         },
     ];
     onPromotion(item: any) {

@@ -106,6 +106,12 @@
     .sector-text span {
         font-size: 28px;
         margin-bottom: -25px;
+        &.space {
+            margin-bottom: 8px;
+        }
+        &.prev_i {
+            margin-bottom: -32px;
+        }
     }
     .text_4 span {
         margin-bottom: -23px;
@@ -147,7 +153,16 @@
         -1px -1px var(--color), 1px 1px var(--color), -1px 1px var(--color), 1px -1px var(--color);
         transform: rotate(-90deg);
         margin-bottom: -26px;
-    } 
+    }
+    span.space {
+        margin-bottom: 8px;
+    }
+    span.prev_r {
+        margin-bottom: -30px;
+    }
+    span.lower.prev_i {
+        margin-bottom: -35px !important;
+    }
 }
 .award_index_\-1 .sector-text:last-child{
     color: var(--deductionColor);

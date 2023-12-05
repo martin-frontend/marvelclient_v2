@@ -9,9 +9,11 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
 import Timezone from "@/core/Timezone";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class Statistice extends AbstractView {
+    GlobalVar = GlobalVar;
     LangUtil = LangUtil;
     //commonIcon = Assets.commonIcon;
     myProxy = PanelUtil.getProxy_statistics_credit;

@@ -3,6 +3,7 @@
  */
 
 import Timezone from "@/core/Timezone";
+import GlobalVar from "./GlobalVar";
 
 /**
  * 格式化日期
@@ -27,6 +28,16 @@ export function dateFormat(d: Date, fmt: string): string {
         }
     }
     return fmt;
+}
+/**
+ * 根据语言决定格式化日期
+ * @param d
+ * @param fmt
+ */
+export function dateFormatByLang(d: Date, fmt: string) {
+    const includes_yyyyMMdd = fmt.includes("yyyy-MM-dd");
+    const formatStr = includes_yyyyMMdd ? fmt.replace(/yyyy-MM-dd/, GlobalVar.instance.DateFormat) : fmt;
+    return dateFormat(d, formatStr);
 }
 //最多保留后面2位小数
 export function GoldformatNumber(num: any) {
@@ -690,29 +701,18 @@ export function convert_vi_to_en(str: string): string {
     return str;
 }
 /**将时间中的 - 换成 /  */
-export function changeDateShow(str: string, ischangeData: boolean = true, iaHaveYear: boolean = false): string {
-    if (!str) {
+export function changeDateShow(str: string, shouldChange = true) {
+    if (!str || typeof str != "string" || str.length < 8) {
         return str;
     }
-    if (typeof str != "string") {
-        return str;
-    }
-    //let newstr = str.replace(/^\d{4}-/,"")
-    if (str.length < 8) {
-        return str;
-    }
-    let newstr = str;
-    if (ischangeData) newstr = Timezone.Instance.convertTime_to_Locale(str);
-    if (!iaHaveYear) newstr = newstr.substring(5, newstr.length - 3);
-
-    // const re = /(\w+)\s(\w+)/;
-    // let newstr = str.replace(re, "$1");
-    // console.log("3333",newstr);
-
+    const convertedStr = shouldChange ? Timezone.Instance.convertTime_to_Locale(str) : str;
+    const hasYear = /^\d{4}-/.test(str);
+    const strWithoutYear = hasYear ? convertedStr.substring(5, convertedStr.length - 3) : convertedStr;
+    const swapedStr = strWithoutYear.replace(/(\d{2})(?:-)+(\d{2})/, "$2/$1");
+    const is_yyyyMMdd = core.lang.slice(0, 2) === "zh";
+    const newStr = is_yyyyMMdd ? strWithoutYear : swapedStr;
     const re_1 = /-/gi;
-    newstr = newstr.replace(re_1, "/");
-
-    return newstr;
+    return newStr.replace(re_1, "/");
 }
 /**判断浏览器是否为safari */
 export function isSafari() {

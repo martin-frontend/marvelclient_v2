@@ -17,9 +17,11 @@ import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import Assets from "@/_skin005/assets/Assets";
 import exportOrder from "@/core/global/OrderTitleUtils";
 import OpenLink from "@/core/global/OpenLink";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
+    GlobalVar = GlobalVar;
     LangUtil = LangUtil;
 
     getOrderTitle = exportOrder.getOrderTitle;

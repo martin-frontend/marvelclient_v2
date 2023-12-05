@@ -419,9 +419,9 @@ export default class DialogActivity7days extends AbstractView {
 
         let newstr = "";
         if (isend) {
-            newstr = changeDateShow(obj.endTime, isChange, true);
+            newstr = changeDateShow(obj.endTime, isChange);
         } else {
-            newstr = changeDateShow(obj.startTime, isChange, true);
+            newstr = changeDateShow(obj.startTime, isChange);
         }
 
         if (newstr) newstr = newstr.substring(0, newstr.length - 3);

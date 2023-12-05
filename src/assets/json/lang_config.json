@@ -1,0 +1,26 @@
+{
+    "zh": {
+        "date_format": "yyyy-MM-dd"
+    },
+    "zh-CN": {
+        "date_format": "yyyy-MM-dd"
+    },
+    "zh-TW": {
+        "date_format": "yyyy-MM-dd"
+    },
+    "vi-VN": {
+        "date_format": "dd-MM-yyyy"
+    },
+    "en": {
+        "date_format": "dd-MM-yyyy"
+    },
+    "pt": {
+        "date_format": "dd-MM-yyyy"
+    },
+    "es": {
+        "date_format": "dd-MM-yyyy"
+    },
+    "tr": {
+        "date_format": "dd-MM-yyyy"
+    }
+}

@@ -28,7 +28,7 @@
                         type="datetime"
                         :placeholder="LangUtil('开始日期')"
                         default-time="00:00:00"
-                        format="yyyy-MM-dd HH:mm"
+                        :format="GlobalVar.instance.DateFormatHHMM"
                         @change="onTimeChange"
                     >
                     </el-date-picker>
@@ -38,7 +38,7 @@
                         type="datetime"
                         :placeholder="LangUtil('结束日期')"
                         default-time="23:59:59"
-                        format="yyyy-MM-dd HH:mm"
+                        :format="GlobalVar.instance.DateFormatHHMM"
                         @change="onTimeChange"
                     >
                     </el-date-picker>
@@ -348,7 +348,7 @@
                         :end-placeholder="LangUtil('结束日期')"
                         :default-time="[`00:00:00`, `23:59:00`]"
                         align="right"
-                        format="yyyy-MM-dd HH:mm"
+                        :format="GlobalVar.instance.DateFormatHHMM"
                         size="large"
                         class="input_range align-center"
                         @change="onTimeChange"

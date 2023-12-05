@@ -17,7 +17,7 @@
                             type="datetime"
                             :placeholder="LangUtil('开始日期')"
                             default-time="00:00:00"
-                            format="yyyy-MM-dd HH:mm"
+                            :format="GlobalVar.instance.DateFormatHHMM"
                             :clearable="false"
                             @change="onTimeChange"
                         >
@@ -29,7 +29,7 @@
                             type="datetime"
                             :placeholder="LangUtil('结束日期')"
                             default-time="23:59:59"
-                            format="yyyy-MM-dd HH:mm"
+                            :format="GlobalVar.instance.DateFormatHHMM"
                             :clearable="false"
                             @change="onTimeChange"
                         >
@@ -72,29 +72,27 @@
             <!-- 上面的时间选择 -->
             <v-sheet color="transparent" class="d-flex flex-column" width="100%">
                 <v-sheet color="transparent" class="d-flex align-center" width="100%">
-                    <v-sheet color="transparent" class="d-flex align-center text-14 " min-height="40" width="100%">
+                    <v-sheet color="transparent" class="d-flex align-center text-14" min-height="40" width="100%">
                         <CustomMobileDatePicker
-                        color="bgColor"
-                        class=""
-                        @change="onTimeChange"
-                        :start.sync="timeRange[0]"
-                        :end.sync="timeRange[1]"
-                    ></CustomMobileDatePicker>
-
+                            color="bgColor"
+                            class=""
+                            @change="onTimeChange"
+                            :start.sync="timeRange[0]"
+                            :end.sync="timeRange[1]"
+                        ></CustomMobileDatePicker>
                     </v-sheet>
-
                 </v-sheet>
                 <v-sheet color="transparent" class="d-flex mt-2 text-12">
                     {{LangUtil("{0} - {1} 直属统计",pageData.search.dateArr[0],pageData.search.dateArr[1]) }}
                 </v-sheet>
             </v-sheet>
             <!-- 下方的直属表格 -->
-            <v-card flat color="transparent" class="d-flex justify-center flex-column  mt-2">
+            <v-card flat color="transparent" class="d-flex justify-center flex-column mt-2">
                 <template v-if="myProxy.pageData.loading">
                     <v-skeleton-loader class="px-3 my-2 custom-loader" height="450px" width="100%" type="text@6"></v-skeleton-loader>
                 </template>
                 <template v-else>
-                    <v-card flat color="transparent" class="d-flex flex-column " width="100%">
+                    <v-card flat color="transparent" class="d-flex flex-column" width="100%">
                         <v-sheet
                             v-for="(item, key) in pageData.tableData"
                             :key="key"
@@ -106,8 +104,6 @@
                             <div v-if="key==0">{{ item.directly }}</div>
                             <div v-else :class="getMoneyColor(item.directly)">{{ transformMoney(item.directly) }}</div>
                         </v-sheet>
-
-
                     </v-card>
                     <ListNodata v-if="pageData.tableData.length == 0" height="411" />
                 </template>

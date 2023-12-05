@@ -1,4 +1,8 @@
 import GameConfig from "../config/GameConfig";
+type Config = Record<string, { date_format: "yyyy-MM-dd" | "dd-MM-yyyy" }>;
+const LangConfigJSON = require("../../assets/json/lang_config.json") as Config;
+// 根据当前语言返回DateFormat string
+const LangToDateFormat = new Map(Object.entries(LangConfigJSON).map(([a, b]) => [a, b.date_format] as const));
 
 export default class GlobalVar {
     static host_urls: string = "";
@@ -103,5 +107,13 @@ export default class GlobalVar {
         // }
 
         // return true;
+    }
+    /**日期 format string */
+    public get DateFormat() {
+        return LangToDateFormat.get(core.lang) ?? LangToDateFormat.get(core.lang.slice(0, 2)) ?? "dd-MM-yyyy";
+    }
+    /**日期 format string + HH:mm */
+    public get DateFormatHHMM() {
+        return `${this.DateFormat} HH:mm` as const;
     }
 }

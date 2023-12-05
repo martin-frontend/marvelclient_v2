@@ -8,9 +8,11 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { getMoneyColor } from "@/_skin005/core/ColorfullText";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class Fanyong extends AbstractView {
+    GlobalVar = GlobalVar;
     LangUtil = LangUtil;
 
     myProxy: PagePromotionStatisticsProxy = this.getProxy(PagePromotionStatisticsProxy);
@@ -78,24 +80,23 @@ export default class Fanyong extends AbstractView {
         this.onTimeChange();
     }
     onTimeChange() {
-        let date_1="";
-        let date_2="";
+        let date_1 = "";
+        let date_2 = "";
         if (this.timeRange) {
             const startDate: any = this.timeRange[0];
             const endDate: any = this.timeRange[1];
             if (startDate) {
                 date_1 = dateFormat(startDate, "yyyy-MM-dd hh:mm:ss");
-            } 
+            }
             if (endDate) {
                 date_2 = dateFormat(endDate, "yyyy-MM-dd hh:mm:ss");
-            } 
-        } 
-        this.pageData.search.dateArr = [date_1,date_2];
+            }
+        }
+        this.pageData.search.dateArr = [date_1, date_2];
         // this.pageData.listQuery.page_count = 1;
         // this.myProxy.api_user_var_credit_statistic();
         this.promotionProxy.onQuery();
     }
-
 
     @Watch("pageData.search.dateArr")
     onWatchSearchDate(val: any) {
@@ -115,7 +116,6 @@ export default class Fanyong extends AbstractView {
         // console.log("开始事件", this.start_date);
         // console.log("开始事件", this.endDate);
 
-        
         // const start = getTodayOffset(-6);
         // const end = getTodayOffset(1, 1);
         // this.timeRange = [start, end];

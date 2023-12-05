@@ -12,9 +12,11 @@ import GamePlatConfig from "@/core/config/GamePlatConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import MultDialogManager from "@/_skin005/core/MultDialogManager";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class DialogStatisticsCredit extends AbstractView {
+    GlobalVar = GlobalVar;
     LangUtil = LangUtil;
     commonIcon = Assets.commonIcon;
     myProxy: DialogStatisticsCreditProxy = this.getProxy(DialogStatisticsCreditProxy);

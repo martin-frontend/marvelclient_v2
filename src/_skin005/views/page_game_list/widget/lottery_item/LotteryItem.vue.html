@@ -1,0 +1,245 @@
+<div>
+    <v-sheet color="bgBanner" class="rounded10 text-14 py-2 mt-2" height="144" @click.native="onEnter" v-if="!$mobile">
+        <div class="d-flex align-center">
+            <v-sheet class="mx-2 rounded" min-width="3" height="18" color="textYellow"></v-sheet>
+            <div class="text-16 font-weight-bold">{{lotteryItem.game_name}}</div>
+        </div>
+        <v-sheet height="74" color="transparent" class="d-flex mx-4 my-4 justify-space-between textGray--text">
+            <v-sheet class="d-flex justify-space-between" color="transparent" width="45%">
+                <v-sheet color="transparent" class="d-flex" min-width="132">
+                    <img :src="lotteryItem.icon" width="100" height="74" style="object-fit: contain" alt="" />
+                    <v-divider vertical class="ml-4" />
+                </v-sheet>
+                <div>
+                    <div class="text-16 font-weight-bold">
+                        <span class="text-14 textYellow--text">{{LangUtil("期号")}}：</span>{{lotteryItem.current.game_period_no}}
+                    </div>
+                    <div class="content mt-2 d-flex justify-center align-center">
+                        <div class="countDownTime text-24 font-weight-bold" :class="{light: !$vuetify.theme.dark }">
+                            <div class="d-flex" v-for="(i, idx) in countdownDigits" :key="idx">
+                                <div class="time-part">
+                                    <div class="font">{{ i[0] }}</div>
+                                </div>
+                                <div class="time-part">
+                                    <div class="font">{{ i[1] }}</div>
+                                </div>
+                                <div v-if="idx != 2" class="text-24 mt-1">:</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-16 ml-4 textGray--text">
+                    <div class="d-flex align-center">
+                        <svg-icon class="text-20" icon="peroid"></svg-icon>
+                        <div class="text-14 ml-1">{{LangUtil("开奖日期")}}</div>
+                    </div>
+                    <div class="d-flex align-center my-1">
+                        <svg-icon icon="clock"></svg-icon>
+                        <div class="ml-1 primary--text">{{(lotteryItem.current.draw_plan_at || '').substring(11)}}</div>
+                    </div>
+
+                    <div>{{(lotteryItem.current.draw_plan_at || '').substring(0,10)}}</div>
+                </div>
+            </v-sheet>
+
+            <v-divider vertical class="mx-6" />
+
+            <v-sheet class="d-flex justify-space-between" color="transparent" width="55%">
+                <v-sheet color="transparent" class="text-center mr-4 textGray--text" min-width="90">
+                    <div class="d-flex align-center">
+                        <svg-icon class="text-20" icon="peroid_last"></svg-icon>
+                        <div>{{LangUtil("上期开奖")}}</div>
+                    </div>
+                    <div class="my-1 textYellow--text">{{LangUtil("期号")}}</div>
+                    <div class="font-weight-bold primary--text text-16">{{lotteryItem.previous.game_period_no}}</div>
+                </v-sheet>
+
+                <v-sheet class="d-flex justify-space-between textGray--text" color="transparent">
+                    <div v-if="lotteryItem.game_id == 1" class="d-flex gap-x-3" :class="panamaLevelsClass">
+                        <div v-for="(level, idx) in lottery_levels" class="text-center">
+                            <div class="mb-3">{{LangUtil(level)}}</div>
+                            <v-sheet color="transparent" class="d-flex">
+                                <v-card
+                                    v-for="(c, key) in getDrawNoByNum(idx)"
+                                    :key="key"
+                                    width="25"
+                                    height="25"
+                                    color="transparent"
+                                    class="d-flex align-center justify-center rounded-circle ball-bg elevation-0 mx-1"
+                                >
+                                    <v-card
+                                        outlined
+                                        width="21"
+                                        height="21"
+                                        color="transparent"
+                                        class="d-flex align-center justify-center elevation-0"
+                                    >
+                                        <span class="text-16 font-weight-bold ball-text"> {{c}} </span>
+                                    </v-card>
+                                </v-card>
+                            </v-sheet>
+                        </div>
+                    </div>
+
+                    <template v-if="lotteryItem.game_id == 2">
+                        <div class="d-flex gap-x-8" :class="{'gap-x-12': $vuetify.breakpoint.width > 1354, 'gap-x-16': $vuetify.breakpoint.width > 1600}" style="width: 100%">
+                            <div class="text-center">
+                                <div class="mb-3">{{LangUtil("开奖倍数")}}</div>
+                                <svg-icon class="text-40" :icon="draw_no.substring(3,4) == 'R' ? 'redball' : 'whiteball'"></svg-icon>
+                            </div>
+                            <div class="text-center">
+                                <div class="mb-3">{{LangUtil("开奖号码")}}</div>
+
+                                <div class="d-flex">
+                                    <v-card
+                                        width="40"
+                                        height="40"
+                                        color="transparent"
+                                        class="d-flex align-center justify-center rounded-circle ball-bg elevation-0 mx-1"
+                                    >
+                                        <v-card
+                                            outlined
+                                            width="36"
+                                            height="36"
+                                            color="transparent"
+                                            class="d-flex align-center justify-center elevation-0"
+                                        >
+                                            <span class="text-18 font-weight-bold ball-text"> {{draw_no.substring(0, 1)}} </span>
+                                        </v-card>
+                                    </v-card>
+                                    <v-card
+                                        width="40"
+                                        height="40"
+                                        color="transparent"
+                                        class="d-flex align-center justify-center rounded-circle ball-bg elevation-0 mx-1"
+                                    >
+                                        <v-card
+                                            outlined
+                                            width="36"
+                                            height="36"
+                                            color="transparent"
+                                            class="d-flex align-center justify-center elevation-0"
+                                        >
+                                            <span class="text-18 font-weight-bold ball-text"> {{draw_no.substring(1, 2)}} </span>
+                                        </v-card>
+                                    </v-card>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </template>
+
+                    <template v-if="lotteryItem.game_id == 3">
+                        <div class="d-flex gap-x-8" :class="{'gap-x-12': $vuetify.breakpoint.width > 1354, 'gap-x-16': $vuetify.breakpoint.width > 1600}" style="width: 100%">
+                            <div class="d-flex flex-column align-center">
+                                <div class="mb-3">{{LangUtil("开奖倍数")}}</div>
+                                <v-card
+                                    width="40"
+                                    height="40"
+                                    color="transparent"
+                                    class="d-flex align-center justify-center rounded-circle ball-bg elevation-0"
+                                >
+                                    <v-card
+                                        outlined
+                                        width="36"
+                                        height="36"
+                                        color="transparent"
+                                        class="d-flex align-center justify-center elevation-0"
+                                    >
+                                        <span class="text-18 font-weight-bold ball-text">{{ draw_no.substring(0,2) }}</span>
+                                    </v-card>
+                                </v-card>
+                            </div>
+                            <div class="text-center">
+                                <div class="mb-3">{{LangUtil("开奖号码")}}</div>
+
+                                <div class="d-flex">
+                                    <v-card
+                                        width="40"
+                                        height="40"
+                                        color="transparent"
+                                        class="d-flex align-center justify-center rounded-circle ball-bg elevation-0 mx-1"
+                                    >
+                                        <v-card
+                                            outlined
+                                            width="36"
+                                            height="36"
+                                            color="transparent"
+                                            class="d-flex align-center justify-center elevation-0"
+                                        >
+                                            <span class="text-18 font-weight-bold ball-text"> {{draw_no.substring(3, 4)}} </span>
+                                        </v-card>
+                                    </v-card>
+                                    </v-card>
+                                    <v-card
+                                        width="40"
+                                        height="40"
+                                        color="transparent"
+                                        class="d-flex align-center justify-center rounded-circle ball-bg elevation-0 mx-1"
+                                    >
+                                        <v-card
+                                            outlined
+                                            width="36"
+                                            height="36"
+                                            color="transparent"
+                                            class="d-flex align-center justify-center elevation-0"
+                                        >
+                                            <span class="text-18 font-weight-bold ball-text"> {{draw_no.substring(4, 5)}} </span>
+                                        </v-card>
+                                    </v-card>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </v-sheet>
+                <div class="text-center ml-3" v-if="lotteryItem.game_id != 1">
+                    <div class="mb-3 textGray--text">{{ LangUtil("大小") }}</div>
+                    <div class="text-18">{{ checkNum>49 ? LangUtil("大") : LangUtil("小") }}</div>
+                </div>
+
+                <div class="text-center ml-3" v-if="lotteryItem.game_id != 1">
+                    <div class="mb-3 textGray--text">{{ LangUtil("单双") }}</div>
+                    <div class="text-18">{{ checkNum%2 == 0 ? LangUtil("双") : LangUtil("单") }}</div>
+                </div>
+                <btn-yellow class="mx-2 mt-3 text-14" min_width="54" height="36" :btn_type="6">{{LangUtil("进入")}}</btn-yellow>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+
+    <v-sheet color="bgBanner" class="rounded10 text-14 py-2 mt-2" height="160" @click.native="onEnter" v-else>
+        <div class="d-flex align-center">
+            <v-sheet class="mx-2 rounded" min-width="3" height="18" color="textYellow"></v-sheet>
+            <div class="text-16 font-weight-bold">{{lotteryItem.game_name}}</div>
+            <v-spacer />
+            <btn-yellow class="mx-2 text-12" min_width="40" height="22" :btn_type="6">{{LangUtil("进入")}}</btn-yellow>
+        </div>
+        <v-divider class="my-2" />
+        <div class="d-flex align-center mx-2">
+            <div class="textYellow--text font-weight-bold mr-1">{{LangUtil("期号")}}:</div>
+            <div>{{lotteryItem.current.game_period_no}}</div>
+            <v-spacer />
+            <svg-icon icon="clock"></svg-icon>
+            <div class="ml-1">{{lotteryItem.current.draw_plan_at}}</div>
+        </div>
+        <div class="d-flex justify-space-between align-center mx-2 mt-2">
+            <v-sheet color="transparent" width="100%" class="d-flex" :class="itemIconClass">
+                <img :src="lotteryItem.icon" width="86" height="69" style="object-fit: contain" alt="" />
+            </v-sheet>
+            <div class="ml-2">
+                <div class="content mt-2 d-flex justify-center align-center">
+                    <div class="countDownTime text-24 font-weight-bold" :class="{light: !$vuetify.theme.dark }">
+                        <div class="d-flex" v-for="(i, idx) in countdownDigits" :key="idx">
+                            <div class="time-part">
+                                <div class="font">{{ i[0] }}</div>
+                            </div>
+                            <div class="time-part">
+                                <div class="font">{{ i[1] }}</div>
+                            </div>
+                            <div v-if="idx != 2" class="text-24 mt-1">:</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </v-sheet>
+</div>

@@ -367,8 +367,10 @@ var net;
         api_test_speed: "api/test_speed",
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
-        /**--skin001专属--获取赛事数据*/
+        /**--热门列表数据--获取easybet赛事数据*/
         api_vendor_96_products: "api/vendor/96/products",
+        /**--热门列表数据--获取热门彩票数据*/
+        api_vendor_267_products: "api/vendor/267/products",
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: "api/user/{user_id}/invite_user_info",
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -732,8 +734,10 @@ var net;
         api_test_speed: "api_test_speed",
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
-        /**--skin001专属--获取赛事数据*/
+        /**--热门列表数据--获取easybet赛事数据*/
         api_vendor_96_products: "api_vendor_96_products",
+        /**--热门列表数据--获取热门彩票数据*/
+        api_vendor_267_products: "api_vendor_267_products",
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: "api_user_var_invite_user_info",
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -967,8 +971,9 @@ var net;
         facade.registerCommand(net.HttpType.api_test_speed, net.cmd_api_test_speed);
         //--直属投注记录列表
         facade.registerCommand(net.HttpType.api_user_var_agent_var_bet, net.cmd_api_user_var_agent_var_bet);
-        //--skin001专属
+        //--热门列表数据
         facade.registerCommand(net.HttpType.api_vendor_96_products, net.cmd_api_vendor_96_products);
+        facade.registerCommand(net.HttpType.api_vendor_267_products, net.cmd_api_vendor_267_products);
         //--获取推荐人信息是否为信用用户
         facade.registerCommand(net.HttpType.api_user_var_invite_user_info, net.cmd_api_user_var_invite_user_info);
         //--直属用户查询操作
@@ -4759,11 +4764,33 @@ var net;
     net.cmd_api_user_var_withdraw_stake = cmd_api_user_var_withdraw_stake;
 })(net || (net = {}));
 /**
- * 获取赛事数据
+ * 获取热门彩票数据
  */
 var net;
 /**
- * 获取赛事数据
+ * 获取热门彩票数据
+ */
+(function (net) {
+    class cmd_api_vendor_267_products extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_vendor_267_products, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_vendor_267_products, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_vendor_267_products = cmd_api_vendor_267_products;
+})(net || (net = {}));
+/**
+ * 获取easybet赛事数据
+ */
+var net;
+/**
+ * 获取easybet赛事数据
  */
 (function (net) {
     class cmd_api_vendor_96_products extends puremvc.SimpleCommand {

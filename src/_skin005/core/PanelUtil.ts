@@ -250,8 +250,9 @@ export default class PanelUtil {
     }
     //打开 主页
     static openpage_home() {
+        const homePage = GameConfig.config.homePage ?? "";
         if (Vue.router.app.$route.path != Vue.prePath) {
-            Vue.router.push("/");
+            Vue.router.push(`/${homePage}`);
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
         PageBlur.blur_force_close();

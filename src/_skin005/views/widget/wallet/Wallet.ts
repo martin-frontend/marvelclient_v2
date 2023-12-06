@@ -12,6 +12,11 @@ import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import PageGameListProxy from "../../page_game_list/proxy/PageGameListProxy";
 
+const LangWidthMap = new Map([
+    ["en", 151],
+    ["es", 161],
+    ["pt", 158],
+]);
 @Component
 export default class Wallet extends AbstractView {
     LangUtil = LangUtil;
@@ -99,6 +104,10 @@ export default class Wallet extends AbstractView {
     }
 
     public get isShowRecharge(): boolean {
+        const is_credit_user = this.selfProxy.userInfo.is_credit_user == 1;
+        if (GlobalVar.skin == "skin006_1" && is_credit_user) {
+            return false;
+        }
         return (
             GlobalVar.instance.isShowRecharge ||
             (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98) ||
@@ -192,5 +201,9 @@ export default class Wallet extends AbstractView {
 
     isActivityCoin(name: any) {
         return GamePlatConfig.isActivityCoin(name);
+    }
+
+    get walletMinWidth() {
+        return LangWidthMap.get(core.lang.slice(0, 2)) ?? 136;
     }
 }

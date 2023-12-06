@@ -24,7 +24,14 @@
                     <horizontal_scroll>
                         <template v-slot="{data}">
                             <v-btn-toggle :lang="core.lang" mandatory group v-model="typechange" @change="onTimeChange">
-                                <v-btn class="rounded-pill mr-2" height="42" min-width="110" v-for="(item , key) of tabOptions()" :value="Number(key)" :key="key">
+                                <v-btn
+                                    class="rounded-pill mr-2"
+                                    height="42"
+                                    min-width="110"
+                                    v-for="(item, key) of tabOptions()"
+                                    :value="Number(key)"
+                                    :key="key"
+                                >
                                     <span class="text-14"> {{item}} </span>
                                 </v-btn>
                                 <!-- <v-btn v-if="checkValidateType(2)" class="rounded-pill mr-2" height="42" min-width="110" value="0">

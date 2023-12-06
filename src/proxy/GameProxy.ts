@@ -284,7 +284,7 @@ export default class GameProxy extends AbstractProxy {
         }
     }
     /**直接进入体育页面，skin001专用 */
-    go_soccer(data: any = null, vendorId?: string) {
+    go_soccer(data: any = null, vendorId?: string, ori_product_id?: string) {
         if (data) {
             this.currGame = data;
         } else
@@ -298,7 +298,7 @@ export default class GameProxy extends AbstractProxy {
                 lobby_model_product_id: 369,
                 lobby_product_id: 4857,
                 open_mode: 1,
-                ori_product_id: "1",
+                ori_product_id: ori_product_id ?? "1",
                 ori_vendor_extend: '{"iframe_bad":false}',
                 orientation: 1,
                 plat_id: 30017,

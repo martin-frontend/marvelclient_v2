@@ -1,0 +1,67 @@
+@import './gap.scss';
+
+/* 倒计时 */
+.countDownTime {
+    display: flex;
+}
+
+.countDownTime .time-part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+    width: 30px;
+    height: 40px;
+    font-family: Gotham-Bold;
+    border-radius: 3px;
+    color: #272828;
+    background: linear-gradient(0deg, #fcbf31 0%, #ffe64d 100%);
+}
+
+.countDownTime .time-part .font {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 30px;
+    font-weight: bold;
+    color: #272828;
+}
+
+.countDownTime .time-part:before,
+.countDownTime .time-part:after {
+    position: relative;
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: #272828;
+}
+
+.countDownTime .time-part:before {
+    left: 19.5px;
+}
+
+.countDownTime .time-part:after {
+    right: 19.5px;
+}
+
+.light {
+    .time-part:before,
+    .time-part:after {
+        background: #fff !important;
+    }
+}
+
+.ball-bg {
+    background: linear-gradient(135deg,rgba(255,237,104,1) 0%,rgba(246,122,7,1) 100%);
+}
+
+.ball-text {
+    color: #0f1213;
+}
+
+.w-full {
+    width: 100%;
+}

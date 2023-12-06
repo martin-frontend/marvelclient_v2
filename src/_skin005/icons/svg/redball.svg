@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.383" cy="0.367" r="0.521" gradientTransform="matrix(0.64, 0.768, -0.768, 0.64, 0.42, -0.163)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fe6568"/>
+      <stop offset="1" stop-color="#b30912"/>
+    </radialGradient>
+  </defs>
+  <circle id="椭圆_125" data-name="椭圆 125" cx="20" cy="20" r="20" fill="url(#radial-gradient)"/>
+</svg>

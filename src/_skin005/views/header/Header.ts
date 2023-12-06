@@ -164,11 +164,7 @@ export default class Header extends AbstractView {
         for (let index = 0; index < this.head_game_config.length; index++) {
             const element = this.head_game_config[index];
 
-            if (
-                this.routerPath &&
-                this.routerPath.trim() &&
-                this.routerPath.includes(element.router_name)
-            ) {
+            if (this.routerPath && this.routerPath.trim() && this.routerPath.includes(element.router_name)) {
                 if (element.is_show_head === 1) return true;
                 else if (element.is_show_head === 0) return false;
             }
@@ -181,6 +177,10 @@ export default class Header extends AbstractView {
         //return !(this.routerPath.includes("page_game_soccer") || this.routerPath.includes("page_game_play"));
     }
     public get isShowRecharge(): boolean {
+        const is_credit_user = this.selfProxy.userInfo.is_credit_user == 1;
+        if (GlobalVar.skin == "skin006_1" && is_credit_user) {
+            return false;
+        }
         return (
             GlobalVar.instance.isShowRecharge ||
             (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98) ||
@@ -220,5 +220,9 @@ export default class Header extends AbstractView {
 
     get isShowSearch() {
         return ModulesHelper.isShow_SearchGame() && (!SkinVariable.gamelist_other || !Constant.isIncludeGameRouter(this.$route.path));
+    }
+
+    get extraClass() {
+        return GlobalVar.skin == "skin006_1" ? "lighter" : "";
     }
 }

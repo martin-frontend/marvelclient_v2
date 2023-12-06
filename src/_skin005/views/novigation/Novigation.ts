@@ -16,6 +16,7 @@ import SkinVariable from "@/_skin005/core/SkinVariable";
 import Constant from "@/core/global/Constant";
 import NovigationMediator from "./NovigationMediator";
 import ActivityConfig from "@/core/config/ActivityConfig";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class Novigation extends AbstractView {
@@ -397,6 +398,16 @@ export default class Novigation extends AbstractView {
     get isShowPromotionReward() {
         // @ts-ignore
         return this.myProxy.activityData.find((item) => item.id == this.promotion_reward_model_id.id) != undefined;
+    }
+
+    get navItemClass() {
+        const extraClass = GlobalVar.skin == "skin006_1" ? "lighter" : "";
+        return `navIcon--text ${extraClass}`;
+    }
+
+    get navItemActiveClass() {
+        const extraClass = GlobalVar.skin == "skin006_1" ? "lighter" : "";
+        return `navTextHover--text active ${extraClass}`;
     }
 
     openTelegram() {

@@ -2,8 +2,8 @@
     <v-menu open-on-hover offset-x nudge-bottom="5" content-class="menutestclass">
         <template v-slot:activator="{ on, attrs ,value}">
             <v-card
-                class="d-flex align-center navText--text"
-                :class=" $vuetify.theme.dark ? 'boxdiv-dark' : 'boxdiv' "
+                class="d-flex align-center boxdiv navText--text"
+                :class="{'boxdiv-dark': $vuetify.theme.dark, [extraClass]: true}"
                 :height="height"
                 :min-height="height"
                 v-bind="attrs"
@@ -14,7 +14,7 @@
                 <!-- <img v-if="icons" :width="iconSize"
                     :src="(icons[selectValue] && icons[selectValue].icon) || icons[selectValue]" /> -->
 
-                <svg-icon v-if="icons" class="navText--text" :class="'text-'+iconSize" icon="lang"></svg-icon>
+                <svg-icon v-if="icons" :class="'text-'+iconSize" icon="lang"></svg-icon>
 
                 <div v-if="!mini" class="ml-2 text-truncate font-weight-medium" style="width: 100%" :class="'text-'+fontSize">
                     {{ (options[selectValue] && options[selectValue].name) || options[selectValue] }}

@@ -313,17 +313,12 @@ export default class DialogSafetyCenter extends AbstractView {
         return "";
     }
     tabOptions = () => {
-        const obj = <any>{};
-        if (this.checkValidateType(2)) {
-            obj[0] = LangUtil("绑定手机");
-        }
-        if (this.checkValidateType(1)) {
-            obj[1] = LangUtil("绑定邮箱");
-        }
-        obj[2] = LangUtil("修改密码");
-        if (this.is_password_gold_transfer.is_open) {
-            obj[3] = LangUtil("交易密码");
-        }
-        return obj;
+        const phone = this.checkValidateType(2) ? { 0: LangUtil("绑定手机") } : {};
+        const showEmail = this.checkValidateType(1) && GlobalVar.skin != "skin006_1";
+        const email = showEmail ? { 1: LangUtil("绑定邮箱") } : {};
+        const changePassword = { 2: LangUtil("修改密码") };
+        const transferPassword = this.is_password_gold_transfer.is_open == 1 ? { 3: LangUtil("交易密码") } : {};
+        const options = { ...phone, ...email, ...changePassword, ...transferPassword };
+        return options;
     };
 }

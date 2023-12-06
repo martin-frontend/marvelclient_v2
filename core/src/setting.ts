@@ -314,8 +314,10 @@ module net {
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api/user/{user_id}/agent/{agent_user_id}/bet",
 
-        /**--skin001专属--获取赛事数据*/
+        /**--热门列表数据--获取easybet赛事数据*/
         api_vendor_96_products: "api/vendor/96/products",
+        /**--热门列表数据--获取热门彩票数据*/
+        api_vendor_267_products: "api/vendor/267/products",
 
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: "api/user/{user_id}/invite_user_info",
@@ -714,8 +716,10 @@ module net {
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: "api_user_var_agent_var_bet",
 
-        /**--skin001专属--获取赛事数据*/
+        /**--热门列表数据--获取easybet赛事数据*/
         api_vendor_96_products: "api_vendor_96_products",
+        /**--热门列表数据--获取热门彩票数据*/
+        api_vendor_267_products: "api_vendor_267_products",
 
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: "api_user_var_invite_user_info",
@@ -962,8 +966,9 @@ module net {
         facade.registerCommand(HttpType.api_test_speed, cmd_api_test_speed);
         //--直属投注记录列表
         facade.registerCommand(HttpType.api_user_var_agent_var_bet, cmd_api_user_var_agent_var_bet);
-        //--skin001专属
+        //--热门列表数据
         facade.registerCommand(HttpType.api_vendor_96_products, cmd_api_vendor_96_products);
+        facade.registerCommand(HttpType.api_vendor_267_products, cmd_api_vendor_267_products);
         //--获取推荐人信息是否为信用用户
         facade.registerCommand(HttpType.api_user_var_invite_user_info, cmd_api_user_var_invite_user_info);
         //--直属用户查询操作

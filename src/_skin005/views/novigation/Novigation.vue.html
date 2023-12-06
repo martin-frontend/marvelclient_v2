@@ -38,8 +38,8 @@
                             <div
                                 class="d-flex align-center box text-14"
                                 :class="{ 
-                                        'navTextHover--text active' : (hover || isShowActive(item)),
-                                        'navIcon--text' : !(hover || isShowActive(item)),
+                                        [navItemActiveClass]: (hover || isShowActive(item)),
+                                        [navItemClass]: !(hover || isShowActive(item)),
                                     } "
                                 @click="goCategory_game(getItemCategory(item))"
                             >
@@ -56,16 +56,12 @@
                                 <div
                                     v-if="!mini"
                                     class="ml-5 text-no-wrap"
-                                    :class=" (hover || isShowActive(item)) ? 'navTextHover--text font-weight-bold' : 'navText--text ' "
+                                    :class="(hover || isShowActive(item)) ? 'font-weight-bold' : '' "
                                 >
                                     {{LangUtil(getItemCategoryName(item))}}
                                 </div>
                                 <v-spacer />
-                                <div
-                                    v-if="!mini"
-                                    class="mr-0"
-                                    :class=" (hover || isShowActive(item)) ? 'navTextHover--text' : 'navText--text' "
-                                >
+                                <div v-if="!mini" class="mr-0">
                                     <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
                                 </div>
                             </div>

@@ -8,11 +8,14 @@ import GameConfig from "@/core/config/GameConfig";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import ScrollUtil, { scrollUtil_div } from "@/core/global/ScrollUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
+import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class PageGameList extends AbstractView {
     LangUtil = LangUtil;
     CategoryIcon = Assets.CategoryIcon;
+    ModulesHelper = ModulesHelper;
     gameProxy = PanelUtil.getProxy_gameproxy;
     myProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
     noticeProxy = PanelUtil.getProxy_noticeProxy;
@@ -374,5 +377,8 @@ export default class PageGameList extends AbstractView {
     @Watch("gameProxy.isFirstGetGameCategory")
     initSelectType() {
         this.resetSelectType();
+    }
+    get isLotterySkin() {
+        return GlobalVar.skin == "skin006_1";
     }
 }

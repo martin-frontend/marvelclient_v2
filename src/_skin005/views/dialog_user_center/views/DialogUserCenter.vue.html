@@ -173,10 +173,8 @@
                         </v-btn>
                     </span>
                 </div>
-                <div class="d-flex justify-space-between align-center mb-5 text-14" v-if="is_password_gold_transfer.is_open">
-                    <span class="d-flex textGray--text">
-                        {{LangUtil("交易密码")}}
-                    </span>
+                <div class="d-flex justify-space-between align-center mb-5 text-14" v-if="is_password_gold_transfer.is_open == 1">
+                    <span class="d-flex textGray--text"> {{LangUtil("交易密码")}} </span>
                     <span class="d-flex align-center textGray--text">
                         {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
                         <v-btn
@@ -203,7 +201,7 @@
                     </span>
                 </div> -->
             </v-card-text>
-            <v-card-actions v-if="GlobalVar.instance.isShowLogin" class="px-5 d-flex align-end mb-4">
+            <v-card-actions v-if="GlobalVar.instance.isShowLogin" class="px-5 d-flex align-end mb-4 mt-3">
                 <btn-yellow class="text-16" width="100%" height="36" @click.native="onLoginOut">{{LangUtil("退出登录")}}</btn-yellow>
             </v-card-actions>
         </v-card>
@@ -267,7 +265,6 @@
                             <div v-else class="empty_width"></div>
                         </span>
                     </div>
-                   
                 </template>
 
                 <template v-if="ModulesHelper.IsShow_SetCPF()">
@@ -362,7 +359,7 @@
                             </v-btn>
                             <div v-else class="empty_width"></div>
                         </span>
-                    </div> 
+                    </div>
                 </template>
                 <template v-if="IsShow_GoogleVerification">
                     <div class="line mt-2"></div>
@@ -387,12 +384,10 @@
                     </div>
                     <div class="line mt-2" v-if="is_password_gold_transfer.is_open"></div>
                 </template>
-                <template v-if="is_password_gold_transfer.is_open">
+                <template v-if="is_password_gold_transfer.is_open == 1">
                     <div class="line mt-2"></div>
                     <div class="d-flex justify-space-between align-center mt-2 text-14">
-                        <span class="d-flex leftText--text">
-                            {{LangUtil("交易密码")}}
-                        </span>
+                        <span class="d-flex leftText--text"> {{LangUtil("交易密码")}} </span>
                         <span class="d-flex align-center head_btn--text">
                             {{userInfo.password_gold_exists? LangUtil("已设置"): LangUtil("未设置")}}
                             <v-btn

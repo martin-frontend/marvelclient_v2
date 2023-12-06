@@ -9,6 +9,7 @@ import { amountFormat, changeDateShow } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import { getMoneyColor, getMoneyValue } from "@/_skin005/core/ColorfullText";
 import { scrollUtil_div } from "@/core/global/ScrollUtil";
+import GlobalVar from "@/core/global/GlobalVar";
 @Component
 export default class Agents extends AbstractView {
     LangUtil = LangUtil;
@@ -198,6 +199,9 @@ export default class Agents extends AbstractView {
             return true;
         }
         return false;
+    }
+    public get isLotterySkin() {
+        return GlobalVar.skin == "skin006_1";
     }
     onCheckboxChange(value: any) {
         if (value.length === 0) {

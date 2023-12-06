@@ -1,7 +1,7 @@
 <v-sheet
     class="d-flex flex-column align-center justify-center pt-8 pb-10 foot_text_color pb-5"
     color="#0f1213"
-    style="margin-top: 100px !important"
+    :style="footerStyle"
     :class="$mobile ? 'px-2 text-14' :'ml-n3 mr-n3 text-16 '"
 >
     <v-img :src="commonIcon.logo" max-width="130"></v-img>
@@ -149,7 +149,7 @@
         </v-row>
     </v-sheet>
     <div class="text-14 foot_text_color mt-4" style="text-align: center">{{LangUtil("网页底部信息说明")}}</div>
-    <pre class="text-14 foot_text_color">{{LangUtil("网页底部公司说明")}}</pre>
+    <pre class="text-14 foot_text_color break-word w-screen text-center">{{LangUtil("网页底部公司说明")}}</pre>
     <div class="text-14 foot_text_color">{{LangUtil("version")}}:{{getVersion()}}</div>
     <div class="text-14 foot_text_color">{{getChannelID()}}</div>
     <!-- <div class="text-14 borderGameItem--text">网页底部公司说明 version:{{getVersion()}} {{getChannelID()}} -->

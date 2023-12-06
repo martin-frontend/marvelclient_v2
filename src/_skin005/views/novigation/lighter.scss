@@ -1,0 +1,7 @@
+$nav-item-color: #5a5a5a;
+::v-deep .navText--text.lighter {
+    color: lighten($nav-item-color, 10%) !important;
+}
+::v-deep .navIcon--text.lighter {
+    color: lighten($nav-item-color, 10%) !important;
+}

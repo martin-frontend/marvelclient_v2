@@ -79,6 +79,9 @@
     width: 180px !important;
     min-width: 0 !important;
 }
+.w-full ::v-deep.v-menu__content {
+    width: 100% !important;
+}
 .listitem {
     border: solid 1px #d6dde3 !important;
     border-radius: 10px !important;

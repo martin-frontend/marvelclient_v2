@@ -42,3 +42,10 @@
 .v-expansion-panels{
     z-index: 0;
 }
+.break-word {
+    white-space: inherit;
+    word-wrap: break-word;
+}
+.w-screen {
+    width: 100vw;
+}

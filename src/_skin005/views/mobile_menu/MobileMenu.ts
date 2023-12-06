@@ -40,6 +40,7 @@ export default class MobileMenu extends AbstractView {
                 path: "/page_recharge",
             },
             10: { id: 10, mob_type: "download", name: LangUtil("下载"), icon: "download", path: "" },
+            11: { id: 11, mob_type: "lottery", name: LangUtil("彩票"), icon: "c4", path: "/lottery-games" },
         };
 
         const phoneMenu = GameConfig.config.PhoneMenu || [];
@@ -179,6 +180,9 @@ export default class MobileMenu extends AbstractView {
             case 10:
                 PanelUtil.appproxy.onGuide();
                 return;
+            case 11:
+                PanelUtil.openpanel_gamelist(4);
+                return;
         }
 
         //如果是打开跳转连接
@@ -219,6 +223,7 @@ export default class MobileMenu extends AbstractView {
         } else if (item.id == 1) {
             return this.routerPath.includes(item.path) && !this.isCricket;
         } else if (item.id == 2) {
+            if (this.routerPath.includes("lottery-games")) return false;
             return Constant.isIncludeGameRouter(this.routerPath);
         } else {
             if (item.path && item.path != "/") {

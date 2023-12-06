@@ -187,6 +187,19 @@ const skinMap = {
             },
         },
     },
+    /**Lottery */
+    skin006_1: {
+        public_dir: "public_skin006_1",
+        pages: {
+            skin006_1: {
+                entry: "src/_skin006_1/main.ts",
+                template: "public_skin006_1/skin006_1.html",
+                filename: "index.html",
+                title: "Lottery",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**96 总站 */
     skin007: {
         public_dir: "public_skin007",
@@ -390,7 +403,7 @@ module.exports = {
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
-            ["skin004_2","skin004_5","skin004_6","skin005", "skin006", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
+            ["skin004_2","skin004_5","skin004_6","skin005", "skin006", "skin006_1", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
                 process.env.VUE_APP_SKIN
             )
         ) {

@@ -24,6 +24,8 @@ export interface GameConfigVO {
     android_download_link: string; //android下载地址
     /**足球厂商ID */
     SportVendorId: number;
+    /**彩票厂商ID */
+    LotteryVendorId: number;
 
     menuType: string; // 游戏菜单的 类型， 为1  就是 用gamemenu  否则不管
     /**三方登录地址 */

@@ -27,7 +27,7 @@
 
                 <v-sheet class="d-flex align-center justify-start mx-4" color="transparent" height="40">
                     <btn-yellow
-                        v-if="pageData.enable_set_vendor_config_default"
+                        v-if="pageData.enable_set_vendor_config_default && !isLotterySkin"
                         class="text-14"
                         min_width="104"
                         height="36"
@@ -311,7 +311,7 @@
                                 </div>
                             </v-sheet>
                             <btn-yellow
-                                v-if="pageData.enable_set_vendor_config_default"
+                                v-if="pageData.enable_set_vendor_config_default && !isLotterySkin"
                                 class="text-14"
                                 min_width="90"
                                 height="30"

@@ -4,15 +4,9 @@ import SelfProxy from "@/proxy/SelfProxy";
 
 function _isValueTrue(str: string, isDefault: boolean = true) {
     if (isDefault) {
-        if (GameConfig && GameConfig.config && GameConfig.config.modules_switch && GameConfig.config.modules_switch[str] == 0) {
-            return false;
-        }
-        return true;
+        return GameConfig?.config?.modules_switch?.[str] != 0;
     } else {
-        if (GameConfig && GameConfig.config && GameConfig.config.modules_switch && GameConfig.config.modules_switch[str] == 1) {
-            return true;
-        }
-        return false;
+        return GameConfig?.config?.modules_switch?.[str] == 1;
     }
 }
 
@@ -304,6 +298,10 @@ function isHide_HomeDownloadBtn() {
 function isShow_DailyTaskBtn() {
     return _isValueTrue("isShowDailyTaskBtn", false);
 }
+/**是否显示热门彩票 */
+function isPopularLottery() {
+    return _isValueTrue("is_popular_lottery", false);
+}
 export default {
     IsShow_VipInfo,
     IsShow_CoinIntroduce,
@@ -349,4 +347,5 @@ export default {
     isHide_HomeDownloadBtn,
     isShow_DailyTaskBtn,
     IsShow_ExchangeCPF,
+    isPopularLottery,
 };

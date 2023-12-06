@@ -246,6 +246,10 @@ export default class PageMyInfo extends AbstractView {
         return needCount;
     }
     public get isShowRecharge(): boolean {
+        const is_credit_user = this.selfProxy.userInfo.is_credit_user == 1;
+        if (GlobalVar.skin == "skin006_1" && is_credit_user) {
+            return false;
+        }
         return (
             GlobalVar.instance.isShowRecharge ||
             (SkinVariable.isForeShowRecharge && this.selfProxy.userInfo.is_credit_user == 98) ||

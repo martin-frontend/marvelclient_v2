@@ -8,7 +8,6 @@ import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
 import SkinVariable from "@/_skin005/core/SkinVariable";
-import OpenLink from "@/core/global/OpenLink";
 
 @Component
 export default class PageHome extends AbstractView {

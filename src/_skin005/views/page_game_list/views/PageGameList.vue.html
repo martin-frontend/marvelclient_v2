@@ -1,6 +1,8 @@
 <v-sheet color="transparent" id="gamelist" ref="scrollObj" class="pa-0 pb-5" style="min-height: calc(100vh - 500px)" :class="$mobile?'':''">
     <template v-if="!$mobile">
-        <Activity :showDataType="listQuery.vendor_type" />
+        <v-sheet color="transparent" width="100%" :class="{'mt-4': isLotterySkin}">
+            <Activity :showDataType="listQuery.vendor_type" />
+        </v-sheet>
         <template v-if="curSelectType == 0 || (curSelectType == 1 && !isUseMenuData)">
             <v-sheet color="transparent" width="100%">
                 <GameSearch class="my-2" />
@@ -11,7 +13,11 @@
                         <v-card color="transparent" flat class="">
                             <CustomSelect class="mr-3" :options="selectType" v-model="curSelectType" @change="onChange" fontSize="14">
                                 <template v-slot:pre>
-                                    <svg-icon class="text-18 head_btn--text ml-2" icon="change" style="transform: rotateZ(90deg)"></svg-icon>
+                                    <svg-icon
+                                        class="text-18 head_btn--text ml-2"
+                                        icon="change"
+                                        style="transform: rotateZ(90deg)"
+                                    ></svg-icon>
                                 </template>
                             </CustomSelect>
                         </v-card>
@@ -194,24 +200,11 @@
             </v-lazy>
         </template>
         <template v-else>
+            <LotteryList v-if="ModulesHelper.isPopularLottery() && listQuery.vendor_type == 4" />
             <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-2" color="transparent" elevation="0">
-                <v-sheet v-for="(item, key) of menudata" :key="key" class="mb-3" color="transparent" :width="$mobile ? '100%' : '49.5%'">
+                <v-sheet v-for="(item, key) of menudata" :key="key" class="mb-2" color="transparent" :width="$mobile ? '100%' : '49.5%'">
                     <v-lazy>
-                        <!-- <v-card v-if="false" class="transparent" elevation="0">
-                            <v-img v-if="item" class="d-flex game-icon_menu cursor-pointer rounded-lg align-end"
-                                :src="getGameIcon(item)" @click="onClick(item)">
-                                <v-sheet color="transparent" class="text-30 menu_title ">
-                                    {{item.alias}}
-                                </v-sheet>
-                                <v-sheet color="transparent" class="text-14 mt-4 menu_title_1 " max-width="55%">
-                                    {{item.game_desc}}
-                                </v-sheet>
-                                <btn-yellow class="text-16 mb-6 mt-auto ml-6" width="104" height="36">
-                                    {{LangUtil("点击进入")}}
-                                </btn-yellow>
-                            </v-img>
-                        </v-card> -->
-                        <v-card class="d-flex align-end" elevation="0" height="260" color="transparent">
+                        <v-card class="d-flex align-end" elevation="0" height="220" color="transparent">
                             <ImgLoader
                                 v-if="item"
                                 class="d-flex cursor-pointer rounded-lg align-end"
@@ -227,11 +220,6 @@
                                     {{LangUtil("点击进入")}}
                                 </btn-yellow>
                             </ImgLoader>
-                            <!-- 
-                            <v-img v-if="item" class="d-flex rounded-lg align-end ball_class " :src="getGameIcon(item)"
-                                height="260" max-height="260">
-                            </v-img> -->
-
                             <div class="test_ball d-flex align-end justify-end">
                                 <v-sheet color="transparent">
                                     <v-img v-if="item" class="" :src="getGameIcon(item)" height="260" width="420"> </v-img>
@@ -252,15 +240,24 @@
                 <v-carousel-item v-for="(item,i) in noticeProxy.data.listType1" :key="i" :src="item.img_url"></v-carousel-item>
             </v-carousel>
         </v-sheet> -->
+        <v-sheet color="transparent" class="mt-2" width="100%" height="100%">
+            <LotteryList v-if="ModulesHelper.isPopularLottery() && listQuery.vendor_type == 4" />
+        </v-sheet>
         <template v-if="!SkinVariable.gamelist_other">
             <v-sheet color="transparent" class="d-flex align-center" width="100%" min-width="100">
                 <Marquee1 />
             </v-sheet>
 
             <!-- 内容 -->
-            <v-sheet color="transparent" class="d-flex mt-2" width="100%" height="100%">
+            <v-sheet color="transparent" class="d-flex mt-1" width="100%" height="100%">
                 <!-- 左边导航 -->
-                <v-sheet color="bgBanner" class="d-flex flex-column pt-2 pb-2 align-center rounded-r-lg" width="60" height="100%" v-if="SkinVariable.isShowGameListNovigation">
+                <v-sheet
+                    color="bgBanner"
+                    class="d-flex flex-column pt-2 pb-2 align-center rounded-r-lg"
+                    width="60"
+                    height="100%"
+                    v-if="SkinVariable.isShowGameListNovigation"
+                >
                     <v-card
                         color="transparent"
                         elevation="0"
@@ -296,7 +293,7 @@
                     >
                         <!-- 上面的 厂商选择 -->
                         <v-sheet
-                        v-if="curSelectType == 0 || (curSelectType == 1 && !isUseMenuData)"
+                            v-if="curSelectType == 0 || (curSelectType == 1 && !isUseMenuData)"
                             class="mx-0 rounded10 d-flex align-center overflow-hidden"
                             min-height="49"
                             color="bgBanner"
@@ -323,44 +320,44 @@
                                     </v-card>
                                 </v-slide-item>
                                 <template v-if="curSelectType==1">
-                                <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
-                                    <v-card flat color="transparent" class="d-flex justify-center align-center">
-                                        <v-card
-                                            :class="vendor_id == item.vendor_id ? 'item_btn_active' : 'item_btn'"
-                                            class="mx-1 mt-1 mb-1 d-flex align-center justify-center"
-                                            @click="toggle"
-                                            height="30"
-                                            elevation="0"
-                                            color="transparent"
-                                        >
-                                            <v-sheet
+                                    <v-slide-item v-for="(item, key) of gameMenuData" :key="key" v-slot="{ active, toggle }">
+                                        <v-card flat color="transparent" class="d-flex justify-center align-center">
+                                            <v-card
+                                                :class="vendor_id == item.vendor_id ? 'item_btn_active' : 'item_btn'"
+                                                class="mx-1 mt-1 mb-1 d-flex align-center justify-center"
+                                                @click="toggle"
+                                                height="30"
+                                                elevation="0"
                                                 color="transparent"
-                                                class="text-14 d-flex align-center justify-center"
-                                                height="25"
-                                                @click="onBtnClick(item)"
                                             >
                                                 <v-sheet
                                                     color="transparent"
-                                                    class=""
-                                                    :class="vendor_id == item.vendor_id ? 'textYellow--text bold_text' : 'textGray--text'"
+                                                    class="text-14 d-flex align-center justify-center"
+                                                    height="25"
+                                                    @click="onBtnClick(item)"
                                                 >
-                                                    {{item.alias}}
+                                                    <v-sheet
+                                                        color="transparent"
+                                                        class=""
+                                                        :class="vendor_id == item.vendor_id ? 'textYellow--text bold_text' : 'textGray--text'"
+                                                    >
+                                                        {{item.alias}}
+                                                    </v-sheet>
                                                 </v-sheet>
+                                            </v-card>
+
+                                            <!-- 后面的圆点 -->
+                                            <v-sheet color="transparent" class="d-flex justify-center align-center" width="30">
+                                                <v-sheet
+                                                    v-if="key!=gameMenuData.length-1 "
+                                                    class="rounded-circle"
+                                                    color="textGray"
+                                                    width="6"
+                                                    height="6"
+                                                />
                                             </v-sheet>
                                         </v-card>
-
-                                        <!-- 后面的圆点 -->
-                                        <v-sheet color="transparent" class="d-flex justify-center align-center" width="30">
-                                            <v-sheet
-                                                v-if="key!=gameMenuData.length-1 "
-                                                class="rounded-circle"
-                                                color="textGray"
-                                                width="6"
-                                                height="6"
-                                            />
-                                        </v-sheet>
-                                    </v-card>
-                                </v-slide-item>
+                                    </v-slide-item>
                                 </template>
                                 <template v-if="curSelectType==0">
                                     <v-slide-item v-for="(key, index) of categoryTitle" :key="index" v-slot="{ active, toggle }">
@@ -412,7 +409,14 @@
 
                         <!-- 下方的列表 -->
                         <template v-if="curSelectType == 0">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2" color="transparent" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'" flat tile>
+                            <v-card
+                                ref="pcItemBox"
+                                class="d-flex flex-wrap mb-2"
+                                color="transparent"
+                                :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'"
+                                flat
+                                tile
+                            >
                                 <Category class="mt-2" v-if="categoryName==LangUtil('全部游戏')" :lobbyCategory="curListData" />
                                 <div v-else v-for="(item, key) of curListData" :key="key" class="mr-2 mb-2 mt-2">
                                     <v-lazy>
@@ -428,7 +432,14 @@
                             </v-card>
                         </template>
                         <template v-else-if="curSelectType == 1 && !isUseMenuData">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'" color="transparent" flat tile>
+                            <v-card
+                                ref="pcItemBox"
+                                class="d-flex flex-wrap mb-2 mt-2"
+                                :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'"
+                                color="transparent"
+                                flat
+                                tile
+                            >
                                 <template v-if="listQuery.vendor_type != 3">
                                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mr-2 mb-2">
                                         <v-lazy>
@@ -498,37 +509,7 @@
                         </template>
                         <template v-else>
                             <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between" color="transparent" elevation="0">
-                                <v-sheet
-                                    v-for="(item, key) of menudata"
-                                    :key="key"
-                                    class="mb-3"
-                                    color="transparent"
-                                    :width="$mobile ? '100%' : '49.5%'"
-                                >
-                                    <v-card v-if="false" class="transparent" elevation="0">
-                                        <v-img
-                                            v-if="item"
-                                            class="d-flex game-icon_menu cursor-pointer rounded-lg align-end"
-                                            :src="getGameIcon(item)"
-                                            @click="onClick(item)"
-                                            :height="$mobile ? img_width : ''"
-                                        >
-                                            <div class="menu_title d-flex align-center flex-column text-14">{{item.alias}}</div>
-                                            <div class="menu_title_1 d-flex align-center flex-column text-12">{{item.game_desc}}</div>
-                                            <btn-yellow class="text-12 mb-2 mt-auto ml-6" min-width="70" height="30">
-                                                {{LangUtil("点击进入")}}
-                                            </btn-yellow>
-
-                                            <!-- <div class="egame__item__mask_menu">
-                                            <div class="egame__item__play-icon">
-                                                <div class="icon-box iconfont" style="font-size: 48px; --gap: 8px">
-                                                    <div class="icon-chevron-right icon__icon mt-n1"></div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        </v-img>
-                                    </v-card>
-
+                                <v-sheet v-for="(item, key) of menudata" :key="key" color="transparent" :width="$mobile ? '100%' : '49.5%'">
                                     <v-card class="d-flex align-end loader_class_mob" elevation="0" height="150" color="transparent">
                                         <ImgLoader
                                             v-if="item"
@@ -540,7 +521,7 @@
                                         >
                                             <div class="menu_title d-flex align-center flex-column text-14">{{item.alias}}</div>
                                             <div class="menu_title_1 d-flex align-center flex-column text-12">{{item.game_desc}}</div>
-                                            <btn-yellow class="text-12 mb-2 mt-auto ml-6" min-width="70" height="30">
+                                            <btn-yellow class="text-12 mb-4 ml-6" min-width="70" height="30">
                                                 {{LangUtil("点击进入")}}
                                             </btn-yellow>
                                         </ImgLoader>
@@ -601,7 +582,7 @@
                     <v-sheet color="transparent" class="d-flex flex-column mob_row" width="100%">
                         <!-- 上面的 厂商选择 -->
                         <v-sheet
-                        v-if="curSelectType == 0 || (curSelectType == 1 && !isUseMenuData)"
+                            v-if="curSelectType == 0 || (curSelectType == 1 && !isUseMenuData)"
                             class="mx-0 rounded10 d-flex align-center overflow-hidden mt-2"
                             min-height="49"
                             color="bgBanner"
@@ -716,7 +697,14 @@
                         </v-sheet>
 
                         <template v-if="curSelectType == 0">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2'" color="transparent" flat tile>
+                            <v-card
+                                ref="pcItemBox"
+                                class="d-flex flex-wrap mb-2 mt-2"
+                                :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2'"
+                                color="transparent"
+                                flat
+                                tile
+                            >
                                 <Category v-if="categoryName==LangUtil('全部游戏')" :lobbyCategory="curListData" />
                                 <div v-else v-for="(item, key) of curListData" :key="key" class="mr-2 mb-2">
                                     <v-lazy>
@@ -734,7 +722,14 @@
 
                         <!-- 下方的列表 -->
                         <template v-else-if="curSelectType == 1 && !isUseMenuData">
-                            <v-card ref="pcItemBox" class="d-flex flex-wrap mb-2 mt-2" :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'" color="transparent" flat tile>
+                            <v-card
+                                ref="pcItemBox"
+                                class="d-flex flex-wrap mb-2 mt-2"
+                                :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'"
+                                color="transparent"
+                                flat
+                                tile
+                            >
                                 <template v-if="listQuery.vendor_type != 3">
                                     <div v-for="(item , key) of pageData.list" :key=" item.vendor_prodcut_id" class="mr-2 mb-2">
                                         <v-lazy>

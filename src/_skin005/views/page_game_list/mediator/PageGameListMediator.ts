@@ -27,6 +27,7 @@ export default class PageGameListMediator extends AbstractMediator {
             net.EventType.api_plat_var_game_all_config,
             net.EventType.api_plat_var_game_all_index,
             net.EventType.api_plat_var_game_menu,
+            net.EventType.api_vendor_267_products,
         ];
     }
 
@@ -42,6 +43,9 @@ export default class PageGameListMediator extends AbstractMediator {
                 break;
             case net.EventType.api_plat_var_game_menu:
                 myProxy.init();
+                break;
+            case net.EventType.api_vendor_267_products:
+                myProxy.set_vendor_267_products(body);
                 break;
         }
     }

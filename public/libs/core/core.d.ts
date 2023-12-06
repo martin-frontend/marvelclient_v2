@@ -299,8 +299,10 @@ declare module net {
         api_test_speed: string;
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: string;
-        /**--skin001专属--获取赛事数据*/
+        /**--热门列表数据--获取easybet赛事数据*/
         api_vendor_96_products: string;
+        /**--热门列表数据--获取热门彩票数据*/
+        api_vendor_267_products: string;
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: string;
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -664,8 +666,10 @@ declare module net {
         api_test_speed: string;
         /**--直属投注记录列表--直属投注记录列表*/
         api_user_var_agent_var_bet: string;
-        /**--skin001专属--获取赛事数据*/
+        /**--热门列表数据--获取easybet赛事数据*/
         api_vendor_96_products: string;
+        /**--热门列表数据--获取热门彩票数据*/
+        api_vendor_267_products: string;
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: string;
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -2265,7 +2269,16 @@ declare module net {
     }
 }
 /**
- * 获取赛事数据
+ * 获取热门彩票数据
+ */
+declare module net {
+    class cmd_api_vendor_267_products extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取easybet赛事数据
  */
 declare module net {
     class cmd_api_vendor_96_products extends puremvc.SimpleCommand {

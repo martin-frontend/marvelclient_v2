@@ -193,8 +193,9 @@
         "--直属投注记录列表",
         ["api/user/{user_id}/agent/{agent_user_id}/bet", "直属投注记录列表"],
 
-        "--skin001专属",
-        ["api/vendor/96/products", "获取赛事数据"],
+        "--热门列表数据",
+        ["api/vendor/96/products", "获取easybet赛事数据"],
+        ["api/vendor/267/products", "获取热门彩票数据"],
 
         "--获取推荐人信息是否为信用用户",
         ["api/user/{user_id}/invite_user_info", "查询直属用户金币数量"],

@@ -201,11 +201,12 @@ export default class APP extends AbstractView {
         PageBlur.blur_page(this.myProxy.bshowNovigationPanel);
     }
     get isShowGuide() {
+        const homePath = `${Vue.prePath}/${GameConfig.config.homePage ?? ""}`;
         if (ModulesHelper.isHide_HomeDownloadBtn()) return false;
         if (!this.$mobile || !this.myProxy.isShowGuide) return false;
 
         // if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/" || this.$route.path.includes("page_my_info"))
-        if (this.$route.path == Vue.prePath || this.$route.path == Vue.prePath + "/") return true;
+        if (this.$route.path == Vue.prePath || this.$route.path == homePath) return true;
 
         if (
             this.$route.path.includes("cricket") ||

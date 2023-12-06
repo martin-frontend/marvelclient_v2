@@ -2,6 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import Assets from "@/_skin005/assets/Assets";
 import PageBlur from "@/_skin005/core/PageBlur";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class LangSelect extends AbstractView {
@@ -24,6 +25,10 @@ export default class LangSelect extends AbstractView {
 
     get getValue() {
         return this.value != undefined ? this.value : "";
+    }
+
+    get extraClass() {
+        return GlobalVar.skin == "skin006_1" ? "lighter" : "";
     }
 
     private onChange(value: any) {

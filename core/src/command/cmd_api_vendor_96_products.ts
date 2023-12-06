@@ -1,5 +1,5 @@
 /**
- * 获取赛事数据
+ * 获取easybet赛事数据
  */
 module net {
     export class cmd_api_vendor_96_products extends puremvc.SimpleCommand {

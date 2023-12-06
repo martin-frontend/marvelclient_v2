@@ -153,10 +153,11 @@ export default class PageGameSoccer extends AbstractView {
     }
 
     onBack() {
+        const homePage = GameConfig.config.homePage ?? "";
         PanelUtil.message_confirm({
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
-                this.$router.replace("/");
+                this.$router.replace(`/${homePage}`);
             },
         });
     }

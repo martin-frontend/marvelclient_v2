@@ -81,8 +81,8 @@
         </v-sheet>
 
         <v-sheet color="transparent" class="d-flex justify-space-between align-center mt-2">
-            <v-sheet class="" color="transparent" width="150">
-                <v-menu content-class="menu" offset-y nudge-bottom="2">
+            <v-sheet class="" color="transparent" :width="isShowRecharge ? '150' : '100%'">
+                <v-menu :content-class="`menu ${isShowRecharge ? '' : 'w-full'}`" offset-y nudge-bottom="2">
                     <template v-slot:activator="{ on, attrs,value }">
                         <v-sheet v-bind="attrs" v-on="on" color="transparent" class="" width="100%">
                             <v-sheet
@@ -98,7 +98,9 @@
                                     :max-width="$mobile ? '20' : '24'"
                                     :max-height="$mobile ? '20' : '24'"
                                 ></v-img>
-                                <span class="ml-2" :class="$mobile ? 'text-12' : 'text-14'"> {{getCoinAlias(gameProxy.coin_name_unique)}}</span>
+                                <span class="ml-2" :class="$mobile ? 'text-12' : 'text-14'">
+                                    {{getCoinAlias(gameProxy.coin_name_unique)}}</span
+                                >
                                 <v-spacer />
                                 <div
                                     class="icon-box iconfont text-16 ml-2"
@@ -126,7 +128,9 @@
                                     <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
                                 </div>
                                 <div class="ml-3 text-12">
-                                    <div class="font-weight-bold textGray--text">{{ getCoinAlias(key) }} {{isActivityCoin(key) ? "" : LangUtil("钱包1") }}</div>
+                                    <div class="font-weight-bold textGray--text">
+                                        {{ getCoinAlias(key) }} {{isActivityCoin(key) ? "" : LangUtil("钱包1") }}
+                                    </div>
                                     <!-- <div class="primary--text">{{key == 'USDT' ? "$" : ""}}{{  item.sum_money }}</div> -->
                                     <div class="primary--text">{{ amountFormat(item.sum_money,true) }}</div>
                                     <div v-if="key == 'CNY'" class="primary--text">
@@ -146,24 +150,11 @@
                     </v-sheet>
                 </v-menu>
             </v-sheet>
-            <v-sheet color="transparent" class="d-flex">
-                <btn-yellow
-                    v-if="isShowRecharge"
-                    class="text-12 ml-2 mr-2"
-                    min_width="60"
-                    height="30"
-                    :btn_type="2"
-                    @click.native="onRechargeBtnClick"
+            <v-sheet v-if="isShowRecharge" color="transparent" class="d-flex">
+                <btn-yellow class="text-12 ml-2 mr-2" min_width="60" height="30" :btn_type="2" @click.native="onRechargeBtnClick"
                     >{{LangUtil("充值")}}</btn-yellow
                 >
-
-                <btn-yellow
-                    v-if="isShowRecharge"
-                    class="text-12"
-                    min_width="60"
-                    height="30"
-                    :btn_type="2"
-                    @click.native="onExchargeBtnClick"
+                <btn-yellow class="text-12" min_width="60" height="30" :btn_type="2" @click.native="onExchargeBtnClick"
                     >{{LangUtil("提现")}}</btn-yellow
                 >
             </v-sheet>
@@ -187,12 +178,17 @@
                             {{certificationStatus.icon}}
                         </v-icon>
                     </div>
-                    <div class="text-12 mt-2 textGray--text" style="text-align: center;">{{certificationStatus.name}}</div>
+                    <div class="text-12 mt-2 textGray--text" style="text-align: center">{{certificationStatus.name}}</div>
                 </template>
 
                 <template v-else>
                     <svg-icon :icon="item.icon" class="textGray--text mt-4" :class="$mobile ? 'text-20' :'text-20'"></svg-icon>
-                    <v-sheet class="font-weight-medium textGray--text text-12 mt-2" style="text-align: center;" color="transparent" max-width="110">
+                    <v-sheet
+                        class="font-weight-medium textGray--text text-12 mt-2"
+                        style="text-align: center"
+                        color="transparent"
+                        max-width="110"
+                    >
                         {{item.id==5 ? LangUtil("{0}币介绍", GamePlatConfig.getAwardCoin()) : LangUtil(item.name)}}
                     </v-sheet>
                 </template>

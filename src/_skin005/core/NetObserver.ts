@@ -279,6 +279,9 @@ export default class NetObserver extends AbstractMediator {
                     } else {
                         clearOrbitExchangeCookie();
                     }
+                    const product = GameConfig.config.head_game_config
+                        .filter((i) => !i.is_only_mob && i.vendor_id == this.gameProxy.currGame.vendor_id)
+                        .find((i) => i.ori_product_id == this.gameProxy.currGame.ori_product_id);
 
                     //检测返回的游戏 是不是在 head game中的
                     let headitem;
@@ -304,6 +307,10 @@ export default class NetObserver extends AbstractMediator {
                                 //page_game_soccer.show(body.url + `#/page_matche?id=${homeProxy.pageData.event_id}`);
                                 PanelUtil.openpage_sport(url + `#/page_matche?id=${homeProxy.pageData.event_id}`, false);
                                 homeProxy.pageData.event_id = 0;
+                                return;
+                            }
+                            if (product) {
+                                PanelUtil.openpage_headgame(url, product);
                                 return;
                             } else {
                                 // if (this.gameProxy.currGame.ori_vendor_extend) {
@@ -540,6 +547,10 @@ export default class NetObserver extends AbstractMediator {
                     PanelUtil.openpage_recharge();
                 };
                 message_obj.cancelTxt = LangUtil("充值");
+                if (GlobalVar.skin == "skin006_1") {
+                    message_obj.cancelTxt = LangUtil("返回");
+                    message_obj.cancelFun = () => {};
+                }
             }
 
             if (isNeetConfig) {

@@ -7,6 +7,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import FooterMediator from "./FooterMediator";
 import OpenLink from "@/core/global/OpenLink";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class Footer extends AbstractView {
@@ -258,5 +259,12 @@ export default class Footer extends AbstractView {
             };
             PanelUtil.openpanel_notice_detail(obj);
         }
+    }
+
+    get footerStyle() {
+        const marginTop = GlobalVar.skin == "skin006_1" && this.$mobile ? 0 : 100;
+        return {
+            marginTop: `${marginTop}px !important`,
+        };
     }
 }

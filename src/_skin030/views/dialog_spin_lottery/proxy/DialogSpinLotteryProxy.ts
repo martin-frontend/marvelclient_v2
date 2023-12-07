@@ -77,11 +77,23 @@ export default class DialogSpinLotteryProxy extends puremvc.Proxy {
         location: 1 as 1 | 2 | 3, // 抽奖类型
     };
 
-    lotteryLocationAvailability = {
-        1: false,
-        2: false,
-        3: false,
-    };
+    get lotteryLocationAvailability() {
+        const paramsArr = this.rules.lottery_cons.map((i) => i.params);
+        const firstKey = paramsArr[0].key;
+        const firstValue = Number(paramsArr[0].value);
+        const firstLotteryPlatMoney = Number(this.gold_info?.[firstKey]?.plat_money);
+        const secondKey = paramsArr[1].key;
+        const secondValue = Number(paramsArr[1].value);
+        const secondLotteryPlatMoney = Number(this.gold_info?.[secondKey]?.plat_money);
+        const thirdKey = paramsArr[2].key;
+        const thirdValue = Number(paramsArr[2].value);
+        const thirdLotteryPlatMoney = Number(this.gold_info?.[thirdKey]?.plat_money);
+        return {
+            1: firstLotteryPlatMoney >= firstValue,
+            2: secondLotteryPlatMoney >= secondValue,
+            3: thirdLotteryPlatMoney >= thirdValue,
+        };
+    }
 
     getColorByLocation(location: 1 | 2 | 3) {
         const color = LotteryLocationToColor.get(location);
@@ -117,21 +129,6 @@ export default class DialogSpinLotteryProxy extends puremvc.Proxy {
     }
     setRules(rules: Rules) {
         this.rules = rules;
-        const paramsArr = this.rules.lottery_cons.map((i) => i.params);
-        const firstKey = paramsArr[0].key;
-        const firstValue = Number(paramsArr[0].value);
-        const firstLotteryPlatMoney = Number(this.gold_info?.[firstKey]?.plat_money);
-        const secondKey = paramsArr[1].key;
-        const secondValue = Number(paramsArr[1].value);
-        const secondLotteryPlatMoney = Number(this.gold_info?.[secondKey]?.plat_money);
-        const thirdKey = paramsArr[2].key;
-        const thirdValue = Number(paramsArr[2].value);
-        const thirdLotteryPlatMoney = Number(this.gold_info?.[thirdKey]?.plat_money);
-        this.lotteryLocationAvailability = {
-            1: firstLotteryPlatMoney > firstValue,
-            2: secondLotteryPlatMoney > secondValue,
-            3: thirdLotteryPlatMoney > thirdValue,
-        };
     }
     handleClickSpinBtn() {
         this.api_plat_activity_spin_lottery_award_var();

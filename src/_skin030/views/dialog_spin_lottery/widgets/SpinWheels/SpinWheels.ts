@@ -10,6 +10,7 @@ export default class SpinWheels extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogSpinLotteryProxy = this.getProxy(DialogSpinLotteryProxy);
     gameProxy = PanelUtil.getProxy_gameproxy;
+    selfProxy = PanelUtil.getProxy_selfproxy;
     pageData = this.myProxy.pageData;
 
     @Prop({ default: null }) data!: any;
@@ -27,6 +28,7 @@ export default class SpinWheels extends AbstractView {
             return;
         }
         if (this.pageData.isSpinning) return;
+        this.myProxy.setData(this.selfProxy.userInfo);
         const curCoin = this.myProxy.getCurLotteryLocationCoin();
         const coin_name_unique = this.gameProxy.coin_name_unique;
         const locationCoinMatchUserCoin = curCoin == coin_name_unique;

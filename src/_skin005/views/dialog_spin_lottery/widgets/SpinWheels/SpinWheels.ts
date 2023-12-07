@@ -1,7 +1,7 @@
 import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
-import DialogSpinLotteryProxy, { LotteryLocationToColor } from "../../proxy/DialogSpinLotteryProxy";
+import DialogSpinLotteryProxy from "../../proxy/DialogSpinLotteryProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoginEnter from "@/_skin005/core/global/LoginEnter";
 
@@ -10,6 +10,7 @@ export default class SpinWheels extends AbstractView {
     LangUtil = LangUtil;
     myProxy: DialogSpinLotteryProxy = this.getProxy(DialogSpinLotteryProxy);
     gameProxy = PanelUtil.getProxy_gameproxy;
+    selfProxy = PanelUtil.getProxy_selfproxy;
     pageData = this.myProxy.pageData;
 
     @Prop({ default: null }) data!: any;
@@ -27,6 +28,7 @@ export default class SpinWheels extends AbstractView {
             return;
         }
         if (this.pageData.isSpinning) return;
+        this.myProxy.setData(this.selfProxy.userInfo);
         const curCoin = this.myProxy.getCurLotteryLocationCoin();
         const coin_name_unique = this.gameProxy.coin_name_unique;
         const locationCoinMatchUserCoin = curCoin == coin_name_unique;

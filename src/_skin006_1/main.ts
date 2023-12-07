@@ -33,8 +33,8 @@ import Assets from "@/_skin005/assets/Assets";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
-import Footer from "@/_skin005/views/footer/Footer.vue";
-import Header from "@/_skin005/views/header/Header.vue";
+import Footer from "@/_skin006_1/views/footer/Footer.vue";
+import Header from "@/_skin006_1/views/header/Header.vue";
 import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
@@ -53,6 +53,7 @@ SkinVariable.isForeShowRecharge = true;
 SkinVariable.isCustomizeFooter = false;
 SkinVariable.isShowMobileFooter = false;
 SkinVariable.isWallet_Recharge = false;
+GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();
 //@ts-ignore

@@ -2,6 +2,8 @@ import LangUtil from "@/core/global/LangUtil";
 import Vue from "vue";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import Constant from "@/core/global/Constant";
+import GlobalVar from "@/core/global/GlobalVar";
+import GameConfig from "@/core/config/GameConfig";
 
 export default class PageGameListProxy extends puremvc.Proxy {
     static NAME = "PageGameListProxy";
@@ -175,7 +177,8 @@ export default class PageGameListProxy extends puremvc.Proxy {
 
     /**获取热门彩票列表 */
     api_vendor_267_products() {
-        this.sendNotification(net.HttpType.api_vendor_267_products);
+        const timezone = GameConfig.config.defalutTimezone.split(":")[0];
+        this.sendNotification(net.HttpType.api_vendor_267_products, { timezone });
     }
 
     getCurMenuIndex() {

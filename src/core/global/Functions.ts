@@ -30,6 +30,37 @@ export function dateFormat(d: Date, fmt: string): string {
     return fmt;
 }
 /**
+ *
+ * @param timestamp 时间戳
+ * @param timeZone 时区偏移量，比如西八区就是-8
+ */
+export function dateFormatForTimezone(timestamp: number, timeZone: number, fmt: string) {
+    // 创建 Date 对象，将时间戳转换为指定时区的时间
+    const date = new Date(timestamp);
+    const utc = date.getTime() + date.getTimezoneOffset() * 60000; // 将本地时间转换为UTC时间
+    const convertedDate = new Date(utc + 3600000 * timeZone); // 转换为指定时区的时间
+
+    const o = {
+        "M+": convertedDate.getMonth() + 1, //月份
+        "d+": convertedDate.getDate(), //日
+        "h+": convertedDate.getHours(), //小时
+        "m+": convertedDate.getMinutes(), //分
+        "s+": convertedDate.getSeconds(), //秒
+        "q+": Math.floor((convertedDate.getMonth() + 3) / 3), //季度
+        S: convertedDate.getMilliseconds(), //毫秒
+    };
+
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (convertedDate.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (const k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            //@ts-ignore
+            fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+        }
+    }
+
+    return fmt;
+}
+/**
  * 根据语言决定格式化日期
  * @param d
  * @param fmt

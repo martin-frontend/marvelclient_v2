@@ -35,10 +35,10 @@
                     </div>
                     <div class="d-flex align-center my-1">
                         <svg-icon icon="clock"></svg-icon>
-                        <div class="ml-1 primary--text">{{(lotteryItem.current.draw_plan_at || '').substring(11)}}</div>
+                        <div class="ml-1 primary--text">{{(draw_plan_at || '').substring(11)}}</div>
                     </div>
 
-                    <div>{{(lotteryItem.current.draw_plan_at || '').substring(0,10)}}</div>
+                    <div>{{(draw_plan_at || '').substring(0,10)}}</div>
                 </div>
             </v-sheet>
 
@@ -54,7 +54,7 @@
                     <div class="font-weight-bold primary--text text-16">{{lotteryItem.previous.game_period_no}}</div>
                 </v-sheet>
 
-                <v-sheet class="d-flex justify-space-between textGray--text" color="transparent">
+                <v-sheet class="d-flex justify-space-between textGray--text" color="transparent" v-if="draw_no">
                     <div v-if="lotteryItem.game_id == 1" class="d-flex gap-x-3" :class="panamaLevelsClass">
                         <div v-for="(level, idx) in lottery_levels" class="text-center">
                             <div class="mb-3">{{LangUtil(level)}}</div>
@@ -192,12 +192,18 @@
                         </div>
                     </template>
                 </v-sheet>
-                <div class="text-center ml-3" v-if="lotteryItem.game_id != 1">
+
+                <div class="d-flex align-center justify-center" v-else>
+                    <div><svg-icon class="text-62" icon="lottery_nodraw" /></div>
+                    <div class="ml-2">{{ LangUtil("开奖中") }}...</div>
+                </div>
+
+                <div class="text-center ml-3" v-if="lotteryItem.game_id != 1 && draw_no">
                     <div class="mb-3 textGray--text">{{ LangUtil("大小") }}</div>
                     <div class="text-18">{{ checkNum>49 ? LangUtil("大") : LangUtil("小") }}</div>
                 </div>
 
-                <div class="text-center ml-3" v-if="lotteryItem.game_id != 1">
+                <div class="text-center ml-3" v-if="lotteryItem.game_id != 1 && draw_no">
                     <div class="mb-3 textGray--text">{{ LangUtil("单双") }}</div>
                     <div class="text-18">{{ checkNum%2 == 0 ? LangUtil("双") : LangUtil("单") }}</div>
                 </div>
@@ -219,7 +225,7 @@
             <div>{{lotteryItem.current.game_period_no}}</div>
             <v-spacer />
             <svg-icon icon="clock"></svg-icon>
-            <div class="ml-1">{{lotteryItem.current.draw_plan_at}}</div>
+            <div class="ml-1">{{draw_plan_at}}</div>
         </div>
         <div class="d-flex justify-space-between align-center mx-2 mt-2">
             <v-sheet color="transparent" width="100%" class="d-flex" :class="itemIconClass">

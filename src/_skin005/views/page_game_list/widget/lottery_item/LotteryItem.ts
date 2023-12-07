@@ -6,11 +6,13 @@ import GameProxy from "@/proxy/GameProxy";
 import GameConfig from "@/core/config/GameConfig";
 import PageGameListProxy from "../../proxy/PageGameListProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import { dateFormatForTimezone } from "@/core/global/Functions";
 
 @Component
 export default class LotteryItem extends AbstractView {
     LangUtil = LangUtil;
     GlobalVar = GlobalVar;
+    GameConfig = GameConfig;
 
     @Prop() lotteryItem: any;
     timer = 0;
@@ -26,6 +28,11 @@ export default class LotteryItem extends AbstractView {
     destroyed(): void {
         clearInterval(this.timer);
         super.destroyed();
+    }
+    /**开奖时间 */
+    get draw_plan_at(): string {
+        const timezone = this.GameConfig.config.defalutTimezone.split(":")[0];
+        return dateFormatForTimezone(this.lotteryItem.current.draw_plan_at_timestamp * 1000, parseInt(timezone), "yyyy-MM-dd hh:mm:ss");
     }
 
     //倒计时时间

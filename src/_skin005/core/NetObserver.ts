@@ -271,6 +271,12 @@ export default class NetObserver extends AbstractMediator {
                         body.url = body.url.replace("https://trop.iqfhedf86.com", "https://staging.sport.nqsf9emow.com");
                     }
 
+                    //添加时区参数
+                    if (GameConfig.config.defalutTimezone) {
+                        const timezone = GameConfig.config.defalutTimezone.split(":")[0];
+                        body.url += `&timezone=${timezone}`;
+                    }
+
                     this.gameProxy.loading = false;
                     PanelUtil.showAppLoading(false);
                     /**---设置 巴西交易所 token---- */

@@ -201,7 +201,12 @@
         </template>
         <template v-else>
             <LotteryList v-if="ModulesHelper.isPopularLottery() && listQuery.vendor_type == 4" />
-            <v-card class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-2" color="transparent" elevation="0">
+            <v-card
+                class="d-flex flex-wrap mb-2 mx-2 justify-space-between mt-2"
+                :class="{'mt-12': isLotterySkin}"
+                color="transparent"
+                elevation="0"
+            >
                 <v-sheet v-for="(item, key) of menudata" :key="key" class="mb-2" color="transparent" :width="$mobile ? '100%' : '49.5%'">
                     <v-lazy>
                         <v-card class="d-flex align-end" elevation="0" height="220" color="transparent">

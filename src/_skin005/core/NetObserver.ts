@@ -300,7 +300,10 @@ export default class NetObserver extends AbstractMediator {
                             //PC 版
                             if (element.is_only_mob && element.is_only_mob == 1) continue;
                         }
-                        if (element.vendor_id == this.gameProxy.currGame.vendor_id) {
+                        if (
+                            element.vendor_id == this.gameProxy.currGame.vendor_id &&
+                            element.ori_product_id == this.gameProxy.currGame.ori_product_id
+                        ) {
                             headitem = element;
                             const homeProxy = PanelUtil.getProxy_page_home;
                             //const isCricket = this.gameProxy.currGame.vendor_id == GameConfig.config.CricketVendorId;

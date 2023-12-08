@@ -7,12 +7,15 @@ import GameConfig from "@/core/config/GameConfig";
 import PageGameListProxy from "../../proxy/PageGameListProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { dateFormatForTimezone } from "@/core/global/Functions";
+import getProxy from "@/core/global/getProxy";
+import Timezone from "@/core/Timezone";
 
 @Component
 export default class LotteryItem extends AbstractView {
     LangUtil = LangUtil;
     GlobalVar = GlobalVar;
     GameConfig = GameConfig;
+    myProxy: PageGameListProxy = getProxy(PageGameListProxy);
 
     @Prop() lotteryItem: any;
     timer = 0;
@@ -31,13 +34,14 @@ export default class LotteryItem extends AbstractView {
     }
     /**开奖时间 */
     get draw_plan_at(): string {
-        const timezone = this.GameConfig.config.defalutTimezone.split(":")[0];
+        const timezone = this.GameConfig.config.defalutTimezone?.split(":")[0] || Timezone.Instance.curTimezoneItem.key?.split(":")[0];
         return dateFormatForTimezone(this.lotteryItem.current.draw_plan_at_timestamp * 1000, parseInt(timezone), "yyyy-MM-dd hh:mm:ss");
     }
 
     //倒计时时间
     get countdownParts() {
         const time = this.lotteryItem.current.draw_plan_at_timestamp - this.server_time;
+        if (time <= 0) this.myProxy.api_vendor_267_products();
         const hours = (time / 3600) >> 0;
         const minutes = ((time - hours * 3600) / 60) >> 0;
         const seconds = (time - hours * 3600 - minutes * 60) >> 0;

@@ -13,6 +13,7 @@ import SvgaPlayer from "@/_skin005/views/widget/svga_player/SvgaPlayer.vue";
 import { dateFormatForTimezone } from "@/core/global/Functions";
 import GlobalVar from "@/core/global/GlobalVar";
 import GameConfig from "@/core/config/GameConfig";
+import Timezone from "@/core/Timezone";
 
 @Component({
     components: {
@@ -24,12 +25,12 @@ import GameConfig from "@/core/config/GameConfig";
     },
 })
 export default class extends Header {
-    timezone = GameConfig.config.defalutTimezone.split(":")[0];
+    timezone = GameConfig.config.defalutTimezone.split(":")[0] || Timezone.Instance.curTimezoneItem.key?.split(":")[0];
     timeClock = "";
 
     created() {
         setInterval(() => {
-            this.timeClock = dateFormatForTimezone(GlobalVar.server_time * 1000, parseInt(this.timezone), "yyyy-MM-dd hh:mm:ss");
+            this.timeClock = dateFormatForTimezone(GlobalVar.server_time * 1000, this.timezone, "yyyy-MM-dd hh:mm:ss");
             this.timeClock += ` (GMT${this.timezone})`;
         }, 1000);
     }

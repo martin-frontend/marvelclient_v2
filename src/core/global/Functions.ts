@@ -34,7 +34,8 @@ export function dateFormat(d: Date, fmt: string): string {
  * @param timestamp 时间戳
  * @param timeZone 时区偏移量，比如西八区就是-8
  */
-export function dateFormatForTimezone(timestamp: number, timeZone: number, fmt: string) {
+export function dateFormatForTimezone(timestamp: number, timeZone: any, fmt: string) {
+    if (typeof timeZone == "string") timeZone = parseInt(timeZone);
     // 创建 Date 对象，将时间戳转换为指定时区的时间
     const date = new Date(timestamp);
     const utc = date.getTime() + date.getTimezoneOffset() * 60000; // 将本地时间转换为UTC时间

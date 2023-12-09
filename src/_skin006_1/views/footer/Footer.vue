@@ -12,11 +12,11 @@ import Timezone from "@/core/Timezone";
 
 @Component
 export default class extends Footer {
-    timezone = GameConfig.config.defalutTimezone.split(":")[0] || Timezone.Instance.curTimezoneItem.key?.split(":")[0];
     timeClock = "";
 
     created() {
         setInterval(() => {
+            const timezone = GameConfig.config.defalutTimezone?.split(":")[0] || Timezone.Instance.curTimezoneItem.key?.split(":")[0];
             this.timeClock = dateFormatForTimezone(GlobalVar.server_time * 1000, this.timezone, "yyyy-MM-dd hh:mm:ss");
             this.timeClock += ` (GMT${this.timezone})`;
         }, 1000);

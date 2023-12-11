@@ -195,7 +195,7 @@
 
                 <div class="d-flex align-center justify-center" v-else>
                     <div><svg-icon class="text-62" icon="lottery_nodraw" /></div>
-                    <div class="ml-2">{{ LangUtil("开奖中") }}...</div>
+                    <div class="ml-2">{{ drawStatus }}...</div>
                 </div>
 
                 <div class="text-center ml-3" v-if="lotteryItem.game_id != 1 && draw_no">

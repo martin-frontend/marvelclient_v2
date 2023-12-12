@@ -148,7 +148,7 @@ export default class DialogLimitedBonus extends AbstractView {
     onGetBtnClick() {
         console.log("---领取按钮");
         if (core.user_id) {
-            const activelist = PanelUtil.getProxy_novigation.activityData;
+            const activelist = PanelUtil.getProxy_navigation.activityData;
             this.closeHandle = setTimeout(() => {
                 this.onClose();
             }, 200);

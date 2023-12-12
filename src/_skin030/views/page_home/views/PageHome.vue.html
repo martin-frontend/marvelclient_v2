@@ -126,6 +126,13 @@
         </v-container>
     </v-sheet>
     <v-container :class="!$mobile ? 'mt-4' : 'pb-0'">
+        <v-sheet v-if="!$mobile" color="transparent" width="100%" class="relative view_odds_bg my-4 rounded10" min-height="160">
+            <span
+                @click="PanelUtil.openpage_soccer()"
+                class="absolute right-33 vertical-center text-14 px-8 py-4 bg-green rounded10 font-weight-bold cursor-pointer"
+                >{{LangUtil("view odds")}}</span
+            >
+        </v-sheet>
         <v-row class="">
             <v-col :cols="$mobile ? 12 : 6" v-for="(item , key) of game_item_data" :key="key" fill-height class="my-1">
                 <GameEnterItem :item="item" height="100%"></GameEnterItem>

@@ -12,7 +12,7 @@ function show(category?: number, vendor_id?: number) {
     }
     if (category) {
         //PanelUtil.categoryActive = category;
-        PanelUtil.getProxy_novigation.categoryActive = category;
+        PanelUtil.getProxy_navigation.categoryActive = category;
         proxy.listQuery.vendor_type = category == 1 ? 2 : category;
         proxy.listQuery.vendor_id = 0;
         //proxy.setGameMenuData(headerProxy.pageData.lobbyIndex);

@@ -74,14 +74,7 @@
                         </div>
                     </v-sheet>
                 </v-sheet>
-                <v-sheet color="transparent" width="50%" class="">
-                    <div class="textGray--text text-12">{{LangUtil("充值通道说明")}}</div>
-                    <v-sheet class="d-flex py-2 text-14" color="transparent">
-                        <div class="textGray--text">
-                            <div v-for="item of transformExplain(getExplain())" v-html="item"></div>
-                        </div>
-                    </v-sheet>
-                </v-sheet>
+                <Explain width="50%" :explain="transformExplain(getExplain())"></Explain>
             </v-sheet>
         </div>
         <!-- okpay topay -->
@@ -224,20 +217,13 @@
                 </template>
             </v-checkbox>
         </v-sheet>
+        <GoldList :goldList="fixedGoldList" class="mt-4" v-if="fixedGoldList.length"></GoldList>
 
-        <v-sheet
-            color="transparent"
-            class="mt-4"
+        <Explain
             v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id != 4"
-        >
-            <div class="textGray--text text-16">{{LangUtil("充值通道说明")}}</div>
-            <v-sheet class="d-flex flex-wrap py-2 text-14" color="transparent">
-                <!-- <span class="mr-1">⚠️</span> -->
-                <div class="textGray--text">
-                    <div v-for="item of transformExplain(getExplain())" v-html="item"></div>
-                </div>
-            </v-sheet>
-        </v-sheet>
+            cls="mt-4"
+            :explain="transformExplain(getExplain())"
+        ></Explain>
     </v-card>
 
     <v-sheet color="transparent" width="100%" class="d-flex mt-auto">
@@ -481,18 +467,12 @@
             </v-sheet>
         </v-sheet>
     </v-card>
-    <v-sheet
-        color="transparent"
-        class="ml-4"
+    <GoldList cls="px-4 mb-4" :goldList="fixedGoldList" v-if="fixedGoldList.length"></GoldList>
+    <Explain
         v-if="pageData.methodList[form.coin_name_unique] && pageData.methodList[form.coin_name_unique].payemthod_id != 4"
-    >
-        <div class="primary--text text-14 font-weight-bold">{{LangUtil("充值通道说明")}}</div>
-        <v-sheet class="d-flex flex-wrap py-2 text-12" color="transparent">
-            <div class="textGray--text">
-                <div v-for="item of transformExplain(getExplain())" v-html="item"></div>
-            </div>
-        </v-sheet>
-    </v-sheet>
+        :explain="transformExplain(getExplain())"
+        cls="ml-4"
+    ></Explain>
     <v-sheet color="transparent" width="100%" class="d-flex pt-4 ml-4">
         <v-sheet v-if="isNeedCoinShow" class="d-flex justify-start align-center rounded10" color="transparent">
             <div class="mr-4 primary-text font-weight-bold">{{LangUtil("已支持充值币种")}}</div>

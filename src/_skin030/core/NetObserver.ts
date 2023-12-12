@@ -668,7 +668,7 @@ export default class NetObserver extends AbstractMediator {
                     break;
                 case "rechargeactivity":
                     {
-                        const activelist = PanelUtil.getProxy_novigation.activityData;
+                        const activelist = PanelUtil.getProxy_navigation.activityData;
 
                         for (let index = 0; index < activelist.length; index++) {
                             const element = activelist[index];

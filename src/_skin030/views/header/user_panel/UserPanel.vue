@@ -5,7 +5,7 @@
 import Component from "vue-class-component";
 import MenuGroup from "../menu_group/MenuGroup.vue";
 import UserPanel from "./UserPanel";
-import LightDark from "../../novigation/light_dark/LightDark.vue";
+import LightDark from "../../navigation/light_dark/LightDark.vue";
 @Component({
     components: {
         MenuGroup,

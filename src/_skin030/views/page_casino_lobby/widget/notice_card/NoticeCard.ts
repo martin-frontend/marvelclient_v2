@@ -4,7 +4,7 @@ import LangUtil from "@/core/global/LangUtil";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
 import gsap, { Linear } from "gsap";
-import NovigationCommonData from "@/_skin030/views/novigation/NovigationCommonData";
+import NavigationCommonData from "@/_skin030/views/navigation/NavigationCommonData";
 import PanelUtil from "@/_skin030/core/PanelUtil";
 @Component({
     components: {
@@ -120,7 +120,7 @@ export default class NoticeCard extends AbstractView {
     }
 
     goActivity() {
-        NovigationCommonData.Instance.goCategory(
+        NavigationCommonData.Instance.goCategory(
             { name: "精彩活动", id: 4, icon: "ky_promotion", path: "promotions" },
             { name: "精彩活动", id: 4, icon: "ky_promotion", path: "promotions" }
         );

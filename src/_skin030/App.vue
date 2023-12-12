@@ -3,7 +3,7 @@
         <!-- pc版的显示 -->
         <template v-if="!$mobile">
             <v-sheet id="page" class="d-flex" color="transparent">
-                <Novigation />
+                <Navigation />
 
                 <v-sheet id="mainpage" color="transparent" class="d-flex justify-center mainpage">
                     <Header id="pc_header" class="head_test" />
@@ -32,7 +32,7 @@
         <!-- 用户面板 -->
         <template v-if="$mobile">
             <v-navigation-drawer
-                v-model="myProxy.bshowNovigationPanel"
+                v-model="myProxy.bshowNavigationPanel"
                 left
                 temporary
                 width="240"
@@ -40,7 +40,7 @@
                 class="mob_navigation"
                 color="bgBanner"
             >
-                <Novigation />
+                <Navigation />
             </v-navigation-drawer>
 
             <!-- <v-navigation-drawer v-model="myProxy.bshowUserPanel" app left temporary width="288"
@@ -160,7 +160,7 @@ import UserPanel from "./views/header/user_panel/UserPanel.vue";
 import DialogMessage from "./views/dialog_message/views/DialogMessage.vue";
 
 import MobileMenu from "./views/mobile_menu/MobileMenu.vue";
-import Novigation from "./views/novigation/Novigation.vue";
+import Navigation from "./views/navigation/Navigation.vue";
 import Orientation from "@/_skin030/views/widget/orientation/Orientation.vue";
 import GuideDrawer from "@/_skin030/views/widget/guide_drawer/GuideDrawer.vue";
 import DialogMessageBox from "@/_skin030/views/dialog_message_box/views/DialogMessageBox.vue";
@@ -169,7 +169,7 @@ import CoinTip from "@/_skin030/views/widget/wallet/coin_tip/CoinTip.vue";
 
 @Component({
     components: {
-        Novigation,
+        Navigation,
         MobileMenu,
         UserPanel,
         DialogMessage,
@@ -263,7 +263,7 @@ export default class extends App {
     bottom: 242px;
 }
 
-//以下都是在代码中调用的样式 Novigation.ts
+//以下都是在代码中调用的样式 Navigation.ts
 .mainpage {
     width: calc(100% - 188px);
 }

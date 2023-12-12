@@ -1,0 +1,10 @@
+<v-sheet color="transparent" :class="cls" :width="width">
+    <div class="primary--text text-14" :class="{'font-weight-bold': $mobile, 'text-16': !$mobile, 'textGray--text': !$mobile}">
+        {{LangUtil("充值通道说明")}}
+    </div>
+    <v-sheet class="d-flex flex-wrap py-2 text-12" :class="{'text-14': !$mobile}" color="transparent">
+        <div class="textGray--text">
+            <div v-for="item of explain" v-html="item"></div>
+        </div>
+    </v-sheet>
+</v-sheet>

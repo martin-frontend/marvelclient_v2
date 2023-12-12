@@ -72,7 +72,7 @@ import { isSafari } from "@/core/global/Functions";
 //     * @param isAll 是否全部模糊， 如果为false则 上面的icon不模糊， 默认为true
 //     * @param blur_value 模糊的值 默认为10
 //     */
-//     static blur_novigation(isBlur: boolean, isAll: boolean = true, blur_value: number = 10) {
+//     static blur_navigation(isBlur: boolean, isAll: boolean = true, blur_value: number = 10) {
 //         PageBlur._blur_util(isBlur, isAll, "navpage", "category_page", blur_value);
 //     }
 //     static blur_page(isBlur: boolean ,blur_value: number = 10)
@@ -147,7 +147,7 @@ const PageBlur = {
         }
         PageBlur.onChangeBlur();
     },
-    blur_novigation: (isBlur: boolean, isAll = true) => {
+    blur_navigation: (isBlur: boolean, isAll = true) => {
         if (isSafari()) return;
         if (isBlur) {
             PageBlur.bottom = isBlur;

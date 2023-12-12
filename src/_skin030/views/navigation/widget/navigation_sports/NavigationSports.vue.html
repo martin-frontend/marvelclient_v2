@@ -1,0 +1,41 @@
+<v-sheet color="transparent" width="100%" class="">
+    <v-sheet color="bgBanner" width="100%" class="d-flex flex-column justify-center rounded10">
+        <NavigationItem
+            :itemData="activity_item"
+            :isMini="isMiniMenu"
+            :isExpansionPanel="true"
+            :expansionData="activity_menu"
+            :isPromotions="true"
+            @onItemClick="goCategory"
+            @onChangePanel="onChangePanel"
+        ></NavigationItem>
+    </v-sheet>
+
+    <v-sheet color="bgBanner" width="100%" class="d-flex flex-column justify-center rounded10 mt-2">
+        <NavigationItem
+            v-for="(item ,key) of navigation_menu"
+            :key="key"
+            :itemData="item"
+            :isMini="isMiniMenu"
+            @onItemClick="onNavigationClick"
+        ></NavigationItem>
+    </v-sheet>
+
+    <v-sheet color="bgBanner" width="100%" class="d-flex flex-column justify-center rounded10 mt-2">
+        <NavigationItem
+            v-for="(item ,key) of navigation_other_menu"
+            :key="key"
+            :itemData="item"
+            :isMini="isMiniMenu"
+            @onItemClick="onNavigationClick"
+        ></NavigationItem>
+
+        <NavigationItem
+            :isMini="isMiniMenu"
+            :isLanguage="true"
+            :isExpansionPanel="true"
+            @onItemClick="onChangeLang"
+            @onChangePanel="onChangePanel"
+        ></NavigationItem>
+    </v-sheet>
+</v-sheet>

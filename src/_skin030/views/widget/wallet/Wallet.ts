@@ -46,7 +46,7 @@ export default class Wallet extends AbstractView {
     filterChange(val: boolean) {
         //console.log("  user 修改值" ,this);
         // PageBlur.blur_mainpage(this.isFilterChange,false );
-        PageBlur.blur_novigation(this.isFilterChange, false);
+        PageBlur.blur_navigation(this.isFilterChange, false);
         if (val && ModulesHelper.IsShow_CoinTaskDisplay()) {
             this.coinTaskProxy.api_user_var_coin_task_index();
         }

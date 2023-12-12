@@ -170,7 +170,7 @@ export default class PageGameList extends AbstractView {
 
     goCategory(id: any) {
         //this.myProxy.listQuery.vendor_type = id;
-        //PanelUtil.getProxy_novigation.categoryActive = id;
+        //PanelUtil.getProxy_navigation.categoryActive = id;
         PanelUtil.openpanel_gamelist(id);
     }
     get hotGame() {
@@ -243,7 +243,7 @@ export default class PageGameList extends AbstractView {
     }
 
     destroyed() {
-        PanelUtil.getProxy_novigation.categoryActive = 0;
+        PanelUtil.getProxy_navigation.categoryActive = 0;
         this.myProxy.clearData();
         clearInterval(this.timer);
         super.destroyed();

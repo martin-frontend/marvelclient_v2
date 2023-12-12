@@ -23,7 +23,7 @@ import page_game_play from "@/_skin030/views/page_game_play";
 import page_game_soccer from "@/_skin030/views/page_game_soccer";
 import page_statistice_credit from "@/_skin030/views/page_statistice_credit";
 
-import NovigationProxy from "@/_skin030/views/novigation/NovigationProxy";
+import NavigationProxy from "@/_skin030/views/navigation/NavigationProxy";
 import PageBonusProxy from "@/_skin030/views/page_bonus/proxy/PageBonusProxy";
 import PageHomeProxy from "@/_skin030/views/page_home/proxy/PageHomeProxy";
 
@@ -162,8 +162,8 @@ export default class PanelUtil {
         PanelUtil.appproxy.setLoading(isshow);
     }
 
-    static showNovigation(isshow: boolean = true) {
-        PanelUtil.appproxy.setNovigationPanelShow(isshow);
+    static showNavigation(isshow: boolean = true) {
+        PanelUtil.appproxy.setNavigationPanelShow(isshow);
     }
 
     private static _isSetThem = false;
@@ -245,7 +245,7 @@ export default class PanelUtil {
         if (Vue.router.app.$route.path != Vue.prePath) {
             Vue.router.push("/");
         }
-        PanelUtil.getProxy_novigation.setMiniMenu(false);
+        PanelUtil.getProxy_navigation.setMiniMenu(false);
         PageBlur.blur_force_close();
         MultDialogManager.forceClosePanel();
     }
@@ -266,7 +266,7 @@ export default class PanelUtil {
     }
     //打开游戏列表 界面
     static openpage_game_play(url: string) {
-        PanelUtil.getProxy_novigation.setMiniMenu(true);
+        PanelUtil.getProxy_navigation.setMiniMenu(true);
         PageBlur.blur_force_close();
         MultDialogManager.forceClosePanel();
         page_game_play.show(url);
@@ -373,7 +373,7 @@ export default class PanelUtil {
     static openpage_sport(url: string, isCricket: boolean = false) {
         //Vue.router.push("/page_game_soccer");
         if (!window.$mobile) {
-            PanelUtil.getProxy_novigation.setMiniMenu(true);
+            PanelUtil.getProxy_navigation.setMiniMenu(true);
         }
         console.log("  进入 体育", url);
         page_game_soccer.show(url, isCricket);
@@ -381,7 +381,7 @@ export default class PanelUtil {
     /**打开 首页头部的游戏 界面  */
     static openpage_headgame(url: string, item: any) {
         //Vue.router.push("/page_game_soccer");
-        PanelUtil.getProxy_novigation.setMiniMenu(true);
+        PanelUtil.getProxy_navigation.setMiniMenu(true);
         console.log("  进入 首页游戏", url);
         page_game_soccer.show_head_game(url, item);
     }
@@ -842,7 +842,7 @@ export default class PanelUtil {
     static openpanel_dailysign() {
         // LoginEnter(() => {
         MultDialogManager.onOpenPanel(dialog_daily_sign);
-        PanelUtil.showNovigation(false);
+        PanelUtil.showNavigation(false);
         dialog_daily_sign.show();
         // });
     }
@@ -850,14 +850,14 @@ export default class PanelUtil {
     static openpanel_promotionreward() {
         LoginEnter(() => {
             MultDialogManager.onOpenPanel(dialog_promotion_reward);
-            PanelUtil.showNovigation(false);
+            PanelUtil.showNavigation(false);
             dialog_promotion_reward.show();
         });
     }
     /**打开 幸运转盘 */
     static openpanel_spin_lottery() {
         MultDialogManager.onOpenPanel(dialog_spin_lottery);
-        PanelUtil.showNovigation(false);
+        PanelUtil.showNavigation(false);
         dialog_spin_lottery.show();
     }
     /**打开 验证界面 */
@@ -926,8 +926,8 @@ export default class PanelUtil {
     }
 
     //导航的数据
-    public static get getProxy_novigation(): NovigationProxy {
-        return getProxy(NovigationProxy);
+    public static get getProxy_navigation(): NavigationProxy {
+        return getProxy(NavigationProxy);
     }
     //奖励详情数据
     public static get getProxy_record_mine_detail(): DialogRecordMineDetailProxy {
@@ -1443,9 +1443,9 @@ export default class PanelUtil {
                     },
                 },
                 {
-                    key: "showNovigation",
+                    key: "showNavigation",
                     fun: () => {
-                        PanelUtil.showNovigation(true);
+                        PanelUtil.showNavigation(true);
                     },
                 },
             ];

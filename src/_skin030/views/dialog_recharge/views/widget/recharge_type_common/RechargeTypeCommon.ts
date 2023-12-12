@@ -2,7 +2,7 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import PanelUtil from "@/_skin030/core/PanelUtil";
-import { amountFormat } from "@/core/global/Functions";
+import chunk, { amountFormat } from "@/core/global/Functions";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import CopyUtil from "@/core/global/CopyUtil";
 import OpenLink from "@/core/global/OpenLink";
@@ -20,6 +20,7 @@ export default class RechargeTypeCommon extends AbstractView {
     GamePlatConfig = GamePlatConfig;
     plat_coins = GamePlatConfig.config.plat_coins;
     ModulesHelper = ModulesHelper;
+    chunk = chunk;
 
     mounted() {
         //this.onChange1("");
@@ -260,6 +261,16 @@ export default class RechargeTypeCommon extends AbstractView {
             //dialog_preview.show(myCanvas.getData());
             PanelUtil.openpanel_preview(myCanvas.getData());
         }
+    }
+    /**获取fixed_gold_list */
+    get fixedGoldList() {
+        const { coin_name_unique, block_network_id } = this.form;
+        if (!(this.pageData.methodList[coin_name_unique] && this.pageData.methodList[coin_name_unique].options)) {
+            return [];
+        }
+        const option = this.pageData.methodList[coin_name_unique].options[block_network_id];
+        const list = option?.fixed_gold_list ?? [];
+        return list;
     }
     /**获取说明 */
     getExplain() {

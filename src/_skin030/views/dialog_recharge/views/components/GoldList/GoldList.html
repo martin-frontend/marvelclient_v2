@@ -1,0 +1,7 @@
+<v-sheet color="transparent" :class="cls">
+    <v-row dense class="d-flex flex-column text-14 py-2" :class="{ 'text-16': !$mobile }">
+        <v-col cols="4" class="d-flex gap-x-2 min-w-full" v-for="(c, idx) of chunks" :key="idx">
+            <span class="pa-2 rounded10 min-w-2/9 btn_class" @click="form.amount = num" v-for="num of c" :key="num">{{num}}</span>
+        </v-col>
+    </v-row>
+</v-sheet>

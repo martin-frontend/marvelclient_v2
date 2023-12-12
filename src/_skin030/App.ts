@@ -188,9 +188,9 @@ export default class APP extends AbstractView {
             return true;
         }
     }
-    @Watch("myProxy.bshowNovigationPanel")
-    novigationPanelShow() {
-        PageBlur.blur_page(this.myProxy.bshowNovigationPanel);
+    @Watch("myProxy.bshowNavigationPanel")
+    navigationPanelShow() {
+        PageBlur.blur_page(this.myProxy.bshowNavigationPanel);
     }
     get isShowGuide() {
         if (ModulesHelper.isHide_HomeDownloadBtn()) return false;

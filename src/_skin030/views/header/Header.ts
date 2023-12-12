@@ -40,7 +40,7 @@ export default class Header extends AbstractView {
     }
 
     public get isMini(): boolean {
-        return PanelUtil.getProxy_novigation.isminiMenu;
+        return PanelUtil.getProxy_navigation.isminiMenu;
     }
 
     //是否显示 代理管理
@@ -138,7 +138,7 @@ export default class Header extends AbstractView {
     }
 
     showNovPanel() {
-        PanelUtil.showNovigation(true);
+        PanelUtil.showNavigation(true);
     }
     /**打开登录页面 */
     handlerLogin() {

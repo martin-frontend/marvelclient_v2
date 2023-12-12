@@ -143,3 +143,19 @@
 .gap-x-2\.5 {
     column-gap: 10px;
 }
+.min-w-2\/9 {
+    min-width: 22.2% !important;
+}
+.min-w-full {
+    min-width: 100% !important;
+}
+.btn_class{
+    cursor: pointer;
+    text-align: center;
+    background-color: #215844 !important;
+    color: #AADDCB;
+}
+.btn_class:hover{
+    background-color: #3ac167 !important;
+    color: #fff;
+}

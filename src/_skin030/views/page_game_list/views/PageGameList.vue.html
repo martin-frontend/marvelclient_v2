@@ -288,7 +288,7 @@
                         class="d-flex flex-column pt-2 pb-2 align-center rounded-r-lg"
                         width="60"
                         height="100%"
-                        v-if="SkinVariable.isShowGameListNovigation"
+                        v-if="SkinVariable.isShowGameListNavigation"
                     >
                         <v-card
                             color="transparent"
@@ -321,7 +321,7 @@
                         <v-sheet
                             color="transparent"
                             class="d-flex flex-column mob_row"
-                            :style="{'width': SkinVariable.isShowGameListNovigation?'calc(100vw - 65px)':'calc(100vw - 15px)'}"
+                            :style="{'width': SkinVariable.isShowGameListNavigation?'calc(100vw - 65px)':'calc(100vw - 15px)'}"
                         >
                             <!-- 上面的 厂商选择 -->
                             <v-sheet
@@ -445,7 +445,7 @@
                                     ref="pcItemBox"
                                     class="d-flex flex-wrap mb-2"
                                     color="transparent"
-                                    :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'"
+                                    :class="!SkinVariable.isShowGameListNavigation ? '' : 'mr-n2 ml-1'"
                                     flat
                                     tile
                                 >
@@ -467,7 +467,7 @@
                                 <v-card
                                     ref="pcItemBox"
                                     class="d-flex flex-wrap mb-2 mt-2"
-                                    :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'"
+                                    :class="!SkinVariable.isShowGameListNavigation ? '' : 'mr-n2 ml-1'"
                                     color="transparent"
                                     flat
                                     tile
@@ -616,7 +616,7 @@
                         color="bgBanner"
                         class="d-flex align-center rounded10"
                         width="100%"
-                        v-if="SkinVariable.isShowGameListNovigation"
+                        v-if="SkinVariable.isShowGameListNavigation"
                     >
                         <v-card
                             color="transparent"
@@ -774,7 +774,7 @@
                                 <v-card
                                     ref="pcItemBox"
                                     class="d-flex flex-wrap mb-2 mt-2"
-                                    :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2'"
+                                    :class="!SkinVariable.isShowGameListNavigation ? '' : 'mr-n2'"
                                     color="transparent"
                                     flat
                                     tile
@@ -799,7 +799,7 @@
                                 <v-card
                                     ref="pcItemBox"
                                     class="d-flex flex-wrap mb-2 mt-2"
-                                    :class="!SkinVariable.isShowGameListNovigation ? '' : 'mr-n2 ml-1'"
+                                    :class="!SkinVariable.isShowGameListNavigation ? '' : 'mr-n2 ml-1'"
                                     color="transparent"
                                     flat
                                     tile

@@ -32,7 +32,7 @@ export default class GameSearch extends AbstractView {
         const baseWidth = this.$mobile ? 110 : 181;
         let offset = 15;
         if (!this.$mobile) {
-            if (PanelUtil.getProxy_novigation.isminiMenu) {
+            if (PanelUtil.getProxy_navigation.isminiMenu) {
                 offset = 186;
             } else {
                 offset = 261;
@@ -160,7 +160,7 @@ export default class GameSearch extends AbstractView {
         if (this.$mobile) {
             return "menu ";
         } else {
-            if (PanelUtil.getProxy_novigation.isminiMenu) {
+            if (PanelUtil.getProxy_navigation.isminiMenu) {
                 if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin012") {
                     return "menu_pc menu_pc_width_mini_008";
                 }

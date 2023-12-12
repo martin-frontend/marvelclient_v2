@@ -58,8 +58,8 @@ export default class PageGameListProxy extends puremvc.Proxy {
         }
         this.getCurItemIndex();
         this.getCurMenuIndex();
-        //PanelUtil.getProxy_novigation.categoryActive = 1;
-        PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
+        //PanelUtil.getProxy_navigation.categoryActive = 1;
+        PanelUtil.getProxy_navigation.categoryActive = this.listQuery.vendor_type;
 
         this.api_plat_var_game_all_index();
     }
@@ -218,7 +218,7 @@ export default class PageGameListProxy extends puremvc.Proxy {
         //     this.listQuery.page_count = 1;
         //     this.curItemIndex = obj_json.curIndex;
         //     this.curMenuIndex = obj_json.curMenuIndex;
-        //     PanelUtil.getProxy_novigation.categoryActive = this.listQuery.vendor_type;
+        //     PanelUtil.getProxy_navigation.categoryActive = this.listQuery.vendor_type;
         //     console.log("设置  导航 的标签---",this.listQuery.vendor_type);
         //     //this.curMenuIndex =
         // }

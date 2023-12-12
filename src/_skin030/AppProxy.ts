@@ -43,9 +43,9 @@ export default class AppProxy extends puremvc.Proxy {
         this.bshowUserPanel = isShow;
     }
 
-    bshowNovigationPanel = false;
-    setNovigationPanelShow(isShow: boolean) {
-        this.bshowNovigationPanel = isShow;
+    bshowNavigationPanel = false;
+    setNavigationPanelShow(isShow: boolean) {
+        this.bshowNavigationPanel = isShow;
     }
 
     //是否显示IOS引导

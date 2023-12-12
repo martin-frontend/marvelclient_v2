@@ -22,7 +22,7 @@ export default class User extends AbstractView {
     @Watch("isFilterChange")
     filterChange(val: boolean) {
         // PageBlur.blur_mainpage(this.isFilterChange,false );
-        PageBlur.blur_novigation(this.isFilterChange, false);
+        PageBlur.blur_navigation(this.isFilterChange, false);
     }
     setIsFilter(val: boolean) {
         this.isFilterChange = val;

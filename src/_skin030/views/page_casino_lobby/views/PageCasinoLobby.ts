@@ -63,7 +63,7 @@ export default class PageCasinoLobby extends AbstractView {
     }
     getAllGame(vendor_type: number) {
         if (this.$mobile) {
-            PanelUtil.showNovigation(false);
+            PanelUtil.showNavigation(false);
         }
 
         PanelUtil.openpanel_gamelist(vendor_type);

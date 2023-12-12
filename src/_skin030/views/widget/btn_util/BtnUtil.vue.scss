@@ -201,6 +201,11 @@ $sss: #3e3f41;
         color: var(--btn_disable_text_dark);
         background: linear-gradient(to right, #333435, #3d3d3d);
     }
+
+    .light .test_my_disable {
+        color: var(--btn_disable_text_light);
+        background: linear-gradient(to right, #57695d, #57695d);
+    }
 }
 
 .theme--light {

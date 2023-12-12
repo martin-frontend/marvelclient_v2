@@ -15,6 +15,7 @@ import GameConfig from "@/core/config/GameConfig";
 @Component
 export default class PageHome extends AbstractView {
     LangUtil = LangUtil;
+    PanelUtil = PanelUtil;
     gameProxy = PanelUtil.getProxy_gameproxy;
     noticeProxy = PanelUtil.getProxy_noticeProxy;
     myProxy: PageHomeProxy = getProxy(PageHomeProxy);

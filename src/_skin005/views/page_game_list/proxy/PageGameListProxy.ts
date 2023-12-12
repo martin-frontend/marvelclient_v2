@@ -4,6 +4,7 @@ import PanelUtil from "@/_skin005/core/PanelUtil";
 import Constant from "@/core/global/Constant";
 import GlobalVar from "@/core/global/GlobalVar";
 import GameConfig from "@/core/config/GameConfig";
+import Timezone from "@/core/Timezone";
 
 export default class PageGameListProxy extends puremvc.Proxy {
     static NAME = "PageGameListProxy";
@@ -110,7 +111,16 @@ export default class PageGameListProxy extends puremvc.Proxy {
     }
 
     set_vendor_267_products(data: any) {
-        this.pageData.lotteryList = data;
+        for (const item of data) {
+            if (item.game_id == 1) item.sort = 1;
+            else if (item.game_id == 2) item.sort = 0;
+            else if (item.game_id == 3) item.sort = 2;
+            else item.sort = 1000;
+        }
+        this.pageData.lotteryList = data.sort((a: any, b: any) => {
+            if (a.sort > b.sort) return 1;
+            else return -1;
+        });
     }
 
     api_plat_var_lobby_index() {
@@ -177,7 +187,13 @@ export default class PageGameListProxy extends puremvc.Proxy {
 
     /**获取热门彩票列表 */
     api_vendor_267_products() {
-        const timezone = GameConfig.config.defalutTimezone.split(":")[0];
+        let timezone = "";
+        const defalutTimezone = GameConfig.config.defalutTimezone;
+        if (defalutTimezone) {
+            timezone = defalutTimezone.split(":")[0];
+        } else {
+            timezone = Timezone.Instance.curTimezoneItem.key?.split(":")[0];
+        }
         this.sendNotification(net.HttpType.api_vendor_267_products, { timezone });
     }
 

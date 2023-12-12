@@ -16,7 +16,13 @@ export default class extends Footer {
 
     created() {
         setInterval(() => {
-            const timezone = GameConfig.config.defalutTimezone?.split(":")[0] || Timezone.Instance.curTimezoneItem.key?.split(":")[0];
+            let timezone = "";
+            const defalutTimezone = GameConfig.config.defalutTimezone;
+            if (defalutTimezone) {
+                timezone = defalutTimezone.split(":")[0];
+            } else {
+                timezone = Timezone.Instance.curTimezoneItem.key?.split(":")[0];
+            }
             this.timeClock = dateFormatForTimezone(GlobalVar.server_time * 1000, timezone, "yyyy-MM-dd hh:mm:ss");
             this.timeClock += ` (GMT${timezone})`;
         }, 1000);

@@ -34,7 +34,13 @@ export default class LotteryItem extends AbstractView {
     }
     /**开奖时间 */
     get draw_plan_at(): string {
-        const timezone = this.GameConfig.config.defalutTimezone?.split(":")[0] || Timezone.Instance.curTimezoneItem.key?.split(":")[0];
+        let timezone = "";
+        const defalutTimezone = GameConfig.config.defalutTimezone;
+        if (defalutTimezone) {
+            timezone = defalutTimezone.split(":")[0];
+        } else {
+            timezone = Timezone.Instance.curTimezoneItem.key?.split(":")[0];
+        }
         return dateFormatForTimezone(this.lotteryItem.current.draw_plan_at_timestamp * 1000, parseInt(timezone), "yyyy-MM-dd hh:mm:ss");
     }
 

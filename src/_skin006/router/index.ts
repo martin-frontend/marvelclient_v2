@@ -166,6 +166,7 @@ export function getRouter(): VueRouter {
             routes,
         });
         router.beforeEach((to: any, from: any, next: any) => {
+            const homePage = GameConfig.config.homePage ?? "";
             // 语言发生变化，重新加载页面
             if (prePath && prePath.indexOf(LangConfig.getRouterLang()) == -1) {
                 const currLang = prePath.split("/").reverse()[0];
@@ -179,29 +180,26 @@ export function getRouter(): VueRouter {
             }
             if (isNeedJumpHomePage) {
                 isNeedJumpHomePage = false;
-                next(`${prePath}/${GameConfig.config.homePage}`);
+                next(`${prePath}/${homePage}`);
             } else if (prePath && to.path.indexOf(prePath) == -1) {
                 next(prePath + to.path);
             } else {
                 if (
                     !core.user_id &&
-                    (to.path.includes("page_recharge") ||
-                        
-                        to.path.includes("page_my_info") ||
-                        to.path.includes("page_statistice_credit"))
+                    (to.path.includes("page_recharge") || to.path.includes("page_my_info") || to.path.includes("page_statistice_credit"))
                 ) {
-                    next(prePath);
+                    next(`${prePath}/${homePage}`);
                 } else {
                     if (routes.some((e, index, array) => e.name == to.name)) {
                         if (to.path.includes("page_game_play") && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
-                            next(prePath);
+                            next(`${prePath}/${homePage}`);
                         } else {
                             if (router.mode == "history") changeManifeseJson(to.path);
                             next();
                         }
                     } else {
                         console.log("路由不存在", to.path);
-                        next(prePath);
+                        next(`${prePath}/${homePage}`);
                     }
                 }
             }

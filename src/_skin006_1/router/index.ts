@@ -162,7 +162,14 @@ export function getRouter(): VueRouter {
             r.path = prePath + r.path;
         }
 
+        let mode = process.env.VUE_APP_ROUTER_MODEL || "hash";
+        //@ts-ignore
+        if (core.app_type == core.EnumAppType.APP || window.navigator.standalone) {
+            mode = "hash";
+        }
+
         router = new VueRouter({
+            mode,
             routes,
         });
         router.beforeEach((to: any, from: any, next: any) => {

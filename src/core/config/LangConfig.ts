@@ -39,7 +39,8 @@ export default class LangConfig {
     /**从URL中获取语言 */
     static getLangByRouter(path?: string) {
         const isProduction = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production";
-        path = path || (isProduction ? location.pathname : location.hash);
+        //@ts-ignore
+        path = path || (isProduction && !window.navigator.standalone ? location.pathname : location.hash);
 
         let langStr = path.split("/")[1];
         for (const item of Object.keys(this.language)) {

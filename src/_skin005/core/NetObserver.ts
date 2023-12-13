@@ -94,7 +94,6 @@ export default class NetObserver extends AbstractMediator {
                     LangConfig.language = body.language;
                     LangConfig.main_language = body.main_language;
                     //确定语言
-
                     let userLang = LangConfig.getLangByRouter();
                     if (!LangConfig.language[userLang]) {
                         userLang = <any>window.localStorage.getItem("lang");

@@ -8,7 +8,7 @@ import LangConfig from "@/core/config/LangConfig";
 import LangUtil from "@/core/global/LangUtil";
 import { locale } from "vuejs-loadmore";
 import WebViewBridge from "@/core/native/WebViewBridge";
-import { amountFormat, judgeClient } from "@/core/global/Functions";
+import { amountFormat, judgeClient, urlAddParams } from "@/core/global/Functions";
 import OpenLink from "@/core/global/OpenLink";
 
 import { MapLang } from "@/core/map/MapLang";
@@ -273,7 +273,7 @@ export default class NetObserver extends AbstractMediator {
                     //添加时区参数
                     if (GameConfig.config.defalutTimezone) {
                         const timezone = GameConfig.config.defalutTimezone.split(":")[0];
-                        body.url += `&timezone=${timezone}`;
+                        body.url = urlAddParams(body.url, { timezone });
                     }
 
                     this.gameProxy.loading = false;

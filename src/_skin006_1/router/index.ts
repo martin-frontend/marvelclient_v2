@@ -183,7 +183,7 @@ export function getRouter(): VueRouter {
             }
             //是否需要跳转到配置的homePage
             if (isNeedJumpHomePage) {
-                const isInHome = to.path == "/" || to.matched[0].path.slice(1) == LangConfig.getRouterLang();
+                const isInHome = to.path == "/" || to.matched[0]?.path.slice(1) == LangConfig.getRouterLang();
                 isNeedJumpHomePage = isInHome && Boolean(GameConfig.config.homePage);
             }
             if (isNeedJumpHomePage) {

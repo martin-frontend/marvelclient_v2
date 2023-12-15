@@ -12,6 +12,7 @@ import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
 import GameType from "../widget/game_type/GameType.vue";
 import RecentBetting from "../widget/recent_betting/RecentBetting.vue"
 import Activity from "@/_skin005/views/page_home/widget/activity/Activity.vue";
+import LotteryList from "../../widget/lottery_list/LotteryList.vue";
 @Component({
     components: {
         SoccerMatche,
@@ -22,6 +23,7 @@ import Activity from "@/_skin005/views/page_home/widget/activity/Activity.vue";
         GameType,
         RecentBetting,
         Activity,
+        LotteryList,
     },
 })
 export default class extends PageHome {

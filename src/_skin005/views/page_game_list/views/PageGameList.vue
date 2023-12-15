@@ -13,7 +13,7 @@ import Marquee1 from "../../widget/marquee1/Marquee1.vue";
 import Category from "@/_skin005/views/page_home/widget/category/Category.vue";
 import GameSearch from "@/_skin005/views/page_game_list/widget/game_search/GameSearch.vue";
 import CustomSelect from "@/_skin005/views/widget/custom_select/CustomSelect.vue";
-import LotteryList from "../widget/lottery_list/LotteryList.vue";
+import LotteryList from "../../widget/lottery_list/LotteryList.vue";
 @Component({
     components: {
         GameListSelect,

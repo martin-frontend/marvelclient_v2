@@ -100,6 +100,7 @@
         <Marquee1 />
     </v-sheet>
 
+    
     <SoccerMatche v-if="IsShow_FootBallHot && SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" class="mb-2"/>
 
     <GameType />
@@ -110,6 +111,7 @@
         <GameSport v-else :data="item" :name="item.category" :id="item.category"></GameSport>
     </div>
     <Category :class="$mobile ? 'px-2': ''" v-if="SkinVariable.isLobbyGameTop" :lobbyCategory="gameProxy.lobbyCategory" />
+    <LotteryList v-if="ModulesHelper.isPopularLottery()" />
     <SoccerMatche v-if="IsShow_FootBallHot && !SkinVariable.isFootballTop" :class="{'boxpadding': $mobile}" />
 
     <v-lazy v-if="ModulesHelper.isShow_RecentBetting()">

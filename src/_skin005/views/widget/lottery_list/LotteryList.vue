@@ -3,8 +3,8 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import LotteryItem from "../lottery_item/LotteryItem.vue";
 import LotteryList from "./LotteryList";
+import LotteryItem from "../lottery_item/LotteryItem.vue";
 
 @Component({
     components: {

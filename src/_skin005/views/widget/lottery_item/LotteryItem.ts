@@ -4,18 +4,18 @@ import LangUtil from "@/core/global/LangUtil";
 import GlobalVar from "@/core/global/GlobalVar";
 import GameProxy from "@/proxy/GameProxy";
 import GameConfig from "@/core/config/GameConfig";
-import PageGameListProxy from "../../proxy/PageGameListProxy";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import { dateFormatForTimezone } from "@/core/global/Functions";
 import getProxy from "@/core/global/getProxy";
 import Timezone from "@/core/Timezone";
+import LotteryListProxy from "../lottery_list/LotteryListProxy";
 
 @Component
 export default class LotteryItem extends AbstractView {
     LangUtil = LangUtil;
     GlobalVar = GlobalVar;
     GameConfig = GameConfig;
-    myProxy: PageGameListProxy = getProxy(PageGameListProxy);
+    myProxy: LotteryListProxy = getProxy(LotteryListProxy);
 
     @Prop() lotteryItem: any;
     timer = 0;
@@ -131,7 +131,6 @@ export default class LotteryItem extends AbstractView {
     @Watch("countdownNearEnd")
     refetchHotProducts() {
         if (!this.countdownNearEnd) return;
-        const gameListProxy: PageGameListProxy = this.getProxy(PageGameListProxy);
-        gameListProxy.api_vendor_267_products();
+        this.myProxy.api_vendor_267_products();
     }
 }

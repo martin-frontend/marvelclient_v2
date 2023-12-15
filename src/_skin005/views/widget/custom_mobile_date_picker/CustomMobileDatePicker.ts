@@ -2,9 +2,11 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { amountFormat, dateFormat, getTodayOffset, GoldformatNumber } from "@/core/global/Functions";
 import LangUtil from "@/core/global/LangUtil";
 import { Prop, Watch, Component } from "vue-property-decorator";
+import GlobalVar from "@/core/global/GlobalVar";
 
 @Component
 export default class CustomMobileDatePicker extends AbstractView {
+    GlobalVar = GlobalVar;
     LangUtil = LangUtil;
     @Prop({ default: "" }) start!: any;
     @Prop({ default: "" }) end!: any;

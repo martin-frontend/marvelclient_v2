@@ -221,8 +221,6 @@ export function getRouter(): VueRouter {
             } else {
                 addMetaWithType("");
             }
-
-            const homePage = GameConfig.config.homePage ?? "";
             // 语言发生变化，重新加载页面
             if (prePath && prePath.indexOf(LangConfig.getRouterLang()) == -1) {
                 const currLang = prePath.split("/").reverse()[0];
@@ -236,7 +234,7 @@ export function getRouter(): VueRouter {
             }
             if (isNeedJumpHomePage) {
                 isNeedJumpHomePage = false;
-                next(`${prePath}/${homePage}`);
+                next(`${prePath}/${GameConfig.config.homePage}`);
             } else if (prePath && to.path.indexOf(prePath) == -1) {
                 next(prePath + to.path);
             } else {
@@ -249,11 +247,11 @@ export function getRouter(): VueRouter {
                         to.path.includes("page_coin_task") ||
                         to.path.includes("page_activity_slot"))
                 ) {
-                    next(`${prePath}/${homePage}`);
+                    next(prePath);
                 } else {
                     if (routes.some((e, index, array) => e.name == to.name)) {
                         if (to.path.includes("page_game_play") && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
-                            next(`${prePath}/${homePage}`);
+                            next(prePath);
                         } else {
                             if (router.mode == "history") {
                                 changeManifeseJson(to.path);
@@ -264,7 +262,7 @@ export function getRouter(): VueRouter {
                         }
                     } else {
                         console.log("路由不存在", to.path);
-                        next(`${prePath}/${homePage}`);
+                        next(prePath);
                     }
                 }
             }

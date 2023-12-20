@@ -10,7 +10,7 @@
                     <img :src="lotteryItem.icon" width="100" height="74" style="object-fit: contain" alt="" />
                     <v-divider vertical class="ml-4" />
                 </v-sheet>
-                <div>
+                <div v-if="lotteryItem.current.draw_status != 5">
                     <div class="text-16 font-weight-bold">
                         <span class="text-14 textYellow--text">{{LangUtil("期号")}}：</span>{{lotteryItem.current.game_period_no}}
                     </div>
@@ -27,6 +27,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="d-flex align-center justify-center" v-else>
+                    <div><svg-icon class="text-62" icon="lottery_nodraw" /></div>
+                    <div class="ml-2">{{ getDrawStatus(lotteryItem.current) }}...</div>
                 </div>
                 <div class="text-16 ml-4 textGray--text">
                     <div class="d-flex align-center">
@@ -195,7 +199,7 @@
 
                 <div class="d-flex align-center justify-center" v-else>
                     <div><svg-icon class="text-62" icon="lottery_nodraw" /></div>
-                    <div class="ml-2">{{ drawStatus }}...</div>
+                    <div class="ml-2">{{ getDrawStatus(lotteryItem.previous) }}...</div>
                 </div>
 
                 <div class="text-center ml-3" v-if="lotteryItem.game_id != 1 && draw_no">

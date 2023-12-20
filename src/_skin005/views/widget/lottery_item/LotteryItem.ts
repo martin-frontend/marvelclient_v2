@@ -62,8 +62,8 @@ export default class LotteryItem extends AbstractView {
         return this.lotteryItem.previous.draw_no.split(",")[num];
     }
     //开奖状态
-    get drawStatus() {
-        const draw_status = this.lotteryItem.previous.draw_status;
+    getDrawStatus(period: any) {
+        const draw_status = period.draw_status;
         if (draw_status == 5) return LangUtil("开奖取消");
         else return LangUtil("开奖中");
     }

@@ -405,8 +405,9 @@
                                     class="ml-2"
                                     :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' "
                                     @click="onClickFootballName(item)"
-                                    >{{item.game_info.home_name}} vs {{item.game_info.away_name}}</span
                                 >
+                                    {{item.vendor_product_name}}
+                                </span>
                                 <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
                                     <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
                                 </span>
@@ -953,7 +954,7 @@
                         <template v-if="!item.is_multi">
                             <div>
                                 <div :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
-                                    {{item.game_info.home_name}} vs {{item.game_info.away_name}}
+                                    {{item.vendor_product_name}}
                                 </div>
 
                                 <div>

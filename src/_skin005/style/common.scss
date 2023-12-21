@@ -42,7 +42,7 @@
         li {
             .v-pagination__item {
                 border: none !important;
-                width: 32px !important;
+                min-width: 32px !important;
                 height: 32px !important;
                 box-shadow: none !important;
                 border-radius: 10px;

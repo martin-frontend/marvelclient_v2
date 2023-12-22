@@ -9,6 +9,7 @@ import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import GameConfig from "@/core/config/GameConfig";
 import GlobalVar from "@/core/global/GlobalVar";
 import ModulesHelper from "@/_skin005/core/ModulesHelper";
+import { number } from "echarts";
 
 @Component
 export default class ExchangeTypeCommon extends AbstractView {
@@ -407,7 +408,7 @@ export default class ExchangeTypeCommon extends AbstractView {
     get exemption_amount() {
         const { exemption_amount, gold_water_pass } = this.extend_info;
         const t = this.transformMoney_sum_money(exemption_amount);
-        if (gold_water_pass || this.sum_money <= t) return amountFormat(this.sum_money, true);
+        if (gold_water_pass || Number(this.sum_money) <= Number(t)) return amountFormat(this.sum_money, true);
         return t;
     }
 
@@ -416,7 +417,8 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
 
     get progressValue() {
-        return Math.min((this.transformMoney_sum_money(this.exemption_amount, false) / this.sum_money) * 100, 100);
+        return Math.min((Number(this.exemption_amount) / Number(this.sum_money)) * 100, 100);
+        // return Math.min((Number(this.transformMoney_sum_money(this.exemption_amount, false)) / Number(this.sum_money)) * 100, 100);
     }
     get isNeedCoinShow() {
         return GlobalVar.skin != "skin020";

@@ -30,7 +30,6 @@ export default class DialogSafetyCenter extends AbstractView {
     areaCodeList = this.pageData.areaCode;
     areaCodeMenu = false;
     is_password_gold_transfer = GamePlatConfig.config.is_password_gold_transfer;
-    typechange = 0;
 
     email_error_info = ""; //邮箱的错误信息
     //手动调用，进入直接进 游戏列表
@@ -257,8 +256,7 @@ export default class DialogSafetyCenter extends AbstractView {
                 if (!keys.includes(this.myProxy.pageData.tabIndex + "") && !keys.includes(this.myProxy.pageData.tabIndex)) {
                     this.myProxy.pageData.tabIndex = Number(keys[0]);
                 }
-                this.typechange = this.pageData.tabIndex;
-                this.onTimeChange(this.typechange);
+                this.onTimeChange(this.myProxy.pageData.tabIndex);
             });
         }
     }

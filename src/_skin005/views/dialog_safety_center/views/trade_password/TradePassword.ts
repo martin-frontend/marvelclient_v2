@@ -136,7 +136,7 @@ export default class TradePassword extends AbstractView {
                 PanelUtil.message_confirm({
                     message: LangUtil("请先绑定邮箱或者手机"),
                     okFun: () => {
-                        PanelUtil.openpanel_safety_center();
+                        PanelUtil.openpanel_safety_center(1);
                     },
                 });
                 return;
@@ -159,7 +159,7 @@ export default class TradePassword extends AbstractView {
             PanelUtil.message_confirm({
                 message: LangUtil("请先绑定邮箱或者手机"),
                 okFun: () => {
-                    PanelUtil.openpanel_safety_center();
+                    PanelUtil.openpanel_safety_center(1);
                 },
             });
         }

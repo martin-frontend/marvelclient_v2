@@ -317,6 +317,19 @@ const skinMap = {
             },
         },
     },
+    /**bet 777 */
+    skin016: {
+        public_dir: "public_skin016",
+        pages: {
+            skin011: {
+                entry: "src/_skin016/main.ts",
+                template: "public_skin016/skin016.html",
+                filename: "index.html",
+                title: "bet 777",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**开源 */
     skin030: {
         public_dir: "public_skin030",
@@ -403,9 +416,23 @@ module.exports = {
         } else if (process.env.VUE_APP_SKIN == "skin003") {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
-            ["skin004_2","skin004_5","skin004_6","skin005", "skin006", "skin006_1", "skin007", "skin008", "skin009", "skin010", "skin011", "skin012", "skin013", "skin015"].includes(
-                process.env.VUE_APP_SKIN
-            )
+            [
+                "skin004_2",
+                "skin004_5",
+                "skin004_6",
+                "skin005",
+                "skin006",
+                "skin006_1",
+                "skin007",
+                "skin008",
+                "skin009",
+                "skin010",
+                "skin011",
+                "skin012",
+                "skin013",
+                "skin015",
+                "skin016",
+            ].includes(process.env.VUE_APP_SKIN)
         ) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));
         } else if (process.env.VUE_APP_SKIN == "skin030") {

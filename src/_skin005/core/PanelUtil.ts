@@ -197,6 +197,7 @@ export default class PanelUtil {
         } else {
             Vue.vuetify.framework.theme.dark = isDark;
         }
+        console.warn("---切换 主题 颜色");
     }
     /**
      * 常规页面的打开，一般是路由

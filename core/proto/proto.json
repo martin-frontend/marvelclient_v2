@@ -196,6 +196,7 @@
         "--热门列表数据",
         ["api/vendor/96/products", "获取easybet赛事数据"],
         ["api/vendor/267/products", "获取热门彩票数据"],
+        ["api/vendor/{vendor_id}/products", "获取热门数据,上面两个合成一个"],
 
         "--获取推荐人信息是否为信用用户",
         ["api/user/{user_id}/invite_user_info", "查询直属用户金币数量"],

@@ -3,6 +3,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import Vue from "vue";
 import PanelUtil from "../PanelUtil";
 import { TrackEventMap, track } from "@/_skin005/core/TrackManager";
+import GameConfig from "@/core/config/GameConfig";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
     execute(notification: puremvc.INotification) {
@@ -78,6 +79,9 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                 });
             } else if (ERROR_CODE_PLAY_GAME.includes(result.status)) {
                 PanelUtil.message_alert(body.result.msg);
+                //进入游戏制作，直接回到首页
+                const homePage = GameConfig.config.homePage ?? "";
+                Vue.router.push(`/${homePage}`);
             } else if (ERROR_CODE_NO_PERMISSION.includes(result.status)) {
                 PanelUtil.message_alert(LangUtil("该用户ID无权限查询"));
             } else if (ERROR_CODE_NO_ENOUGH.includes(result.status)) {

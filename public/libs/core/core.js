@@ -371,6 +371,8 @@ var net;
         api_vendor_96_products: "api/vendor/96/products",
         /**--热门列表数据--获取热门彩票数据*/
         api_vendor_267_products: "api/vendor/267/products",
+        /**--热门列表数据--获取热门数据,上面两个合成一个*/
+        api_vendor_var_products: "api/vendor/{vendor_id}/products",
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: "api/user/{user_id}/invite_user_info",
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -738,6 +740,8 @@ var net;
         api_vendor_96_products: "api_vendor_96_products",
         /**--热门列表数据--获取热门彩票数据*/
         api_vendor_267_products: "api_vendor_267_products",
+        /**--热门列表数据--获取热门数据,上面两个合成一个*/
+        api_vendor_var_products: "api_vendor_var_products",
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: "api_user_var_invite_user_info",
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -974,6 +978,7 @@ var net;
         //--热门列表数据
         facade.registerCommand(net.HttpType.api_vendor_96_products, net.cmd_api_vendor_96_products);
         facade.registerCommand(net.HttpType.api_vendor_267_products, net.cmd_api_vendor_267_products);
+        facade.registerCommand(net.HttpType.api_vendor_var_products, net.cmd_api_vendor_var_products);
         //--获取推荐人信息是否为信用用户
         facade.registerCommand(net.HttpType.api_user_var_invite_user_info, net.cmd_api_user_var_invite_user_info);
         //--直属用户查询操作
@@ -4938,6 +4943,28 @@ var net;
         }
     }
     net.cmd_api_vendor_var_ori_product_visitor_show_var = cmd_api_vendor_var_ori_product_visitor_show_var;
+})(net || (net = {}));
+/**
+ * 获取热门数据,上面两个合成一个
+ */
+var net;
+/**
+ * 获取热门数据,上面两个合成一个
+ */
+(function (net) {
+    class cmd_api_vendor_var_products extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_vendor_var_products, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_vendor_var_products, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_vendor_var_products = cmd_api_vendor_var_products;
 })(net || (net = {}));
 var core;
 (function (core) {

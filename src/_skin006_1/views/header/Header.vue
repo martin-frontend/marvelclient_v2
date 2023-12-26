@@ -14,6 +14,10 @@ import { dateFormatForTimezone } from "@/core/global/Functions";
 import GlobalVar from "@/core/global/GlobalVar";
 import GameConfig from "@/core/config/GameConfig";
 import Timezone from "@/core/Timezone";
+import PanelUtil from "@/_skin005/core/PanelUtil";
+import PageBlur from "@/_skin005/core/PageBlur";
+import MultDialogManager from "@/_skin005/core/MultDialogManager";
+import Vue from "vue";
 
 @Component({
     components: {
@@ -39,6 +43,17 @@ export default class extends Header {
             this.timeClock = dateFormatForTimezone(GlobalVar.server_time * 1000, timezone, "MM-dd hh:mm:ss");
             this.timeClock += ` (GMT${timezone})`;
         }, 1000);
+    }
+
+    /**打开主页 */
+    goHome() {
+        const homePage = GameConfig.config.homePage ?? "";
+        if (Vue.router.app.$route.path != Vue.prePath) {
+            Vue.router.push(`/${homePage}`);
+        }
+        PanelUtil.getProxy_novigation.setMiniMenu(false);
+        PageBlur.blur_force_close();
+        MultDialogManager.forceClosePanel();
     }
 }
 </script>

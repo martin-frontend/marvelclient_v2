@@ -3,8 +3,8 @@ import GameConfig from "@/core/config/GameConfig";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
 import getProxy from "@/core/global/getProxy";
 import GlobalVar from "@/core/global/GlobalVar";
-import router from "@/router";
 import GameProxy from "./GameProxy";
+import Vue from "vue";
 
 export default class SelfProxy extends AbstractProxy {
     static NAME = "SelfProxy";
@@ -121,6 +121,10 @@ export default class SelfProxy extends AbstractProxy {
                 this.sendNotification(net.HttpType.api_plat_var_pop_index, { plat_id: core.plat_id, currency: gameProxy.coin_name_unique });
                 //活动配置
                 this.sendNotification(net.HttpType.api_plat_activity_config);
+                //如果当前在游戏页面，游戏页面需要刷新
+                if (Vue.router.app.$route.path.includes("page_game_play")) {
+                    gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
+                }
             }
         }
 

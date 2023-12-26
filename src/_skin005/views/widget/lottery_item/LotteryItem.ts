@@ -47,7 +47,7 @@ export default class LotteryItem extends AbstractView {
     //倒计时时间
     get countdownParts() {
         const time = this.lotteryItem.current.draw_plan_at_timestamp - this.server_time;
-        if (time <= 0) this.myProxy.api_vendor_267_products();
+        if (time <= 0) this.myProxy.api_vendor_var_products();
         const hours = (time / 3600) >> 0;
         const minutes = ((time - hours * 3600) / 60) >> 0;
         const seconds = (time - hours * 3600 - minutes * 60) >> 0;
@@ -131,6 +131,6 @@ export default class LotteryItem extends AbstractView {
     @Watch("countdownNearEnd")
     refetchHotProducts() {
         if (!this.countdownNearEnd) return;
-        this.myProxy.api_vendor_267_products();
+        this.myProxy.api_vendor_var_products();
     }
 }

@@ -303,6 +303,8 @@ declare module net {
         api_vendor_96_products: string;
         /**--热门列表数据--获取热门彩票数据*/
         api_vendor_267_products: string;
+        /**--热门列表数据--获取热门数据,上面两个合成一个*/
+        api_vendor_var_products: string;
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: string;
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -670,6 +672,8 @@ declare module net {
         api_vendor_96_products: string;
         /**--热门列表数据--获取热门彩票数据*/
         api_vendor_267_products: string;
+        /**--热门列表数据--获取热门数据,上面两个合成一个*/
+        api_vendor_var_products: string;
         /**--获取推荐人信息是否为信用用户--查询直属用户金币数量*/
         api_user_var_invite_user_info: string;
         /**--直属用户查询操作--查询直属用户金币数量*/
@@ -2336,6 +2340,15 @@ declare module net {
  */
 declare module net {
     class cmd_api_vendor_var_ori_product_visitor_show_var extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 获取热门数据,上面两个合成一个
+ */
+declare module net {
+    class cmd_api_vendor_var_products extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

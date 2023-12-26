@@ -12,11 +12,11 @@ export default class PageHomeProxy extends puremvc.Proxy {
         if (ModulesHelper.IsShow_FootBallHot()) {
             setInterval(() => {
                 if (Vue.router.currentRoute.path == Vue.prePath || Vue.router.currentRoute.path == Vue.prePath + "/") {
-                    this.api_vendor_96_products();
+                    this.api_vendor_var_products();
                 }
             }, 5000);
             if (Vue.router.currentRoute.path == Vue.prePath || Vue.router.currentRoute.path == Vue.prePath + "/") {
-                this.api_vendor_96_products();
+                this.api_vendor_var_products();
             }
         }
     }
@@ -65,12 +65,6 @@ export default class PageHomeProxy extends puremvc.Proxy {
         Object.assign(this.pageData.backwater_setting_info, data);
     }
 
-    set_vendor_96_products(data: any) {
-        if (Object.keys(data).length > 0) {
-            this.pageData.compData = data;
-        }
-    }
-
     api_plat_var_stake_info() {
         this.sendNotification(net.HttpType.api_plat_var_stake_info, { plat_id: core.plat_id });
     }
@@ -95,7 +89,8 @@ export default class PageHomeProxy extends puremvc.Proxy {
         });
     }
     /**获取赛事信息 */
-    api_vendor_96_products() {
+    // api_vendor_96_products() {
+    api_vendor_var_products() {
         let market_type = "";
         if (window.$mobile) {
             market_type = "ASIAN_OVER_UNDER,ASIAN_HANDICAP";
@@ -104,13 +99,33 @@ export default class PageHomeProxy extends puremvc.Proxy {
                 "MATCH_ODDS,MATCH_ODDS_HALF_TIME,ASIAN_HANDICAP,ASIAN_HANDICAP_HALF_TIME,ASIAN_OVER_UNDER,ASIAN_OVER_UNDER_HALF_TIME";
         }
 
+        // if (window.$mobile && GameConfig.config.home_sport_option && GameConfig.config.home_sport_option.mobile) {
+        //     this.sendNotification(net.HttpType.api_vendor_96_products, GameConfig.config.home_sport_option.mobile);
+        // } else if (GameConfig.config.home_sport_option && GameConfig.config.home_sport_option.pc) {
+        //     this.sendNotification(net.HttpType.api_vendor_96_products, GameConfig.config.home_sport_option.pc);
+        // } else {
+        //     this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 3 });
+        // }
+
+        let obj: any;
         if (window.$mobile && GameConfig.config.home_sport_option && GameConfig.config.home_sport_option.mobile) {
-            this.sendNotification(net.HttpType.api_vendor_96_products, GameConfig.config.home_sport_option.mobile);
+            obj = GameConfig.config.home_sport_option.mobile;
         } else if (GameConfig.config.home_sport_option && GameConfig.config.home_sport_option.pc) {
-            this.sendNotification(net.HttpType.api_vendor_96_products, GameConfig.config.home_sport_option.pc);
+            obj = GameConfig.config.home_sport_option.pc;
         } else {
-            this.sendNotification(net.HttpType.api_vendor_96_products, { market_type, page_size: 3 });
+            obj = { market_type, page_size: 3 };
         }
+
+        obj.vendor_id = GameConfig.config.SportVendorId;
+        const url = net.getUrl(net.HttpType.api_vendor_var_products, obj);
+        net.Http.request(obj, url).then((result: any) => {
+            const { status, data } = result;
+            if (status === 0) {
+                if (Object.keys(data).length > 0) {
+                    this.pageData.compData = data;
+                }
+            }
+        });
     }
     /**获取平台配置信息 */
     api_plat_var_client_config() {

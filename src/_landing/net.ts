@@ -124,6 +124,8 @@ export function api_public_sms_send(params: any) {
 }
 
 export function api_user_register(params: any) {
+    const obj = decode_url(window.location.search.substring(1));
+    const ma_token = obj.ma_token || "";
     http.post(
         "/api/user/register",
         {
@@ -139,6 +141,7 @@ export function api_user_register(params: any) {
             lang: LandConfig.config.lang || "en_EN",
             utm_source: window.location.search.substring(1),
             password_ori: params.password,
+            ma_token: ma_token,
         },
         function (data: any) {
             const ifr: any = document.getElementById("ifr");

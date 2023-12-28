@@ -8,6 +8,7 @@ import GameConfig from "@/core/config/GameConfig";
 import SkinVariable from "@/_skin030/core/SkinVariable";
 import ModulesHelper from "@/_skin030/core/ModulesHelper";
 import { changeDateShow } from "@/core/global/Functions";
+import { getMsg } from "./msg";
 
 @Component
 export default class PageActivity extends AbstractView {
@@ -18,6 +19,7 @@ export default class PageActivity extends AbstractView {
     pageData = this.myProxy.pageData;
     categoryData = this.myProxy.pageData.categoryData;
     core = core;
+    msg = getMsg(LangUtil);
 
     get promotion_reward_model_id() {
         return (
@@ -132,6 +134,10 @@ export default class PageActivity extends AbstractView {
     }
     onClickGetIt(item: any) {
         console.log("点击 立即获取", item);
+        if (item.model_type == 13) {
+            PanelUtil.openpanel_spin_lottery();
+            return;
+        }
         PanelUtil.openpanel_recharge();
     }
     onClickRules(item: any) {

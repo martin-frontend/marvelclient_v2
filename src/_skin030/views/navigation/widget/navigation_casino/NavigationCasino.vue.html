@@ -70,7 +70,5 @@
             @onChangePanel="onChangePanel"
         ></NavigationItem>
     </v-sheet>
-    <v-sheet color="transparent" width="100%" class="d-flex flex-column justify-center rounded10 mt-2 cursor-pointer">
-        <v-img src="~@/_skin030/assets/pagehome/daily_checkin.png" width="100%" @click="goCategory({ id: 7 })"></v-img>
-    </v-sheet>
+    <daily-checkin @goCheckin="() => goCategory({ id: 7 })"></daily-checkin>
 </v-sheet>

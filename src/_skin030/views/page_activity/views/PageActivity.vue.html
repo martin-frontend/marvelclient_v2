@@ -118,7 +118,7 @@
                                                         height="30"
                                                         min_width="100"
                                                         @click.native.stop="onClickGetIt(item)"
-                                                        >{{LangUtil("立即获取")}}</btn-yellow
+                                                        >{{item.model_type == 13 ? msg.goNow : msg.depositNow}}</btn-yellow
                                                     >
                                                     <btn-yellow
                                                         class="ml-3 text-14"

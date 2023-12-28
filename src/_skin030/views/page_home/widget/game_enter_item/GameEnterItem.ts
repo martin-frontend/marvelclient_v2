@@ -60,6 +60,10 @@ export default class GameEnterItem extends AbstractView {
 
     onBtnClick() {
         console.log("收到点击", this.item);
+        if (this.item.category == 251) {
+            PanelUtil.openpanel_gamelist(0, 251);
+            return;
+        }
         if (this.item.category == 16) {
             PanelUtil.openpage_casino_lobby();
         } else if (this.item.category == 64) {
@@ -67,7 +71,6 @@ export default class GameEnterItem extends AbstractView {
             PanelUtil.openpage_soccer(this.getCurMenuData[0]);
         } else {
             PanelUtil.openpanel_gamelist(this.item.category);
-
         }
     }
 }

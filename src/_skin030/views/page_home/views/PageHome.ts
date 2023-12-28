@@ -174,7 +174,8 @@ export default class PageHome extends AbstractView {
             btn_name: LangUtil("进入体育"),
         },
         {
-            category: 2,
+            // 2023.12.22修改之前是2，打开cards，修改之后改成打开一个vendor
+            category: 251,
             icon: "ky_game_hot",
             title: LangUtil("首页棋牌"),
             bg_name: "game_anime",

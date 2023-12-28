@@ -26,7 +26,7 @@
                                     <svg-icon class="ml-1" :class="!$mobile ? 'text-24' : 'text-18'" icon="ky_right"></svg-icon>
                                 </div>
 
-                                <span>{{vip_info.vipProgress }}%</span>
+                                <span>{{parseFloat(vip_info.vipProgress.toFixed(2))}}%</span>
                             </v-sheet>
                             <v-sheet width="100%" color="transparent" class="mt-2">
                                 <v-progress-linear

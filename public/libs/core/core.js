@@ -4986,6 +4986,22 @@ var core;
 })(core || (core = {}));
 var core;
 (function (core) {
+    let EnumPlatType;
+    (function (EnumPlatType) {
+        EnumPlatType[EnumPlatType["TYPE_NULL"] = 0] = "TYPE_NULL";
+        EnumPlatType[EnumPlatType["WEB_ANDROID"] = 1] = "WEB_ANDROID";
+        EnumPlatType[EnumPlatType["WEB_IOS"] = 2] = "WEB_IOS";
+        EnumPlatType[EnumPlatType["WEB_PC"] = 3] = "WEB_PC";
+        EnumPlatType[EnumPlatType["APP_ANDROID"] = 4] = "APP_ANDROID";
+        EnumPlatType[EnumPlatType["APP_IOS"] = 5] = "APP_IOS";
+        EnumPlatType[EnumPlatType["APP_PC"] = 6] = "APP_PC";
+        EnumPlatType[EnumPlatType["STANDALONE_ANDROID"] = 7] = "STANDALONE_ANDROID";
+        EnumPlatType[EnumPlatType["STANDALONE_IOS"] = 8] = "STANDALONE_IOS";
+        EnumPlatType[EnumPlatType["STANDALONE_PC"] = 9] = "STANDALONE_PC";
+    })(EnumPlatType = core.EnumPlatType || (core.EnumPlatType = {}));
+})(core || (core = {}));
+var core;
+(function (core) {
     core.EventType = {
         /**网络请求开始*/
         REQUEST_START: "REQUEST_START",
@@ -5732,6 +5748,7 @@ var core;
     core.user_id = 0;
     /**应用平台:1-wap|2-app|4-web*/
     core.app_type = 1;
+    core.app_plat_type = 0;
     /**设备类型 1:ios 2安卓 3其它 */
     core.device_type = 3;
     /**平台ID*/
@@ -5756,6 +5773,7 @@ var net;
             data.plat_id = core.plat_id;
             data.channel_id = core.channel_id;
             data.game_domain = core.game_domain;
+            data.app_plat_type = core.app_plat_type;
             data.lang = core.lang;
             if (core.user_id) {
                 data.user_id = core.user_id;

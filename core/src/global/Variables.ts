@@ -10,6 +10,7 @@ module core {
     export var token: string;
     /**应用平台:1-wap|2-app|4-web*/
     export var app_type: number = 1;
+    export var app_plat_type: number = 0;
     /**设备类型 1:ios 2安卓 3其它 */
     export var device_type: number = 3;
     /**设备号*/
@@ -23,11 +24,11 @@ module core {
     /**推荐号*/
     export var invite_user_id: any;
     /**用来获取配置文件的cdn地址 */
-    export var cdnUrl:string = "http://others.sftpuser.nqsf9emow.com:27799";
+    export var cdnUrl: string = "http://others.sftpuser.nqsf9emow.com:27799";
     /**配置文件 */
     export var configVo: ConfigVO;
     /**语言 */
-    export var lang:string = "en_EN";
+    export var lang: string = "en_EN";
     /**其他参数 */
     export var other_params: any;
 }

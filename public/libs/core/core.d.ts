@@ -2368,6 +2368,20 @@ declare module core {
     }
 }
 declare module core {
+    enum EnumPlatType {
+        TYPE_NULL = 0,
+        WEB_ANDROID = 1,
+        WEB_IOS = 2,
+        WEB_PC = 3,
+        APP_ANDROID = 4,
+        APP_IOS = 5,
+        APP_PC = 6,
+        STANDALONE_ANDROID = 7,
+        STANDALONE_IOS = 8,
+        STANDALONE_PC = 9
+    }
+}
+declare module core {
     var EventType: {
         /**网络请求开始*/
         REQUEST_START: string;
@@ -2557,6 +2571,7 @@ declare module core {
     var token: string;
     /**应用平台:1-wap|2-app|4-web*/
     var app_type: number;
+    var app_plat_type: number;
     /**设备类型 1:ios 2安卓 3其它 */
     var device_type: number;
     /**设备号*/

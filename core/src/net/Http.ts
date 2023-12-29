@@ -11,7 +11,7 @@ module net {
             data.plat_id = core.plat_id;
             data.channel_id = core.channel_id;
             data.game_domain = core.game_domain;
-
+            data.app_plat_type = core.app_plat_type;
             data.lang = core.lang;
 
             if (core.user_id) {
@@ -49,11 +49,11 @@ module net {
                                         location.reload();
                                     }
                                 } else {
-                                    console.log("---11111->>>>",this.response)
+                                    console.log("---11111->>>>", this.response);
                                     facde.sendNotification(core.EventType.REQUEST_ERROR, { url, data, result });
                                 }
                             } catch (e) {
-                                console.log("---222222->>>>",this.response)
+                                console.log("---222222->>>>", this.response);
                                 facde.sendNotification(core.EventType.REQUEST_ERROR, { url, data, e });
                             }
                         } else {

@@ -65,6 +65,7 @@ export default class GameConfig {
         }
 
         core.host = this.getApiUrl();
+        core.app_plat_type = this.getAppPlatType();
 
         const data = {
             game_domain: core.game_domain,
@@ -128,6 +129,49 @@ export default class GameConfig {
                 alert("get game_address fail");
                 this.onGetAddressFail();
             });
+    }
+    /** 获取应用平台的类型 */
+    static getAppPlatType(): core.EnumPlatType {
+        //判断是否为app
+        if (core.app_type == core.EnumAppType.APP) {
+            if (core.isAndroid()) {
+                return core.EnumPlatType.APP_ANDROID;
+            } else if (core.isIOS()) {
+                return core.EnumPlatType.APP_IOS;
+            } else {
+                return core.EnumPlatType.APP_PC;
+            }
+        }
+        //不是手机
+        if (!core.isMobile()) {
+            //@ts-ignore
+            if (window.navigator.standalone === true || this.isAndroidFullScreen()) {
+                return core.EnumPlatType.STANDALONE_PC;
+            }
+            return core.EnumPlatType.WEB_PC;
+        }
+        //是否已经保存，或者全屏
+        //@ts-ignore
+        if (window.navigator.standalone === true) {
+            return core.EnumPlatType.STANDALONE_IOS;
+        }
+
+        if (this.isAndroidFullScreen()) {
+            return core.EnumPlatType.STANDALONE_ANDROID;
+        }
+
+        if (core.isIOS()) {
+            return core.EnumPlatType.WEB_IOS;
+        }
+        if (core.isAndroid()) {
+            return core.EnumPlatType.WEB_ANDROID;
+        }
+
+        return core.EnumPlatType.TYPE_NULL;
+    }
+    // 检查是否在安卓全屏模式下运行
+    static isAndroidFullScreen() {
+        return window.matchMedia("(display-mode: fullscreen)").matches || window.matchMedia("(display-mode: standalone)").matches;
     }
 
     static failHandle = 0;

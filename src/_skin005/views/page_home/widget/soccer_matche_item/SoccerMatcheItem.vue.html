@@ -3,7 +3,7 @@
         <div class="d-flex align-center">
             <v-sheet class="mx-2 rounded" min-width="2" height="16" color="textYellow"></v-sheet>
             <div class="text-14 font-weight-bold">{{competition.competition_name}}</div>
-            <div v-if="!states.phase_minute" class="text-12 font-weight-bold ml-2">{{ startTime }}</div>
+            <!-- <div v-if="!states.phase_minute" class="text-12 font-weight-bold ml-2">{{ startTime }}</div> -->
             <v-spacer />
             <btn-yellow class="mr-2" min_width="40" :btn_type="6">{{LangUtil("进入")}}</btn-yellow>
         </div>
@@ -111,11 +111,33 @@
     </v-sheet>
 
     <div v-else class="mt-4 text-14">
-        <v-sheet class="d-flex align-center pl-3 pt-2 rounded-t-lg text-14" style="padding-right: 65px" color="bgHeaderBox" height="50">
-            <v-sheet class="mr-3 rounded" min-width="3" height="24" color="textYellow"></v-sheet>
+        <v-sheet class="d-flex align-center pl-3 py-2 rounded-t-lg text-14" style="padding-right: 65px" color="bgHeaderBox">
+            <!-- <v-sheet class="mr-3 rounded" min-width="3" height="24" color="textYellow"></v-sheet> -->
             <v-sheet class="d-flex align-center text-16 font-weight-bold" color="transparent" min-width="250"
                 >{{competition.competition_name}}</v-sheet
             >
+        </v-sheet>
+        <v-divider class="" />
+        <v-sheet class="d-flex align-center pl-3 text-14" style="padding-right: 65px" color="bgHeaderBox" height="40">
+            <!-- <v-sheet class="mr-3 rounded" min-width="3" height="24" color="textYellow"></v-sheet>
+            <v-sheet class="d-flex align-center text-16 font-weight-bold" color="transparent" min-width="250"
+                >{{competition.competition_name}}</v-sheet
+            > -->
+            <v-sheet color="transparent" class="d-flex align-center" min-width="265">
+                <v-sheet class="mr-3 rounded" min-width="3" height="24" color="textYellow"></v-sheet>
+                <template v-if="!states.match_phase">
+                    <div>{{LangUtil("未开赛")}}</div>
+                    <div class="ml-1">{{ startTime }}</div>
+                    <!-- <div class="mx-1">{{ startTime.substring(0, 5) }}</div>
+                    <div>{{ startTime.substring(5, 11) }}</div> -->
+                </template>
+                <template v-else>
+                    <div :class="{'red--text': states.match_phase == '-'}" style="text-align: center">{{ statusString }}</div>
+                    <div class="ml-1" v-if="states.phase_minute && states.phase_minute > 0">
+                        {{ states.phase_minute }}{{LangUtil("分钟")}}
+                    </div>
+                </template>
+            </v-sheet>
             <v-sheet class="d-flex align-center justify-center mr-2 primary--text" color="transparent" width="100%">
                 {{LangUtil("独赢")}}
             </v-sheet>
@@ -136,7 +158,7 @@
             </v-sheet>
         </v-sheet>
         <v-sheet class="d-flex rounded-b-lg pb-2 cursor-pointer" color="bgHeaderBox" @click.native="onEnter">
-            <v-sheet class="d-flex flex-column align-center text-14" width="80" min-width="80" color="transparent">
+            <!-- <v-sheet class="d-flex flex-column align-center text-14" width="80" min-width="80" color="transparent">
                 <template v-if="!states.match_phase">
                     <div>{{LangUtil("未开赛")}}</div>
                     <div>{{ startTime.substring(0, 5) }}</div>
@@ -149,9 +171,9 @@
                     </div>
                 </template>
             </v-sheet>
-            <v-divider vertical class="mx-1 mb-2" />
+            <v-divider vertical class="mx-1 mb-2" /> -->
 
-            <v-sheet min-width="180" class="d-flex flex-column align-center mr-3" color="transparent">
+            <v-sheet min-width="265" class="d-flex flex-column align-center mr-3" color="transparent">
                 <v-sheet width="100%" class="d-flex text-14" color="transparent">
                     <v-sheet class="mx-2 mr-4 d-flex flex-column align-space-around" color="transparent" max-width="170" min-width="170">
                         <v-sheet class="d-flex align-center mb-1 pt-1 flex-1 mb-2" min-height="38" color="transparent">

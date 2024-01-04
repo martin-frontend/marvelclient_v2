@@ -246,7 +246,7 @@ export default class APP extends AbstractView {
         PanelUtil.openpanel_spin_lottery();
     }
     get isUseColorfullIcon() {
-        return GlobalVar.skin == "skin008";
+        return GlobalVar.skin == "skin008" || GlobalVar.skin == "skin017";
     }
     get showSpinLottery() {
         return this.activityConfig.spin.is_open;

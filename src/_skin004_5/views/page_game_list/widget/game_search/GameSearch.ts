@@ -148,9 +148,6 @@ export default class GameSearch extends AbstractView {
 
     public get searchInputClass(): string {
         if (this.$mobile) {
-            if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin012") {
-                return "searchInput_008";
-            }
             return "searchInput ";
         } else {
             return "searchInput_pc";

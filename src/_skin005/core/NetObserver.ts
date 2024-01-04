@@ -692,7 +692,7 @@ export default class NetObserver extends AbstractMediator {
             if (!gtm_id || !gtm_id.trim()) {
                 if (GlobalVar.skin == "skin005") {
                     gtm_id = "GTM-TL9S3KT";
-                } else if (GlobalVar.skin == "skin008") {
+                } else if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin017") {
                     gtm_id = "GTM-NNNNR66";
                 } else {
                     SkinVariable.useGTM = false;

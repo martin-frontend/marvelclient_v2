@@ -330,6 +330,19 @@ const skinMap = {
             },
         },
     },
+    /**ccdbet */
+    skin017: {
+        public_dir: "public_skin017",
+        pages: {
+            skin017: {
+                entry: "src/_skin017/main.ts",
+                template: "public_skin017/skin017.html",
+                filename: "index.html",
+                title: "ccdbet",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**开源 */
     skin030: {
         public_dir: "public_skin030",
@@ -432,6 +445,7 @@ module.exports = {
                 "skin013",
                 "skin015",
                 "skin016",
+                "skin017",
             ].includes(process.env.VUE_APP_SKIN)
         ) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));

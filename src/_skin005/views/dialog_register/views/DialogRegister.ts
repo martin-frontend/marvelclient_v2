@@ -72,7 +72,7 @@ export default class DialogRegister extends AbstractView {
     private get registerTypes() {
         const list = [];
         let sort = this.registerSort;
-        if (GlobalVar.skin == "skin008") {
+        if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin017") {
             sort = [4, 8, 2, 1, 16, 32];
         }
         for (let index = 0; index < sort.length; index++) {

@@ -1,6 +1,6 @@
 <div>
     <v-overlay :value="inputValue" z-index="9999">
-        <div class="loading_test">
+        <div v-if="!SkinVariable.isUseGifLoading" class="loading_test">
             <div class="showbox">
                 <div class="loader">
                     <div class="bg_ciale"></div>
@@ -21,5 +21,6 @@
                 <img :src="commonIcon.loading_img" style="margin: auto; width: 55px" />
             </div>
         </div>
+        <img v-else class="loading-img" :src="commonIcon.loading" width="100" alt="" />
     </v-overlay>
 </div>

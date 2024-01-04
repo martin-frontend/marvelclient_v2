@@ -10,6 +10,8 @@ export default class SkinVariable {
     /**手机版 是否显示 底部 的网页信息 */
     public static isShowMobileFooter = true;
     public static loadingType = "005";
+    /**是否使用gif格式的加载 */
+    public static isUseGifLoading = false;
     /**是否需要添加 消息推送的 代码 */
     public static isNeedPush = false;
     /**是否需要 使用 自定义客服 */

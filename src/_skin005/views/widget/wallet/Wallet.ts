@@ -91,7 +91,7 @@ export default class Wallet extends AbstractView {
         if (!this.$xsOnly) {
             return "";
         }
-        if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin012") {
+        if (GlobalVar.skin == "skin008" || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin012" || GlobalVar.skin == "skin017") {
             if (!SkinVariable.systemKefuTop) {
                 return "menu_width_mob_008_1";
             }

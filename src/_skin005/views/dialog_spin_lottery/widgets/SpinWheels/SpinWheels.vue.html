@@ -31,7 +31,8 @@
                         class="sector-text z-12"
                         :class="{[`text_${item.name.length}`]: item.name.length > 3 && item.name.length < 10, hoverPointed: index == award_index}"
                     >
-                        <span
+                        <span>{{item.name}}</span>
+                        <!-- <span
                             v-for="(i, idx) in item.name"
                             :key="idx"
                             :class="{
@@ -42,7 +43,7 @@
                                 '-mb-7.5': item.name[item.name.length - idx - 2] == 'i',
                                 'mt-2': idx == item.name.length - item.digits && item.type == '3'}"
                             >{{item.name[item.name.length-idx-1]}}</span
-                        >
+                        > -->
                     </div>
                 </div>
             </v-sheet>
@@ -80,7 +81,8 @@
                         class="sector-text z-12"
                         :class="{[`text_${item.name.length}`]: item.name.length > 3 && item.name.length < 10, hoverPointed: index == award_index}"
                     >
-                        <span
+                        <span>{{item.name}}</span>
+                        <!-- <span
                             v-for="(i, idx) in item.name"
                             :key="idx"
                             :class="{
@@ -89,7 +91,7 @@
                                 'mt-2': idx == item.name.length - item.digits && item.type == '3',
                             }"
                             >{{item.name[item.name.length-idx-1]}}</span
-                        >
+                        > -->
                     </div>
                 </div>
             </v-sheet>

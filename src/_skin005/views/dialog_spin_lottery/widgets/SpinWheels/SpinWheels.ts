@@ -78,7 +78,7 @@ export default class SpinWheels extends AbstractView {
     }
     get awards() {
         const awards = this.filtered_awards.map((i) => {
-            const name = i.type == "3" ? `${i.params.value}${i.params.key}` : i.params.key;
+            const name = i.type == "3" ? `${i.params.value} ${i.params.key}` : i.params.key;
             return {
                 digits: i.params.value.length,
                 type: i.type,

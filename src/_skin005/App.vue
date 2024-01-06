@@ -57,9 +57,14 @@
         <!-- dialog的挂载点 -->
         <div id="dialog_container"></div>
         <!-- <Orientation v-if="!isScreenV && !Constant.isIncludeGameRouter($route.path)"/> -->
-        <template v-if="!$xsOnly">
-            <!-- <div class="btn-dailytask" v-if="novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()"> -->
-            <div class="btn-dailytask" v-if="activityConfig.every_day.is_open">
+        <div v-if="!$xsOnly" class="action-btns">
+            <v-btn id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
+                <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">
+                    <svg-icon icon="arrow_top" class="text-14"></svg-icon>
+                    <div class="text-14 font-weight-bold mb-2">{{ LangUtil("Top") }}</div>
+                </btn-yellow>
+            </v-btn>
+            <v-sheet v-if="activityConfig.every_day.is_open" height="50" color="transparent">
                 <v-badge
                     color="red"
                     overlap
@@ -70,35 +75,32 @@
                         <SvgaPlayer class="svga-player" id="dailytask_btn" src="svga/dailytask.svga"></SvgaPlayer>
                     </div>
                 </v-badge>
-            </div>
+            </v-sheet>
 
-            <v-btn v-if="showSpinLottery" class="btn-activity-spin" :class="{'show-partner': ModulesHelper.isShow_PartnerKefu(), 'show-dailytask': novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()}" id="activitySpinBtn" icon @click="onClickBtnSpin">
+            <v-btn v-if="showSpinLottery" id="activitySpinBtn" icon @click="onClickBtnSpin">
                 <v-img src="~@/_skin005/assets/activity_spin/spin_icon.png" width="62"></v-img>
             </v-btn>
 
-            <v-btn class="btn-top" id="apptopbtn" v-if="isShowTopBtn" icon @click="onTop">
-                <btn-yellow class="text-30 pt-0" min_width="0" width="50" height="50">
-                    <svg-icon icon="arrow_top" class="text-14"></svg-icon>
-                    <div class="text-14 font-weight-bold mb-2">{{ LangUtil("Top") }}</div>
-                </btn-yellow>
-            </v-btn>
-
-            <v-btn v-if="ModulesHelper.isShow_Kefu()" class="btn-service" icon @click="onService">
+            <v-btn v-if="ModulesHelper.isShow_Kefu()" icon @click="onService">
                 <btn-yellow class="text-24" min_width="0" width="50" height="50">
                     <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="service_full"></svg-icon>
                     <svg-icon v-else icon="service"></svg-icon>
                 </btn-yellow>
             </v-btn>
             <!-- partner -->
-            <v-btn v-if="ModulesHelper.isShow_PartnerKefu()" class="btn-partner-service pc" icon @click="onPartnerService">
+            <v-btn v-if="ModulesHelper.isShow_PartnerKefu()" icon @click="onPartnerService">
                 <btn-yellow class="text-24" min_width="0" width="50" height="50">
                     <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="partner_full"></svg-icon>
                     <svg-icon v-else icon="partner"></svg-icon>
                 </btn-yellow>
             </v-btn>
-        </template>
-        <template v-if="$xsOnly">
-            <div class="btn-dailytask_mob" v-if="isShowFooter && (novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn())">
+        </div>
+        <div v-if="$xsOnly" class="action-btns">
+            <v-sheet
+                height="40"
+                color="transparent"
+                v-if="isShowFooter && (novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn())"
+            >
                 <v-badge
                     color="red"
                     overlap
@@ -109,31 +111,26 @@
                         <SvgaPlayer class="svga-player_mob" id="dailytask_btn" src="svga/dailytask.svga"></SvgaPlayer>
                     </div>
                 </v-badge>
-            </div>
+            </v-sheet>
 
-            <v-btn v-if="showSpinLottery" class="btn-activity-spin spin_mob" :class="{'show-partner': ModulesHelper.isShow_PartnerKefu(), 'show-dailytask': novigation.isHaveDailytask || ModulesHelper.isShow_DailyTaskBtn()}" id="activitySpinBtn" icon @click="onClickBtnSpin">
+            <v-btn v-if="showSpinLottery" id="activitySpinBtn" icon @click="onClickBtnSpin">
                 <v-img src="~@/_skin005/assets/activity_spin/spin_icon.png" width="54"></v-img>
             </v-btn>
 
-            <v-btn
-                v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter"
-                class="btn-service"
-                icon
-                @click="onService"
-            >
+            <v-btn v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter" icon @click="onService">
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
                     <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="service_full"></svg-icon>
                     <svg-icon v-else icon="service"></svg-icon>
                 </btn-yellow>
             </v-btn>
             <!-- partner -->
-            <v-btn v-if="ModulesHelper.isShow_PartnerKefu() && isShowFooter" class="btn-partner-service" icon @click="onPartnerService">
+            <v-btn v-if="ModulesHelper.isShow_PartnerKefu() && isShowFooter" icon @click="onPartnerService">
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
                     <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="partner_full"></svg-icon>
                     <svg-icon v-else icon="partner"></svg-icon>
                 </btn-yellow>
             </v-btn>
-        </template>
+        </div>
         <div
             v-if="PageBlur.isBlur && !isSafari()"
             class="blur-mask"
@@ -230,57 +227,6 @@ export default class extends App {
 .mob_navigation {
     z-index: 12 !important;
 }
-.btn-service {
-    position: fixed;
-    bottom: 85px;
-    right: 20px;
-    z-index: 7;
-}
-.btn-partner-service {
-    position: fixed;
-    bottom: 133px;
-    right: 20px;
-    z-index: 7;
-    &.pc {
-        bottom: 140px;
-    }
-}
-
-.btn-top {
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
-    z-index: 7;
-}
-
-.btn-activity-spin {
-    position: fixed;
-    bottom: 143px;
-    right: 20px;
-    z-index: 7;
-}
-
-.btn-activity-spin.spin_mob.show-partner {
-    bottom: 183px;
-}
-.btn-activity-spin.spin_mob.show-dailytask {
-    bottom: 183px;
-}
-.btn-activity-spin.spin_mob.show-partner.show-dailytask {
-    bottom: 227px;
-}
-
-.btn-activity-spin.show-partner {
-    bottom: 195px;
-}
-
-.btn-activity-spin.show-dailytask {
-    bottom: 195px;
-}
-
-.btn-activity-spin.show-partner.show-dailytask {
-    bottom: 242px;
-}
 
 //以下都是在代码中调用的样式 Novigation.ts
 .mainpage {
@@ -342,26 +288,24 @@ export default class extends App {
     height: 50px;
 }
 
-.btn-dailytask {
-    position: fixed;
-    bottom: 188px;
-    right: 13px;
-    width: 50px;
-    height: 50px;
-    z-index: 7;
-    cursor: pointer;
-}
+
 .svga-player_mob {
     width: 40px;
     height: 40px;
 }
-.btn-dailytask_mob {
+
+.action-btns {
     position: fixed;
-    bottom: 176px;
     right: 18px;
-    width: 40px;
-    height: 40px;
-    z-index: 7;
-    cursor: pointer;
+    bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+@media (max-width: 600px) {
+    .action-btns {
+        gap: 15px;
+    }
 }
 </style>

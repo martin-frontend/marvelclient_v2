@@ -53,7 +53,7 @@ SkinVariable.isUsedDialogRecharge = true;
 SkinVariable.isForeShowRecharge = true;
 SkinVariable.isCustomizeFooter = false;
 SkinVariable.isShowMobileFooter = false;
-SkinVariable.isWallet_Recharge = false;
+// SkinVariable.isWallet_Recharge = false;
 GlobalVar.game_address_method = 1;
 LogUtil.init();
 core.init();

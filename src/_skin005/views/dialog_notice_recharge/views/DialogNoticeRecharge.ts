@@ -87,4 +87,10 @@ export default class DialogNoticeRecharge extends AbstractView {
         PanelUtil.jumpTo(this.curNoticeData);
         this.onClose(false);
     }
+    loadstart() {
+        PanelUtil.showAppLoading(true);
+    }
+    load() {
+        PanelUtil.showAppLoading(false);
+    }
 }

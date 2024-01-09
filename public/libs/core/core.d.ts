@@ -203,6 +203,14 @@ declare module net {
         api_user_var_bonus_all_direct: string;
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: string;
+        /**--代理推广--亏损分红-本期分红信息*/
+        api_user_var_direct_commission_detail: string;
+        /**--代理推广--亏损分红-业绩详情*/
+        api_user_var_direct_commission_index: string;
+        /**--代理推广--亏损分红-直属详情*/
+        api_user_var_direct_commission_direct_index: string;
+        /**--代理推广--亏损分红-历史分红记录*/
+        api_user_var_direct_commission_bonus_index: string;
         /**--分红--用户质押*/
         api_user_var_deposit_stake: string;
         /**--分红--用户手动解质押*/
@@ -572,6 +580,14 @@ declare module net {
         api_user_var_bonus_all_direct: string;
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: string;
+        /**--代理推广--亏损分红-本期分红信息*/
+        api_user_var_direct_commission_detail: string;
+        /**--代理推广--亏损分红-业绩详情*/
+        api_user_var_direct_commission_index: string;
+        /**--代理推广--亏损分红-直属详情*/
+        api_user_var_direct_commission_direct_index: string;
+        /**--代理推广--亏损分红-历史分红记录*/
+        api_user_var_direct_commission_bonus_index: string;
         /**--分红--用户质押*/
         api_user_var_deposit_stake: string;
         /**--分红--用户手动解质押*/
@@ -1845,6 +1861,42 @@ declare module net {
  */
 declare module net {
     class cmd_api_user_var_destroy_quick extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 亏损分红-历史分红记录
+ */
+declare module net {
+    class cmd_api_user_var_direct_commission_bonus_index extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 亏损分红-本期分红信息
+ */
+declare module net {
+    class cmd_api_user_var_direct_commission_detail extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 亏损分红-直属详情
+ */
+declare module net {
+    class cmd_api_user_var_direct_commission_direct_index extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 亏损分红-业绩详情
+ */
+declare module net {
+    class cmd_api_user_var_direct_commission_index extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }
@@ -3741,6 +3793,11 @@ declare module core {
                     model_category: number;
                 }[];
             }[];
+        };
+        /**直属分红 */
+        direct_commission_config?: {
+            /**是否开启0，关闭，1开启 */
+            is_open: number;
         };
         password_gold_exists?: number;
         /**个人名片*/

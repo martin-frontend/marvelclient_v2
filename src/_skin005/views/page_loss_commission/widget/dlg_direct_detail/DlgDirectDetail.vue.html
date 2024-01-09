@@ -1,0 +1,122 @@
+<v-dialog
+    width="unset"
+    class="regular_text"
+    v-model="directDetail.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card class="rounded10 pb-4 d-flex flex-column" color="bgBanner" width="838" min-height="550" v-if="!$mobile">
+        <com-dialog-title title="直属详情" @onClose="onClose" />
+        <v-divider class="mb-2" />
+        <div class="mx-5">
+            <v-sheet class="d-flex align-center" height="52">
+                <span>{{directDetail.listQuery.settlement_date}}</span>
+                <span class="ml-2"
+                    >{{LangUtil("直属人数(新增)")}} {{directDetail.summary.total_directly_users}}({{directDetail.summary.directly_users}})</span
+                >
+                <span class="ml-2 mr-1">{{LangUtil("直属总输赢")}} </span>
+                <MoneyWinLost v-model="directDetail.summary.directly_total_win_loss" />
+            </v-sheet>
+            <v-divider class="mb-2" />
+            <!-- header -->
+            <v-row dense class="text-16 mt-3 text-center">
+                <v-col>{{LangUtil("直属ID")}}</v-col>
+                <v-col>{{LangUtil("总输赢")}}</v-col>
+                <v-col>{{LangUtil("绑定时间")}}</v-col>
+                <v-col>{{LangUtil("投注记录")}}</v-col>
+            </v-row>
+            <!-- body -->
+            <v-sheet class="sheetOutlined d-flex align-center mt-2" height="48" v-for="(item, index) of directDetail.list" :key="index">
+                <v-row dense class="text-16 text-center">
+                    <v-col>{{item.user_id}}</v-col>
+                    <v-col> <MoneyWinLost v-model="item.total_win_loss" /></v-col>
+                    <v-col>{{item.binded_at}}</v-col>
+                    <v-col>
+                        <div class="d-flex align-center justify-center cursor-pointer textYellow--text" @click="onOpenBetRecord(item)">
+                            {{LangUtil("查看详情")}}
+                            <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-sheet>
+
+            <ListNodata v-if="directDetail.list.length == 0" height="450" />
+
+            <v-pagination
+                class="mt-4"
+                v-if="directDetail.pageInfo.pageCount > 1 && !$mobile"
+                v-model="directDetail.pageInfo.pageCurrent"
+                :length="directDetail.pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
+        </div>
+        <v-spacer />
+        <div class="mx-5 mt-3 red--text">{{ LangUtil("直属详情数据只保留180天") }}</div>
+    </v-card>
+
+    <v-card v-else color="bgColor" class="d-flex flex-column">
+        <LoadMore1
+            style="height: 100%"
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="directDetail.finished"
+            :is_needfinishedtext="false"
+            backgroundColor="bgColor"
+        >
+            <template v-slot:top>
+                <com-dialog-title title="直属详情" @onClose="onClose" />
+            </template>
+            <template v-if="directDetail.loading && directDetail.list.length == 0">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" width="100%" height="411" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <v-sheet class="px-4 text-12 d-flex flex-column justify-space-between py-4" height="99" color="transparent">
+                    <div class="d-flex justify-space-between">
+                        <span class="mr-1">{{LangUtil("时间")}}</span>
+                        <span>{{directDetail.listQuery.settlement_date}}</span>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <span>{{LangUtil("直属人数(新增)")}}</span>
+                        <span>{{directDetail.summary.total_directly_users}}({{directDetail.summary.directly_users}})</span>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <span>{{LangUtil("直属总输赢")}}</span>
+                        <MoneyWinLost v-model="directDetail.summary.directly_total_win_loss" />
+                    </div>
+                </v-sheet>
+                <v-sheet
+                    class="rounded-lg text-12 pa-3 mb-2 mx-2 d-flex flex-column justify-space-between"
+                    height="132"
+                    v-for="(item, index) of directDetail.list"
+                    :key="index"
+                >
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("直属ID")}}</div>
+                        <div>{{item.user_id}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("直属输赢")}}</div>
+                        <MoneyWinLost v-model="item.total_win_loss" />
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("绑定时间")}}</div>
+                        <div>{{item.binded_at}}</div>
+                    </div>
+                    <div class="textYellow--text d-flex">
+                        <v-spacer />
+                        <div class="d-flex align-center" @click="onOpenBetRecord(item)">
+                            {{LangUtil("查看详情")}}
+                            <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
+                        </div>
+                    </div>
+                </v-sheet>
+                <ListNodata v-if="directDetail.list.length == 0" height="411" />
+            </template>
+        </LoadMore1>
+        <v-spacer />
+        <div class="mx-2 mb-1 red--text">{{ LangUtil("直属详情数据只保留180天") }}</div>
+    </v-card>
+</v-dialog>

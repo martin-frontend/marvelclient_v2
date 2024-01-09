@@ -139,6 +139,11 @@ module core {
                 vip_award: { gold: number; model_category: number }[];
             }[];
         };
+        /**直属分红 */
+        direct_commission_config?: {
+            /**是否开启0，关闭，1开启 */
+            is_open: number;
+        },
         password_gold_exists?: number; //1:已设置 0:未设置
         /**个人名片*/
         business_card?: string;

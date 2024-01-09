@@ -54,6 +54,7 @@ export default class SelfProxy extends AbstractProxy {
         invite_user_id: 0,
         vip_info: <any>{},
         water_config: <any>{},
+        direct_commission_config: <any>{ is_open: false },
         cpf: "",
         utm_source: "",
     };

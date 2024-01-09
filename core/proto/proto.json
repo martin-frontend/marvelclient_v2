@@ -124,6 +124,12 @@
         ["api/user/{user_id}/bonus_all/direct", "获取下级整盘分红列表"],
         ["api/user/{user_id}/bonus_all/history", "获取整盘分红历史记录"],
 
+        "亏损分红",
+        ["api/user/{user_id}/direct_commission/detail", "亏损分红-本期分红信息"],
+        ["api/user/{user_id}/direct_commission/index", "亏损分红-业绩详情"],
+        ["api/user/{user_id}/direct_commission/direct_index", "亏损分红-直属详情"],
+        ["api/user/{user_id}/direct_commission/bonus_index", "亏损分红-历史分红记录"],
+
         "--分红",
         ["api/user/{user_id}/deposit_stake", "用户质押"],
         ["api/user/{user_id}/withdraw_stake", "用户手动解质押"],

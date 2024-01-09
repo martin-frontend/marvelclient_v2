@@ -1,0 +1,149 @@
+<div :class="$mobile? 'pl-2 pr-2 mt-2' : 'mx-1 mt-5'">
+    <div class="d-flex" :class="{'flex-wrap':$mobile}">
+        <v-sheet :width="$mobile?'100%':'50%'" color="transparent">
+            <v-sheet :height="$mobile ? 'auto' : 102" class="rounded-lg pa-4 d-flex flex-column justify-space-between font-weight-bold">
+                <div :class="$mobile?'text-14':'text-16'">{{commissionDetail.settlement_date_start}}-{{commissionDetail.settlement_date_end}}</div>
+                <div class="d-flex align-center">
+                    <div class="text-14">
+                        <span class="mr-1">{{LangUtil("本期预计分红")}}</span>
+                        <span :class="$mobile?'text-16':'text-18'"
+                            >{{CoinTransformHelper.TransformMoney(commissionDetail.direct_commission, 3, "", "USDT", true)}}</span
+                        >
+                    </div>
+                    <v-spacer />
+                    <btn-yellow
+                        :class="$mobile?'text-14':'text-16'"
+                        min-width="104"
+                        :height="$mobile?30:36"
+                        :btn_type="1"
+                        @click.native="onOpenBonusHistory"
+                    >
+                        {{LangUtil("历史分红记录")}}
+                    </btn-yellow>
+                </div>
+            </v-sheet>
+            <v-sheet :height="$mobile ? 149 : 196" class="rounded-lg pa-4 mt-2 d-flex">
+                <v-sheet class="text-center" :width="$mobile?98:116">
+                    <v-img class="mx-1" :class="{'mt-n2':$mobile}" :src="png_img1"></v-img>
+                    <btn-yellow
+                        :class="$mobile?'text-14 mt-2':'text-16 mt-4'"
+                        min-width="104"
+                        :height="$mobile?30:36"
+                        :btn_type="1"
+                        @click.native="onOpenPerformance"
+                    >
+                        {{LangUtil("本期业绩详情")}}
+                    </btn-yellow>
+                </v-sheet>
+                <v-sheet class="ml-4 d-flex flex-column justify-space-between nomal_text--text" :class="$mobile?'text-12':'text-14'" width="100%">
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("本期直属总输赢")}}</div>
+                        <MoneyWinLost v-model="commissionDetail.directly_total_win_loss" class="font-weight-bold"></MoneyWinLost>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("直属分红比例")}}</div>
+                        <div>{{commissionDetail.bonus_ratio}}%</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("直属人数")}}</div>
+                        <div>{{commissionDetail.total_directly_users}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("直属新增")}}</div>
+                        <div>{{commissionDetail.directly_users}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("本期分红发放时间")}}</div>
+                        <div class="nowrap">{{commissionDetail.settlement_date}}</div>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+        </v-sheet>
+        <v-sheet class="rounded-lg pa-4" :class="$mobile?'mt-2':'ml-2'" :width="$mobile?'100%':'50%'" :height="$mobile?'auto':306">
+            <div class="d-flex">
+                <v-sheet class="d-flex flex-column align-center">
+                    <div class="d-flex justify-center cursor" @click="showPreview">
+                        <div ref="qrcode" class="qrcode">
+                            <v-img :src="pageData.promotion_qrCode"></v-img>
+                        </div>
+                    </div>
+                    <btn-yellow
+                        :class="$mobile?'text-14 mt-4':'text-16 mt-5'"
+                        :min_width="$mobile?80:104"
+                        :height="$mobile?30:36"
+                        :btn_type="1"
+                        @click.native="reGetLink"
+                    >
+                        {{LangUtil("重新获取")}}
+                    </btn-yellow>
+                    <btn-yellow
+                        class="mt-2"
+                        :class="$mobile?'text-14':'text-16'"
+                        :min_width="$mobile?80:104"
+                        :height="$mobile?30:36"
+                        :btn_type="1"
+                        @click.native="savePhoto"
+                    >
+                        {{LangUtil("保存图片")}}
+                    </btn-yellow>
+                </v-sheet>
+                <v-sheet class="pl-5" width="100%">
+                    <div class="mb-2 primary--text">{{LangUtil("推广链接")}}</div>
+                    <v-sheet
+                        :height="$mobile? 35 :40"
+                        width="100%"
+                        color="transparent"
+                        class="pl-2 pl-sm-4 sheetOutlined d-flex align-center justify-space-between mb-2 textGray--text"
+                    >
+                        <div class="link-text">{{ myProxy.pageData.promotion_link }}</div>
+                        <v-btn
+                            class="mr-1"
+                            color="bgBanner"
+                            small
+                            depressed
+                            :width="$mobile? 24 :30"
+                            min-width="0"
+                            :height="$mobile? 24 :30"
+                            @click="onCopy(myProxy.pageData.promotion_link)"
+                        >
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </v-sheet>
+                    <div class="mb-2 mt-4 primary--text">{{LangUtil("邀请码")}}</div>
+                    <v-sheet
+                        color="transparent "
+                        :height="$mobile? 35 :40"
+                        class="pl-2 pl-sm-4 sheetOutlined d-flex align-center justify-space-between mb-2 textGray--text"
+                    >
+                        {{ selfProxy.userInfo.user_id }}
+                        <v-btn
+                            class="mr-1"
+                            color="bgBanner"
+                            small
+                            depressed
+                            :width="$mobile? 24 :30"
+                            min-width="0"
+                            :height="$mobile? 24 :30"
+                            @click="onCopy(selfProxy.userInfo.user_id)"
+                        >
+                            <svg-icon icon="copy" class="text-16 copy_icon--text"></svg-icon>
+                        </v-btn>
+                    </v-sheet>
+                </v-sheet>
+            </div>
+            <div class="nomal_text--text" :class="$mobile?'text-12 mt-5':'text-14 mt-7'">
+                {{LangUtil("1. 通过以上链接或者二维码的用户既为您的直属代理；")}}
+            </div>
+            <div class="nomal_text--text" :class="$mobile?'text-12':'text-14'">{{LangUtil("2. 用户注册时填写此邀请码，既可成为您的直属代理")}}</div>
+        </v-sheet>
+    </div>
+    <v-sheet class="rounded-lg pa-4 mt-2">
+        <v-img class="mx-left" :src="imgInfo"></v-img>
+    </v-sheet>
+    <!-- 常见问题 -->
+    <Question class="mt-5" :questions="fagProxy.qData.type5"></Question>
+
+    <DlgBonusHistory />
+    <DlgPerformance />
+    <DlgDirectDetail />
+</div>

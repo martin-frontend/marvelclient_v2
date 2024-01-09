@@ -207,6 +207,14 @@ module net {
         api_user_var_bonus_all_direct: "api/user/{user_id}/bonus_all/direct",
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api/user/{user_id}/bonus_all/history",
+        /**--代理推广--亏损分红-本期分红信息*/
+        api_user_var_direct_commission_detail: "api/user/{user_id}/direct_commission/detail",
+        /**--代理推广--亏损分红-业绩详情*/
+        api_user_var_direct_commission_index: "api/user/{user_id}/direct_commission/index",
+        /**--代理推广--亏损分红-直属详情*/
+        api_user_var_direct_commission_direct_index: "api/user/{user_id}/direct_commission/direct_index",
+        /**--代理推广--亏损分红-历史分红记录*/
+        api_user_var_direct_commission_bonus_index: "api/user/{user_id}/direct_commission/bonus_index",
 
         /**--分红--用户质押*/
         api_user_var_deposit_stake: "api/user/{user_id}/deposit_stake",
@@ -611,6 +619,14 @@ module net {
         api_user_var_bonus_all_direct: "api_user_var_bonus_all_direct",
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api_user_var_bonus_all_history",
+        /**--代理推广--亏损分红-本期分红信息*/
+        api_user_var_direct_commission_detail: "api_user_var_direct_commission_detail",
+        /**--代理推广--亏损分红-业绩详情*/
+        api_user_var_direct_commission_index: "api_user_var_direct_commission_index",
+        /**--代理推广--亏损分红-直属详情*/
+        api_user_var_direct_commission_direct_index: "api_user_var_direct_commission_direct_index",
+        /**--代理推广--亏损分红-历史分红记录*/
+        api_user_var_direct_commission_bonus_index: "api_user_var_direct_commission_bonus_index",
 
         /**--分红--用户质押*/
         api_user_var_deposit_stake: "api_user_var_deposit_stake",
@@ -912,6 +928,10 @@ module net {
         facade.registerCommand(HttpType.api_user_var_bonus_all_receive_var, cmd_api_user_var_bonus_all_receive_var);
         facade.registerCommand(HttpType.api_user_var_bonus_all_direct, cmd_api_user_var_bonus_all_direct);
         facade.registerCommand(HttpType.api_user_var_bonus_all_history, cmd_api_user_var_bonus_all_history);
+        facade.registerCommand(HttpType.api_user_var_direct_commission_detail, cmd_api_user_var_direct_commission_detail);
+        facade.registerCommand(HttpType.api_user_var_direct_commission_index, cmd_api_user_var_direct_commission_index);
+        facade.registerCommand(HttpType.api_user_var_direct_commission_direct_index, cmd_api_user_var_direct_commission_direct_index);
+        facade.registerCommand(HttpType.api_user_var_direct_commission_bonus_index, cmd_api_user_var_direct_commission_bonus_index);
         //--分红
         facade.registerCommand(HttpType.api_user_var_deposit_stake, cmd_api_user_var_deposit_stake);
         facade.registerCommand(HttpType.api_user_var_withdraw_stake, cmd_api_user_var_withdraw_stake);

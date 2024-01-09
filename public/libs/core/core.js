@@ -271,6 +271,14 @@ var net;
         api_user_var_bonus_all_direct: "api/user/{user_id}/bonus_all/direct",
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api/user/{user_id}/bonus_all/history",
+        /**--代理推广--亏损分红-本期分红信息*/
+        api_user_var_direct_commission_detail: "api/user/{user_id}/direct_commission/detail",
+        /**--代理推广--亏损分红-业绩详情*/
+        api_user_var_direct_commission_index: "api/user/{user_id}/direct_commission/index",
+        /**--代理推广--亏损分红-直属详情*/
+        api_user_var_direct_commission_direct_index: "api/user/{user_id}/direct_commission/direct_index",
+        /**--代理推广--亏损分红-历史分红记录*/
+        api_user_var_direct_commission_bonus_index: "api/user/{user_id}/direct_commission/bonus_index",
         /**--分红--用户质押*/
         api_user_var_deposit_stake: "api/user/{user_id}/deposit_stake",
         /**--分红--用户手动解质押*/
@@ -640,6 +648,14 @@ var net;
         api_user_var_bonus_all_direct: "api_user_var_bonus_all_direct",
         /**--代理推广--获取整盘分红历史记录*/
         api_user_var_bonus_all_history: "api_user_var_bonus_all_history",
+        /**--代理推广--亏损分红-本期分红信息*/
+        api_user_var_direct_commission_detail: "api_user_var_direct_commission_detail",
+        /**--代理推广--亏损分红-业绩详情*/
+        api_user_var_direct_commission_index: "api_user_var_direct_commission_index",
+        /**--代理推广--亏损分红-直属详情*/
+        api_user_var_direct_commission_direct_index: "api_user_var_direct_commission_direct_index",
+        /**--代理推广--亏损分红-历史分红记录*/
+        api_user_var_direct_commission_bonus_index: "api_user_var_direct_commission_bonus_index",
         /**--分红--用户质押*/
         api_user_var_deposit_stake: "api_user_var_deposit_stake",
         /**--分红--用户手动解质押*/
@@ -917,6 +933,10 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_bonus_all_receive_var, net.cmd_api_user_var_bonus_all_receive_var);
         facade.registerCommand(net.HttpType.api_user_var_bonus_all_direct, net.cmd_api_user_var_bonus_all_direct);
         facade.registerCommand(net.HttpType.api_user_var_bonus_all_history, net.cmd_api_user_var_bonus_all_history);
+        facade.registerCommand(net.HttpType.api_user_var_direct_commission_detail, net.cmd_api_user_var_direct_commission_detail);
+        facade.registerCommand(net.HttpType.api_user_var_direct_commission_index, net.cmd_api_user_var_direct_commission_index);
+        facade.registerCommand(net.HttpType.api_user_var_direct_commission_direct_index, net.cmd_api_user_var_direct_commission_direct_index);
+        facade.registerCommand(net.HttpType.api_user_var_direct_commission_bonus_index, net.cmd_api_user_var_direct_commission_bonus_index);
         //--分红
         facade.registerCommand(net.HttpType.api_user_var_deposit_stake, net.cmd_api_user_var_deposit_stake);
         facade.registerCommand(net.HttpType.api_user_var_withdraw_stake, net.cmd_api_user_var_withdraw_stake);
@@ -3733,6 +3753,94 @@ var net;
         }
     }
     net.cmd_api_user_var_destroy_quick = cmd_api_user_var_destroy_quick;
+})(net || (net = {}));
+/**
+ * 亏损分红-历史分红记录
+ */
+var net;
+/**
+ * 亏损分红-历史分红记录
+ */
+(function (net) {
+    class cmd_api_user_var_direct_commission_bonus_index extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_direct_commission_bonus_index, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_direct_commission_bonus_index, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_direct_commission_bonus_index = cmd_api_user_var_direct_commission_bonus_index;
+})(net || (net = {}));
+/**
+ * 亏损分红-本期分红信息
+ */
+var net;
+/**
+ * 亏损分红-本期分红信息
+ */
+(function (net) {
+    class cmd_api_user_var_direct_commission_detail extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_direct_commission_detail, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_direct_commission_detail, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_direct_commission_detail = cmd_api_user_var_direct_commission_detail;
+})(net || (net = {}));
+/**
+ * 亏损分红-直属详情
+ */
+var net;
+/**
+ * 亏损分红-直属详情
+ */
+(function (net) {
+    class cmd_api_user_var_direct_commission_direct_index extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_direct_commission_direct_index, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_direct_commission_direct_index, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_direct_commission_direct_index = cmd_api_user_var_direct_commission_direct_index;
+})(net || (net = {}));
+/**
+ * 亏损分红-业绩详情
+ */
+var net;
+/**
+ * 亏损分红-业绩详情
+ */
+(function (net) {
+    class cmd_api_user_var_direct_commission_index extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_user_var_direct_commission_index, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_user_var_direct_commission_index, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_user_var_direct_commission_index = cmd_api_user_var_direct_commission_index;
 })(net || (net = {}));
 /**
  * 注册直属

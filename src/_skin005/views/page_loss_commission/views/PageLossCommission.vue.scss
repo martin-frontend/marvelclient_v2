@@ -1,0 +1,28 @@
+.qrcode {
+    background-color: white;
+    border-radius: 20px;
+    padding: 4px;
+    width: 104px;
+    height: 104px;
+    ::v-deep img {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 10px;
+        padding: 4px;
+        width: 73px;
+        height: 73px;
+    }
+}
+
+.link-text {
+    overflow: hidden;
+    flex: 1;
+    white-space: nowrap;
+    width: 0;
+    text-overflow: ellipsis;
+}
+
+.nowrap {
+    white-space: nowrap;
+}

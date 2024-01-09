@@ -67,9 +67,7 @@ export const routes: Array<RouteConfig> = [
         path: "/page_game_list_chess/",
         name: "page_game_list_chess",
         component: () =>
-            import(
-                /* webpackChunkName: "skin005_page_game_list_chess" */ "@/_skin001/views/page_game_list_chess/views/PageGameListChess.vue"
-            ),
+            import(/* webpackChunkName: "skin005_page_game_list_chess" */ "@/_skin001/views/page_game_list_chess/views/PageGameListChess.vue"),
     },
     {
         path: "/page_game_play",
@@ -79,14 +77,12 @@ export const routes: Array<RouteConfig> = [
     {
         path: "/page_game_soccer",
         name: "page_game_soccer",
-        component: () =>
-            import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
         path: "/cricket",
         name: "cricket",
-        component: () =>
-            import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
         path: "/page_introduce",
@@ -117,9 +113,7 @@ export const routes: Array<RouteConfig> = [
         path: "/page_statistice_credit",
         name: "page_statistice_credit",
         component: () =>
-            import(
-                /* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"
-            ),
+            import(/* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"),
     },
     {
         path: "/page_my_info",
@@ -139,8 +133,7 @@ export const routes: Array<RouteConfig> = [
     {
         path: "/page_rules",
         name: "page_rules",
-        component: () =>
-            import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
     },
     {
         path: "/page_promotion_statistics",
@@ -160,6 +153,12 @@ export const routes: Array<RouteConfig> = [
         name: "page_activity_slot",
         component: () =>
             import(/* webpackChunkName: "skin005_page_activity_slot" */ "@/_skin005/views/page_activity_slot/views/PageActivitySlot.vue"),
+    },
+    {
+        path: "/loss_commission",
+        name: "loss_commission",
+        component: () =>
+            import(/* webpackChunkName: "skin005_page_loss_commission" */ "@/_skin005/views/page_loss_commission/views/PageLossCommission.vue"),
     },
 ];
 
@@ -245,7 +244,8 @@ export function getRouter(): VueRouter {
                         to.path.includes("page_statistice_credit") ||
                         to.path.includes("page_promotion_statistics") ||
                         to.path.includes("page_coin_task") ||
-                        to.path.includes("page_activity_slot"))
+                        to.path.includes("page_activity_slot") ||
+                        to.path.includes("loss_commission"))
                 ) {
                     next(prePath);
                 } else {
@@ -352,19 +352,13 @@ function addMetaWithType(type: string) {
         case "lottery":
             document.title = "Lottery games: How to play, rules, tips and strategies";
             addMeta("title", "Lottery Games - Top Lottery Games Online");
-            addMeta(
-                "description",
-                "Play the best lottery games online at 96in.com. We provide the top lottery games and tips to win money online"
-            );
+            addMeta("description", "Play the best lottery games online at 96in.com. We provide the top lottery games and tips to win money online");
             set_h1_title("-");
             break;
         case "cards":
             document.title = "Cards games: How to play, rules, tips and strategies";
             addMeta("title", "Cards Games - Top Cards Games Online");
-            addMeta(
-                "description",
-                "Play the best cards games online at 96in.com. We provide the top cards games and tips to win money online"
-            );
+            addMeta("description", "Play the best cards games online at 96in.com. We provide the top cards games and tips to win money online");
             set_h1_title("-");
             break;
         default:

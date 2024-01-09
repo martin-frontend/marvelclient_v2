@@ -219,12 +219,7 @@ export default class PanelUtil {
      * @param isNeedLoading  是否需要点击的时候打开显示加载
      * @param isCleadPanel 是否需要清理其他页面
      */
-    private static _openpage_base(
-        pagename: string,
-        isNeedLogin: boolean = true,
-        isNeedLoading: boolean = true,
-        isCleadPanel: boolean = true
-    ) {
+    private static _openpage_base(pagename: string, isNeedLogin: boolean = true, isNeedLoading: boolean = true, isCleadPanel: boolean = true) {
         if (isNeedLogin) {
             LoginEnter(() => {
                 this._openpRouter_base(pagename, isNeedLoading, isCleadPanel);
@@ -368,6 +363,11 @@ export default class PanelUtil {
         this._openpage_base("page_promotion_statistics");
     }
 
+    //打开 亏损分红 界面
+    static openpage_loss_promotion() {
+        this._openpage_base("loss_commission");
+    }
+
     //打开 我的界面 界面
     static openpage_my_info() {
         this._openpage_base("page_my_info");
@@ -474,13 +474,7 @@ export default class PanelUtil {
     }
 
     //打开 投注记录 窗口
-    static openpanel_bet_record(
-        agent_user_id: any = null,
-        start_date: string = "",
-        end_date: string = "",
-        bShowOptions = true,
-        msg: any = null
-    ) {
+    static openpanel_bet_record(agent_user_id: any = null, start_date: string = "", end_date: string = "", bShowOptions = true, msg: any = null) {
         MultDialogManager.onOpenPanel(dialog_bet_record);
         dialog_bet_record.show(agent_user_id, start_date, end_date, bShowOptions, msg);
     }

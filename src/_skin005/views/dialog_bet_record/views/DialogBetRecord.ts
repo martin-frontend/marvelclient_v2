@@ -18,6 +18,7 @@ import Assets from "@/_skin005/assets/Assets";
 import exportOrder from "@/core/global/OrderTitleUtils";
 import OpenLink from "@/core/global/OpenLink";
 import GlobalVar from "@/core/global/GlobalVar";
+import DialogClean from "@/_skin005/core/DialogClean";
 
 @Component
 export default class DialogBetRecord extends AbstractView {
@@ -115,15 +116,7 @@ export default class DialogBetRecord extends AbstractView {
         if (this.is_send_coin || donotTrans) {
             //如果带有 coin 的值 则 只需要对应的 添加 货币符号 然后格式化 就可以了
             val = item[key + "_coin"] || 0;
-            return CoinTransformHelper.TransformMoney(
-                val,
-                2,
-                this.listQuery.coin_name_unique,
-                this.listQuery.coin_name_unique,
-                true,
-                true,
-                ismoney
-            );
+            return CoinTransformHelper.TransformMoney(val, 2, this.listQuery.coin_name_unique, this.listQuery.coin_name_unique, true, true, ismoney);
         } else {
             //这个是美元的金额，需要 转换为 设置的结算 币种的金额 然后添加货币符号 和格式化
 
@@ -133,15 +126,7 @@ export default class DialogBetRecord extends AbstractView {
         }
     }
     transformMoney_backwater(val: any) {
-        return CoinTransformHelper.TransformMoney(
-            val,
-            2,
-            this.listQuery.coin_name_unique,
-            this.listQuery.coin_name_unique,
-            true,
-            true,
-            false
-        );
+        return CoinTransformHelper.TransformMoney(val, 2, this.listQuery.coin_name_unique, this.listQuery.coin_name_unique, true, true, false);
     }
     mounted() {
         setTimeout(() => {
@@ -280,6 +265,7 @@ export default class DialogBetRecord extends AbstractView {
 
     @Watch("pageData.bShow")
     onWatchShow() {
+        DialogClean();
         PageBlur.blur_page(this.pageData.bShow);
         if (this.pageData.bShow) {
             //如果是列表，使用以下数据，否则删除

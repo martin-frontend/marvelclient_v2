@@ -174,7 +174,7 @@ export default class NetObserver extends AbstractMediator {
                         });
                     } else if (core.user_id) {
                         //获取用户信息
-                        this.selfProxy.api_user_show_var([2, 3, 6]);
+                        this.selfProxy.api_user_show_var([2, 3, 6, 7]);
                     } else {
                         //获取弹窗列表
                         this.sendNotification(net.HttpType.api_plat_var_pop_index, { plat_id: core.plat_id });
@@ -519,7 +519,7 @@ export default class NetObserver extends AbstractMediator {
         window.localStorage.setItem("username", body.username);
 
         const selfProxy: SelfProxy = this.getProxy(SelfProxy);
-        selfProxy.api_user_show_var([2, 3, 6]);
+        selfProxy.api_user_show_var([2, 3, 6, 7]);
     }
 
     openGameUrl(body: any, msg: string, isShowConfig: boolean) {

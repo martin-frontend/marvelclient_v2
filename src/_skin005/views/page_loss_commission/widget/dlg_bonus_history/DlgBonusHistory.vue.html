@@ -1,0 +1,109 @@
+<v-dialog
+    width="unset"
+    class="regular_text"
+    v-model="bonusHistory.bShow"
+    overlay-opacity="0.6"
+    :fullscreen="$mobile"
+    persistent
+    :transition="$mobile ? 'mobile-slide-x-transition' :''"
+>
+    <v-card class="rounded10 pb-5" color="bgBanner" width="838" min-height="550" v-if="!$mobile">
+        <com-dialog-title title="历史分红记录" @onClose="onClose" />
+        <v-divider class="mb-2" />
+        <div class="mx-5">
+            <v-sheet class="d-flex align-center" height="52">
+                {{LangUtil("历史总分红")}}: {{CoinTransformHelper.TransformMoney(bonusHistory.summary.direct_commission, 3, "", "USDT", true)}}
+            </v-sheet>
+            <v-divider class="mb-2" />
+            <!-- header -->
+            <v-row dense class="text-16 mt-3 text-center">
+                <v-col cols="4">{{LangUtil("分红时间")}}</v-col>
+                <v-col cols="2">{{LangUtil("直属输赢")}}</v-col>
+                <v-col cols="2">{{LangUtil("分红比例")}}</v-col>
+                <v-col cols="2">{{LangUtil("分红金额")}}</v-col>
+                <v-col cols="2">{{LangUtil("详情")}}</v-col>
+            </v-row>
+            <!-- body -->
+            <v-sheet class="sheetOutlined d-flex align-center mt-2" height="48" v-for="(item, index) of bonusHistory.list" :key="index">
+                <v-row dense class="text-16 text-center">
+                    <v-col cols="4">{{item.settlement_date_start}} {{LangUtil("至")}} {{item.settlement_date_end}}</v-col>
+                    <v-col cols="2"><MoneyWinLost v-model="item.direct_total_win_loss"></MoneyWinLost></v-col>
+                    <v-col cols="2">{{item.bonus_ratio}}%</v-col>
+                    <v-col cols="2">{{CoinTransformHelper.TransformMoney(item.direct_commission, 3, "", "USDT", true)}}</v-col>
+                    <v-col cols="2">
+                        <div class="d-flex align-center justify-center cursor textYellow--text cursor-pointer" @click="onOpenPerformance(item)">
+                            {{LangUtil("查看详情")}}
+                            <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-sheet>
+
+            <ListNodata v-if="bonusHistory.list.length == 0" height="450" />
+
+            <v-pagination
+                class="mt-4"
+                v-if="bonusHistory.pageInfo.pageCount > 1 && !$mobile"
+                v-model="bonusHistory.pageInfo.pageCurrent"
+                :length="bonusHistory.pageInfo.pageCount"
+                :total-visible="7"
+                @input="onPageChange"
+            ></v-pagination>
+        </div>
+    </v-card>
+
+    <v-card v-else color="bgColor">
+        <LoadMore1
+            style="height: 100%"
+            @onRefresh="onRefresh"
+            @onLoad="onLoad"
+            :finished="bonusHistory.finished"
+            :is_needfinishedtext="bonusHistory.list.length == 0 || bonusHistory.loading"
+            backgroundColor="bgColor"
+        >
+            <template v-slot:top>
+                <com-dialog-title title="历史分红记录" @onClose="onClose" />
+            </template>
+            <template v-if="bonusHistory.loading && bonusHistory.list.length == 0">
+                <v-skeleton-loader class="px-3 my-2 custom-loader" width="100%" height="411" type="text@6"></v-skeleton-loader>
+            </template>
+            <template v-else>
+                <v-sheet class="px-4 text-12 d-flex align-center justify-space-between" height="49" color="transparent">
+                    <div>{{LangUtil("历史总分红")}}</div>
+                    <div>{{CoinTransformHelper.TransformMoney(bonusHistory.summary.direct_commission, 3, "", "USDT", true)}}</div>
+                </v-sheet>
+                <v-sheet
+                    class="rounded-lg text-12 pa-3 mb-2 mx-2 d-flex flex-column justify-space-between"
+                    height="159"
+                    v-for="(item, index) of bonusHistory.list"
+                    :key="index"
+                >
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("分红时间")}}</div>
+                        <div>{{item.settlement_date_start}} {{LangUtil("至")}} {{item.settlement_date_end}}</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("直属输赢")}}</div>
+                        <MoneyWinLost v-model="item.direct_total_win_loss"></MoneyWinLost>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("分红比例")}}</div>
+                        <div>{{item.bonus_ratio}}%</div>
+                    </div>
+                    <div class="d-flex justify-space-between">
+                        <div>{{LangUtil("分红金额")}}</div>
+                        <div>{{CoinTransformHelper.TransformMoney(item.direct_commission, 3, "", "USDT", true)}}</div>
+                    </div>
+                    <div class="textYellow--text d-flex">
+                        <v-spacer />
+                        <div class="d-flex align-center" @click="onOpenPerformance(item)">
+                            {{LangUtil("查看详情")}}
+                            <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
+                        </div>
+                    </div>
+                </v-sheet>
+                <ListNodata v-if="bonusHistory.list.length == 0" height="411" />
+            </template>
+        </LoadMore1>
+    </v-card>
+</v-dialog>

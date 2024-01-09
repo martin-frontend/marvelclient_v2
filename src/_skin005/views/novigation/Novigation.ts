@@ -74,6 +74,7 @@ export default class Novigation extends AbstractView {
             3: { icon: "water", icon_sel: "water_sel", name: "游戏返水", id: 2, path: "vip_rewards" },
             4: { icon: "swap", icon_sel: "swap_sel", name: "SWAP交易", id: 3, path: "page_swap" },
             5: { icon: "agentmenger", icon_sel: "agentmenger", name: "推广代理", id: 10, path: "page_promotion_statistics" },
+            6: { icon: "agentmenger", icon_sel: "agentmenger", name: "亏损分红", id: 11, path: "loss_commission" },
         };
         //币种介绍
         if (ModulesHelper.IsShow_CoinIntroduce()) {
@@ -86,6 +87,9 @@ export default class Novigation extends AbstractView {
         //推广赚钱
         if (ModulesHelper.IsShow_Promotion()) {
             newlist.push(list[2]);
+        }
+        if (this.selfProxy.userInfo.direct_commission_config?.is_open) {
+            newlist.push(list[6]);
         }
         //游戏返水
         if (ModulesHelper.IsShow_GameWater()) {
@@ -325,6 +329,9 @@ export default class Novigation extends AbstractView {
                 break;
             case 10:
                 PanelUtil.openpage_promotion_statistic();
+                break;
+            case 11:
+                PanelUtil.openpage_loss_promotion();
                 break;
             case 105:
                 PanelUtil.openpage_activity_slots(this.myProxy.ballAwardData);

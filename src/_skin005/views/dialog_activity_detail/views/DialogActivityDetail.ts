@@ -6,6 +6,7 @@ import { Watch, Component } from "vue-property-decorator";
 import DialogActivityDetailMediator from "../mediator/DialogActivityDetailMediator";
 import DialogActivityDetailProxy from "../proxy/DialogActivityDetailProxy";
 import OpenLink from "@/core/global/OpenLink";
+import SkinVariable from "@/_skin005/core/SkinVariable";
 
 @Component
 export default class DialogActivityDetail extends AbstractView {
@@ -20,7 +21,9 @@ export default class DialogActivityDetail extends AbstractView {
         this.pageData.bShow = false;
         MultDialogManager.onClosePanel();
     }
-
+    get dialog_width() {
+        return SkinVariable.activityDetailWidth || "90%";
+    }
     @Watch("pageData.bShow")
     onWatchShow() {
         PageBlur.blur_page(this.pageData.bShow);

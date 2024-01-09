@@ -59,4 +59,6 @@ export default class SkinVariable {
     public static adjustBannerHeightFor08Skin = false;
     /**确认密码栏位 只需要一个提示 */
     public static adjustPasswordConfirmTips = false;
+    /**活动详情的宽度 */
+    public static activityDetailWidth = "90%";
 }

@@ -52,6 +52,8 @@ Assets.commonIcon.login_logo_m = require(`@/_skin016/assets/login_logo_m.png`);
 SkinVariable.adjustPasswordConfirmTips = true;
 // SkinVariable.isFootballTop = true;
 // GlobalVar.game_address_method = 1;
+SkinVariable.activityDetailWidth = "60%";
+SkinVariable.autoTheme = false;
 LogUtil.init();
 core.init();
 //@ts-ignore

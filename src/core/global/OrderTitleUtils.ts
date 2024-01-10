@@ -56,6 +56,12 @@ function getOrderTitle({ market_type, s_type, home_name, away_name, content, sid
         case marketType.WAY_HANDICAP_PLUS_2_HALF_TIME:
         case marketType.WAY_HANDICAP_PLUS_3_HALF_TIME:
         case marketType.WAY_HANDICAP_PLUS_4_HALF_TIME:
+        case marketType.HANDICAP:
+        case marketType.MONEY_LINE_FIRST_QUARTER:
+        case marketType.MONEY_LINE_HALF_TIME:
+        case marketType.MONEY_LINE:
+        case marketType.HANDICAP_FIRST_QUARTER:
+        case marketType.HANDICAP_HALF_TIME:
             return s_type == "Home" ? home_name : s_type == "Away" ? away_name : LangUtil("Draw");
         case marketType.TOTAL_GOALS: //总入球
         case marketType.TOTAL_GOALS_HALF_TIME: //半场 - 总入球
@@ -66,6 +72,15 @@ function getOrderTitle({ market_type, s_type, home_name, away_name, content, sid
         case marketType.ASIAN_OVER_UNDER_EXTRA_TIME:
         case marketType.ASIAN_OVER_UNDER_EXTRA_TIME_HALF_TIME:
         case marketType.ASIAN_OVER_UNDER_AFTER_PENALTIES:
+        case marketType.TOTAL_POINTS_HALF_TIME:
+        case marketType.TOTAL_POINTS:
+        case marketType.TEAM_B_TOTAL_POINTS:
+        case marketType.TEAM_A_TOTAL_POINTS:
+        case marketType.TOTAL_POINTS_FIRST_QUARTER:
+        case marketType.TEAM_A_TOTAL_POINTS_FIRST_QUARTER:
+        case marketType.TEAM_A_TOTAL_POINTS_HALF_TIME:
+        case marketType.TEAM_B_TOTAL_POINTS_FIRST_QUARTER:
+        case marketType.TEAM_B_TOTAL_POINTS_HALF_TIME:
             return `${s_type == "Overs" ? LangUtil("大") : LangUtil("小")} ${formatAsian(handicap, s_type).substring(1)}`;
         case marketType.BK_ASIAN_OVER_UNDER:
         case marketType.BK_ASIAN_OVER_UNDER_HALF_TIME:

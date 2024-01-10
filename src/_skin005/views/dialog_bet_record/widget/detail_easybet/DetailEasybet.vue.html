@@ -1,0 +1,104 @@
+<div v-if="!$mobile" class="black--text">
+    <div v-if="!isRace" class="d-flex align-center black--text">
+        <svg-icon class="mx-1" :icon="svgIconName"></svg-icon>
+        <template v-if="!item.is_multi">
+            <span class="ml-2" :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
+                {{item.vendor_product_name}}
+            </span>
+            <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
+                <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
+            </span>
+            <span class="ml-2">[{{item.market_show_name}}]</span>
+            <span class="ml-2 font-weight-bold">{{getOrderTitle(item.game_info)}}</span>
+            <!-- <span class="ml-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
+            <span class="ml-2">@{{item.game_info.odds }}</span>
+        </template>
+        <template v-else>
+            <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
+            <span class="font-weight-bold ml-2"> {{item.league}} </span>
+        </template>
+        <v-spacer />
+        <v-sheet
+            @click="handlerDetail(item)"
+            class="cursor-pointer rounded-pill px-2 record_border d-flex align-center"
+            color="transparent"
+        >
+            <span class="text-12 ma-1 black--text">{{LangUtil("查看投注详情")}}</span>
+            <svg-icon class="ml-1 bet_record_color--text text-16" icon="bet_record"></svg-icon>
+        </v-sheet>
+    </div>
+    <div v-else class="d-flex align-center black--text">
+        <svg-icon class="mx-1 text-20" :icon="svgIconName"></svg-icon>
+        <template v-if="!item.is_multi">
+            <span class="ml-2" :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
+                {{item.vendor_product_name}}
+            </span>
+            <span class="ml-2" v-if="item.game_info.state && item.game_info.state.goals_ft">
+                <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
+            </span>
+            <span class="ml-2">[{{item.market_show_name}}]</span>
+            <span class="ml-2 font-weight-bold">{{item.game_info.content}}</span>
+            <span class="ml-2 font-weight-bold">{{getOrderTitle(item.game_info)}}</span>
+            <!-- <span class="ml-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
+
+            <span v-if="item.is_sp" class="ml-2">{{item.game_info.odds }}</span>
+            <span v-else class="ml-2">@{{item.game_info.odds }}</span>
+        </template>
+        <template v-else>
+            <span class="font-weight-bold">{{LangUtil('BetType')}} </span>
+            <span class="font-weight-bold ml-2"> {{item.league}} </span>
+        </template>
+        <v-spacer />
+        <v-sheet
+            @click="handlerDetail(item)"
+            class="cursor-pointer rounded-pill px-2 record_border d-flex align-center"
+            color="transparent"
+        >
+            <span class="text-12 ma-1 black--text">{{LangUtil("查看投注详情")}}</span>
+            <svg-icon class="ml-1 bet_record_color--text text-16" icon="bet_record"></svg-icon>
+        </v-sheet>
+    </div>
+</div>
+
+<div v-else class="d-flex black--text">
+    <svg-icon class="mr-2 ml-1" style="margin-top: 3px" icon="football"></svg-icon>
+    <template v-if="!item.is_multi">
+        <div>
+            <div :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
+                {{item.vendor_product_name}}
+            </div>
+
+            <div>
+                <span class="mr-2 div-block" v-if="item.game_info.state && item.game_info.state.goals_ft">
+                    <span class="font-weight-bold"> {{LangUtil("足球滚球")}}({{item.game_info.state.goals_ft}}) </span>
+                </span>
+                <div class="mr-2 div-block">{{item.market_show_name}}</div>
+            </div>
+            <div>
+                <span class="mr-2 div-block font-weight-bold">{{getOrderTitle(item.game_info)}} </span>
+                <!-- <span class="mr-2" v-if="item.game_info.handicap == '0.00'">0</span> -->
+                <span class="div-block">@{{item.game_info.odds }}</span>
+            </div>
+        </div>
+    </template>
+    <template v-else>
+        <div>
+            <div class="mr-2 div-block font-weight-bold">{{LangUtil('BetType')}}</div>
+            <div class="mr-2 div-block font-weight-bold">{{item.league}}</div>
+        </div>
+    </template>
+
+    <v-spacer />
+    <v-sheet
+        @click="handlerDetail(item)"
+        class="cursor-pointer rounded-pill px-2 record_border d-flex align-center my-auto"
+        color="transparent"
+        height="28"
+    >
+        <span class="text-12 ma-1 black--text">{{LangUtil("查看投注详情")}}</span>
+        <svg-icon class="ml-1 bet_record_color--text text-16" icon="bet_record"></svg-icon>
+    </v-sheet>
+    <!-- <div @click="handlerDetail(item)">
+        <svg-icon class="mr-1" icon="bet_record"></svg-icon>
+    </div> -->
+</div>

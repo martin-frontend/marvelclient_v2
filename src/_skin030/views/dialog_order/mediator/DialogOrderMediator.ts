@@ -2,6 +2,8 @@ import AbstractMediator from "@/core/abstract/AbstractMediator";
 import DialogOrderProxy from "../proxy/DialogOrderProxy";
 import getProxy from "@/core/global/getProxy";
 import PanelUtil from "@/_skin030/core/PanelUtil";
+import OpenLink from "@/core/global/OpenLink";
+import MultDialogManager from "@/_skin030/core/MultDialogManager";
 
 export default class DialogOrderMediator extends AbstractMediator {
     public listNotificationInterests(): string[] {
@@ -19,6 +21,9 @@ export default class DialogOrderMediator extends AbstractMediator {
                     myProxy.pageData.isHaveData = true;
                     if (typeof body == "string") {
                         myProxy.pageData.url = body;
+                        OpenLink(body);
+                        myProxy.pageData.bShow = false;
+                        MultDialogManager.onClosePanel();
                     } else {
                         myProxy.setData(body);
                     }

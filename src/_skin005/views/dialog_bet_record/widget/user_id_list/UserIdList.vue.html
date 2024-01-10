@@ -1,0 +1,75 @@
+<div v-if="!$mobile">
+    {{LangUtil("用户ID")}}
+
+    <span v-if="isOtherUser" class="userInfo_color--text"> {{isOtherUser}}</span>
+
+    <template v-else>
+        <template v-if="showMultUserList && showMultUserList.length  > 0">
+            <template v-for="(item, key) in showMultUserList">
+                <template v-if="showMultUserList.length - key < 4">
+                    <span
+                        v-if="showMultUserList.length<2 || key==showMultUserList.length-1 || key == 0"
+                        class="userInfo_color--text"
+                        color="transparent"
+                    >
+                        {{item}}
+                    </span>
+                    <span
+                        v-else
+                        class="underline cursor-pointer userInfo_color--text"
+                        color="transparent"
+                        @click="onBtnClickUserInfo(item)"
+                    >
+                        {{item}}
+                    </span>
+                </template>
+                <template v-else>
+                    <span v-if="key==0" class="userInfo_color--text ml-0 mr-0" color="transparent"> .. </span>
+                    <span
+                        v-else
+                        class="underline cursor-pointer userInfo_color--text ml-0 mr-0"
+                        color="transparent"
+                        @click="onBtnClickUserInfo(item)"
+                    >
+                        ..
+                    </span>
+                </template>
+                <span v-if="key!= showMultUserList.length-1" class="userInfo_color--text ml-0 mr-0"> > </span>
+            </template>
+        </template>
+        <template v-else>
+            <span class="userInfo_color--text" color="transparent"> {{listQuery.agent_user_id}} </span>
+        </template>
+    </template>
+</div>
+<!-- 手机版 -->
+<div v-else class="">
+    <div class="mr-2">
+        <span class="leftText--text">{{LangUtil("用户ID")}}</span>
+        <template v-if="!isOtherUser && showMultUserList" v-for="(item, key) in showMultUserList">
+            <template v-if="showMultUserList.length - key < 3">
+                <span
+                    v-if="showMultUserList.length<2 || key==showMultUserList.length-1 || key == 0"
+                    class="textYellow--text"
+                    color="transparent"
+                >
+                    {{item}}
+                </span>
+                <span v-else class="underline cursor-pointer textYellow--text" color="transparent" @click="onBtnClickUserInfo(item)">
+                    {{item}}
+                </span>
+            </template>
+            <template v-else>
+                <span v-if="key==0" class="textYellow--text" color="transparent"> .. </span>
+                <span v-else class="underline cursor-pointer textYellow--text" color="transparent" @click="onBtnClickUserInfo(item)">
+                    ..
+                </span>
+            </template>
+            <span v-if="key!= showMultUserList.length-1" class="textYellow--text"> > </span>
+        </template>
+        <span v-if="isOtherUser" class="primary--text ml-2"> {{isOtherUser}}</span>
+        <template v-if="!isOtherUser && (!showMultUserList || (showMultUserList && showMultUserList.length < 1))">
+            <span class="primary--text" color="transparent"> {{listQuery.agent_user_id}} </span>
+        </template>
+    </div>
+</div>

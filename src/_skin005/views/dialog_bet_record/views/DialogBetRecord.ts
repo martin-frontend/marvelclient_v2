@@ -16,7 +16,6 @@ import { scrollUtil_div } from "@/core/global/ScrollUtil";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import Assets from "@/_skin005/assets/Assets";
 import exportOrder from "@/core/global/OrderTitleUtils";
-import OpenLink from "@/core/global/OpenLink";
 import GlobalVar from "@/core/global/GlobalVar";
 import DialogClean from "@/_skin005/core/DialogClean";
 
@@ -58,49 +57,83 @@ export default class DialogBetRecord extends AbstractView {
             },
         ],
     };
-    /**板球固赔状态 */
-    get cricketFixedStatus() {
-        return {
-            0: LangUtil("板球订单状态0"),
-            1: LangUtil("板球订单状态1"),
-            2: LangUtil("板球订单状态2"),
-            3: LangUtil("板球订单状态3"),
-            4: LangUtil("板球订单状态4"),
-            5: LangUtil("板球订单状态5"),
-            6: LangUtil("板球订单状态6"),
-            7: LangUtil("板球订单状态7"),
-        };
-    }
-    /**板球交易所状态 */
-    get cricketSwapStatus() {
-        return {
-            0: LangUtil("板球交易所订单状态0"),
-            1: LangUtil("板球交易所订单状态1"),
-            2: LangUtil("板球交易所订单状态2"),
-            3: LangUtil("板球交易所订单状态3"),
-            4: LangUtil("板球交易所订单状态4"),
-            5: LangUtil("板球交易所订单状态5"),
-            6: LangUtil("板球交易所订单状态6"),
-            7: LangUtil("板球交易所订单状态7"),
-        };
-    }
 
-    get brazilExchangeStatus() {
-        return {
-            0: LangUtil("巴西交易所订单状态0"),
-            1: LangUtil("巴西交易所订单状态1"),
-            2: LangUtil("巴西交易所订单状态2"),
-            3: LangUtil("巴西交易所订单状态3"),
-            4: LangUtil("巴西交易所订单状态4"),
-            5: LangUtil("巴西交易所订单状态5"),
-            6: LangUtil("巴西交易所订单状态6"),
-            7: LangUtil("巴西交易所订单状态7"),
-            8: LangUtil("巴西交易所订单状态8"),
-            9: LangUtil("巴西交易所订单状态9"),
-            10: LangUtil("巴西交易所订单状态10"),
-        };
-    }
+    /**表格里面的基础数据 */
+    formBaseData = [
+        {
+            id: 1,
+            title: "订单号",
+            width: 150,
+            data_type: 0,
+            config_key: "",
+            value_key: "order_no",
+        },
+        {
+            id: 2,
+            title: "游戏名称",
+            width: 150,
+            data_type: 0,
+            config_key: "",
+            value_key: "vendor_product_name",
+        },
+        {
+            id: 3,
+            title: "投注金额",
+            width: 120,
+            data_type: 0,
+            config_key: "",
+            value_key: "bet_gold",
+        },
+        {
+            id: 4,
+            title: "游戏输赢",
+            width: 120,
+            data_type: 1,
+            config_key: "",
+            value_key: "win_gold",
+        },
+        {
+            id: 5,
+            title: "有效投注",
+            width: 120,
+            data_type: 0,
+            config_key: "",
+            value_key: "valid_bet_gold",
+        },
+        {
+            id: 6,
+            title: "结算流水",
+            width: 120,
+            data_type: 0,
+            config_key: "",
+            value_key: "water",
+        },
 
+        {
+            id: 7,
+            title: "下注状态",
+            width: 140,
+            data_type: 0,
+            config_key: "",
+            value_key: "settlement_status",
+        },
+        {
+            id: 8,
+            title: "投注时间",
+            width: 100,
+            data_type: 0,
+            config_key: "",
+            value_key: "bet_at",
+        },
+        {
+            id: 9,
+            title: "结算时间",
+            width: 100,
+            data_type: 0,
+            config_key: "",
+            value_key: "settlement_at",
+        },
+    ];
     isBrazilExchangeNoStatus(item: any) {
         return item.vendor_id == GameConfig.config.ExchangeVendorId && !item.game_info.state;
     }
@@ -140,27 +173,6 @@ export default class DialogBetRecord extends AbstractView {
         const parts = text.split(regex);
         return parts;
     }
-    // @Watch("pageData.bShowOptions")
-    // watchShowOptions() {
-    //     console.log("-----创建 ----");
-    //     if (this.pageData.bShowOptions) {
-    //         const keyNode = document.querySelector(".el-date-editor");
-    //         if (!keyNode) return;
-    //         console.log("-----创建 --22222--");
-    //         //for (let index = 0; index < keyNode.length; index++) {
-    //         const element = keyNode;
-
-    //         const iNode = document.createElement("i");
-    //         iNode.setAttribute("class", "el-icon-date"); // el-icon-bottom
-    //         element.appendChild(iNode);
-
-    //         iNode.style.position = "absolute";
-    //         // iNode.style.top = "13px";
-    //         iNode.style.right = "12px";
-    //         iNode.style.color = "#f00";
-    //         iNode.style.pointerEvents = "none";
-    //     }
-    // }
 
     setDatePiker() {
         const keyNode = document.querySelectorAll(".el-date-editor");
@@ -180,26 +192,6 @@ export default class DialogBetRecord extends AbstractView {
         }
     }
 
-    public get isOtherUser(): any {
-        if (!this.groupsTitle) {
-            //return this.curShowId;
-            return "";
-        } else {
-            return this.listQuery.agent_user_id + "(" + this.groupsTitle + ")";
-        }
-    }
-
-    public get showMultUserList(): any {
-        if (!this.pageData.bShowFilterBtn) {
-            return [];
-        }
-        return this.myProxy.pageData.filterBtnInfo.parents;
-    }
-
-    onBtnClickUserInfo(item: any) {
-        //console.log("收到点击" , item);
-        this.myProxy.refrushFilter({ user_id: item });
-    }
     public get isShowMyWater(): boolean {
         //return false;
         if (this.selfProxy.userInfo.is_credit_user == 1 && this.is_send_coin) return true;
@@ -215,20 +207,10 @@ export default class DialogBetRecord extends AbstractView {
         return this.transformMoney_backwater(nub);
     }
     public get is_send_coin(): boolean {
-        //console.log("---this.listOptions.moneySelect---",this.listOptions.moneySelect)
         if (<any>this.listOptions.moneySelect != 0) {
             return true;
         }
-        //console.log("全部币种----");
         return false;
-    }
-
-    public get groupsTitle(): string {
-        if (this.pageData.filterBtnInfo && this.pageData.filterBtnInfo.is_group == 2) {
-            return LangUtil("团队");
-        } else {
-            return "";
-        }
     }
 
     constructor() {
@@ -381,10 +363,6 @@ export default class DialogBetRecord extends AbstractView {
         PanelUtil.message_info(LangUtil("复制成功"));
     }
 
-    handlerDetail(data: any) {
-        //dialog_order.show(data);
-        PanelUtil.openpanel_order(data, data.game_info);
-    }
     //筛选按钮点击
     onFilterBtnClick() {
         //console.log("打开筛选 页面");
@@ -393,141 +371,16 @@ export default class DialogBetRecord extends AbstractView {
     getDate(str: string, isChange: boolean = true) {
         return changeDateShow(str, isChange);
     }
-    /**板球价钱标题 */
-    getCricketPriceTitle(item: any) {
-        if (item.game_info) {
-            const { type, price, priceMatched } = item.game_info;
-            if (type == 1) {
-                return "订单价格:";
-            } else {
-                return priceMatched == "0" ? "订单价格:" : "成交价格:";
-            }
+    /**返回游戏名 */
+    getVendorProductName(item: any): any {
+        if (item.is_multi) {
+            return item.vendor_name;
         }
-        return "-";
-    }
-    /**板球价钱 */
-    getCricketPrice(item: any) {
-        if (item.game_info) {
-            const { type, price, priceMatched } = item.game_info;
-            if (type == 1) {
-                return price;
-            } else {
-                return priceMatched == "0" ? price : priceMatched;
-            }
-        }
-        return "-";
-    }
 
-    /**是否可以取消订单 */
-    isCanCancle(item: any): boolean {
-        if (!item) return false;
-        if (item.cancel_order && (item.cancel_order == 1 || item.cancel_order == "1")) {
-            //return true;
-            //板球判断 1. type=2 下 status=【0】/【1】/【2】
-            if (item.game_info) {
-                if (item.game_info.type && (item.game_info.type == 2 || item.game_info.type == "2")) {
-                    const list = [0, 1, 2];
-                    for (let index = 0; index < list.length; index++) {
-                        const element = list[index];
-                        if (item.game_info.status == element || item.game_info.status == element + "") {
-                            return true;
-                        }
-                    }
-                }
-            }
+        if (item.vendor_id == GameConfig.config.FBVendorId) {
+            return item.tournament_name;
         }
-        return false;
-    }
-    /**取消订单按钮点击 */
-    onCancleClick(item: any) {
-        console.log("取消清单 按钮被点击", item);
-        PanelUtil.message_confirm({
-            message: LangUtil("是否确认取消这笔订单?"),
-            okFun: () => {
-                this.myProxy.api_vendor_var_bet_log_cancel(item);
-            },
-            okTxt: LangUtil("是"),
-            cancelTxt: LangUtil("否"),
-        });
-    }
-    fb_icon_name(item: any) {
-        if (item.sport_id) {
-            return "sport_" + item.sport_id;
-        }
-        return "fb";
-    }
-    isChuanDan(item: any): boolean {
-        if (item && item.bet_type && item.bet_type.trim()) {
-            const strArr = item.bet_type.split("x");
-            if (strArr.length == 2 && (strArr[0] != 1 || strArr[0] != "1")) {
-                return true;
-            }
-        }
-        return false;
-    }
-    chickIsCanClick(item: any): boolean {
-        if (!item || !item.vendor_id) return false;
 
-        const headGameConfig = GameConfig.config.head_game_config;
-        for (let index = 0; index < headGameConfig.length; index++) {
-            if (headGameConfig[index].vendor_id + "" == item.vendor_id + "") {
-                return true;
-            }
-        }
-        return false;
-    }
-    onClickFootballName(item: any) {
-        console.log("足球名字被惦记", item);
-        if (!item || !item.vendor_id) return false;
-
-        const headGameConfig = GameConfig.config.head_game_config;
-        for (let index = 0; index < headGameConfig.length; index++) {
-            if (headGameConfig[index].vendor_id + "" == item.vendor_id + "") {
-                this.onHeadgameClick(headGameConfig[index]);
-                this.onClose();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    onClickBrazilExchange(item: any) {
-        console.log("onClickBrazilExchange");
-
-        if (!item || !item.vendor_id) return false;
-
-        const headGameConfig = GameConfig.config.head_game_config;
-        for (let index = 0; index < headGameConfig.length; index++) {
-            if (headGameConfig[index].vendor_id + "" == item.vendor_id + "") {
-                this.onHeadgameClick(headGameConfig[index]);
-                this.onClose();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    onHeadgameClick(item: any) {
-        console.log("收到点击", item);
-
-        //如果是打开跳转连接
-        if (item.url && item.url.trim()) {
-            OpenLink(item.url);
-            return;
-        }
-        //需要跳转打开网页
-        if (item.page && item.page.trim()) {
-            PanelUtil.actionByName(item.page);
-            return;
-        }
-        // const newItem = JSON.parse(JSON.stringify(item));
-        // if (newItem.ori_vendor_extend) {
-        //     newItem.ori_vendor_extend = JSON.stringify(newItem.ori_vendor_extend);
-        // }
-        item.visitor_allowed = 1;
-        PanelUtil.openpage_soccer(item);
-    }
-    handlerDetailLink(item: any) {
-        this.myProxy.api_user_show_url_var_var(item);
+        return item.game_info.cpn || item.vendor_product_name;
     }
 }

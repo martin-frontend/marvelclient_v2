@@ -124,6 +124,21 @@ const EnumMarketType = {
     BK_ASIAN_HANDICAP_HALF_TIME: "BK_ASIAN_HANDICAP_HALF_TIME",
     BK_ASIAN_OVER_UNDER: "BK_ASIAN_OVER_UNDER",
     BK_ASIAN_OVER_UNDER_HALF_TIME: "BK_ASIAN_OVER_UNDER_HALF_TIME",
+
+    HANDICAP_FIRST_QUARTER: "HANDICAP_FIRST_QUARTER",
+    HANDICAP_HALF_TIME: "HANDICAP_HALF_TIME",
+    MONEY_LINE: "MONEY_LINE",
+    MONEY_LINE_FIRST_QUARTER: "MONEY_LINE_FIRST_QUARTER",
+    MONEY_LINE_HALF_TIME: "MONEY_LINE_HALF_TIME",
+    TOTAL_POINTS: "TOTAL_POINTS",
+    TOTAL_POINTS_FIRST_QUARTER: "TOTAL_POINTS_FIRST_QUARTER",
+    TOTAL_POINTS_HALF_TIME: "TOTAL_POINTS_HALF_TIME",
+    TEAM_A_TOTAL_POINTS: "TEAM_A_TOTAL_POINTS",
+    TEAM_A_TOTAL_POINTS_FIRST_QUARTER: "TEAM_A_TOTAL_POINTS_FIRST_QUARTER",
+    TEAM_A_TOTAL_POINTS_HALF_TIME: "TEAM_A_TOTAL_POINTS_HALF_TIME",
+    TEAM_B_TOTAL_POINTS: "TEAM_B_TOTAL_POINTS",
+    TEAM_B_TOTAL_POINTS_FIRST_QUARTER: "TEAM_B_TOTAL_POINTS_FIRST_QUARTER",
+    TEAM_B_TOTAL_POINTS_HALF_TIME: "TEAM_B_TOTAL_POINTS_HALF_TIME",
 };
 
 function formatAsian(handicap: string, type: string): string {
@@ -154,6 +169,9 @@ function getSelectionName(market_type: string, selection: FixSelectionVO, matche
         case EnumMarketType.ASIAN_HANDICAP_EXTRA_TIME:
         case EnumMarketType.ASIAN_HANDICAP_EXTRA_TIME_HALF_TIME:
         case EnumMarketType.ASIAN_HANDICAP_AFTER_PENALTIES:
+        case EnumMarketType.HANDICAP_FIRST_QUARTER:
+        case EnumMarketType.HANDICAP_HALF_TIME:
+        case EnumMarketType.HANDICAP:
             return formatAsian(selection.handicap, selection.type);
         case EnumMarketType.ASIAN_OVER_UNDER:
         case EnumMarketType.ASIAN_OVER_UNDER_HALF_TIME:
@@ -174,6 +192,15 @@ function getSelectionName(market_type: string, selection: FixSelectionVO, matche
             return "";
         case EnumMarketType.TOTAL_GOALS:
         case EnumMarketType.TOTAL_GOALS_HALF_TIME:
+        case EnumMarketType.TOTAL_POINTS:
+        case EnumMarketType.TOTAL_POINTS_FIRST_QUARTER:
+        case EnumMarketType.TOTAL_POINTS_HALF_TIME:
+        case EnumMarketType.TEAM_A_TOTAL_POINTS:
+        case EnumMarketType.TEAM_A_TOTAL_POINTS_FIRST_QUARTER:
+        case EnumMarketType.TEAM_A_TOTAL_POINTS_HALF_TIME:
+        case EnumMarketType.TEAM_B_TOTAL_POINTS:
+        case EnumMarketType.TEAM_B_TOTAL_POINTS_FIRST_QUARTER:
+        case EnumMarketType.TEAM_B_TOTAL_POINTS_HALF_TIME:
             return (
                 (selection.type == "Overs" ? LangUtil("大") : LangUtil("小")) +
                 " " +

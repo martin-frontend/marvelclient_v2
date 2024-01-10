@@ -1,0 +1,45 @@
+<div v-if="!$mobile" class="d-flex align-center black--text">
+    <span class="cursor-pointer text-decoration-underline" @click="onClickBrazilExchange(item)">
+        <span v-if="item.game_info.state">
+            <span class="ml-2 font-weight-bold">{{item.game_info.event_type_name}}</span>&nbsp;
+            <span>{{item.game_info.event_name}}</span>&nbsp; <span>[{{item.game_info.market_name}}]</span>&nbsp;
+            <span class="font-weight-bold"> {{item.game_info.selection_name}} </span>&nbsp;
+            <span>{{item.odds}}</span>
+        </span>
+        <span v-else>{{item.game_info.description}}</span>
+        <span class="font-weight-bold"> &nbsp;&nbsp;{{item.game_info.side?"Back":"Lay"}} </span>
+    </span>
+
+    <v-spacer />
+    <div>{{item.game_info.state ? brazilExchangeStatus[item.game_info.state] : ""}}</div>
+    <!-- <div @click="handlerDetail(item)" class="cursor-pointer">
+                                <span class="mr-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
+                                <svg-icon class="mr-1" icon="bet_record"></svg-icon>
+                            </div> -->
+</div>
+
+<div v-else class="d-flex align-start black--text">
+    <div @click="onClickBrazilExchange(item)">
+        <span v-if="item.game_info.state">
+            <div>
+                <span class="ml-2 div-block font-weight-bold text-decoration-underline">{{item.game_info.event_type_name}}</span>
+            </div>
+            <div>
+                <span class="ml-2 div-block text-decoration-underline">{{item.game_info.event_name}}</span>
+            </div>
+            <div class="text-decoration-underline">
+                <span class="ml-2 div-block text-decoration-underline">[{{item.game_info.market_name}}]</span>&nbsp;
+                <span class="div-block font-weight-bold text-decoration-underline"> {{item.game_info.selection_name}} </span>&nbsp;
+                <span class="div-block text-decoration-underline">{{item.odds}}</span>
+            </div>
+        </span>
+        <span v-else class="text-decoration-underline">{{item.game_info.description}}</span>
+        <span class="ml-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
+    </div>
+    <v-spacer />
+    <!-- <div @click="handlerDetail(item)" class="d-flex align-center cursor-pointer">
+        <span class="mr-2 font-weight-bold"> {{item.game_info.side?"Back":"Lay"}} </span>
+        <svg-icon class="mr-1 bet_record_color--text text-16" icon="bet_record"></svg-icon>
+    </div> -->
+    <div>{{item.game_info.state ? brazilExchangeStatus[item.game_info.state] : ""}}</div>
+</div>

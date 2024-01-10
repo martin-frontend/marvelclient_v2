@@ -1,6 +1,6 @@
 <div v-if="!$mobile" class="black--text">
     <div v-if="!isRace" class="d-flex align-center black--text">
-        <svg-icon class="mx-1" :icon="svgIconName"></svg-icon>
+        <svg-icon class="mx-1" :class="item.is_multi ? 'text-16' : 'text-20'" :icon="svgIconName"></svg-icon>
         <template v-if="!item.is_multi">
             <span class="ml-2" :class="chickIsCanClick(item) ? 'cursor-pointer underline' : '' " @click="onClickFootballName(item)">
                 {{item.vendor_product_name}}

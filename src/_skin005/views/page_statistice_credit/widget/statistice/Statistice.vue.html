@@ -100,6 +100,8 @@
 
                 <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="80"> {{LangUtil("下注笔数")}}</v-sheet>
                 <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100"> {{LangUtil("下注总额")}}</v-sheet>
+                <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100"> {{LangUtil("未结算笔数")}}</v-sheet>
+                <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100"> {{LangUtil("未结算投注金额")}}</v-sheet>
                 <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100"> {{LangUtil("有效投注")}}</v-sheet>
                 <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="90"> {{LangUtil("玩家输赢")}}</v-sheet>
                 <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="80"> {{LangUtil("结算返水")}}</v-sheet>
@@ -140,6 +142,14 @@
                         <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
                             {{amountFormat(pageData.summary.bet_gold)}}</v-sheet
                         >
+                        <!-- 新增 未结算笔数 未结算金额 -->
+                        <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
+                            {{amountFormat(pageData.summary.un_settle_count)}}
+                        </v-sheet>
+                        <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
+                            {{amountFormat(pageData.summary.un_settle_bet_gold)}}
+                        </v-sheet>
+
 
                         <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
                             {{amountFormat(pageData.summary.valid_bet_gold)}}</v-sheet
@@ -207,6 +217,14 @@
                         <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
                             {{amountFormat(pageData.agent.bet_gold)}}</v-sheet
                         >
+
+                        <!-- 新增 未结算笔数 未结算金额 -->
+                        <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
+                            {{amountFormat(pageData.agent.un_settle_count)}}
+                        </v-sheet>
+                        <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
+                            {{amountFormat(pageData.agent.un_settle_bet_gold)}}
+                        </v-sheet>
 
                         <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
                             {{amountFormat(pageData.agent.valid_bet_gold)}}</v-sheet
@@ -286,6 +304,14 @@
                         <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
                             {{amountFormat(item.bet_gold)}}</v-sheet
                         >
+
+                        <!-- 新增 未结算笔数 未结算金额 -->
+                        <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
+                            {{amountFormat(item.un_settle_count)}}
+                        </v-sheet>
+                        <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
+                            {{amountFormat(item.un_settle_bet_gold)}}
+                        </v-sheet>
 
                         <v-sheet class="d-flex justify-start primary--text" color="transparent" min-width="100">
                             {{amountFormat(item.valid_bet_gold)}}</v-sheet
@@ -475,6 +501,19 @@
                         </div>
                         <div class="line"></div>
 
+                        <!-- 新增 未结算笔数 未结算金额 -->
+                        <div class="my-2 d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("未结算笔数")}}</div>
+                            <div class="head_btn--text">{{amountFormat(pageData.summary.un_settle_count)}}</div>
+                        </div>
+                        <div class="line"></div>
+
+                        <div class="my-2 d-flex justify-space-between">
+                            <div class="leftText--text">{{LangUtil("未结算投注金额")}}</div>
+                            <div class="head_btn--text">{{amountFormat(pageData.summary.un_settle_bet_gold)}}</div>
+                        </div>
+                        <div class="line"></div>
+
                         <div class="my-2 d-flex justify-space-between">
                             <div class="leftText--text">{{LangUtil("有效投注")}}</div>
                             <div class="head_btn--text">{{amountFormat(pageData.summary.valid_bet_gold)}}</div>
@@ -573,6 +612,20 @@
                         <div class="head_btn--text">{{amountFormat(item.bet_gold)}}</div>
                     </div>
                     <div class="line"></div>
+
+                    <!-- 新增 未结算笔数 未结算金额 -->
+                    <div class="my-2 d-flex justify-space-between">
+                        <div class="leftText--text">{{LangUtil("未结算笔数")}}</div>
+                        <div class="head_btn--text">{{amountFormat(item.un_settle_count)}}</div>
+                    </div>
+                    <div class="line"></div>
+                    
+                    <div class="my-2 d-flex justify-space-between">
+                        <div class="leftText--text">{{LangUtil("未结算投注金额")}}</div>
+                        <div class="head_btn--text">{{amountFormat(item.un_settle_bet_gold)}}</div>
+                    </div>
+                    <div class="line"></div>
+
                     <div class="my-2 d-flex justify-space-between">
                         <div class="leftText--text">{{LangUtil("有效投注")}}</div>
                         <div class="head_btn--text">{{amountFormat(item.valid_bet_gold)}}</div>

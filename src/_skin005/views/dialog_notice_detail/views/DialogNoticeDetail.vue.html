@@ -3,7 +3,7 @@
         <com-dialog-title :title="pageData.data.activity_name" @onClose="onClose" />
         <v-divider class="mb-2" />
         <v-sheet id="main_node" color="transparent" width="100%" class="px-5 overflow-y-auto" style="max-height: calc(100% - 90px)">
-            <div class="mb-6" v-html="pageData.data.link_url"></div>
+            <div class="mb-6" v-html="pageData.data.link_url" @click.stop="handleLinkClick"></div>
         </v-sheet>
     </v-card>
 </v-dialog>

@@ -30,7 +30,7 @@
                         {{LangUtil('{0} - {1}',getDate(pageData.data.start_time),getDate(pageData.data.end_time,true,true))}}
                     </v-sheet>
                     <v-sheet color="transparent" width="100%" class="rule_des_class text-20 pl-5">
-                        <div class="" v-html="pageData.data && pageData.data.rule_desc"></div>
+                        <div class="" v-html="pageData.data && pageData.data.rule_desc" @click.stop="handleLinkClick"></div>
                     </v-sheet>
 
                     <v-sheet color="transparent" style="position: absolute; top: 40px; right: 50px">
@@ -195,7 +195,7 @@
                         {{LangUtil('{0} - {1}',getDate(pageData.data.start_time),getDate(pageData.data.end_time,true,true))}}
                     </v-sheet>
                     <v-sheet color="transparent" width="100%" class="rule_des_class text-20 pl-5 pr-1">
-                        <div class="" v-html="pageData.data && pageData.data.rule_desc"></div>
+                        <div class="" v-html="pageData.data && pageData.data.rule_desc" @click.stop="handleLinkClick"></div>
                     </v-sheet>
                     <v-sheet color="transparent" style="position: absolute; top: 210px; right: 50px">
                         <div @click.stop="onRuleBtnClick" class="d-flex justify-center align-center cursor-pointer">

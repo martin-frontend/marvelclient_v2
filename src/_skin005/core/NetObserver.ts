@@ -468,7 +468,7 @@ export default class NetObserver extends AbstractMediator {
                 {
                     const timer = setInterval(() => {
                         const overlayDiv = document.getElementsByClassName("v-overlay--active");
-                        console.warn(overlayDiv);
+                        // console.warn(overlayDiv);
                         if (overlayDiv.length == 0) {
                             const item = body.pop();
                             if (item) {

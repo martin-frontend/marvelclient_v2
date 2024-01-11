@@ -1,6 +1,4 @@
 import AbstractView from "@/core/abstract/AbstractView";
-import BlurUtil from "@/core/global/BlurUtil";
-import CopyUtil from "@/core/global/CopyUtil";
 import { Watch, Component } from "vue-property-decorator";
 import DialogNoticeRechargeMediator from "../mediator/DialogNoticeRechargeMediator";
 import DialogNoticeRechargeProxy from "../proxy/DialogNoticeRechargeProxy";
@@ -92,5 +90,9 @@ export default class DialogNoticeRecharge extends AbstractView {
     }
     load() {
         PanelUtil.showAppLoading(false);
+    }
+    get width() {
+        if (this.$mobile) return 310;
+        return 900;
     }
 }

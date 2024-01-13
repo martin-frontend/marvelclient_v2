@@ -161,11 +161,13 @@ export default class DialogActivity7days extends AbstractView {
                 this.myProxy.api_plat_activity_daily_rewards_var_receive(this.curCanGetItem.award_id);
                 return;
             }
-            const proxy = PanelUtil.getProxy_recharge;
-            proxy.rechargeProxy.api_user_var_recharge_method_list();
-            this.myProxy.pageData.rechargeItem = JSON.parse(JSON.stringify(this.curRuleData));
+            this.onClose();
+            PanelUtil.openpanel_recharge();
+            // const proxy = PanelUtil.getProxy_recharge;
+            // proxy.rechargeProxy.api_user_var_recharge_method_list();
+            // this.myProxy.pageData.rechargeItem = JSON.parse(JSON.stringify(this.curRuleData));
 
-            PanelUtil.showAppLoading(true);
+            // PanelUtil.showAppLoading(true);
         });
     }
     get chickIsCanTouch() {
@@ -259,6 +261,10 @@ export default class DialogActivity7days extends AbstractView {
             const award_Array = [];
             if (!this.pageData.data.daily_ratio) {
                 this.myProxy.pageData.data.daily_ratio = [];
+            }
+            if (typeof this.pageData.data.daily_ratio == "string") {
+                console.warn("数据类型不正确", this.pageData.data.daily_ratio);
+                return [];
             }
             for (let index = 0; index < this.pageData.data.daily_ratio.length; index++) {
                 const element = this.pageData.data.daily_ratio[index];
@@ -437,7 +443,7 @@ export default class DialogActivity7days extends AbstractView {
             newstr = changeDateShow(obj.startTime, isChange);
         }
 
-        if (newstr) newstr = newstr.substring(0, newstr.length - 3);
+        if (newstr) newstr = newstr.substring(0, newstr.length - 6);
         return newstr;
     }
     get uselessItem() {

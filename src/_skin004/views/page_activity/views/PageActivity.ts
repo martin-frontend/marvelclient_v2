@@ -4,6 +4,7 @@ import PageActivityMediator from "../mediator/PageActivityMediator";
 import PageActivityProxy from "../proxy/PageActivityProxy";
 import LangUtil from "@/core/global/LangUtil";
 import dialog_activity_detail from "@/_skin004/views/dialog_activity_detail";
+import dialog_activity_7days from "../../dialog_activity_7days";
 
 @Component
 export default class PageActivity extends AbstractView {
@@ -44,6 +45,12 @@ export default class PageActivity extends AbstractView {
         // }
     }
     onItemClick(item: any) {
+        console.warn("---打开详情---", item);
+        if (item && item.award_type && item.award_type == 16) {
+            dialog_activity_7days.show(item);
+            return;
+        }
+
         dialog_activity_detail.show(item);
     }
 }

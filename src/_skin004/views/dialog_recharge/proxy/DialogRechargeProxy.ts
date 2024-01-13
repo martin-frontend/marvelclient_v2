@@ -69,13 +69,13 @@ export class RechargeProxy extends puremvc.Proxy {
         }
         return list;
     }
-    setData(data: any) {
+    setData(data: any, coin_name_unique: string = "") {
         this.pageData.loading = false;
         this.pageData.methodList = data;
         const keys = Object.keys(data);
         // 默认选中用户当前选择的币种
         const gameProxy: GameProxy = getProxy(GameProxy);
-        let coin_name_unique = gameProxy.coin_name_unique;
+        if (!coin_name_unique) coin_name_unique = gameProxy.coin_name_unique;
         if (keys.indexOf(coin_name_unique) == -1) {
             coin_name_unique = keys[0];
         }
@@ -170,8 +170,11 @@ export class RechargeProxy extends puremvc.Proxy {
         this.pageData.qrcode = "";
     }
 
-    api_user_var_recharge_create(payemthod_id: any) {
+    api_user_var_recharge_create(payemthod_id: any = 0) {
         this.pageData.loading = true;
+        if (!payemthod_id) {
+            payemthod_id = this.pageData.methodList[this.pageData.form.coin_name_unique].options[this.pageData.form.block_network_id];
+        }
         const data = { user_id: core.user_id, request_unique: payemthod_id };
         Object.assign(data, this.pageData.form);
         this.sendNotification(net.HttpType.api_user_var_recharge_create, data);

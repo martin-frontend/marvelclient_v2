@@ -2,7 +2,7 @@
     <div class="d-flex" :class="{'flex-wrap':$mobile}">
         <v-sheet :width="$mobile?'100%':'50%'" color="transparent">
             <v-sheet :height="$mobile ? 'auto' : 102" class="rounded-lg pa-4 d-flex flex-column justify-space-between font-weight-bold">
-                <div :class="$mobile?'text-14':'text-16'">{{commissionDetail.settlement_date_start}}-{{commissionDetail.settlement_date_end}}</div>
+                <div :class="$mobile?'text-14':'text-16'">{{commissionDetail.settlement_date_start}}{{LangUtil("至")}}{{commissionDetail.settlement_date_end}}</div>
                 <div class="d-flex align-center">
                     <div class="text-14">
                         <span class="mr-1">{{LangUtil("本期预计分红")}}</span>

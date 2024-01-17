@@ -10,6 +10,8 @@ import { List } from "echarts";
 import GlobalVar from "@/core/global/GlobalVar";
 import SkinVariable from "@/_skin005/core/SkinVariable";
 import GamePlatConfig from "@/core/config/GamePlatConfig";
+import dialog_message_box from "../../dialog_message_box";
+import dialog_kyc from "../../dialog_kyc";
 
 @Component
 export default class UserPanel extends AbstractView {
@@ -33,9 +35,14 @@ export default class UserPanel extends AbstractView {
             const obj = { id: 1, name: LangUtil("安全中心"), icon: "sefety" };
             list.splice(1, 0, obj);
         }
-
+        // bet2dream.com
         if (SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) {
             const obj = { id: 16, name: LangUtil("用户认证"), icon: "certified" };
+            list.splice(2, 0, obj);
+        }
+        // kyc认证
+        if (this.userInfo.is_need_kyc == 1) {
+            const obj = { id: 17, name: LangUtil("用户认证"), icon: "certified" };
             list.splice(2, 0, obj);
         }
         if (ModulesHelper.IsShow_NoticeBtn()) {
@@ -142,6 +149,16 @@ export default class UserPanel extends AbstractView {
             case 16:
                 PanelUtil.openpanel_plat_users_verification();
                 break;
+            case 17:
+                {
+                    const kyc_status = this.userInfo.kyc_status;
+                    if (kyc_status == 0 || kyc_status == 2) {
+                        PanelUtil.openpanel_dialog_kyc();
+                    } else {
+                        PanelUtil.message_info(this.getCertificationStatus({ id: 17 }).name);
+                    }
+                }
+                break;
         }
     }
 
@@ -150,10 +167,12 @@ export default class UserPanel extends AbstractView {
         PanelUtil.message_info(LangUtil("复制成功"));
     }
 
-    get certificationStatus() {
+    getCertificationStatus(item:any) {
         // const status: any = 3;
         // switch (status) {
-        switch (this.selfProxy.userVerificationStatus) {
+
+        const status = item.id == 16 ? this.selfProxy.userVerificationStatus : this.selfProxy.userInfo.kyc_status;
+        switch (status) {
             case 0:
                 return { name: LangUtil("未认证"), icon: "mdi-alert-circle", color: "red" };
             case 1:
@@ -164,6 +183,10 @@ export default class UserPanel extends AbstractView {
 
             case 3:
                 return { name: LangUtil("审核中"), icon: "mdi-clock", color: "orange" };
+            case 11:
+                return { name: LangUtil("开始认证"), icon: "mdi-clock", color: "orange" };
+            case 12:
+                return { name: LangUtil("提交认证中"), icon: "mdi-clock", color: "orange" };
             default:
                 return {};
         }

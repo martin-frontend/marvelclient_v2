@@ -94,6 +94,7 @@
         "@metamask/detect-provider": "^1.2.0",
         "@types/moment-timezone": "^0.5.30",
         "@types/swiper": "^6.0.0",
+        "@veriff/js-sdk": "^1.5.1",
         "axios": "^0.27.2",
         "axios-retry": "^3.4.0",
         "bignumber.js": "^9.1.1",

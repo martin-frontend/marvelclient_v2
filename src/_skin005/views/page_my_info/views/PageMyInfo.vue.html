@@ -25,10 +25,10 @@
         <span class="ml-3 text-14">{{LangUtil("用户认证")}}</span>
         <v-spacer></v-spacer>
         <div class="d-flex align-center mr-2">
-            <v-icon :color="certificationStatus.color" v-if="certificationStatus.icon" small class="text-16 mr-1">
-                {{certificationStatus.icon}}
+            <v-icon :color="getCertificationStatus({id:13}).color" v-if="getCertificationStatus({id:13}).icon" small class="text-16 mr-1">
+                {{getCertificationStatus({id:13}).icon}}
             </v-icon>
-            <span class="disable_text_2--text">{{certificationStatus.name}}</span>
+            <span class="disable_text_2--text">{{getCertificationStatus({id:13}).name}}</span>
         </div>
         <svg-icon class="text-12 ml-auto mr-4" icon="arrow_right"></svg-icon>
     </v-sheet>
@@ -171,14 +171,14 @@
                 width="100"
                 @click.native="goCategory(item.id)"
             >
-                <template v-if="item.id == 13">
+                <template v-if="item.id == 13 || item.id == 17">
                     <div class="d-flex justify-center" style="position: relative">
-                        <svg-icon :icon="item.icon" class="textGray--text text-20"></svg-icon>
-                        <v-icon :color="certificationStatus.color" v-if="certificationStatus.icon" small class="custom-tip text-16 mr-1">
-                            {{certificationStatus.icon}}
+                        <svg-icon :icon="item.icon" class="textGray--text text-20 mt-4"></svg-icon>
+                        <v-icon :color="getCertificationStatus(item).color" v-if="getCertificationStatus(item).icon" small class="custom-tip text-16 mr-1 mt-4">
+                            {{getCertificationStatus(item).icon}}
                         </v-icon>
                     </div>
-                    <div class="text-12 mt-2 textGray--text" style="text-align: center">{{certificationStatus.name}}</div>
+                    <div class="text-12 mt-2 textGray--text" style="text-align: center">{{getCertificationStatus(item).name}}</div>
                 </template>
 
                 <template v-else>

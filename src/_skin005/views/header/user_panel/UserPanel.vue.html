@@ -14,9 +14,9 @@
 
             <svg-icon :icon="item.icon" class="text-22"></svg-icon>
             <div class="ml-2">{{ item.name }}</div>
-            <div class="d-flex align-center ml-1" v-if="item.id == '16'">
-                <v-icon :color="certificationStatus.color" v-if="certificationStatus.icon" small>
-                    {{certificationStatus.icon}}
+            <div class="d-flex align-center ml-1" v-if="item.id == '16' || item.id == '17'">
+                <v-icon :color="getCertificationStatus(item).color" v-if="getCertificationStatus(item).icon" small>
+                    {{getCertificationStatus(item).icon}}
                 </v-icon>
                 <!-- <span class="disable_text_2--text">{{certificationStatus.name}}</span> -->
             </div>

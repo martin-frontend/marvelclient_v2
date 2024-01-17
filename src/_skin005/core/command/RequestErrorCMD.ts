@@ -3,6 +3,7 @@ import SelfProxy from "@/proxy/SelfProxy";
 import Vue from "vue";
 import PanelUtil from "../PanelUtil";
 import { TrackEventMap, track } from "@/_skin005/core/TrackManager";
+import dialog_kyc from "@/_skin005/views/dialog_kyc";
 import GameConfig from "@/core/config/GameConfig";
 
 export default class RequestErrorCMD extends puremvc.SimpleCommand {
@@ -33,6 +34,8 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             const ERROR_CODE_REGISTER_FAIL = [1100114, 1100119, 1100117];
             //无权限查询
             const ERROR_CODE_NO_PERMISSION = [1103315];
+            //kyc认证失败
+            const ERROR_CODE_KYC = [1106028];
 
             //流水不足
             const ERROR_CODE_NO_ENOUGH = [1106011];
@@ -87,7 +90,15 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             } else if (ERROR_CODE_NO_ENOUGH.includes(result.status)) {
                 console.log("此用户流水不足", result);
                 PanelUtil.message_confirm({ message: LangUtil("您当前流水不足，暂不能提现"), cancelFun: PanelUtil.openpanel_gold_waterl });
-            } else {
+            } else if(ERROR_CODE_KYC.includes(result.status)){
+                PanelUtil.message_confirm({
+                    message: body.result.msg,
+                    okFun: () => {
+                        dialog_kyc.show();
+                    },
+                });
+            } 
+            else {
                 PanelUtil.message_alert(body.result.msg);
             }
         } else {

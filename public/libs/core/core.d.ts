@@ -3688,6 +3688,10 @@ declare module core {
         invite_user_id?: number;
         /**是否显示渠道统计 1是 0否*/
         is_channel_statistic_display?: number;
+        /**是否开启KYC认证 */
+        is_need_kyc?: number;
+        /**kyc认证状态 */
+        kyc_status?: number;
         /**转换开关：0-否|1-是 */
         is_gold_transfer?: number;
         /**转换手续费 */

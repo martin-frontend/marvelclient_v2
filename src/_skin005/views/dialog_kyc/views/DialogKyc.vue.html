@@ -1,0 +1,10 @@
+<!-- <v-dialog width="730" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$vuetify.breakpoint.xsOnly" persistent> -->
+<v-dialog v-if="!pageData.bHidden" width="430" v-model="pageData.bShow" :retain-focus="false" :fullscreen="$xsOnly" persistent :transition="$mobile ? 'mobile-slide-x-transition' :''">
+    <v-card flat color="bgBanner" class="rounded10">
+        <com-dialog-title title="用户验证" @onClose="onClose" />
+        <v-sheet class="mx-5" color="transparent">
+            <div id="veriff-root"></div>
+        </v-sheet>
+    </v-card>
+    <Overlay v-model="pageData.loading"/>
+</v-dialog>

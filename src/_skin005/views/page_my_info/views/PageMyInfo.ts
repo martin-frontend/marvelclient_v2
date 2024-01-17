@@ -58,6 +58,7 @@ export default class PageMyInfo extends AbstractView {
             13: { id: 13, name: LangUtil("用户认证"), icon: "certified" },
             14: { id: 14, name: LangUtil("公告中心"), icon: "notice" },
             15: { id: 15, name: LangUtil("推广代理"), icon: "agentmenger" },
+            17: { id: 17, name: LangUtil("用户认证"), icon: "certified" },
         };
         newlist.push(list[0]);
         if (SkinVariable.isShowPlatUsersVerification && GamePlatConfig.config.is_user_verification.is_open) newlist.push(list[13]);
@@ -105,6 +106,10 @@ export default class PageMyInfo extends AbstractView {
         //代理统计
         if (this.selfProxy.userInfo.is_show_agent_statistic === 1) {
             newlist.push(list[15]);
+        }
+        // kyc认证
+        if (this.selfProxy.userInfo.is_need_kyc == 1) {
+            newlist.push(list[17]);
         }
         return newlist;
     }
@@ -158,6 +163,16 @@ export default class PageMyInfo extends AbstractView {
                 break;
             case 15:
                 PanelUtil.openpage_promotion_statistic();
+                break;
+            case 17:
+                {
+                    const kyc_status = this.selfProxy.userInfo.kyc_status;
+                    if (kyc_status == 0 || kyc_status == 2) {
+                        PanelUtil.openpanel_dialog_kyc();
+                    } else {
+                        PanelUtil.message_info(this.getCertificationStatus({ id: 17 }).name);
+                    }
+                }
                 break;
         }
     }
@@ -273,9 +288,10 @@ export default class PageMyInfo extends AbstractView {
     transformMoney(val: any) {
         return CoinTransformHelper.TransformMoney(val, 2, GameConfig.config.SettlementCurrency, "USDT", true, true, false, false);
     }
-    get certificationStatus() {
+    getCertificationStatus(item: any) {
         // const status: any = 1;
         // switch (status) {
+        const status = item.id == 13 ? this.selfProxy.userVerificationStatus : this.selfProxy.userInfo.kyc_status;
         switch (this.selfProxy.userVerificationStatus) {
             case 0:
                 return { name: LangUtil("未认证"), icon: "mdi-alert-circle", color: "red" };
@@ -287,6 +303,10 @@ export default class PageMyInfo extends AbstractView {
 
             case 3:
                 return { name: LangUtil("审核中"), icon: "mdi-clock", color: "orange" };
+            case 11:
+                return { name: LangUtil("开始认证"), icon: "mdi-clock", color: "orange" };
+            case 12:
+                return { name: LangUtil("提交认证中"), icon: "mdi-clock", color: "orange" };
             default:
                 return {};
         }

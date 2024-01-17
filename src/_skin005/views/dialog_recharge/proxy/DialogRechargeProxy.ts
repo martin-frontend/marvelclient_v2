@@ -5,6 +5,8 @@ import Utils from "@/core/global/Utils";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LangUtil from "@/core/global/LangUtil";
 import GlobalVar from "@/core/global/GlobalVar";
+import SelfProxy from "@/proxy/SelfProxy";
+import dialog_kyc from "../../dialog_kyc";
 
 export default class DialogRechargeProxy extends puremvc.Proxy {
     static NAME = "DialogRechargeProxy";
@@ -427,6 +429,15 @@ export class ExchangeProxy extends puremvc.Proxy {
     }
 
     api_user_var_exchange_create_order(requires: any = null, brl_info: any = null) {
+        const selfProxy:SelfProxy = getProxy(SelfProxy);
+        const {is_need_kyc, kyc_status} = selfProxy.userInfo;
+        if(is_need_kyc == 1 && kyc_status){
+            if(kyc_status == 0 || kyc_status == 2){
+                dialog_kyc.show();
+            }else if([3,11,12].includes(kyc_status)){
+                PanelUtil.message_alert(LangUtil("认证中，请稍候提现"));
+            }
+        }
         //this.pageData.loading = true;
         PanelUtil.showAppLoading(true);
         if (!requires || requires.length < 1) {

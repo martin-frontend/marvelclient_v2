@@ -152,6 +152,7 @@ import dialog_limited_bonus from "@/_skin005/views/dialog_limited_bonus";
 import dialog_award_ball from "@/_skin005/views/dialog_award_ball";
 import dialog_daily_task from "@/_skin005/views/dialog_daily_task";
 import dialog_spin_lottery from "@/_skin005/views/dialog_spin_lottery";
+import dialog_kyc from "../views/dialog_kyc";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -572,6 +573,10 @@ export default class PanelUtil {
             MultDialogManager.onOpenPanel(dialog_plat_users_verification);
             dialog_plat_users_verification.show();
         });
+    }
+    // 打开key认证
+    static openpanel_dialog_kyc(){
+        dialog_kyc.show();
     }
     //打开 真实姓名 窗口
     static openpanel_real_name(isCPF: boolean = false) {

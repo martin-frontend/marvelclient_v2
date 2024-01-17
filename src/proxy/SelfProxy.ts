@@ -57,6 +57,8 @@ export default class SelfProxy extends AbstractProxy {
         direct_commission_config: <any>{ is_open: false },
         cpf: "",
         utm_source: "",
+        is_need_kyc: 98,
+        kyc_status: 0,
     };
     /**红点信息 */
     red_dot_tips = {

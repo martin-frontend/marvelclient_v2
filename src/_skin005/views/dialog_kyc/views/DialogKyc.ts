@@ -25,7 +25,8 @@ export default class DialogKyc extends AbstractView {
         setTimeout(() => {
             const veriff = Veriff({
                 // host: "https://api.veriff.me",
-                apiKey: "d8e2ae63-0907-480d-bed2-9d8598e7f3cd",
+                // apiKey: "d8e2ae63-0907-480d-bed2-9d8598e7f3cd",
+                apiKey: "8d6e4350-e980-448b-a972-d04947223701",
                 parentId: "veriff-root",
                 onSession: function (err: any, response: any) {
                     OpenLink(response.verification.url + "?lang=" + core.lang.substring(0, 2));

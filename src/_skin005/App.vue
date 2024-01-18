@@ -305,7 +305,8 @@ export default class extends App {
 }
 @media (max-width: 600px) {
     .action-btns {
-        gap: 65px;
+        gap: 15px;
+        bottom: 65px;
     }
 }
 </style>

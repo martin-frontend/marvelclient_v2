@@ -34,7 +34,7 @@ import SkinVariable from "@/_skin005/core/SkinVariable";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import LoadMore1 from "@/views/widget/loadMore1/LoadMore1.vue";
 import Footer from "@/_skin005/views/footer/Footer.vue";
-import Header from "@/_skin005/views/header/Header.vue";
+import Header from "@/_skin016/views/header/Header.vue";
 import GameConfig from "@/core/config/GameConfig";
 import { getVersion } from "@/core/global/Functions";
 import { createSimpleTransition } from "vuetify/lib/components/transitions/createTransition";
@@ -43,7 +43,7 @@ Assets.commonIcon.loading_img = "loding_icon_16.png?" + getVersion();
 Assets.commonIcon.logo = require(`@/_skin016/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin016/assets/logo_m.png`);
 Assets.commonIcon.login_logo_m = require(`@/_skin016/assets/login_logo_m.png`);
-
+SkinVariable.systemKefuTop = false;
 //SkinVariable.isShowFootDetail = false;
 //SkinVariable.loadingType = "006";
 // SkinVariable.isUsedDialogRecharge  = true;

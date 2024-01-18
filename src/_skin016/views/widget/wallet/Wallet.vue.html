@@ -1,0 +1,214 @@
+<v-sheet
+    color="wallet_bg"
+    :height="$mobile?30:36"
+    class="rounded-pill d-flex align-center box"
+    :class="walletMaxwidth"
+    width="100%"
+    :min-width="walletMinWidth"
+>
+    <v-menu
+        v-if="!$mobile && SkinVariable.isWallet_Recharge"
+        :content-class="content_class"
+        :disabled="isMenuDisabled"
+        offset-y
+        nudge-bottom="2"
+    >
+        <template v-slot:activator="{ on, attrs,value }">
+            <v-sheet color="transparent" class="" width="100%">
+                <v-sheet
+                    v-if="selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                    class="align-center d-flex rounded-lg primary--text regular_text"
+                    color="transparent"
+                    :min-width=" $mobile ? 0 : 206"
+                    height="36"
+                >
+                    <template v-for="(item, key,index) of showCoinList">
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex align-center box rounded-pill px-2 cursor-pointer listitem"
+                            height="100%"
+                            :class="{'select-shadow': gameProxy.coin_name_unique == key,'ml-2':index != 0}"
+                            :key="key"
+                            @click="onItemClick(key)"
+                            width="120"
+                        >
+                            <v-img
+                                :src="GamePlatConfig.config.plat_coins[key].icon"
+                                :max-width="$mobile ? '20' : '24'"
+                                :max-height="$mobile ? '20' : '24'"
+                            ></v-img>
+                            <span class="ml-2" :class="$mobile ? 'text-14 bold_text text-truncate' : 'text-14'"
+                                >{{ amountFormat(selfProxy.userInfo.gold_info[key].sum_money ,true)}}</span
+                            >
+                        </v-sheet>
+                    </template>
+                    <div v-if="!isMenuDisabled" v-bind="attrs" v-on="on">
+                        <svg-icon
+                            icon="arrow_down_2"
+                            class="textGray--text mx-2 text-14"
+                            :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                        />
+                    </div>
+                </v-sheet>
+                <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
+                {{setIsFilter(value)}} {{setCoinTipPosition(value)}}
+            </v-sheet>
+        </template>
+        <v-sheet width="100%" color="bgBanner" class="py-4 px-0 d-flex flex-column justify-center rounded10">
+            <template v-for="(item, key) of selfProxy.userInfo.gold_info">
+                <v-sheet
+                    class="d-flex align-center px-3 rounded-lg cursor-pointer regular_text py-1 mb-2 mx-4 listitem"
+                    :class="{'select-shadow': gameProxy.coin_name_unique == key}"
+                    min-height="40"
+                    :key="key"
+                    @click="onItemClick(key)"
+                    color="transparent"
+                    v-if="GamePlatConfig.isShowCoin(key) && (!isActivityCoin(key) || isShowActivityCoin(key))"
+                    :ref="key"
+                >
+                    <div>
+                        <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
+                    </div>
+                    <div class="ml-3">
+                        <div class="font-weight-bold nomal_text_1--text">
+                            {{ getCoinAlias(key) }} {{ isActivityCoin(key) ? "" : LangUtil("钱包1") }}
+                        </div>
+                        <div class="primary--text">{{ amountFormat(item.sum_money,true) }}</div>
+                        <div v-if="key == 'CNY'" class="primary--text">{{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
+                    </div>
+                </v-sheet>
+            </template>
+
+            <v-btn v-if="isNeedRate" text height="20" min-width="32" class="pa-0 mt-3" @click="handlerGameRate">
+                <span class="textYellow--text text-decoration-underline text-16"> {{LangUtil("游戏汇率查询")}}</span>
+            </v-btn>
+            <v-btn v-else text height="20" min-width="32" class="pa-0 mt-3" @click="onCoinIn">
+                <span class="font-weight-bold text-decoration-underline text-22 textYellow--text"> {{LangUtil("首页充值兑换")}}</span>
+            </v-btn>
+            <v-sheet class="mt-4 mx-4" color="transparent" v-if="coinTask">
+                <v-sheet color="transparent" v-for="(item,index) of coinTask" :key="index" class="d-flex flex-column my-1">
+                    <div class="d-flex justify-space-between">
+                        <span class="font-weight-bold">{{LangUtil("奖励任务")}}</span>
+                        <span class="red--text cursor-pointer text-decoration-underline" @click="showCoinTask">{{LangUtil("详情")}}</span>
+                    </div>
+                    <div>{{item.activity_name}}</div>
+                    <div>
+                        {{convertCoinName(item.task_coin_name_unique, true)}} {{LangUtil("余额")}}：
+                        <span class="font-weight-bold">{{amountFormat(item.task_coin_amount, true)}}</span>
+                    </div>
+                    <div class="d-flex align-center">
+                        <v-progress-linear class="custom-progress" background-color="bgColor" :value="calculateProgress(item)" height="5">
+                        </v-progress-linear>
+                        <span class="ml-2"> （{{ Math.trunc(calculateProgress(item)) }}%） </span>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+        </v-sheet>
+    </v-menu>
+
+    <v-menu v-else :content-class="content_class" :disabled="isMenuDisabled" offset-y nudge-bottom="2">
+        <template v-slot:activator="{ on, attrs,value }">
+            <v-sheet color="transparent" class="" width="100%">
+                <v-sheet
+                    v-if="selfProxy.userInfo.gold_info[gameProxy.coin_name_unique]"
+                    class="align-center d-flex rounded-lg primary--text regular_text"
+                    color="transparent"
+                    :min-width=" $mobile ? 0 : 206"
+                    height="36"
+                >
+                    <template v-for="(item, key,index) of showCoinList">
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex align-center box rounded-pill px-2 py-1 cursor-pointer listitem"
+                            :class="{'select-shadow': gameProxy.coin_name_unique == key,'ml-2':index != 0}"
+                            :key="key"
+                            @click="onItemClick(key)"
+                            width="100"
+                        >
+                            <v-img
+                                :src="GamePlatConfig.config.plat_coins[key].icon"
+                                :max-width="$mobile ? '20' : '24'"
+                                :max-height="$mobile ? '20' : '24'"
+                            ></v-img>
+                            <span class="ml-2" :class="$mobile ? 'text-14 bold_text text-truncate' : 'text-14'"
+                                >{{ amountFormat(selfProxy.userInfo.gold_info[key].sum_money ,true)}}</span
+                            >
+                        </v-sheet>
+                    </template>
+                    <div v-if="!isMenuDisabled" v-bind="attrs" v-on="on">
+                        <svg-icon
+                            icon="arrow_down_2"
+                            class="textGray--text ml-0 text-12 mx-2"
+                            :class="attrs['aria-expanded'] == 'true' ? 'arrow-show' : 'arrow'"
+                        />
+                    </div>
+                </v-sheet>
+                <div class="mask" v-if="attrs['aria-expanded'] == 'true'"></div>
+                {{setIsFilter(value)}} {{setCoinTipPosition(value)}}
+            </v-sheet>
+        </template>
+        <v-sheet width="100%" color="bgBanner" class="py-4 px-0 d-flex flex-column justify-center rounded10">
+            <template v-for="(item, key) of selfProxy.userInfo.gold_info">
+                <v-sheet
+                    class="d-flex align-center px-3 rounded-lg cursor-pointer regular_text py-1 mb-2 mx-4 listitem"
+                    :class="{'select-shadow': gameProxy.coin_name_unique == key}"
+                    min-height="40"
+                    :key="key"
+                    @click="onItemClick(key)"
+                    color="transparent"
+                    v-if="GamePlatConfig.isShowCoin(key) && (!isActivityCoin(key) || isShowActivityCoin(key))"
+                    :ref="key"
+                >
+                    <div>
+                        <v-img :src="GamePlatConfig.config.plat_coins[key].icon" max-width="30" max-height="30"></v-img>
+                    </div>
+                    <div class="ml-3">
+                        <div class="font-weight-bold nomal_text_1--text">
+                            {{ getCoinAlias(key) }} {{ isActivityCoin(key) ? "" : LangUtil("钱包1") }}
+                        </div>
+                        <div class="primary--text">{{ amountFormat(item.sum_money,true) }}</div>
+                        <div v-if="key == 'CNY'" class="primary--text">{{LangUtil("CNY既RMB:支持[银行卡][支付宝][微信]方式充值")}}</div>
+                    </div>
+                </v-sheet>
+            </template>
+            <v-btn v-if="isNeedRate" text height="20" min-width="32" class="pa-0 mt-3" @click="handlerGameRate">
+                <span class="textYellow--text text-decoration-underline text-16"> {{LangUtil("游戏汇率查询")}}</span>
+            </v-btn>
+            <v-btn v-else text height="20" min-width="32" class="pa-0 mt-3" @click="onCoinIn">
+                <span class="font-weight-bold text-decoration-underline text-22 textYellow--text"> {{LangUtil("首页充值兑换")}}</span>
+            </v-btn>
+            <v-sheet class="mt-4 mx-4" color="transparent" v-if="coinTask">
+                <v-sheet color="transparent" v-for="(item,index) of coinTask" :key="index" class="d-flex flex-column my-1">
+                    <div class="d-flex justify-space-between">
+                        <span class="font-weight-bold text-14">{{LangUtil("奖励任务")}}</span>
+                        <span class="red--text cursor-pointer text-decoration-underline text-14" @click="showCoinTask"
+                            >{{LangUtil("详情")}}</span
+                        >
+                    </div>
+                    <div>{{item.activity_name}}</div>
+                    <div>{{convertCoinName(item.task_coin_name_unique, true)}} {{LangUtil("余额")}}：</div>
+                    <div>{{amountFormat(item.task_coin_amount, true)}}</div>
+                    <div class="d-flex align-center mt-1">
+                        <v-progress-linear class="custom-progress" background-color="bgColor" :value="calculateProgress(item)" height="12">
+                            <template v-slot:default="{ value }">
+                                <span class="text-12">{{ Math.trunc(value) }}% </span>
+                            </template>
+                        </v-progress-linear>
+                    </div>
+                </v-sheet>
+            </v-sheet>
+        </v-sheet>
+    </v-menu>
+    <!-- <btn-yellow
+        v-if="$mobile && !isNeedText && isShowRecharge"
+        class="ml-auto"
+        :btn_type="4"
+        height="29"
+        width="40"
+        min_width="40"
+        @click.native="onCoinIn"
+    >
+        <div class="mt-1"><svg-icon class="text-16" icon="wallet"></svg-icon></div>
+    </btn-yellow> -->
+    <!-- <btn-yellow v-else class="btn-topup px-3 text-20" width="120" height="50" @click="onCoinIn">{{LangUtil("钱包")}}</btn-yellow> -->
+</v-sheet>

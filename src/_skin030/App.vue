@@ -214,13 +214,13 @@ export default class extends App {
 .btn-service {
     position: fixed;
     bottom: 85px;
-    right: 20px;
+    right: 25px;
     z-index: 7;
 }
 .btn-partner-service {
     position: fixed;
     bottom: 133px;
-    right: 20px;
+    right: 25px;
     z-index: 7;
     &.pc {
         bottom: 140px;
@@ -230,14 +230,14 @@ export default class extends App {
 .btn-top {
     position: fixed;
     bottom: 30px;
-    right: 20px;
+    right: 25px;
     z-index: 7;
 }
 
 .btn-activity-spin {
     position: fixed;
     bottom: 143px;
-    right: 20px;
+    right: 25px;
     z-index: 7;
 }
 

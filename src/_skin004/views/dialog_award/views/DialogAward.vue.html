@@ -39,7 +39,9 @@
 
         <v-card-actions class="mt-0 pt-0 pb-3 d-flex justify-center">
             <!-- <btn-yellow class="text-16 mb-4" min_width="90" height="36" @click.native="ontest">{{LangUtil("测试")}}</btn-yellow> -->
-            <btn-yellow class="text-16 mb-4" min_width="120" height="36" @click.native="onClose">{{LangUtil("确定")}}</btn-yellow>
+            <!-- <btn-yellow class="text-16 mb-4" min_width="120" height="36" @click.native="onClose">{{LangUtil("确定")}}</btn-yellow> -->
+
+            <v-btn color="colorTextYellow" height="36" min-width="120" block @click="onClose">{{LangUtil("确定")}}</v-btn>
         </v-card-actions>
     </v-card>
     <Overlay v-model="pageData.loading" />

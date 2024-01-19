@@ -6,11 +6,8 @@ import LangUtil from "@/core/global/LangUtil";
 import OpenLink from "@/core/global/OpenLink";
 import CoinTransformHelper from "@/_skin005/core/CoinTransformHelper";
 import { changeDateShow, dateFormat, getDateOffset } from "@/core/global/Functions";
-import GameConfig from "@/core/config/GameConfig";
-import Vue from "vue";
 import BlurUtil from "@/core/global/BlurUtil";
 import LoginEnter from "@/_skin004/core/global/LoginEnter";
-import DialogRechargeProxy, { RechargeProxy } from "../../dialog_recharge/proxy/DialogRechargeProxy";
 import dialog_activity_detail from "@/_skin004/views/dialog_activity_detail";
 import dialog_recharge from "@/_skin004/views/dialog_recharge";
 @Component

@@ -41,7 +41,7 @@ export default class UserPanel extends AbstractView {
             list.splice(2, 0, obj);
         }
         // kyc认证
-        if (this.userInfo.is_need_kyc == 1) {
+        if (ModulesHelper.IsShow_Kyc()) {
             const obj = { id: 17, name: LangUtil("用户认证"), icon: "certified" };
             list.splice(2, 0, obj);
         }
@@ -167,7 +167,7 @@ export default class UserPanel extends AbstractView {
         PanelUtil.message_info(LangUtil("复制成功"));
     }
 
-    getCertificationStatus(item:any) {
+    getCertificationStatus(item: any) {
         // const status: any = 3;
         // switch (status) {
 

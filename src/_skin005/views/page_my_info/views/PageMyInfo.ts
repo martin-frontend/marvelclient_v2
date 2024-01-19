@@ -108,7 +108,7 @@ export default class PageMyInfo extends AbstractView {
             newlist.push(list[15]);
         }
         // kyc认证
-        if (this.selfProxy.userInfo.is_need_kyc == 1) {
+        if (ModulesHelper.IsShow_Kyc()) {
             newlist.push(list[17]);
         }
         return newlist;

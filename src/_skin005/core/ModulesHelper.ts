@@ -157,6 +157,12 @@ function IsShow_HideSafeCenter() {
     return _isValueTrue("HideSafeCenter", false);
 }
 /**
+ * 是否显示 KYC
+ */
+function IsShow_Kyc() {
+    return _isValueTrue("isShowKyc", false);
+}
+/**
  * 是否显示 安全中心
  */
 function IsShow_HideEmail() {
@@ -348,4 +354,5 @@ export default {
     isShow_DailyTaskBtn,
     IsShow_ExchangeCPF,
     isPopularLottery,
+    IsShow_Kyc,
 };

@@ -11,6 +11,7 @@ import PageBlur from "@/_skin005/core/PageBlur";
 import { Veriff } from "@veriff/js-sdk";
 import OpenLink from "@/core/global/OpenLink";
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import { judgeClient } from "@/core/global/Functions";
 
 @Component
 export default class DialogKyc extends AbstractView {
@@ -31,16 +32,20 @@ export default class DialogKyc extends AbstractView {
                 parentId: "veriff-root",
                 onSession: function (err: any, response: any) {
                     const url = response.verification.url + "?lang=" + core.lang.substring(0, 2);
-                    const message_obj = <any>{
-                        message: LangUtil("是否现在去认证?"),
-                        okTxt: LangUtil("立即前往"),
-                        isNeetClose: true,
-                    };
-                    message_obj.okFun = () => {
+                    //@ts-ignore
+                    if (judgeClient() == "PC" || window.navigator.standalone) {
                         OpenLink(url);
-                    };
-                    if (this.$mobile) PanelUtil.message_confirm(message_obj);
-                    else OpenLink(url);
+                    } else {
+                        const message_obj = <any>{
+                            message: LangUtil("是否现在去认证?"),
+                            okTxt: LangUtil("立即前往"),
+                            isNeetClose: true,
+                        };
+                        message_obj.okFun = () => {
+                            OpenLink(url);
+                        };
+                        PanelUtil.message_confirm(message_obj);
+                    }
                 },
             });
             veriff.setParams({

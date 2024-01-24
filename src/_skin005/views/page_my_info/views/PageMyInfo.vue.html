@@ -178,7 +178,8 @@
                             {{getCertificationStatus(item).icon}}
                         </v-icon>
                     </div>
-                    <div class="text-12 mt-2 textGray--text" style="text-align: center">{{getCertificationStatus(item).name}}</div>
+                    <div v-if="item.id == 13" class="text-12 mt-2 textGray--text" style="text-align: center">{{getCertificationStatus(item).name}}</div>
+                    <div v-else class="text-12 mt-2 textGray--text" style="text-align: center">{{item.name}}</div>
                 </template>
 
                 <template v-else>

@@ -10,6 +10,7 @@ import PageBlur from "@/_skin005/core/PageBlur";
 //@ts-ignore
 import { Veriff } from "@veriff/js-sdk";
 import OpenLink from "@/core/global/OpenLink";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class DialogKyc extends AbstractView {
@@ -21,7 +22,7 @@ export default class DialogKyc extends AbstractView {
         super(DialogKycMediator);
     }
 
-    mounted(){
+    mounted() {
         setTimeout(() => {
             const veriff = Veriff({
                 // host: "https://api.veriff.me",
@@ -29,7 +30,17 @@ export default class DialogKyc extends AbstractView {
                 apiKey: "8d6e4350-e980-448b-a972-d04947223701",
                 parentId: "veriff-root",
                 onSession: function (err: any, response: any) {
-                    OpenLink(response.verification.url + "?lang=" + core.lang.substring(0, 2));
+                    const url = response.verification.url + "?lang=" + core.lang.substring(0, 2);
+                    const message_obj = <any>{
+                        message: LangUtil("是否现在去认证?"),
+                        okTxt: LangUtil("立即前往"),
+                        isNeetClose: true,
+                    };
+                    message_obj.okFun = () => {
+                        OpenLink(url);
+                    };
+                    if (this.$mobile) PanelUtil.message_confirm(message_obj);
+                    else OpenLink(url);
                 },
             });
             veriff.setParams({

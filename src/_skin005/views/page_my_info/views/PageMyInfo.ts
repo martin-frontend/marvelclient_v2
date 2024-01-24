@@ -292,7 +292,7 @@ export default class PageMyInfo extends AbstractView {
         // const status: any = 1;
         // switch (status) {
         const status = item.id == 13 ? this.selfProxy.userVerificationStatus : this.selfProxy.userInfo.kyc_status;
-        switch (this.selfProxy.userVerificationStatus) {
+        switch (status) {
             case 0:
                 return { name: LangUtil("未认证"), icon: "mdi-alert-circle", color: "red" };
             case 1:

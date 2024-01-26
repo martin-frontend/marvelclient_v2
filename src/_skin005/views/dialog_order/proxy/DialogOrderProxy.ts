@@ -1,6 +1,7 @@
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import Timezone from "@/core/Timezone";
 import GameConfig from "@/core/config/GameConfig";
+import Vue from "vue";
 
 export default class DialogOrderProxy extends puremvc.Proxy {
     static NAME = "DialogOrderProxy";
@@ -89,6 +90,7 @@ export default class DialogOrderProxy extends puremvc.Proxy {
         const formCopy = <any>{
             order_no: order_no,
             vendor_id: my_vendor_id,
+            daynight_type: Vue.vuetify.framework.theme.dark ? "2" : "1",
         };
         if (!Timezone.Instance.isNotUseTimezone) {
             formCopy.timezone = Timezone.Instance.timezoneOffset;

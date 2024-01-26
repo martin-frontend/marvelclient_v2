@@ -46,7 +46,7 @@ export function getVuetify(): Vuetify {
                         colorYellowBg: "#F2A81C",
                         colorGoldBg: "#ffb01b",
                         colorBlueBtn: "3A66BA",
-
+                        navTextHover: "#0F1213",
                         // //新增
                         colorBtnSeleBg: "#CD30C1", //used
                         colorActivityBg: "#12294a", //used

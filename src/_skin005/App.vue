@@ -81,6 +81,25 @@
                 <v-img src="~@/_skin005/assets/activity_spin/spin_icon.png" width="62"></v-img>
             </v-btn>
 
+            <v-sheet
+                v-if="showPointSpin"
+                color="transparent"
+                min-height="70"
+                @click.native="onClickBtnPointSpin"
+                class="d-flex flex-column align-center cursor-pointer"
+            >
+                <v-img src="~@/_skin005/assets/activity_point_spin/icon.png" width="70" height="70"> </v-img>
+
+                <v-sheet
+                    v-if="spinTxt"
+                    color="navTextHover"
+                    width="100%"
+                    min-height="23"
+                    class="d-flex align-center justify-center rounded text-12 white--text mt-n3 px-1"
+                >
+                    <span>{{ spinTxt }}</span></v-sheet
+                >
+            </v-sheet>
             <v-btn v-if="ModulesHelper.isShow_Kefu()" icon @click="onService">
                 <btn-yellow class="text-24" min_width="0" width="50" height="50">
                     <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="service_full"></svg-icon>
@@ -116,7 +135,33 @@
             <v-btn v-if="showSpinLottery" id="activitySpinBtn" icon @click="onClickBtnSpin">
                 <v-img src="~@/_skin005/assets/activity_spin/spin_icon.png" width="54"></v-img>
             </v-btn>
+            <!-- <v-btn v-if="showPointSpin" min-height="70" icon @click="onClickBtnPointSpin">
+                <v-img src="~@/_skin005/assets/activity_point_spin/item_ticks.png" width="54"> </v-img>
+                <v-sheet v-if="spinTxt" color="transparent" width="100%" height="100%" class="d-flex align-end">
+                    <v-sheet color="navTextHover" width="100%" min-height="23" class="d-flex align-center justify-center rounded">
+                        <div class="text-12 white--text">{{ spinTxt }}</div></v-sheet
+                    >
+                </v-sheet>
+            </v-btn> -->
+            <v-sheet
+                v-if="showPointSpin"
+                color="transparent"
+                min-height="60"
+                @click.native="onClickBtnPointSpin"
+                class="d-flex flex-column align-center cursor-pointer"
+            >
+                <v-img src="~@/_skin005/assets/activity_point_spin/icon.png" width="54" height="54"> </v-img>
 
+                <v-sheet
+                    v-if="spinTxt"
+                    color="navTextHover"
+                    width="100%"
+                    min-height="23"
+                    class="d-flex align-center justify-center rounded text-12 white--text mt-n3 px-1"
+                >
+                    <span>{{ spinTxt }}</span></v-sheet
+                >
+            </v-sheet>
             <v-btn v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter" icon @click="onService">
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
                     <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="service_full"></svg-icon>
@@ -287,7 +332,6 @@ export default class extends App {
     width: 50px;
     height: 50px;
 }
-
 
 .svga-player_mob {
     width: 40px;

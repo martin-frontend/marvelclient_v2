@@ -245,10 +245,25 @@ export default class APP extends AbstractView {
     onClickBtnSpin() {
         PanelUtil.openpanel_spin_lottery();
     }
+    onClickBtnPointSpin() {
+        const activity_id = this.activityConfig.every_point.activity_id_arr[0];
+        if (!activity_id) {
+            PanelUtil.message_info("活动id为空");
+            return;
+        }
+        PanelUtil.openpanel_activity_point_spin(activity_id);
+    }
     get isUseColorfullIcon() {
         return GlobalVar.skin == "skin008" || GlobalVar.skin == "skin017";
     }
     get showSpinLottery() {
         return this.activityConfig.spin.is_open;
+    }
+    get showPointSpin() {
+        // return true;
+        return this.activityConfig.every_point.is_open;
+    }
+    get spinTxt() {
+        return PanelUtil.getProxy_novigation.spinLastTimeTxt;
     }
 }

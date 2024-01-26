@@ -1,0 +1,20 @@
+@import "../../views/DialogActivityPointSpin.vue.scss";
+.qrcode {
+    background-color: white;
+    border-radius: 4px;
+    padding: 2px;
+    width: 50px;
+    height: 50px;
+    ::v-deep img {
+        width: 100%;
+    }
+    // color: #bef9e2;
+}
+
+.tip_main_class {
+    background: transparent;
+    // width: 100%;
+    // left: 0px !important;
+    // top: unset !important;
+    opacity: 1;
+}

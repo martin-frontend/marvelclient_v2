@@ -1,0 +1,114 @@
+<v-card flat color="transparent" class="d-flex flex-column" width="100%">
+    <v-sheet color="transparent" width="100%" class="d-flex align-center px-0 rank_tag_class mt-1" style="margin-left: -1px">
+        <v-btn-toggle
+            mandatory
+            group
+            v-model="pageData.rankTagIndex"
+            class="pa-0"
+            @change="onRankTagChange"
+            color="transparent"
+            style="border-radius: 10px 10px 0 0"
+        >
+            <template v-for="index in 3">
+                <v-btn
+                    class="ma-0"
+                    :height="bg_node_size.tag_btn.height"
+                    :width="bg_node_size.tag_btn.width"
+                    :disabled="pageData.isSpinRun"
+                    :value="index"
+                    :key="index"
+                >
+                    <v-sheet
+                        color="transparent"
+                        :width="bg_node_size.tag_btn.width"
+                        :height="bg_node_size.tag_btn.height"
+                        class="font-weight-bold text-wrap d-flex align-center justify-center navTextHover--text"
+                        :class="!$vuetify.breakpoint.mobile ? 'text-14' : 'text-12'"
+                    >
+                        <template v-if="index == 1"> {{LangUtil("我的奖励")}}</template>
+                        <template v-if="index == 2"> {{LangUtil("世界纪录")}}</template>
+                        <template v-if="index == 3"> {{LangUtil("完成排行")}}</template>
+                    </v-sheet>
+                </v-btn>
+            </template>
+        </v-btn-toggle>
+    </v-sheet>
+    <v-sheet
+        color="transparent"
+        class="d-flex flex-column overflow-y-auto pa-2 navTextHover--text"
+        width="100%"
+        :height="bg_node_size.list_node.height"
+    >
+        <v-skeleton-loader v-if="pageData.isRankLoad " class="px-3 my-2 custom-loader" width="100%" type="text@6" style="height: 100px" />
+        <template v-else>
+            <v-row
+                no-gutters
+                v-for="(item, index) in pageData.rankData"
+                :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-14'"
+                :key="index"
+            >
+                <!-- 个人的 -->
+                <template v-if="pageData.rankTagIndex == 1">
+                    <v-col class="d-flex align-center justify-center"> {{getDate(item.created_at)}} </v-col>
+                    <v-col class="d-flex align-center justify-center"> {{getAwardSource(item.award_source)}} </v-col>
+                    <v-col class="d-flex justify-center align-center">
+                        <v-sheet color="transparent" class="d-flex align-center justify-center" :height="bg_node_size.award_item.height+2">
+                            <span>
+                                <v-img
+                                    :src="myProxy.getAwardImgPathByType(item.ball_award_type, item.params)"
+                                    :width="bg_node_size.award_item.width"
+                                    :height="bg_node_size.award_item.height"
+                                ></v-img>
+                            </span>
+                            <v-sheet
+                                color="transparent"
+                                class="d-flex justify-start align-center ml-1 navTextHover--text"
+                                min-width="60"
+                                height="100%"
+                            >
+                                <span v-if="myProxy.getAwardValueByType(item.ball_award_type,item.params)">
+                                    X {{myProxy.getAwardValueByType(item.ball_award_type,item.params)}}</span
+                                >
+                                <span v-else>{{LangUtil("谢谢参与")}}</span>
+                            </v-sheet>
+                        </v-sheet>
+                    </v-col>
+                </template>
+                <!-- 世界的 -->
+                <template v-else-if="pageData.rankTagIndex == 2">
+                    <v-col class="d-flex align-center justify-center"> {{item.nick_name}} </v-col>
+                    <v-col class="d-flex align-center justify-center"> {{getDate(item.created_at)}} </v-col>
+                    <v-col class="d-flex justify-center align-center">
+                        <span>
+                            <v-img
+                                :src="myProxy.getAwardImgPathByType(item.ball_award_type, item.params)"
+                                :width="bg_node_size.award_item.width"
+                                :height="bg_node_size.award_item.height"
+                            ></v-img>
+                        </span>
+
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex justify-start align-center ml-1 navTextHover--text"
+                            min-width="60"
+                            :height="bg_node_size.award_item.height+2"
+                        >
+                            <span v-if="myProxy.getAwardValueByType(item.ball_award_type,item.params)">
+                                X {{myProxy.getAwardValueByType(item.ball_award_type,item.params)}}</span
+                            >
+                            <span v-else>{{LangUtil("谢谢参与")}}</span>
+                        </v-sheet>
+                    </v-col>
+                </template>
+                <template v-else>
+                    <v-col class="d-flex align-center justify-center" :cols="1"> {{index+1}} </v-col>
+                    <v-col class="d-flex align-center justify-center"> {{item.nick_name}} </v-col>
+                    <v-col class="d-flex align-center justify-center"> {{getDate(item.created_at)}} </v-col>
+                    <v-col class="d-flex align-center justify-center"> {{getAwardSource(item.award_source)}} </v-col>
+                </template>
+            </v-row>
+            <v-row v-if="pageData.rankData.length > 0" no-gutters v-for="index in 30" :key="index+'_333'"></v-row>
+            <ListNodata v-if="pageData.rankData.length == 0" :height="bg_node_size.list_node.height" />
+        </template>
+    </v-sheet>
+</v-card>

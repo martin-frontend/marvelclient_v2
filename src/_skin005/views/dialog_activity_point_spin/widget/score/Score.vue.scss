@@ -1,0 +1,23 @@
+@import "../../views/DialogActivityPointSpin.vue.scss";
+.v-progress-linear__buffer {
+    background: #333435;
+}
+::v-deep .v-progress-linear__determinate {
+    border-radius: 20px;
+}
+
+::v-deep .v-progress-linear__determinate {
+    background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+}
+::v-deep .v-progress-linear {
+    background: #fff;
+}
+
+.get_bonus_border {
+    border: solid 2px #bef9e2;
+    background: linear-gradient(to bottom, #2d5266, #376b5c);
+}
+.btn_disabled {
+    pointer-events: none;
+    filter: grayscale(100%);
+}

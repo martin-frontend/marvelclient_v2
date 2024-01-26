@@ -14,12 +14,16 @@ import ServiceUtil from "./core/global/ServiceUtil";
 import AppProxy from "./AppProxy";
 import { track_error_event } from "@/core/config/ErrorEvent";
 import SkinVariable from "@/_skin004/core/SkinVariable";
+import ActivityConfig from "@/core/config/ActivityConfig";
+import dialog_activity_point_spin from "./views/dialog_activity_point_spin";
+import dialog_message from "@/views/dialog_message";
 @Component
 export default class APP extends AbstractView {
     SkinVariable = SkinVariable;
     gameProxy: GameProxy = getProxy(GameProxy);
     headerProxy: HeaderProxy = getProxy(HeaderProxy);
-
+    ActivityConfig = ActivityConfig;
+    activity_config = this.ActivityConfig.config;
     myProxy: AppProxy = this.getProxy(AppProxy);
 
     LangUtil = LangUtil;
@@ -106,5 +110,19 @@ export default class APP extends AbstractView {
     /**公告 */
     onNoticeShow() {
         dialog_notice.show();
+    }
+    onClickBtnPointSpin() {
+        const activity_id = this.ActivityConfig.config.every_point.activity_id_arr[0];
+        if (!activity_id) {
+            dialog_message.info("活动id为空");
+            return;
+        }
+        dialog_activity_point_spin.show(activity_id);
+    }
+    get showPointSpin() {
+        return this.activity_config.every_point.is_open;
+    }
+    get spinTxt() {
+        return this.ActivityConfig.spinLastTimeTxt;
     }
 }

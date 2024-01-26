@@ -57,6 +57,48 @@
                 </div>
             </v-btn>
         </v-sheet>
+        <div v-if="!$vuetify.breakpoint.xsOnly" class="action-btns">
+            <v-sheet
+                v-if="showPointSpin"
+                color="transparent"
+                min-height="70"
+                @click.native="onClickBtnPointSpin"
+                class="d-flex flex-column align-center cursor-pointer"
+            >
+                <v-img src="~@/_skin004/assets/activity_point_spin/icon.png" width="70" height="70"> </v-img>
+
+                <v-sheet
+                    v-if="spinTxt"
+                    color="navTextHover"
+                    width="100%"
+                    min-height="23"
+                    class="d-flex align-center justify-center rounded text-12 white--text mt-n3 px-1"
+                >
+                    <span>{{ spinTxt }}</span></v-sheet
+                >
+            </v-sheet>
+        </div>
+        <div v-else class="action-btns">
+            <v-sheet
+                v-if="showPointSpin"
+                color="transparent"
+                min-height="60"
+                @click.native="onClickBtnPointSpin"
+                class="d-flex flex-column align-center cursor-pointer"
+            >
+                <v-img src="~@/_skin004/assets/activity_point_spin/icon.png" width="54" height="54"> </v-img>
+
+                <v-sheet
+                    v-if="spinTxt"
+                    color="navTextHover"
+                    width="100%"
+                    min-height="23"
+                    class="d-flex align-center justify-center rounded text-12 white--text mt-n3 px-1"
+                >
+                    <span>{{ spinTxt }}</span></v-sheet
+                >
+            </v-sheet>
+        </div>
         <!-- 添加到桌面引导 -->
         <div class="btn-guide" v-if="false && $vuetify.breakpoint.mobile && isShowGuide && $route.path == '/'">
             <v-btn color="colorTitleBg" class="colorTextGold--text" @click="onGuide()">{{ myProxy.guideText }}</v-btn>
@@ -166,5 +208,20 @@ export default class extends APP {}
     background-image: linear-gradient(to right, #858ca6 0%, #858ca6 100%);
     background-size: 16px 1px;
     background-repeat: repeat-x;
+}
+.action-btns {
+    position: fixed;
+    right: 55px;
+    bottom: 285px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+@media (max-width: 600px) {
+    .action-btns {
+        gap: 15px;
+        bottom: 65px;
+    }
 }
 </style>

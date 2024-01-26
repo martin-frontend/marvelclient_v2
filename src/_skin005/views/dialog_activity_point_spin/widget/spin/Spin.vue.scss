@@ -1,0 +1,8 @@
+.no_pointer_even {
+    pointer-events: none;
+}
+
+.btn_disabled {
+    pointer-events: none;
+    filter: grayscale(100%);
+}

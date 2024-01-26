@@ -36,6 +36,7 @@ import page_game_list from "@/_skin004/views/page_game_list";
 import AudioPlayerProxy from "@/_skin004/views/widget/audio_player/AudioPlayerProxy";
 import { js_utils } from "custer-js-utils";
 import SkinVariable from "./SkinVariable";
+import ActivityConfig from "@/core/config/ActivityConfig";
 
 export default class NetObserver extends AbstractMediator {
     static NAME = "NetObserver";
@@ -59,6 +60,8 @@ export default class NetObserver extends AbstractMediator {
             net.EventType.api_plat_var_game_menu,
             net.EventType.api_plat_var_game_search,
             net.EventType.api_user_third_login,
+            net.EventType.api_plat_activity_config,
+            net.EventType.api_plat_activity_var,
         ];
     }
 
@@ -289,6 +292,13 @@ export default class NetObserver extends AbstractMediator {
             // bet2dream登录
             case net.EventType.api_user_third_login:
                 this.loginSuccess(body);
+                break;
+            //活动配置信息
+            case net.EventType.api_plat_activity_config:
+                ActivityConfig.init(body);
+                break;
+            case net.EventType.api_plat_activity_var:
+                ActivityConfig.setPointSpinData(body);
                 break;
         }
     }

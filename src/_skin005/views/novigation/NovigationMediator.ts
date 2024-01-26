@@ -12,6 +12,8 @@ export default class NovigationMediator extends AbstractMediator {
             net.EventType.api_user_var_notice,
             net.EventType.api_plat_var_notice_popup,
             net.EventType.api_plat_activity_index_everyday,
+            net.EventType.api_plat_activity_var,
+            net.EventType.api_plat_activity_config,
         ];
     }
 
@@ -21,6 +23,9 @@ export default class NovigationMediator extends AbstractMediator {
         switch (notification.getName()) {
             case net.EventType.api_plat_activity:
                 myProxy.setActivityData(body);
+                break;
+            case net.EventType.api_plat_activity_var:
+                myProxy.setPointSpinData(body);
                 break;
             case net.EventType.api_user_login: //用户登录
                 setTimeout(() => {
@@ -48,6 +53,9 @@ export default class NovigationMediator extends AbstractMediator {
                 break;
             case net.EventType.api_plat_activity_index_everyday:
                 myProxy.setDailyTaskData(body);
+                break;
+            case net.EventType.api_plat_activity_config:
+                myProxy.setPointSpinLastTime();
                 break;
         }
     }

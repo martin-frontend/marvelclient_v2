@@ -71,6 +71,10 @@ export default class PageActivity extends AbstractView {
             PanelUtil.openpage_activity_slots(null);
             return;
         }
+        if (item.model_type == 14) {
+            PanelUtil.openpanel_activity_point_spin(item.id);
+            return;
+        }
         if (PanelUtil.isCanJump(item)) {
             PanelUtil.isCanJump(item, true);
             return;

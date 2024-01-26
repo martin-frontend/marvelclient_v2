@@ -1,5 +1,9 @@
 import PanelUtil from "@/_skin005/core/PanelUtil";
+import ActivityConfig from "@/core/config/ActivityConfig";
 import GameConfig from "@/core/config/GameConfig";
+import { timeText } from "@/core/global/Functions";
+import GlobalVar from "@/core/global/GlobalVar";
+import LangUtil from "@/core/global/LangUtil";
 
 export default class NovigationProxy extends puremvc.Proxy {
     static NAME = "NovigationProxy";
@@ -12,6 +16,10 @@ export default class NovigationProxy extends puremvc.Proxy {
     ballAwardData = null; //彩球活动的详细数据
     ballAwardId = 0; //彩球活动的详细数据
 
+    pointSpinData = {
+        id: 0,
+        last_end_time: 0,
+    };
     dailyTaskData = <any>{
         unread_num: 0, //用户未领取的数量
         list: <any>[],
@@ -31,6 +39,7 @@ export default class NovigationProxy extends puremvc.Proxy {
     setActivityData(data: any) {
         this.activityData = [...data.list];
         this.getBallAwardData();
+        // this.getPointSpinData();
     }
     /**获取彩球游戏的数据 */
     getBallAwardData() {
@@ -44,6 +53,62 @@ export default class NovigationProxy extends puremvc.Proxy {
         this.ballAwardData = null;
     }
 
+    // getPointSpinData() {
+    //     if (!core.user_id) return;
+    //     for (let index = 0; index < this.activityData.length; index++) {
+    //         if (this.activityData[index] && this.activityData[index].model_type == 14) {
+    //             console.warn("发送---");
+    //             this.sendNotification(net.HttpType.api_plat_activity_var, { id: this.activityData[index].id });
+    //             break;
+    //         }
+    //     }
+    // }
+    spinLastTimeTxt = "";
+    spinLastTimeCount = 0;
+    spinTimeHandle = 0;
+
+    setPointSpinLastTime() {
+        const activityConfig = ActivityConfig.config;
+        if (activityConfig.every_point.is_open) {
+            const obj = {
+                model_type: 14,
+                last_end_time: activityConfig.every_point.extend_arr[0],
+            };
+            this.setPointSpinData(obj);
+        }
+    }
+    setSpinLastTimeTxt() {
+        const timeObj = timeText(this.spinLastTimeCount, true);
+        if (timeObj.day) {
+            this.spinLastTimeTxt = timeObj.day + LangUtil("天") + timeObj.hours + LangUtil("小时");
+        } else if (timeObj.hours) {
+            this.spinLastTimeTxt = timeObj.hours + LangUtil("小时") + timeObj.minutes + LangUtil("分钟");
+        } else {
+            this.spinLastTimeTxt = timeObj.minutes + LangUtil("分钟") + timeObj.seconds + LangUtil("秒");
+        }
+    }
+    setPointSpinData(data: any) {
+        if (data.model_type != 14) return;
+        Object.assign(this.pointSpinData, data);
+        // this.spinLastTimeTxt = "";
+        this.spinLastTimeCount = this.pointSpinData.last_end_time - GlobalVar.server_time;
+        if (this.spinLastTimeCount < 0) {
+            this.spinLastTimeTxt = LangUtil("已结束");
+        }
+        if (this.spinTimeHandle) {
+            clearInterval(this.spinTimeHandle);
+        }
+        this.spinTimeHandle = setInterval(() => {
+            this.spinLastTimeCount = this.spinLastTimeCount - 1;
+            if (this.spinLastTimeCount < 0) {
+                clearInterval(this.spinTimeHandle);
+                this.spinLastTimeTxt = LangUtil("已结束");
+                return;
+            }
+            this.setSpinLastTimeTxt();
+        }, 1000);
+        this.setSpinLastTimeTxt();
+    }
     //每日任务的数据
     setDailyTaskData(data: any) {
         Object.assign(this.dailyTaskData, data);

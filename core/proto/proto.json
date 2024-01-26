@@ -259,6 +259,9 @@
 
         "--转盘抽奖",
         ["api/plat/activity/spin_lottery_award/{id}", "用户抽奖"],
+        "--积分抽奖",
+        ["api/plat/activity/every_point_lottery/rank_list", "排名信息"],
+        ["api/plat/activity/every_point_lottery/{id}", "用户抽奖"],
 
         "--获取弹窗 登录时要打开的弹窗列表",
         ["api/plat/{plat_id}/pop/index", "获取弹窗"]

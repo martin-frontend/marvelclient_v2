@@ -1,0 +1,67 @@
+.v-card--link,
+.v-card--link .v-chip {
+    cursor: revert;
+}
+.v-card--outlined:focus,
+.v-card--outlined:active,
+.v-card--outlined:hover {
+    box-shadow: none;
+}
+.v-card--link:focus:before {
+    opacity: 0;
+}
+.btn_close {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+}
+.imgage {
+    max-width: 100vw;
+    width: fit-content;
+}
+.detail_dialog {
+    height: calc(100% - 200px);
+}
+::v-deep .v-dialog:not(.v-dialog--fullscreen) {
+    // max-height: calc(100% - 200px);
+    margin: 24px 0px !important;
+}
+.v-card {
+    max-width: none !important;
+}
+.card_node_class {
+    pointer-events: none;
+}
+.container_daily {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    // height: 100vh;
+    max-height: calc(89vh);
+}
+.container_daily_mob {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    // height: 100vh;
+    max-height: calc(100vh);
+    background-color: rgba($color: #000000, $alpha: 0.7);
+}
+.main_bg {
+    position: absolute;
+    left: 0px;
+}
+
+.main_bg_mob {
+    position: absolute;
+    // left: 15px;
+    // right: 15px;
+}
+
+.main_bg_rank {
+    background: url("~@/_skin005/assets/activity_point_spin/main_bg.png");
+    background-size: 100% 100%;
+    width: 645px;
+    height: 390px;
+    position: relative;
+}

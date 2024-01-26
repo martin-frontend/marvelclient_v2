@@ -1,0 +1,165 @@
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" persistent @click:outside="onClose">
+    <div v-if="!$mobile" class="d-flex align-center justify-center" @click.stop="onPhoneClose">
+        <!-- pc版 -->
+        <v-card
+            flat
+            color="transparent"
+            hide-overlay
+            ref="card_node"
+            class="overflow-hidden d-flex flex-column align-center justify-center"
+            height="540"
+            width="100vw"
+            :ripple="false"
+            @click.stop="onPhoneCardClick"
+        >
+            <v-card
+                flat
+                color="transparent"
+                class="d-flex justify-end navTextHover--text"
+                width="992"
+                style="position: relative; padding-right: 20px"
+            >
+                <div class="no_pointer_even canntSelect">
+                    <v-img
+                        src="~@/_skin005/assets/activity_point_spin/main_bg.png"
+                        width="727"
+                        height="390"
+                        style="position: absolute; right: 20px; top: 80px"
+                    />
+                </div>
+                <div class="no_pointer_even canntSelect" ref="anim_spin_bg_node" style="position: absolute; top: -15px; left: -50px">
+                    <v-img src="~@/_skin005/assets/activity_point_spin/spin_bg_light.png" width="575" height="575" />
+                </div>
+                <div class="no_pointer_even canntSelect" ref="anim_title_node" style="position: absolute; right: 75px; opacity: 0">
+                    <v-img :src="titleImg" height="78" width="548" />
+                </div>
+                <div class="no_pointer_even canntSelect" ref="anim_title_node_2" style="position: absolute; right: 75px">
+                    <v-img :src="titleImg" height="78" width="548" />
+                </div>
+
+                <v-sheet color="transparent" class="d-flex justify-center align-center" style="position: absolute; right: 0px; top: 30px">
+                    <v-sheet class="cursor-pointer" color="transparent" @click.stop="onClose">
+                        <v-img src="~@/_skin005/assets/activity_point_spin/btn_close.png" width="36" height="36"> </v-img>
+                    </v-sheet>
+                </v-sheet>
+
+                <div class="d-flex" style="margin-top: 80px; position: relative">
+                    <!-- 转盘部分 -->
+                    <Spin v-if="pageData.data.point_lottery_award && pageData.data.point_lottery_award.length > 0" />
+                    <!-- 规则部分 -->
+                    <RulePanel style="position: absolute; left: 0px; z-index: 2" />
+                    <!-- 抽奖奖励 -->
+                    <Award v-if="pageData.bShowAward" style="position: absolute; left: 18px; top: 18px; z-index: 1" />
+                    <!-- 排名部分 -->
+                    <v-card flat color="transparent" class="d-flex flex-column ml-6" width="511" height="390" style="padding-right: 10px">
+                        <!-- 当前的进度部分 -->
+                        <Score class="mt-3" />
+                        <!-- 排名部分 -->
+                        <Rank />
+                        <v-spacer />
+                        <!-- 推广链接 -->
+                        <Promotion class="px-2 mb-3" />
+                    </v-card>
+                </div>
+            </v-card>
+            <!-- 消耗按钮 -->
+            <v-sheet color="transparent" class="d-flex justify-center align-center mt-n2" width="100%">
+                <v-sheet :class="isDisable ? '' : 'cursor-pointer'" color="transparent" @click.native.stop="onBtnClickGet">
+                    <v-img src="~@/_skin005/assets/activity_point_spin/btn_bg.png" width="160" height="43" class="rounded-lg">
+                        <v-sheet
+                            color="transparent"
+                            width="100%"
+                            height="100%"
+                            class="d-flex align-center justify-center text-16 navTextHover--text"
+                        >
+                            <span class="">{{LangUtil("剩余")}}</span>
+                            <div>
+                                <v-img :src="myProxy.getItemImgPath(pageData.point_lottery_cons_cur)" width="30" height="30"></v-img>
+                            </div>
+                            <span>X {{myProxy.pageData.user_point}}</span>
+                        </v-sheet>
+                    </v-img>
+                </v-sheet>
+            </v-sheet>
+        </v-card>
+    </div>
+    <div v-else class="container_daily" @click.stop="onPhoneClose">
+        <!-- 手机版 -->
+        <v-card
+            flat
+            color="transparent"
+            ref="card_node"
+            class="overflow-hidden d-flex flex-column align-center justify-center"
+            height="745"
+            width="100%"
+            :ripple="false"
+            @click.stop="onPhoneCardClick"
+        >
+            <v-card flat color="transparent" class="d-flex justify-center navTextHover--text" width="335" style="position: relative">
+                <div class="no_pointer_even canntSelect" style="position: absolute; top: 360px">
+                    <v-img src="~@/_skin005/assets/activity_point_spin/main_bg_mob.png" width="335" height="360" />
+                </div>
+                <div class="no_pointer_even canntSelect" ref="anim_spin_bg_node" style="position: absolute; top: 10px">
+                    <v-img src="~@/_skin005/assets/activity_point_spin/spin_bg_light.png" width="335" height="335" />
+                </div>
+                <div class="no_pointer_even canntSelect" ref="anim_title_node" style="position: absolute; opacity: 0; zoom: 0.6">
+                    <v-img :src="titleImg" height="78" width="548" />
+                </div>
+                <div class="no_pointer_even canntSelect" ref="anim_title_node_2" style="position: absolute; zoom: 0.6">
+                    <v-img :src="titleImg" height="78" width="548" />
+                </div>
+
+                <v-sheet color="transparent" class="d-flex justify-center align-center" style="position: absolute; right: -15px; top: 15px">
+                    <v-sheet class="cursor-pointer" color="transparent" @click.stop="onClose">
+                        <v-img src="~@/_skin005/assets/activity_point_spin/btn_close.png" width="24" height="24"> </v-img>
+                    </v-sheet>
+                </v-sheet>
+
+                <div class="d-flex flex-column" style="margin-top: 60px; position: relative">
+                    <!-- 转盘部分 -->
+                    <Spin
+                        style="zoom: 0.6; margin-left: 75px"
+                        v-if="pageData.data.point_lottery_award && pageData.data.point_lottery_award.length > 0"
+                    />
+                    <!-- 规则部分 -->
+                    <RulePanel style="position: absolute; left: 0px; z-index: 2" />
+                    <!-- 抽奖奖励 -->
+                    <Award v-if="pageData.bShowAward" style="position: absolute; left: 93px; top: 18px; z-index: 1; zoom: 0.6" />
+                    <!-- 消耗按钮 -->
+                    <v-sheet color="transparent" class="d-flex justify-center align-center mt-2" width="100%">
+                        <v-sheet :class="isDisable ? '' : 'cursor-pointer'" color="transparent" @click.native.stop="onBtnClickGet">
+                            <v-img src="~@/_skin005/assets/activity_point_spin/btn_bg.png" width="160" height="36" class="rounded-lg">
+                                <v-sheet
+                                    color="transparent"
+                                    width="100%"
+                                    height="100%"
+                                    class="d-flex align-center justify-center text-16 navTextHover--text"
+                                >
+                                    <span class="">{{LangUtil("剩余")}}</span>
+                                    <div>
+                                        <v-img
+                                            :src="myProxy.getItemImgPath(pageData.point_lottery_cons_cur)"
+                                            width="30"
+                                            height="30"
+                                        ></v-img>
+                                    </div>
+                                    <span>X {{myProxy.pageData.user_point}}</span>
+                                </v-sheet>
+                            </v-img>
+                        </v-sheet>
+                    </v-sheet>
+                    <!-- 排名部分 -->
+                    <v-card flat color="transparent" class="d-flex flex-column" width="335" height="360" style="margin-top: 9px">
+                        <!-- 当前的进度部分 -->
+                        <Score class="mt-1" />
+                        <!-- 排名部分 -->
+                        <Rank class="mt-1" style="padding: 0px 11px" />
+                        <v-spacer />
+                        <!-- 推广链接 -->
+                        <Promotion class="px-4 mb-3" />
+                    </v-card>
+                </div>
+            </v-card>
+        </v-card>
+    </div>
+</v-dialog>

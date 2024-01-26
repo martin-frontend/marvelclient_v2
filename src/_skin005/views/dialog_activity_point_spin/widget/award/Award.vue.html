@@ -1,0 +1,38 @@
+<v-card
+    flat
+    ref="anim_main_card"
+    color="transparent"
+    class="d-flex align-center justify-center rounded-circle"
+    :width="spinWidth"
+    :height="spinWidth"
+    style="position: relative; backdrop-filter: blur(10px)"
+>
+    <v-sheet
+        class="rounded-circle"
+        :width="spinWidth"
+        :height="spinWidth"
+        style="position: absolute; z-index: 0; background-color: rgba(0, 0, 0, 0.5)"
+    >
+    </v-sheet>
+    <!-- <div style="position: absolute; z-index: 0; opacity: 0.7">
+        <v-img src="~@/_skin005/assets/activity_point_spin/award_mask_bg.png" :width="spinWidth-40" :height="spinWidth-40" />
+    </div> -->
+    <div ref="anim_award_light" style="position: absolute; left: -10px">
+        <v-img src="~@/_skin005/assets/activity_point_spin/award_bg_light.png" :width="spinWidth" :height="spinWidth" />
+    </div>
+
+    <v-card flat class="d-flex flex-column align-center" style="padding-top: 90px" color="transparent">
+        <div ref="anim_award_type">
+            <v-img :src="myProxy.getItemImgPath(pageData.lottery_callback_info.value)" width="110" height="110"></v-img>
+        </div>
+
+        <v-sheet color="transparent" width="100%" class="d-flex justify-center text-20 font-weight-bold my-2 white--text">
+            <span v-if="myProxy.getItemCountValue(pageData.lottery_callback_info.value)"
+                >X {{myProxy.getItemCountValue(pageData.lottery_callback_info.value)}}</span
+            >
+        </v-sheet>
+        <v-sheet color="transparent">
+            <btn-yellow class="text-16" min_width="90" height="36" @click.native.stop="onBtnGet">{{LangUtil("确定")}}</btn-yellow>
+        </v-sheet>
+    </v-card>
+</v-card>

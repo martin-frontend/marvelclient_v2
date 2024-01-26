@@ -1,0 +1,109 @@
+<v-card flat color="transparent" class="d-flex" width="100%" :class="$mobile ? 'pl-2 pr-2 pt-1' : ''">
+    <v-sheet color="transparent" class="d-flex flex-column pa-2" width="400" height="86">
+        <v-sheet color="transparent" class="d-flex align-center" width="100%">
+            <v-sheet v-if="pageData.routine_task_cur" color="transparent" class="d-flex align-center navTextHover--text">
+                <!-- <v-img :src="myProxy.getItemImgPath(pageData.routine_task_cur.condition)" width="22" height="22" /> -->
+                <v-img src="~@/_skin005/assets/activity_point_spin/item_coin.png" width="22" height="22" />
+
+                <v-sheet color="transparent" class="text-12 ml-2 navTextHover--text">
+                    <span>{{scoreData.curScore}}</span> /
+                    <span>{{scoreData.totleScore}}</span>
+                </v-sheet>
+            </v-sheet>
+            <template v-if="!$mobile">
+                <v-spacer />
+                <v-sheet color="transparent" class="text-12 navTextHover--text">{{endTime}}</v-sheet>
+            </template>
+        </v-sheet>
+        <v-sheet v-if="pageData.routine_task_cur" color="transparent" class="d-flex align-center mt-2" width="100%">
+            <v-progress-linear
+                :value="scoreData.progress_value"
+                :buffer-value="scoreData.progress_buffer_value"
+                color="textYellow"
+                height="7"
+                class="rounded-xl"
+            ></v-progress-linear>
+
+            <div v-if="$mobile && pageData.routine_task_cur" class="d-flex">
+                <v-tooltip top>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                            <svg-icon icon="help" class="text-14 navTextHover--text mx-1"></svg-icon>
+                        </v-sheet>
+                    </template>
+                    <span class="text-12"> {{ progressText}} </span>
+                </v-tooltip>
+            </div>
+        </v-sheet>
+        <template v-if="!$mobile && pageData.routine_task_cur">
+            <v-spacer />
+            <v-sheet color="transparent" class="d-flex align-center text-12 navTextHover--text mt-1"> {{progressText}} </v-sheet>
+        </template>
+        <template v-if="$mobile">
+            <v-spacer />
+            <v-sheet color="transparent" class="text-12 navTextHover--text">{{endTime}}</v-sheet>
+        </template>
+    </v-sheet>
+    <v-sheet
+        ref="bonus_btn"
+        color="transparent"
+        class="ml-1"
+        @click.native.stop="onBtnClickGetBonus"
+        :class="isCanGet ? 'cursor-pointer' : 'btn_disabled'"
+    >
+        <v-sheet
+            class="d-flex rounded10"
+            color="transparent"
+            :width="bg_node_size.bonus_bg.width"
+            :height="bg_node_size.bonus_bg.height"
+            style="position: relative"
+        >
+            <div style="position: absolute; z-index: 0">
+                <v-img
+                    v-if="!$mobile"
+                    src="~@/_skin005/assets/activity_point_spin/bonus_bg.png"
+                    :width="bg_node_size.bonus_bg.width"
+                    :height="bg_node_size.bonus_bg.height"
+                />
+                <v-img
+                    v-else
+                    src="~@/_skin005/assets/activity_point_spin/bonus_bg_mob.png"
+                    :width="bg_node_size.bonus_bg.width"
+                    :height="bg_node_size.bonus_bg.height"
+                />
+            </div>
+            <div v-if="isCanGet" style="position: absolute; margin-left: 4px; margin-top: 2px">
+                <v-img
+                    src="~@/_skin005/assets/activity_point_spin/bonus_bg_light.png"
+                    :width="bg_node_size.bonus_light.width"
+                    :height="bg_node_size.bonus_light.height"
+                />
+            </div>
+            <v-sheet
+                v-if="pageData.routine_task_cur"
+                color="transparent"
+                class="d-flex justify-center align-center mt-4 flex-column"
+                width="100%"
+                style="z-index: 2"
+            >
+                <div ref="anim_award_type">
+                    <v-img
+                        :src="myProxy.getItemImgPath(pageData.routine_task_cur.award)"
+                        :width="bg_node_size.bonus_award_item.width"
+                        :height="bg_node_size.bonus_award_item.height"
+                    >
+                    </v-img>
+                </div>
+                <v-sheet color="transparent" class="d-flex justify-center textYellow--text text-14 mt-n1 font-weight-bold" width="100%">
+                    <span v-if="myProxy.getItemCountValue(pageData.routine_task_cur.award)"
+                        >X {{myProxy.getItemCountValue(pageData.routine_task_cur.award)}}</span
+                    >
+                </v-sheet>
+                <v-spacer />
+                <v-sheet color="transparent" class="d-flex justify-center text-12 mb-0 navTextHover--text" width="100%">
+                    {{bonusStateStr}}
+                </v-sheet>
+            </v-sheet>
+        </v-sheet>
+    </v-sheet>
+</v-card>

@@ -443,6 +443,10 @@ var net;
         api_user_var_jump_store: "api/user/{user_id}/jump/store",
         /**--转盘抽奖--用户抽奖*/
         api_plat_activity_spin_lottery_award_var: "api/plat/activity/spin_lottery_award/{id}",
+        /**--积分抽奖--排名信息*/
+        api_plat_activity_every_point_lottery_rank_list: "api/plat/activity/every_point_lottery/rank_list",
+        /**--积分抽奖--用户抽奖*/
+        api_plat_activity_every_point_lottery_var: "api/plat/activity/every_point_lottery/{id}",
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: "api/plat/{plat_id}/pop/index",
     };
@@ -820,6 +824,10 @@ var net;
         api_user_var_jump_store: "api_user_var_jump_store",
         /**--转盘抽奖--用户抽奖*/
         api_plat_activity_spin_lottery_award_var: "api_plat_activity_spin_lottery_award_var",
+        /**--积分抽奖--排名信息*/
+        api_plat_activity_every_point_lottery_rank_list: "api_plat_activity_every_point_lottery_rank_list",
+        /**--积分抽奖--用户抽奖*/
+        api_plat_activity_every_point_lottery_var: "api_plat_activity_every_point_lottery_var",
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: "api_plat_var_pop_index",
     };
@@ -1042,6 +1050,9 @@ var net;
         facade.registerCommand(net.HttpType.api_user_var_jump_store, net.cmd_api_user_var_jump_store);
         //--转盘抽奖
         facade.registerCommand(net.HttpType.api_plat_activity_spin_lottery_award_var, net.cmd_api_plat_activity_spin_lottery_award_var);
+        //--积分抽奖
+        facade.registerCommand(net.HttpType.api_plat_activity_every_point_lottery_rank_list, net.cmd_api_plat_activity_every_point_lottery_rank_list);
+        facade.registerCommand(net.HttpType.api_plat_activity_every_point_lottery_var, net.cmd_api_plat_activity_every_point_lottery_var);
         //--获取弹窗 登录时要打开的弹窗列表
         facade.registerCommand(net.HttpType.api_plat_var_pop_index, net.cmd_api_plat_var_pop_index);
     }
@@ -1223,6 +1234,50 @@ var net;
         }
     }
     net.cmd_api_plat_activity_daily_rewards_var_receive = cmd_api_plat_activity_daily_rewards_var_receive;
+})(net || (net = {}));
+/**
+ * 排名信息
+ */
+var net;
+/**
+ * 排名信息
+ */
+(function (net) {
+    class cmd_api_plat_activity_every_point_lottery_rank_list extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_activity_every_point_lottery_rank_list, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_activity_every_point_lottery_rank_list, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_activity_every_point_lottery_rank_list = cmd_api_plat_activity_every_point_lottery_rank_list;
+})(net || (net = {}));
+/**
+ * 用户抽奖
+ */
+var net;
+/**
+ * 用户抽奖
+ */
+(function (net) {
+    class cmd_api_plat_activity_every_point_lottery_var extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_activity_every_point_lottery_var, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_activity_every_point_lottery_var, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_activity_every_point_lottery_var = cmd_api_plat_activity_every_point_lottery_var;
 })(net || (net = {}));
 /**
  * 每日任务

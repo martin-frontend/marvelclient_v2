@@ -1,0 +1,55 @@
+<v-card flat color="transparent" class="d-flex align-center" width="100%" height="64" style="position: relative">
+    <v-sheet color="transparent" class="d-flex justify-center cursor-pointer" @click.native.stop="showPreview">
+        <div ref="qrcode" class="qrcode">
+            <v-img :src="pageData.qrCode"></v-img>
+        </div>
+    </v-sheet>
+
+    <v-sheet
+        v-if="!$vuetify.breakpoint.mobile"
+        color="transparent"
+        class="d-flex align-center px-2 ml-4 navTextHover--text"
+        width="410"
+        style="position: relative"
+    >
+        <span>{{LangUtil("推广链接:")}}</span>
+
+        <div style="position: relative">
+            <v-tooltip attach top content-class="tip_main_class">
+                <template v-slot:activator="{ on, attrs }">
+                    <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                        <v-sheet color="transparent" class="text-truncate text-12 ml-2 navTextHover--text" width="300"
+                            >{{myProxy.pageData.link}}</v-sheet
+                        >
+                    </v-sheet>
+                </template>
+                <v-card color="bgBanner" width="270" class="pa-2 text-12">{{myProxy.pageData.link}}</v-card>
+            </v-tooltip>
+        </div>
+        <!-- <v-spacer /> -->
+        <v-btn icon small width="24" min-width="0" height="24" @click="onCopy">
+            <v-icon class="navTextHover--text">mdi-content-copy</v-icon>
+        </v-btn>
+    </v-sheet>
+
+    <v-sheet v-else color="transparent" class="d-flex flex-column px-2 ml-4" width="320" style="position: relative">
+        <v-sheet color="transparent" width="100%" class="d-flex align-center">
+            <div class="text-12 navTextHover--text">{{LangUtil("推广链接:")}}</div>
+            <v-spacer />
+            <v-btn icon small width="24" min-width="0" height="24" @click="onCopy">
+                <v-icon class="custom_skin-blue1-text navTextHover--text">mdi-content-copy</v-icon>
+            </v-btn>
+        </v-sheet>
+
+        <v-tooltip top open-on-click content-class="tip_main_class">
+            <template v-slot:activator="{ on, attrs }">
+                <v-sheet v-bind="attrs" v-on="on" color="transparent">
+                    <v-sheet color="transparent" class="text-truncate text-12 ml-0 navTextHover--text" width="210"
+                        >{{myProxy.pageData.link}}</v-sheet
+                    >
+                </v-sheet>
+            </template>
+            <v-card color="bgBanner" width="350" class="pa-2 text-14">{{myProxy.pageData.link}}</v-card>
+        </v-tooltip>
+    </v-sheet>
+</v-card>

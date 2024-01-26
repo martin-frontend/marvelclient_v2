@@ -1,0 +1,18 @@
+@import "../../views/DialogActivityPointSpin.vue.scss";
+.rank_tag_class {
+    ::v-deep .v-btn-toggle--group .v-btn::before {
+        background-color: transparent !important;
+    }
+    ::v-deep .v-btn-toggle--group .v-btn.v-btn--active {
+        border: unset !important;
+        background: linear-gradient(to right, var(--yellow_color_1), var(--yellow_color_2)) !important;
+    }
+    ::v-deep .v-btn-toggle--group .v-btn {
+        border: unset !important;
+        opacity: 1 !important;
+        color: #0f1213 !important;
+    }
+    ::v-deep .v-btn.v-btn--disabled.v-btn--has-bg {
+        background-color: transparent !important;
+    }
+}

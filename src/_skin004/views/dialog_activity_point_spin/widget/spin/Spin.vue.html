@@ -1,0 +1,112 @@
+<v-card
+    flat
+    color="transparent"
+    class="d-flex align-center justify-center"
+    :width="spinWidth"
+    :height="spinWidth"
+    style="position: relative"
+>
+    <v-img
+        ref="spin_main_node"
+        src="~@/_skin004/assets/activity_point_spin/spin_bg.png"
+        :width="spinWidth"
+        :height="spinWidth"
+        style="position: absolute"
+    >
+        <div ref="select_div" idx="index" class="no_pointer_even" style="position: absolute; z-index: -1; opacity: 0">
+            <v-img src="~@/_skin004/assets/activity_point_spin/item_select.png" :width="spinWidth" :height="spinWidth" />
+        </div>
+        <v-sheet
+            color="transparent"
+            width="100%"
+            height="100%"
+            class="d-flex align-center justify-center"
+            style="position: relative; z-index: 1"
+        >
+            <v-sheet
+                color="transparent"
+                width="98"
+                height="140"
+                class="d-flex flex-column align-center"
+                v-for="(item ,index) of spinItemData"
+                :key="index"
+                ref="spinItem"
+                idx="index"
+                style="position: absolute"
+            >
+                <div class="mt-5">
+                    <v-img :src="myProxy.getItemImgPath(item)" width="50"></v-img>
+                    <!-- <v-sheet color="transparent" width="100%" class="text-14 font-weight-bold"> {{index}} </v-sheet> -->
+                </div>
+                <v-spacer />
+                <!-- <v-sheet color="transparent" width="100%" class="d-flex justify-center text-14 font-weight-bold mb-2"> {{index}} </v-sheet> -->
+                <v-sheet
+                    v-if="!$vuetify.breakpoint.xsOnly"
+                    color="transparent"
+                    width="100%"
+                    class="d-flex justify-center text-14 font-weight-bold mb-6 navTextHover--text"
+                >
+                    <span v-if="myProxy.getItemCountValue(item)">X {{myProxy.getItemCountValue(item)}}</span>
+                </v-sheet>
+                <v-sheet
+                    v-else
+                    color="transparent"
+                    width="100%"
+                    class="d-flex justify-center text-10 font-weight-bold mb-6 navTextHover--text"
+                >
+                    <span v-if="myProxy.getItemCountValue(item)">X{{myProxy.getItemCountValue(item)}}</span>
+                </v-sheet>
+            </v-sheet>
+        </v-sheet>
+    </v-img>
+
+    <div ref="spin_point" class="no_pointer_even" style="position: absolute" :class="isDisable ? 'btn_disabled' : ''">
+        <v-img src="~@/_skin004/assets/activity_point_spin/spin_point.png" :width="spinWidth" :height="spinWidth" />
+    </div>
+    <v-sheet
+        ref="anim_spin_btn_node"
+        color="#fff"
+        width="100"
+        height="100"
+        class="no_pointer_even rounded-circle"
+        style="position: absolute; opacity: 0"
+    />
+    <v-sheet
+        ref="anim_spin_btn_node_2"
+        color="#fff"
+        width="100"
+        height="100"
+        class="no_pointer_even rounded-circle"
+        style="position: absolute; opacity: 0"
+    />
+    <v-card
+        flat
+        color="transparent"
+        class="d-flex justify-center no_pointer_even"
+        style="position: absolute"
+        :width="spinWidth"
+        :height="spinWidth"
+        :class="isDisable ? 'btn_disabled' : ''"
+    >
+        <v-img src="~@/_skin004/assets/activity_point_spin/btn_spin.png" :width="spinWidth" :height="spinWidth" />
+    </v-card>
+    <v-card
+        flat
+        color="transparent"
+        class="d-flex justify-center no_pointer_even"
+        style="position: absolute"
+        :width="spinWidth"
+        :height="spinWidth"
+    >
+        <v-img src="~@/_skin004/assets/activity_point_spin/spin_cirel.png" :width="spinWidth" :height="spinWidth" />
+    </v-card>
+    <v-sheet
+        color="transparent"
+        class="cursor-pointer"
+        width="80"
+        height="80"
+        :class="isDisable ? 'btn_disabled' : ''"
+        @click.stop="onSpinClick"
+        style="z-index: 1"
+    ></v-sheet>
+</v-card>

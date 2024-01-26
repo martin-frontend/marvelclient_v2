@@ -1,0 +1,32 @@
+<v-card flat color="transparent" class="d-flex flex-column">
+    <v-sheet color="transparent" class="cursor-pointer" @click.native.stop="onBtnClickRule">
+        <v-img src="~@/_skin005/assets/activity_point_spin/btn_rule.png" width="25" height="25"></v-img>
+    </v-sheet>
+    <div
+        v-if="isShowDetail"
+        @click.stop="onBtnClickTest"
+        style="background-color: transparent; position: fixed; width: 100vw; height: 100vh; top: 0; left: 0"
+    ></div>
+    <v-card
+        v-if="isShowDetail"
+        flat
+        :width="$mobile ? '250' : 300"
+        class="d-flex flex-column rounded10 rule_bg white--text mt-2"
+        v-click-outside="{
+        handler: onClickOutside,
+        include: include,
+      }"
+    >
+        <!-- 标题 -->
+        <v-sheet color="transparent" class="d-flex align-center text-14 justify-space-between pa-2 title_color">
+            <div>{{LangUtil("活动说明")}}</div>
+            <v-btn icon x-small @click="onClickOutside">
+                <v-icon color="white">mdi-close</v-icon>
+            </v-btn>
+        </v-sheet>
+        <v-divider />
+        <v-card flat color="transparent" class="pa-4 white--text text-14">
+            <div v-html="pageData.data.rule_desc" @click.stop="handleLinkClick"></div>
+        </v-card>
+    </v-card>
+</v-card>

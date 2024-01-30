@@ -8,6 +8,7 @@ import { EnumPostMessage } from "@/core/enum/EnumPostMessage";
 import PanelUtil from "@/_skin005/core/PanelUtil";
 import GameProxy from "@/proxy/GameProxy";
 import GameConfig from "@/core/config/GameConfig";
+import LangConfig from "@/core/config/LangConfig";
 
 @Component
 export default class PageGameSoccer extends AbstractView {
@@ -157,7 +158,7 @@ export default class PageGameSoccer extends AbstractView {
         PanelUtil.message_confirm({
             message: LangUtil("确定要退出游戏吗"),
             okFun: () => {
-                this.$router.replace(`/${homePage}`);
+                this.$router.replace(`/${LangConfig.getRouterLang()}/${homePage}`);
             },
         });
     }

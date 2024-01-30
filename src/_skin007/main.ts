@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "@/_skin005/App.vue";
 import { getVuetify } from "@/_skin005/plugins/vuetify";
-import { getRouter, routes } from "@/_skin005/router";
+import { getRouter, routes } from "@/_skin007/router";
 import "@/_skin005/style/_vars.css";
 import "@/_skin005/style/common.scss";
 import AppFacade from "@/_skin005/AppFacade";
@@ -44,10 +44,6 @@ Assets.commonIcon.logo = require(`@/_skin007/assets/logo.png`);
 Assets.commonIcon.logo_m = require(`@/_skin007/assets/logo_m.png`);
 Assets.commonIcon.login_logo_m = require(`@/_skin007/assets/login_logo_m.png`);
 
-//SkinVariable.isShowFootDetail = false;
-//SkinVariable.loadingType = "006";
-// SkinVariable.isUsedDialogRecharge  = true;
-// SkinVariable.isForeShowRecharge = true;
 SkinVariable.isShowGameListNovigation = false;
 LogUtil.init();
 core.init();
@@ -66,8 +62,6 @@ Vue.use(Notifications, { velocity });
 
 LangConfig.lang_type = 18;
 // 注册到全局
-// Vue.component("btn-yellow", BtnYellow);
-// Vue.component("btn-util", BtnUtil);
 Vue.component("btn-yellow", BtnUtil);
 Vue.component("btn-info", BtnInfo);
 Vue.component("Overlay", Overlay);
@@ -99,6 +93,29 @@ window["vueInit"] = () => {
         vuetify,
         render: (h) => h(App),
     }).$mount("#app");
+
+    //应seo需求，重写router.push router.replace, 直接跳转到相应页面
+    //@ts-ignore
+    (router.push1 = router.push), (router.replace1 = router.replace);
+    //@ts-ignore
+    router.push = router.replace = (path: any) => {
+        //@ts-ignore  所有的独立页面
+        const allRoutes = window.allRoutes;
+        const lang = LangConfig.getRouterLang();
+        const newPath = `${lang}${path}`;
+        if (path == `/${lang}`) {
+            location.replace(lang);
+        } else if (allRoutes.includes("/" + newPath)) {
+            if (!location.pathname.includes(newPath) || !location.pathname.includes(lang)) location.replace(newPath);
+        } else {
+            if (router.mode == "hash") {
+                const baseUrl = process.env.VUE_APP_URL_BASE || "";
+                location.replace(`${baseUrl}#${newPath}`);
+            } else {
+                location.replace(newPath);
+            }
+        }
+    };
 
     setTimeout(() => {
         const page = document.getElementById("app");

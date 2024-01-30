@@ -2,6 +2,7 @@
 <style src="./PageGamePlay.vue.scss" lang="scss" scoped></style>
 
 <script lang="ts">
+import LangConfig from "@/core/config/LangConfig";
 import Component from "vue-class-component";
 import PageGamePlay from "./PageGamePlay";
 // import RecentBetting from "@/views/widget/recent_betting/RecentBetting.vue";
@@ -14,7 +15,7 @@ import PageGamePlay from "./PageGamePlay";
 export default class extends PageGamePlay {
     mounted() {
         if (this.pageData.url == "") {
-            this.$router.replace("/");
+            this.$router.replace(`/${LangConfig.getRouterLang()}`);
         }
         window.scrollTo(0, 0);
     }

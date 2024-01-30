@@ -389,12 +389,17 @@ const skinMap = {
     },
 };
 
+const fs = require("fs");
+const YAML = require("yaml");
+const utils = require("./build/utils");
+const { XMLParser, XMLBuilder, XMLValidator} = require("fast-xml-parser");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { js_utils } = require("custer-js-utils");
 const path = require("path");
 function resolve(dir) {
     return path.join(__dirname, "./", dir);
 }
+
 module.exports = {
     publicPath: process.env.NODE_ENV === "production" ? "././" : "./",
     // publicPath: "././",
@@ -500,6 +505,92 @@ function getCopyDir() {
 }
 /**获取需要发布的页面 */
 function getPages() {
+    const langcodePath = path.resolve(__dirname, ".setting/langcode.yml");
+    const langcodeStr = fs.readFileSync(langcodePath, "utf-8");
+    let langcode = [];
+    if (langcodeStr) {
+        langcode = Object.keys(YAML.parse(langcodeStr));
+    }
+    //从新的配置页面获取页面配置，如果有
+    const settintPath = path.resolve(__dirname, `.setting/${process.env.VUE_APP_SKIN}.yml`);
+    if (fs.existsSync(settintPath)) {
+        var temp = fs.readFileSync(settintPath, "utf-8");
+        if (temp) {
+            const json = YAML.parse(temp);
+            const pages = json.pages;
+            const allRoutes = Object.values(pages).map((item) => `'/${item.filename.replace("/index.html", "")}'`);
+            for (const pageItem of Object.values(pages)) {
+                if (pageItem.headerlist) {
+                    pageItem.headerlist.unshift(`<script>window.allRoutes=[${allRoutes.toString()}]</script>`);
+                    const lang = pageItem.filename.split("/")[0];
+                    for (const langc of langcode) {
+                        if (langc.includes(lang)) {
+                            pageItem.headerlist.push(
+                                `<link rel="alternate" href="${json.domain}${pageItem.filename.replace(
+                                    "index.html",
+                                    ""
+                                )}" hreflang="${langc.toLowerCase()}" />`
+                            );
+                        }
+                    }
+                }
+            }
+            // 生成sitemap.xml
+            for (const lang of json.language) {
+                const sitemapObj = {
+                    urlset: {
+                        url: Object.values(pages)
+                            .filter((item) => item.lang == lang)
+                            .map((item) => {
+                                return {
+                                    loc: json.domain + item.filename,
+                                    lastmod: js_utils.dateFormat(new Date(), "yyyy-MM-dd"),
+                                    changefreq: "daily",
+                                    priority: 1,
+                                };
+                            }),
+                    },
+                };
+                const builder = new XMLBuilder();
+                const sitemapxml = builder.build(sitemapObj);
+                fs.writeFileSync(path.resolve(__dirname, `public_${process.env.VUE_APP_SKIN}/sitemap-${lang.substr(-2)}.xml`), sitemapxml.toString());
+            }
+
+            const sitemapObj = {
+                sitemapindex: {
+                    sitemap: json.language.map((lang) => {
+                        return {
+                            loc: json.domain + `sitemap-${lang.substr(-2)}.xml`,
+                            lastmod: js_utils.dateFormat(new Date(), "yyyy-MM-dd"),
+                        };
+                    }),
+                },
+            };
+            const builder = new XMLBuilder();
+            const sitemapxml = builder.build(sitemapObj);
+            fs.writeFileSync(path.resolve(__dirname, `public_${process.env.VUE_APP_SKIN}/sitemap.xml`), sitemapxml.toString());
+
+            //生成robots.txt
+            let robotsStr = "";
+            robotsStr += `Sitemap: ${json.domain}sitemap.xml`;
+            robotsStr += "\n";
+            for (const lang of json.language) {
+                robotsStr += `Sitemap: ${json.domain}sitemap-${lang.substr(-2)}.xml`;
+                robotsStr += "\n";
+            }
+            robotsStr += "\n";
+            robotsStr += "User-Agent: Baiduspider\n";
+            robotsStr += "Disallow: /\n";
+            robotsStr += "\n";
+            robotsStr += "User-Agent: *\n";
+            robotsStr += "Disallow: /white/\n";
+            robotsStr += "Disallow: /libs/\n";
+            fs.writeFileSync(path.resolve(__dirname, `public_${process.env.VUE_APP_SKIN}/robots.txt`), robotsStr);
+
+            return pages;
+        }
+    }
+    // 如果没有新的配置文件，则还是用老配置
     const pages = {};
     if (skinMap[process.env.VUE_APP_SKIN]) {
         Object.assign(pages, skinMap[process.env.VUE_APP_SKIN].pages);

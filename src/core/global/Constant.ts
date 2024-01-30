@@ -115,6 +115,8 @@ export default class Constant {
     }
     /**通过传入的路由的名字 获取 哪个 id 如果没有则 输出 -1 */
     static getVendorByRouter(path: string): number {
+        //@ts-ignore
+        path = window.path + " " + path;
         if (path.includes("sports")) {
             return 64;
         } else if (path.includes("live-casino-online")) {

@@ -41,6 +41,10 @@ export default class LangConfig {
         const isProduction = process.env.NODE_ENV == "production" && process.env.VUE_APP_ENV == "production";
         //@ts-ignore
         path = path || (isProduction && !window.navigator.standalone ? location.pathname : location.hash);
+        //@ts-ignore
+        if (window.path) {
+            path = location.pathname;
+        }
 
         let langStr = path.split("/")[1];
         for (const item of Object.keys(this.language)) {

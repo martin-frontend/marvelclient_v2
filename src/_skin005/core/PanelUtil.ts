@@ -152,6 +152,7 @@ import dialog_limited_bonus from "@/_skin005/views/dialog_limited_bonus";
 import dialog_award_ball from "@/_skin005/views/dialog_award_ball";
 import dialog_daily_task from "@/_skin005/views/dialog_daily_task";
 import dialog_spin_lottery from "@/_skin005/views/dialog_spin_lottery";
+import LangConfig from "@/core/config/LangConfig";
 import dialog_activity_point_spin from "@/_skin005/views/dialog_activity_point_spin";
 import dialog_kyc from "../views/dialog_kyc";
 export default class PanelUtil {
@@ -221,12 +222,7 @@ export default class PanelUtil {
      * @param isNeedLoading  是否需要点击的时候打开显示加载
      * @param isCleadPanel 是否需要清理其他页面
      */
-    private static _openpage_base(
-        pagename: string,
-        isNeedLogin: boolean = true,
-        isNeedLoading: boolean = true,
-        isCleadPanel: boolean = true
-    ) {
+    private static _openpage_base(pagename: string, isNeedLogin: boolean = true, isNeedLoading: boolean = true, isCleadPanel: boolean = true) {
         if (isNeedLogin) {
             LoginEnter(() => {
                 this._openpRouter_base(pagename, isNeedLoading, isCleadPanel);
@@ -253,10 +249,9 @@ export default class PanelUtil {
     }
     //打开 主页
     static openpage_home() {
-        const homePage = GameConfig.config.homePage ?? "";
-        if (Vue.router.app.$route.path != Vue.prePath) {
-            // Vue.router.push(`/${homePage}`);
-            Vue.router.push(`/`);
+        //@ts-ignore
+        if (Vue.router.app.$route.path != Vue.prePath || window.path) {
+            Vue.router.push(`/${LangConfig.getRouterLang()}`);
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
         PageBlur.blur_force_close();
@@ -481,13 +476,7 @@ export default class PanelUtil {
     }
 
     //打开 投注记录 窗口
-    static openpanel_bet_record(
-        agent_user_id: any = null,
-        start_date: string = "",
-        end_date: string = "",
-        bShowOptions = true,
-        msg: any = null
-    ) {
+    static openpanel_bet_record(agent_user_id: any = null, start_date: string = "", end_date: string = "", bShowOptions = true, msg: any = null) {
         MultDialogManager.onOpenPanel(dialog_bet_record);
         dialog_bet_record.show(agent_user_id, start_date, end_date, bShowOptions, msg);
     }
@@ -587,7 +576,7 @@ export default class PanelUtil {
         });
     }
     // 打开key认证
-    static openpanel_dialog_kyc(){
+    static openpanel_dialog_kyc() {
         dialog_kyc.show();
     }
     //打开 真实姓名 窗口

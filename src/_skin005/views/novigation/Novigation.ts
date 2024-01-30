@@ -145,7 +145,7 @@ export default class Novigation extends AbstractView {
     mini = false;
     bTween = false;
     //当前路由
-    routerPath = this.$router.app.$route.path;
+    routerPath: any = this.$router.app.$route.name;
 
     //是否为新的 需要 菜单栏
     public get isNeetMenu(): boolean {
@@ -165,26 +165,18 @@ export default class Novigation extends AbstractView {
 
     @Watch("$route")
     onWatchRouter() {
-        this.routerPath = this.$router.app.$route.path;
-        //console.log("----导航--- 路由切换--", this.myProxy.categoryActive);
-        // if (!Constant.isIncludeGameRouter(this.routerPath)) {
-        //     //console.log(" 导航 路由切换---","变为-1");
-        //     this.myProxy.categoryActive = -1;
-        // }
-        //this.myProxy.categoryActive = Constant.getVendorByRouter(this.routerPath);
-        //通过 router 或者 当前的 游戏id
-        const categoryId = Constant.getVendorByRouter(this.routerPath);
-        //console.log("----导航--categoryId- 路由切换--", categoryId);
-        if (this.myProxy.categoryActive == categoryId) {
-            return;
-        }
-        //两个不相同
-        if (categoryId != -1) {
-            //console.log("计算的与实际的不一样 , 重新加载,目标 分类 id ", categoryId);
-            this.goCategory_game(categoryId);
-        } else {
-            this.myProxy.categoryActive = categoryId;
-            //console.log("----为 -1-------", this.myProxy.categoryActive);
+        this.routerPath = this.$router.app.$route.name;
+        if (this.routerPath) {
+            //通过 router 或者 当前的 游戏id
+            const categoryId = Constant.getVendorByRouter(this.routerPath);
+            if (this.myProxy.categoryActive != categoryId) {
+                if (categoryId != -1) {
+                    console.log("categoryId: ", categoryId);
+                    this.goCategory_game(categoryId);
+                } else {
+                    this.myProxy.categoryActive = categoryId;
+                }
+            }
         }
     }
 
@@ -274,12 +266,8 @@ export default class Novigation extends AbstractView {
     /**切换语言 */
     @Watch("core.lang")
     onWatchLang(value: any, oldValue: any) {
-        const path = this.$router.currentRoute.path;
         window.localStorage.setItem("lang", core.lang);
-
-        const currLang = Vue.prePath.split("/").reverse()[0];
-        const newPath = path.replace(currLang, LangConfig.getRouterLang());
-        this.$router.replace(newPath);
+        if (this.$route.name) this.$router.replace("/" + this.$route.name);
     }
 
     getItemCategory(item: any) {

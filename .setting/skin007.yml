@@ -14,7 +14,7 @@ pages:
   # 首页
   index:
     lang: en
-    title: 96
+    title: 96.com
     entry: src/_skin007/main.ts
     filename: index.html
     template: public_skin007/skin007.html
@@ -54,7 +54,7 @@ pages:
   # 英文首页
   en_index:
     lang: en
-    title: 96
+    title: "96.com: Bitcoin Crypto Casino, eSports and Sports"
     entry: src/_skin007/main.ts
     filename: en/index.html
     template: public_skin007/skin007.html
@@ -63,10 +63,9 @@ pages:
     headerlist:
       - <script>window.path="/"</script>
       - <base href="../" />
-      - <meta name="title" content="96.com Bitcoin Crypto Casino, eSports and Sports" />
       - <meta name="description" content="Play and win at 96.com! Over 2000+ online casino games to choose from! Safe and secure crypto casino gaming!"/>
       - <link rel="canonical" href="https://96.com/en/" />
-      - <link rel="alternate" hreflang="x-default" href="https://96.com/en" />
+      - <link rel="alternate" hreflang="x-default" href="https://96.com/en/" />
   # 中文首页
   zh-CN_index:
     lang: zh
@@ -86,7 +85,7 @@ pages:
   # 老虎机
   en_slots-games:
     lang: en
-    title: slots-games
+    title: Play Online Slots Game at 96.com
     entry: src/_skin007/main.ts
     filename: en/slots-games/index.html
     template: public_skin007/skin007.html
@@ -95,7 +94,6 @@ pages:
     headerlist:
       - <script>window.path="/slots-games"</script>
       - <base href="../../" />
-      - <meta name="title" content="Play Online Slots Game at 96.com" />
       - <meta name="description" content="Play online slots game at 96.com! We offer a wide variety of online slots games that is available 24/7!"/>
       - <link rel="canonical" href="https://96.com/en/slots-games/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/slots-games/" />
@@ -117,7 +115,7 @@ pages:
   # 真人
   en_live-casino-online:
     lang: en
-    title: live-casino-online
+    title: Play Live Casino with Bitcoin at 96.com
     entry: src/_skin007/main.ts
     filename: en/live-casino-online/index.html
     template: public_skin007/skin007.html
@@ -126,7 +124,6 @@ pages:
     headerlist:
       - <script>window.path="/live-casino-online"</script>
       - <base href="../../" />
-      - <meta name="title" content="Play Live Casino with Bitcoin at 96.com" />
       - <meta name="description" content="The best live casino gaming experience at 96.com! Play Blackjack, Baccarat, Roulette, and more!"/>
       - <link rel="canonical" href="https://96.com/en/live-casino-online/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/live-casino-online/" />
@@ -148,7 +145,7 @@ pages:
   # 捕鱼
   en_fishing-games:
     lang: en
-    title: fishing-games
+    title: Best Fishing Game Online at 96.com
     entry: src/_skin007/main.ts
     filename: en/fishing-games/index.html
     template: public_skin007/skin007.html
@@ -157,7 +154,6 @@ pages:
     headerlist:
       - <script>window.path="/fishing-games"</script>
       - <base href="../../" />
-      - <meta name="title" content="Best Fishing Game Online at 96.com" />
       - <meta name="description" content="96.com offers various online fishing games that is set to cater our players! Play now and get exciting rewards!"/>
       - <link rel="canonical" href="https://96.com/en/fishing-games/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/fishing-games/" />
@@ -179,7 +175,7 @@ pages:
   # 体育
   en_sports:
     lang: en
-    title: sports
+    title: Online Sports Betting and Football Odds
     entry: src/_skin007/main.ts
     filename: en/sports/index.html
     template: public_skin007/skin007.html
@@ -188,7 +184,6 @@ pages:
     headerlist:
       - <script>window.path="/sports"</script>
       - <base href="../../" />
-      - <meta name="title" content="Online Sports Betting and Football Odds" />
       - <meta name="description" content="Get the best sports betting odds at 96.com! Bet on Football, Basketball, Tennis, and more! Risk free bet during your first week!"/>
       - <link rel="canonical" href="https://96.com/en/sports/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/sports/" />
@@ -210,7 +205,7 @@ pages:
   # VIP反水
   en_vip_rewards:
     lang: en
-    title: vip_rewards
+    title: Crypto Bitcoin with VIP offers
     entry: src/_skin007/main.ts
     filename: en/vip_rewards/index.html
     template: public_skin007/skin007.html
@@ -219,8 +214,7 @@ pages:
     headerlist:
       - <script>window.path="/vip_rewards"</script>
       - <base href="../../" />
-      - <meta name="title" content="Crypto Bitcoin with VIP offers" />
-      - <meta name="description" content="Here at 96.com, every player is a VIP! Commited in delivering the best crypto VIP experience! Play now!"/>
+      - <meta name="description" content="Here at 96.com, every player is a VIP! Committed in delivering the best crypto VIP experience! Play now!"/>
       - <link rel="canonical" href="https://96.com/en/vip_rewards/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/vip_rewards/" />
   zh-CN_vip_rewards:
@@ -241,7 +235,7 @@ pages:
   # 活动页面
   en_promotions:
     lang: en
-    title: promotions
+    title: Top Crypto and Sports Promotions
     entry: src/_skin007/main.ts
     filename: en/promotions/index.html
     template: public_skin007/skin007.html
@@ -250,7 +244,6 @@ pages:
     headerlist:
       - <script>window.path="/promotions"</script>
       - <base href="../../" />
-      - <meta name="title" content="Top Crypto and Sports Promotions" />
       - <meta name="description" content="Play now at 96.com and get the best online casino, sports, eSports, and Bitcoin promotions! Competitive prizes awaits! Join now!"/>
       - <link rel="canonical" href="https://96.com/en/promotions/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/promotions/" />
@@ -303,7 +296,7 @@ pages:
   # 足球页面
   en_easybet_football:
     lang: en
-    title: easybet_football
+    title: Football Betting Odds at 96.com
     entry: src/_skin007/main.ts
     filename: en/easybet_football/index.html
     template: public_skin007/skin007.html
@@ -312,7 +305,6 @@ pages:
     headerlist:
       - <script>window.path="/easybet_football"</script>
       - <base href="../../" />
-      - <meta name="title" content="Football Betting Odds at 96.com" />
       - <meta name="description" content="96.com offers top football odds for different matches and competitions in sports! Join now and experience wolrd class sports betting!"/>
       - <link rel="canonical" href="https://96.com/en/easybet_football/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/easybet_football/" />
@@ -551,7 +543,7 @@ pages:
   # 体育电竞
   en_E_Sports:
     lang: en
-    title: E_Sports
+    title: Crypto Friendly eSports Crypto Betting
     entry: src/_skin007/main.ts
     filename: en/E_Sports/index.html
     template: public_skin007/skin007.html
@@ -560,10 +552,9 @@ pages:
     headerlist:
       - <script>window.path="/E_Sports"</script>
       - <base href="../../" />
-      - <meta name="title" content="活动标题测试" />
-      - <meta name="description" content="活动描述测试"/>
-      - <link rel="canonical" href="https://96.com/en/E_Sports" />
-      - <link rel="alternate" hreflang="x-default" href="https://96.com/en/E_Sports" />
+      - <meta name="description" content="Experience smooth and safe eSports crypto betting at 96.com! From DOTA2, Valorant, to CS:Go, we got it all covered!"/>
+      - <link rel="canonical" href="https://96.com/en/E_Sports/" />
+      - <link rel="alternate" hreflang="x-default" href="https://96.com/en/E_Sports/" />
   zh-CN_E_Sports:
     lang: zh
     title: E_Sports

@@ -277,10 +277,13 @@ export default class GameProxy extends AbstractProxy {
             form.timezone = Timezone.Instance.timezoneOffset;
         }
         if (GlobalVar.skin) form.daynight_type = Vue.vuetify.framework.theme.dark ? "2" : "1";
-        if (core.user_id) {
-            this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, form);
-        } else {
-            this.sendNotification(net.HttpType.api_vendor_var_ori_product_visitor_show_var, form);
+
+        if (vendor_id) {
+            if (core.user_id) {
+                this.sendNotification(net.HttpType.api_vendor_var_ori_product_show_var, form);
+            } else {
+                this.sendNotification(net.HttpType.api_vendor_var_ori_product_visitor_show_var, form);
+            }
         }
     }
     /**直接进入体育页面，skin001专用 */

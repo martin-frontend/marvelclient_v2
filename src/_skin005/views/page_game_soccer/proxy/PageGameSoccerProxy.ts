@@ -23,7 +23,9 @@ export default class PageGameSoccerProxy extends puremvc.Proxy {
         }, 100);
     }
     refreshGame() {
-        const curPath = Vue.router.history.current.path;
+        // const curPath = Vue.router.history.current.path;
+        //@ts-ignore
+        const curPath = window.path ? Vue.router.history.current.name : Vue.router.history.current.path;
 
         //在headgame中搜索 当前路由是否存在 如果存在 则直接 返回 这个对象
         for (let index = 0; index < GameConfig.config.head_game_config.length; index++) {

@@ -19,9 +19,7 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             // 错误码：http://18.166.154.73:8090/pages/viewpage.action?pageId=66089
             const ERROR_MAINTAIN = [10136]; //平台维护
             // 账号异常
-            const ERROR_CODE_ACCOUNT = [
-                10102, 10103, 10104, 10123, 10124, 10125, 10126, 10127, 10128, 10129, 10130, 10129, 1100143, 1100173,
-            ];
+            const ERROR_CODE_ACCOUNT = [10102, 10103, 10104, 10123, 10124, 10125, 10126, 10127, 10128, 10129, 10130, 10129, 1100143, 1100173];
             // 需要绑定手机
             const ERROR_CODE_PHONE = [11002126, 1100139];
             //设置真实姓名
@@ -55,7 +53,9 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
                             return;
                         }
                         if (result.status != 1100143 || result.status != 1100173) PanelUtil.openpage_home();
-                        location.reload();
+                        //@ts-ignore
+                        if (window.path) Vue.router.push("/");
+                        else location.reload();
                     },
                 });
             } else if (ERROR_MAINTAIN.includes(result.status)) {
@@ -90,15 +90,14 @@ export default class RequestErrorCMD extends puremvc.SimpleCommand {
             } else if (ERROR_CODE_NO_ENOUGH.includes(result.status)) {
                 console.log("此用户流水不足", result);
                 PanelUtil.message_confirm({ message: LangUtil("您当前流水不足，暂不能提现"), cancelFun: PanelUtil.openpanel_gold_waterl });
-            } else if(ERROR_CODE_KYC.includes(result.status)){
+            } else if (ERROR_CODE_KYC.includes(result.status)) {
                 PanelUtil.message_confirm({
                     message: body.result.msg,
                     okFun: () => {
                         dialog_kyc.show();
                     },
                 });
-            } 
-            else {
+            } else {
                 PanelUtil.message_alert(body.result.msg);
             }
         } else {

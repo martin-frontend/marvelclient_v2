@@ -124,9 +124,13 @@ export default class SelfProxy extends AbstractProxy {
                 this.sendNotification(net.HttpType.api_plat_var_pop_index, { plat_id: core.plat_id, currency: gameProxy.coin_name_unique });
                 //活动配置
                 this.sendNotification(net.HttpType.api_plat_activity_config);
-                //如果当前在游戏页面，游戏页面需要刷新
-                if (Vue.router.app.$route.path.includes("page_game_play")) {
-                    gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
+                if (Vue.router) {
+                    //如果当前在游戏页面，游戏页面需要刷新
+                    //@ts-ignore
+                    const routerPath = window.path ? Vue.router.app.$route.name : Vue.router.app.$route.path;
+                    if (routerPath.includes("page_game_play")) {
+                        gameProxy.api_vendor_var_ori_product_show_var(gameProxy.currGame);
+                    }
                 }
             }
         }

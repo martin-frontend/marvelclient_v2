@@ -121,7 +121,7 @@ export default class MobileMenu extends AbstractView {
         return newlist;
     }
 
-    routerPath = this.$router.app.$route.path;
+    routerPath: any = this.$router.app.$route.path;
     @Watch("$route")
     onWatchRouter() {
         this.routerPath = this.$router.app.$route.path;
@@ -213,21 +213,25 @@ export default class MobileMenu extends AbstractView {
     }
 
     isActiveItem(item: any) {
-        if (!item) return false;
+        //@ts-ignore
+        const routerPath: any = window.path ? "/" + this.$router.app.$route.name : this.$router.app.$route.path;
+        console.log(">>>>>routerPath: ", routerPath);
+        console.log(">>>>>item: ", item);
+        if (!item || !routerPath) return false;
         //首先判断是否为 在head_game中的游戏
         if (item.id == 8) {
             //板球的判断
-            return this.routerPath.includes(item.path) && this.isCricket;
+            return routerPath.includes(item.path) && this.isCricket;
         } else if (item.id == 0) {
-            return this.routerPath == Vue.prePath || this.routerPath == Vue.prePath + "/";
+            return routerPath == Vue.prePath || routerPath == Vue.prePath + "/";
         } else if (item.id == 1) {
-            return this.routerPath.includes(item.path) && !this.isCricket;
+            return routerPath.includes(item.path) && !this.isCricket;
         } else if (item.id == 2) {
-            if (this.routerPath.includes("lottery-games")) return false;
-            return Constant.isIncludeGameRouter(this.routerPath);
+            if (routerPath.includes("lottery-games")) return false;
+            return Constant.isIncludeGameRouter(routerPath);
         } else {
             if (item.path && item.path != "/") {
-                return this.routerPath.includes(item.path);
+                return routerPath.includes(item.path);
             }
         }
         return false;

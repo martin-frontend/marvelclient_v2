@@ -122,10 +122,7 @@ export default class GameConfig {
                 }
             })
             .catch((e) => {
-                track_error_event(
-                    { msg: e, url: url, virsion_client: getVersion(), plat_id: plat_id, channel_id: channel_id },
-                    "gameaddressfail"
-                );
+                track_error_event({ msg: e, url: url, virsion_client: getVersion(), plat_id: plat_id, channel_id: channel_id }, "gameaddressfail");
                 alert("get game_address fail");
                 this.onGetAddressFail();
             });
@@ -283,7 +280,7 @@ export default class GameConfig {
                 }
             } else {
                 apiUrl = "https://api.testjj9.com";
-                // apiUrl = "https://api.96in.com";
+                // apiUrl = "https://api.96.com";
             }
         }
         return apiUrl;
@@ -302,12 +299,7 @@ export default class GameConfig {
     }
     /**是否允许切换时区 */
     static get timezoneChange() {
-        if (
-            GameConfig &&
-            GameConfig.config &&
-            GameConfig.config.modules_switch &&
-            GameConfig.config.modules_switch["TimezoneChange"] == 1
-        ) {
+        if (GameConfig && GameConfig.config && GameConfig.config.modules_switch && GameConfig.config.modules_switch["TimezoneChange"] == 1) {
             return true;
         }
 

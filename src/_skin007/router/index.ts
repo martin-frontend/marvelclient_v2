@@ -10,7 +10,7 @@ Vue.use(VueRouter);
 export const routes: Array<RouteConfig> = [
     {
         path: "/",
-        name: "page_home",
+        name: "",
         component: () => import(/* webpackChunkName: "skin005_page_home" */ "@/_skin005/views/page_home/views/PageHome.vue"),
     },
     {
@@ -71,14 +71,12 @@ export const routes: Array<RouteConfig> = [
     {
         path: "/page_game_soccer",
         name: "page_game_soccer",
-        component: () =>
-            import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
         path: "/cricket",
         name: "cricket",
-        component: () =>
-            import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_game_soccer" */ "@/_skin005/views/page_game_soccer/views/PageGameSoccer.vue"),
     },
     {
         path: "/page_introduce",
@@ -109,9 +107,7 @@ export const routes: Array<RouteConfig> = [
         path: "/page_statistice_credit",
         name: "page_statistice_credit",
         component: () =>
-            import(
-                /* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"
-            ),
+            import(/* webpackChunkName: "skin005_page_statistice_credit" */ "@/_skin005/views/page_statistice_credit/views/PageStatisticeCredit.vue"),
     },
     {
         path: "/page_my_info",
@@ -131,8 +127,7 @@ export const routes: Array<RouteConfig> = [
     {
         path: "/page_rules",
         name: "page_rules",
-        component: () =>
-            import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
+        component: () => import(/* webpackChunkName: "skin005_page_rules" */ "@/_skin005/views/page_rules_hidden/views/PageRulesHidden.vue"),
     },
     {
         path: "/page_promotion_statistics",
@@ -228,7 +223,11 @@ export function getRouter(): VueRouter {
                     next(prePath);
                 } else {
                     if (routes.some((e, index, array) => e.name == to.name)) {
-                        if (to.path.includes("page_game_play") && !PanelUtil.getProxy_gameproxy.currGame.vendor_id) {
+                        if (
+                            to.path.includes("page_game_play") &&
+                            !PanelUtil.getProxy_gameproxy.currGame.vendor_id &&
+                            !localStorage.getItem("game_play_url")
+                        ) {
                             next(prePath);
                         } else {
                             next();

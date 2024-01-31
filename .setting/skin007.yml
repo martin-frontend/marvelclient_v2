@@ -36,7 +36,6 @@ pages:
   # lottery-games 彩票游戏列表页
   # cards-games 棋牌游戏列表页
   # game-history 最近游戏记录列表页
-  # page_game_play 玩游戏
   # page_game_soccer 足球页面
   # cricket 板球页面
   # page_introduce 介绍页
@@ -68,6 +67,22 @@ pages:
       - <meta name="description" content="96英文首页描述"/>
       - <link rel="canonical" href="https://96.com/en/" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en" />
+  # 中文首页
+  zh-CN_index:
+    lang: zh
+    title: 96
+    entry: src/_skin007/main.ts
+    filename: zh-CN/index.html
+    template: public_skin007/skin007.html
+    h1: 96 is a popular online gambling platform offering a wide range of sports betting, casino games, and esports.
+    body: <div>test static content</div>
+    headerlist:
+      - <script>window.path="/"</script>
+      - <base href="../" />
+      - <meta name="title" content="96中文首页标题" />
+      - <meta name="description" content="96中文首页描述"/>
+      - <link rel="canonical" href="https://96.com/zh-CN/" />
+      - <link rel="alternate" hreflang="x-default" href="https://96.com/zh-CN" />
   # 老虎机
   en_slots-games:
     lang: en
@@ -195,3 +210,35 @@ pages:
       - <meta name="description" content="Easybet描述测试"/>
       - <link rel="canonical" href="https://96.com/en/easybet_football" />
       - <link rel="alternate" hreflang="x-default" href="https://96.com/en/easybet_football" />
+  # 游戏英文页面
+  en_page_game_play:
+    lang: en
+    title: game_play
+    entry: src/_skin007/main.ts
+    filename: en/page_game_play/index.html
+    template: public_skin007/skin007.html
+    h1: 96 is a popular online gambling platform offering a wide range of sports betting, casino games, and esports.
+    body: <div>test static content</div>
+    headerlist:
+      - <script>window.path="/page_game_play"</script>
+      - <base href="../../" />
+      - <meta name="title" content="游戏标题测试" />
+      - <meta name="description" content="游戏描述测试"/>
+      - <link rel="canonical" href="https://96.com/en/page_game_play" />
+      - <link rel="alternate" hreflang="x-default" href="https://96.com/en/page_game_play" />
+  # 游戏中文页面
+  zh-CN_page_game_play:
+    lang: zh
+    title: game_play
+    entry: src/_skin007/main.ts
+    filename: zh-CN/page_game_play/index.html
+    template: public_skin007/skin007.html
+    h1: 96 is a popular online gambling platform offering a wide range of sports betting, casino games, and esports.
+    body: <div>test static content</div>
+    headerlist:
+      - <script>window.path="/page_game_play"</script>
+      - <base href="../../" />
+      - <meta name="title" content="游戏标题测试" />
+      - <meta name="description" content="游戏描述测试"/>
+      - <link rel="canonical" href="https://96.com/zh-CN/page_game_play" />
+      - <link rel="alternate" hreflang="x-default" href="https://96.com/zh-CN/page_game_play" />

@@ -250,8 +250,13 @@ export default class PanelUtil {
     //打开 主页
     static openpage_home() {
         //@ts-ignore
-        if (Vue.router.app.$route.path != Vue.prePath || window.path) {
+        if (window.path) {
             Vue.router.push(`/${LangConfig.getRouterLang()}`);
+        } else {
+            //@ts-ignore
+            if (Vue.router.app.$route.path != Vue.prePath || window.path) {
+                Vue.router.push(`/${LangConfig.getRouterLang()}`);
+            }
         }
         PanelUtil.getProxy_novigation.setMiniMenu(false);
         PageBlur.blur_force_close();

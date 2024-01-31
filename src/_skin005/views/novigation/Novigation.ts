@@ -268,6 +268,7 @@ export default class Novigation extends AbstractView {
     onWatchLang(value: any, oldValue: any) {
         window.localStorage.setItem("lang", core.lang);
         if (this.$route.name) this.$router.replace("/" + this.$route.name);
+        else this.$router.replace("/" + LangConfig.getRouterLang());
     }
 
     getItemCategory(item: any) {
@@ -378,7 +379,9 @@ export default class Novigation extends AbstractView {
     isShowActive_menu(item: any) {
         if (!item.path || !item.path.trim()) return false;
 
-        return this.routerPath.includes(item.path);
+        //@ts-ignore
+        const routerPath: any = window.path ? "/" + this.$router.app.$route.name : this.$router.app.$route.path;
+        return routerPath.includes(item.path);
     }
     getChannelID() {
         return core.channel_id;

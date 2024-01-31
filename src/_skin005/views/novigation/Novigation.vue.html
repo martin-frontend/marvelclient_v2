@@ -4,13 +4,7 @@
             <div class="d-flex align-center box">
                 <svg-icon icon="menu" class="text-22"></svg-icon>
                 <v-img v-if="!mini && !SkinVariable.isShowfullLogo" class="ml-2" :src="commonIcon.logo" max-width="112"></v-img>
-                <v-img
-                    v-if="!mini && SkinVariable.isShowfullLogo"
-                    class="mx-n2"
-                    :src="commonIcon.logo"
-                    max-width="94"
-                    max-height="26"
-                ></v-img>
+                <v-img v-if="!mini && SkinVariable.isShowfullLogo" class="mx-n2" :src="commonIcon.logo" max-width="94" max-height="26"></v-img>
             </div>
         </v-sheet>
 
@@ -48,16 +42,8 @@
                                     :icon="CategoryIcon_sel[getItemCategory(item)]"
                                     :class="$mobile ? 'text-18' :'text-20'"
                                 ></svg-icon>
-                                <svg-icon
-                                    v-else
-                                    :icon="CategoryIcon[getItemCategory(item)]"
-                                    :class="$mobile ? 'text-18' :'text-20'"
-                                ></svg-icon>
-                                <div
-                                    v-if="!mini"
-                                    class="ml-5 text-no-wrap"
-                                    :class="(hover || isShowActive(item)) ? 'font-weight-bold' : '' "
-                                >
+                                <svg-icon v-else :icon="CategoryIcon[getItemCategory(item)]" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
+                                <div v-if="!mini" class="ml-5 text-no-wrap" :class="(hover || isShowActive(item)) ? 'font-weight-bold' : '' ">
                                     {{LangUtil(getItemCategoryName(item))}}
                                 </div>
                                 <v-spacer />
@@ -82,11 +68,7 @@
                         } "
                         @click="goCategory(item)"
                     >
-                        <svg-icon
-                            v-if="hover || isShowActive_menu(item) "
-                            :icon="item.icon_sel"
-                            :class="$mobile ? 'text-18' :'text-20'"
-                        ></svg-icon>
+                        <svg-icon v-if="hover || isShowActive_menu(item) " :icon="item.icon_sel" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
                         <svg-icon v-else :icon="item.icon" :class="$mobile ? 'text-18' :'text-20'"></svg-icon>
                         <div
                             v-if="!mini"

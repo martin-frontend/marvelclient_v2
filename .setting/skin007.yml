@@ -1,6 +1,6 @@
 ---
 domain: https://96.com/
-# 根据配置的语言生成网站地图, 如未配置lang参数，则不会写入网站地图
+# 根据配置的语言生成sitmap, 如未配置lang参数，则不会写入sitmap
 language:
   - en
   - zh-cn

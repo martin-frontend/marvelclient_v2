@@ -183,7 +183,7 @@ pages:
     entry: src/_skin007/main.ts
     filename: en/sports/index.html
     template: public_skin007/skin007.html
-    h1: Bet with crypto on eSports here at 96.com
+    h1: Bet on Sports at 96.com
     body: <div>test static content</div>
     headerlist:
       - <script>window.path="/sports"</script>

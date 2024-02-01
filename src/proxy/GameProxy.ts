@@ -41,7 +41,13 @@ export default class GameProxy extends AbstractProxy {
         historyLength: 0,
         scrollY: 0,
     };
+    isLobbyDataRetrun = false;
+    isMenuDataRetrun = false;
+    isCategoryDataRetrun = false;
 
+    get isAllDataReturn() {
+        return this.isLobbyDataRetrun && this.isMenuDataRetrun && this.isCategoryDataRetrun;
+    }
     loading = false;
 
     coin_name_unique_list_obj = <any>{};
@@ -88,9 +94,11 @@ export default class GameProxy extends AbstractProxy {
      * 大厅菜单
      */
     setLobbyIndex(body: any) {
+        this.isLobbyDataRetrun = true;
         this.lobbyIndex = body.class;
     }
     setGameMenu(body: any) {
+        this.isMenuDataRetrun = true;
         this.lobbyMenuIndex = body;
         if (ModulesHelper.IsShow_GameHistory()) {
             this.gameHistoryList = this.readGameHistory();
@@ -185,7 +193,7 @@ export default class GameProxy extends AbstractProxy {
     }
     setGameCategory(body: any) {
         this.lobbyCategory_0 = body;
-
+        this.isCategoryDataRetrun = true;
         this.lobbyCategory = <core.PlatLobbyCategoryIndexVO[]>[]; //首页游戏
         this.lobbyCategory_2 = <core.PlatLobbyCategoryIndexVO[]>[]; // 棋牌
         this.lobbyCategory_4 = <core.PlatLobbyCategoryIndexVO[]>[]; // 彩票
@@ -253,6 +261,9 @@ export default class GameProxy extends AbstractProxy {
         this.sendNotification(net.HttpType.api_plat_var_game_menu, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
         this.sendNotification(net.HttpType.api_plat_var_lobby_index, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
         this.sendNotification(net.HttpType.api_plat_var_game_category, { plat_id: core.plat_id, coin_name_unique: this.coin_name_unique });
+        this.isLobbyDataRetrun = false;
+        this.isMenuDataRetrun = false;
+        this.isCategoryDataRetrun = false;
     }
 
     /**--大厅--获取进入厂商的游戏URL，获取厂商游戏凭证*/

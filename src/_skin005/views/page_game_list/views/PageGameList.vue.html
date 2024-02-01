@@ -1,4 +1,4 @@
-<v-sheet color="transparent" id="gamelist" ref="scrollObj" class="pa-0 pb-5" style="min-height: calc(100vh - 500px)" :class="$mobile?'':''">
+<v-sheet v-if="gameProxy.isAllDataReturn" color="transparent" id="gamelist" ref="scrollObj" class="pa-0 pb-5" style="min-height: calc(100vh - 500px)" :class="$mobile?'':''">
     <template v-if="!$mobile">
         <v-sheet color="transparent" width="100%" :class="{'mt-4': isLotterySkin}">
             <Activity :showDataType="listQuery.vendor_type" />

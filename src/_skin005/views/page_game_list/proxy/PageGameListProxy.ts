@@ -283,4 +283,16 @@ export default class PageGameListProxy extends puremvc.Proxy {
     public get tableMenu(): any {
         return this.gameProxy.lobbyMenuIndex;
     }
+    openLoading() {
+        setTimeout(() => {
+            if (this.gameProxy.isAllDataReturn) {
+                PanelUtil.showAppLoading(false);
+                return;
+            }
+
+            if (!PanelUtil.getAppLoading()) {
+                PanelUtil.showAppLoading(true);
+            }
+        }, 100);
+    }
 }

@@ -3,7 +3,6 @@ import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import DialogActivityPointSpinProxy from "../../proxy/DialogActivityPointSpinProxy";
 import { AnimDoScale, AnimRotation } from "@/_skin005/core/AnimationUtil";
-import Timezone from "@/core/Timezone";
 import { changeDateShow } from "@/core/global/Functions";
 import gsap, { Linear } from "gsap";
 import PanelUtil from "@/_skin005/core/PanelUtil";
@@ -76,18 +75,12 @@ export default class Score extends AbstractView {
         }
     }
 
-    mounted() {
-        // this.$nextTick(() => {
-        //     this.bgAnimation();
-        // });
-    }
+    mounted() {}
     getDate(str: string, isChange: boolean = true) {
         return changeDateShow(str, isChange);
     }
     get endTime() {
         return LangUtil("活动剩余时间:") + PanelUtil.getProxy_novigation.spinLastTimeTxt;
-        // const data = Timezone.Instance.convertTime_to_Locale_utc(this.pageData.data.last_end_time * 1000);
-        // return this.getDate(data, false);
     }
     onBtnClickGetBonus() {
         console.warn("奖励按钮被点击");

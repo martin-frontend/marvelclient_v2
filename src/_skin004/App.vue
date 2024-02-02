@@ -77,6 +77,16 @@
                     <span>{{ spinTxt }}</span></v-sheet
                 >
             </v-sheet>
+
+            <v-sheet
+                v-if="showRankList"
+                color="transparent"
+                width="70"
+                @click.native="onClickBtnRanklist"
+                class="d-flex flex-column align-center cursor-pointer"
+            >
+                <v-img src="~@/_skin004/assets/activity_rank_list/icon.png" width="55" height="45" contain> </v-img>
+            </v-sheet>
         </div>
         <div v-else class="action-btns">
             <v-sheet
@@ -97,6 +107,15 @@
                 >
                     <span>{{ spinTxt }}</span></v-sheet
                 >
+            </v-sheet>
+            <v-sheet
+                v-if="showRankList"
+                color="transparent"
+                width="53"
+                @click.native="onClickBtnRanklist"
+                class="d-flex flex-column align-center cursor-pointer"
+            >
+                <v-img src="~@/_skin004/assets/activity_rank_list/icon.png" width="45" height="41.5" contain> </v-img>
             </v-sheet>
         </div>
         <!-- 添加到桌面引导 -->
@@ -211,8 +230,8 @@ export default class extends APP {}
 }
 .action-btns {
     position: fixed;
-    right: 55px;
-    bottom: 285px;
+    right: 65px;
+    bottom: 290px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -220,6 +239,7 @@ export default class extends APP {}
 }
 @media (max-width: 600px) {
     .action-btns {
+        right: 15px;
         gap: 15px;
         bottom: 65px;
     }

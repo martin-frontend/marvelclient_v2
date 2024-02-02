@@ -17,6 +17,7 @@ export default class ActivityConfig {
         ball_rank: { is_open: false, activity_id_arr: [] }, // 是否开启彩球
         spin: { is_open: false, activity_id_arr: [] }, // 是否开启转盘
         every_point: { is_open: false, activity_id_arr: [], extend_arr: [] }, // 是否开启积分转盘
+        rank_list: { is_open: false, activity_id_arr: <any>[] }, // 是否开启转盘
     };
 
     static init(data: any) {

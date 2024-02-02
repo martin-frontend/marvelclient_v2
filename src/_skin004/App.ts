@@ -17,13 +17,14 @@ import SkinVariable from "@/_skin004/core/SkinVariable";
 import ActivityConfig from "@/core/config/ActivityConfig";
 import dialog_activity_point_spin from "./views/dialog_activity_point_spin";
 import dialog_message from "@/views/dialog_message";
+import dialog_activity_rank from "./views/dialog_activity_rank";
 @Component
 export default class APP extends AbstractView {
     SkinVariable = SkinVariable;
     gameProxy: GameProxy = getProxy(GameProxy);
     headerProxy: HeaderProxy = getProxy(HeaderProxy);
     ActivityConfig = ActivityConfig;
-    activity_config = this.ActivityConfig.config;
+    activity_config = ActivityConfig.config;
     myProxy: AppProxy = this.getProxy(AppProxy);
 
     LangUtil = LangUtil;
@@ -119,10 +120,16 @@ export default class APP extends AbstractView {
         }
         dialog_activity_point_spin.show(activity_id);
     }
+    onClickBtnRanklist() {
+        dialog_activity_rank.show();
+    }
     get showPointSpin() {
         return this.activity_config.every_point.is_open;
     }
     get spinTxt() {
         return this.ActivityConfig.spinLastTimeTxt;
+    }
+    get showRankList() {
+        return this.activity_config.rank_list.is_open;
     }
 }

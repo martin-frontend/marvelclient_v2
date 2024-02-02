@@ -91,7 +91,7 @@ export function getVuetify(): Vuetify {
                         colorTextNext: "#3B5F96", //used
                         colorVipLevelText: "#8C9FC4",
                         colorMarqueeIcon: "#667798",
-
+                        textGray: "#5A5A5A",
                         //001皮肤专用
                         colorTextBlue1: "#849FD8",
                         colorTextBlue2: "#03259C",

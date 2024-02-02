@@ -381,6 +381,10 @@ declare module net {
         api_plat_activity_every_point_lottery_var: string;
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: string;
+        /**--排行榜活动 --排行榜-活动列表*/
+        api_plat_activity_index_rank_list: string;
+        /**--排行榜活动 --排行榜-用户列表*/
+        api_plat_activity_index_rank_user_list: string;
     };
     /**事件*/
     var EventType: {
@@ -762,6 +766,10 @@ declare module net {
         api_plat_activity_every_point_lottery_var: string;
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: string;
+        /**--排行榜活动 --排行榜-活动列表*/
+        api_plat_activity_index_rank_list: string;
+        /**--排行榜活动 --排行榜-用户列表*/
+        api_plat_activity_index_rank_user_list: string;
     };
     /**注册协议*/
     function initCommand(): void;
@@ -861,6 +869,24 @@ declare module net {
  */
 declare module net {
     class cmd_api_plat_activity_index_everyday extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 排行榜-活动列表
+ */
+declare module net {
+    class cmd_api_plat_activity_index_rank_list extends puremvc.SimpleCommand {
+        execute(notification: puremvc.INotification): void;
+        private response;
+    }
+}
+/**
+ * 排行榜-用户列表
+ */
+declare module net {
+    class cmd_api_plat_activity_index_rank_user_list extends puremvc.SimpleCommand {
         execute(notification: puremvc.INotification): void;
         private response;
     }

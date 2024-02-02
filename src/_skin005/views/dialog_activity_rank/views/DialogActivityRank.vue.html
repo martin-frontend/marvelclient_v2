@@ -1,0 +1,350 @@
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" persistent @click:outside="onClose">
+    <div class="d-flex align-center justify-center" @click.stop="onPhoneClose">
+        <v-card
+            v-if="!$mobile"
+            flat
+            color="transparent"
+            hide-overlay
+            ref="card_node"
+            class="rounded10 d-flex flex-column align-center justify-center"
+            :ripple="false"
+            width="796"
+            style="position: relative"
+            @click.stop="onPhoneCardClick"
+        >
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-center mb-2" style="position: relative">
+                <div>
+                    <v-img :src="titleImg" width="632" height="90"></v-img>
+                </div>
+                <v-sheet class="cursor-pointer" color="transparent" @click.stop="onClose" style="position: absolute; right: 20px">
+                    <v-img src="~@/_skin005/assets/activity_rank_list/btn_close.png" width="36"> </v-img>
+                </v-sheet>
+            </v-sheet>
+            <div style="position: absolute; bottom: 0">
+                <v-img src="~@/_skin005/assets/activity_rank_list/main_bg.png" width="796" height="460"></v-img>
+            </div>
+            <v-card flat color="transparent" class="d-flex flex-column pa-4" width="100%" height="460" style="position: relative">
+                <Category class="mb-2" />
+                <v-row dense>
+                    <v-col :cols="6">
+                        <v-card flat color="transparent" class="d-flex flex-column align-center fill-height" style="position: relative">
+                            <v-sheet
+                                v-if="pageData.data.last_time_txt || pageData.data.activity_name"
+                                class="d-flex align-center justify-center flex-column rounded10 py-2 mb-2"
+                                width="100%"
+                                style="background-color: rgba(255, 255, 255, 0.3)"
+                            >
+                                <v-sheet v-if="isRunningActivity" color="transparent" class="text-18 font-weight-bold navTextHover--text"
+                                    >{{pageData.data.last_time_txt}}</v-sheet
+                                >
+                                <v-sheet v-else color="transparent" class="text-18 font-weight-bold navTextHover--text"
+                                    >{{pageData.data.activity_name}}</v-sheet
+                                >
+                                <v-sheet color="transparent" class="text-12 navTextHover--text"
+                                    >{{getStartDate(pageData.data.start_time)}}{{LangUtil("-")}}{{getEndDate(pageData.data.end_time)}}</v-sheet
+                                >
+                            </v-sheet>
+
+                            <Rank />
+
+                            <div v-if="isShowOvertimeTag" ref="close_node" style="position: absolute; left: 0px">
+                                <v-img :src="overtimeImg" width="60" height="60"></v-img>
+                            </div>
+                        </v-card>
+                    </v-col>
+                    <v-col :cols="6">
+                        <v-card v-if="isRunningActivity" flat color="transparent" class="d-flex flex-column align-center" height="375">
+                            <v-sheet
+                                v-if="pageData.data.game_list && pageData.data.game_list.length > 0"
+                                class="rounded10 mb-2"
+                                color="transparent"
+                                width="100%"
+                            >
+                                <horizontal_scroll class="d-flex" :isNeedArrow="true" :updateCount="pageData.data.game_list.length">
+                                    <template v-slot="{data}">
+                                        <v-sheet class="d-flex align-center" color="transparent">
+                                            <template v-for="(item , index) of pageData.data.game_list">
+                                                <GameItem
+                                                    class="mx-1"
+                                                    :item="item"
+                                                    :key="index + 'game_item'"
+                                                    @onItemClick="onGameItemClick"
+                                                />
+                                            </template>
+                                        </v-sheet>
+                                    </template>
+                                </horizontal_scroll>
+                            </v-sheet>
+                            <v-card
+                                ref="scroll_detail_node"
+                                flat
+                                class="d-flex pa-2 rounded10 flex-column overflow-y-auto"
+                                width="100%"
+                                style="background-color: rgba(255, 255, 255, 0.3)"
+                                height="100%"
+                            >
+                                <v-sheet
+                                    v-if="!pageData.data || !pageData.data.link_url"
+                                    class="d-flex justify-center align-center"
+                                    color="transparent"
+                                    width="100%"
+                                    height="300"
+                                >
+                                    <div ref="nodata">
+                                        <v-img src="~@/_skin005/assets/activity_rank_list/no_data.png" max-width="186" height="158"></v-img>
+                                        <div class="text-14 textGray--text mt-2" style="text-align: center">{{LangUtil("暂无内容")}}</div>
+                                    </div>
+                                </v-sheet>
+                                <template v-else>
+                                    <v-sheet color="transparent" width="100%" class="text-14 font-weight-bold navTextHover--text"
+                                        >{{LangUtil("活动说明")}}</v-sheet
+                                    >
+                                    <v-sheet color="transparent" width="100%" class="text-14 navTextHover--text">
+                                        <div class="" v-html="pageData.data && pageData.data.link_url" @click.stop="handleLinkClick"></div>
+                                    </v-sheet>
+                                </template>
+                            </v-card>
+                        </v-card>
+                        <v-card
+                            v-else
+                            flat
+                            class="d-flex flex-column align-center fill-height pa-2 rounded10"
+                            style="background-color: rgba(255, 255, 255, 0.3)"
+                        >
+                            <v-sheet
+                                v-if="!rank_list || rank_list.length == 0"
+                                class="d-flex justify-center align-center"
+                                color="transparent"
+                                width="100%"
+                                height="300"
+                            >
+                                <div ref="nodata">
+                                    <v-img src="~@/_skin005/assets/activity_rank_list/no_data.png" max-width="186" height="158"></v-img>
+                                    <div class="text-14 textGray--text mt-2" style="text-align: center">{{LangUtil("暂无内容")}}</div>
+                                </div>
+                            </v-sheet>
+
+                            <v-sheet v-else color="transparent" width="100%" class="d-flex flex-column overflow-y-auto" max-height="360">
+                                <v-sheet
+                                    color="transparent"
+                                    class="d-flex align-center text-14 font-weight-bold mb-2 navTextHover--text"
+                                    width="100%"
+                                    >{{LangUtil("往期排行榜")}}</v-sheet
+                                >
+                                <v-sheet
+                                    class="d-flex align-center my-1"
+                                    color="transparent"
+                                    v-for="(item , index) of rank_list"
+                                    :key="index+'last_activity'"
+                                    width="100%"
+                                    :class="isDisable(item) ? 'item_class_disabled ' : 'item_class cursor-pointer'"
+                                    @click.native.stop="onLastActivityItemClick(item)"
+                                >
+                                    <v-sheet color="transparent" class="text-12 txt_color"> {{LangUtil(item.activity_name)}}</v-sheet>
+
+                                    <v-sheet color="transparent" class="text-12 ml-2 txt_color"
+                                        >{{getStartDate(item.start_time)}}{{LangUtil("-")}}{{getEndDate(item.end_time)}}</v-sheet
+                                    >
+                                </v-sheet>
+                            </v-sheet>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-card>
+
+        <v-card
+            v-else
+            flat
+            color="transparent"
+            hide-overlay
+            ref="card_node"
+            class="rounded10 d-flex flex-column align-center justify-center"
+            :ripple="false"
+            width="350"
+            style="position: relative"
+            @click.stop="onPhoneCardClick"
+        >
+            <v-sheet color="transparent" width="100%" class="d-flex align-center justify-center mb-1" style="position: relative">
+                <div>
+                    <v-img :src="titleImg" width="316" height="45"></v-img>
+                </div>
+                <v-sheet class="cursor-pointer" color="transparent" @click.stop="onClose" style="position: absolute; right: 0px">
+                    <v-img src="~@/_skin005/assets/activity_rank_list/btn_close.png" width="24"> </v-img>
+                </v-sheet>
+            </v-sheet>
+            <div style="position: absolute; top: 47px">
+                <v-img src="~@/_skin005/assets/activity_rank_list/detail_bg_mob.png" width="335" height="505"></v-img>
+            </div>
+            <div style="position: absolute; top: 564px">
+                <v-img src="~@/_skin005/assets/activity_rank_list/rank_bg_mob.png" width="335" height="313"></v-img>
+            </div>
+            <v-card flat color="transparent" class="d-flex flex-column pa-4" width="100%" height="505" style="position: relative">
+                <Category v-if="isRunningActivity" class="mb-2" />
+
+                <v-card v-if="isRunningActivity" flat color="transparent" class="d-flex flex-column align-center" height="100%">
+                    <v-card
+                        flat
+                        class="d-flex py-2 rounded10 flex-column"
+                        width="100%"
+                        style="background-color: rgba(255, 255, 255, 0.3)"
+                        height="100%"
+                    >
+                        <v-sheet class="d-flex align-center justify-center flex-column" width="100%" color="transparent">
+                            <v-sheet
+                                class="d-flex align-center justify-center flex-column"
+                                width="100%"
+                                color="transparent"
+                                min-height="42"
+                            >
+                                <v-sheet v-if="isRunningActivity" color="transparent" class="text-16 font-weight-bold navTextHover--text"
+                                    >{{pageData.data.last_time_txt}}</v-sheet
+                                >
+                                <v-sheet v-else color="transparent" class="text-16 font-weight-bold navTextHover--text"
+                                    >{{pageData.data.activity_name}}</v-sheet
+                                >
+                                <v-sheet
+                                    v-if="pageData.data.start_time && pageData.data.end_time"
+                                    color="transparent"
+                                    class="text-12 navTextHover--text"
+                                    >{{getStartDate(pageData.data.start_time)}}{{LangUtil("-")}}{{getEndDate(pageData.data.end_time)}}</v-sheet
+                                >
+                            </v-sheet>
+                        </v-sheet>
+                        <v-divider class="my-2" />
+
+                        <v-sheet
+                            v-if="!pageData.data || !pageData.data.link_url"
+                            class="d-flex justify-center align-center"
+                            color="transparent"
+                            width="100%"
+                            height="300"
+                        >
+                            <div ref="nodata">
+                                <v-img src="~@/_skin005/assets/activity_rank_list/no_data.png" max-width="186" height="158"></v-img>
+                                <div class="text-14 textGray--text mt-2" style="text-align: center">{{LangUtil("暂无内容")}}</div>
+                            </div>
+                        </v-sheet>
+                        <template v-else>
+                            <v-sheet color="transparent" width="100%" class="text-14 font-weight-bold navTextHover--text px-2"
+                                >{{LangUtil("活动说明")}}</v-sheet
+                            >
+                            <v-sheet
+                                color="transparent"
+                                width="100%"
+                                ref="scroll_detail_node"
+                                class="text-12 px-2 overflow-y-auto navTextHover--text"
+                                :height="mob_scroll_height"
+                            >
+                                <div class="" v-html="pageData.data && pageData.data.link_url" @click.stop="handleLinkClick"></div>
+                            </v-sheet>
+                        </template>
+                    </v-card>
+
+                    <v-sheet
+                        v-if="pageData.data.game_list && pageData.data.game_list.length > 0"
+                        class="mt-2"
+                        color="transparent"
+                        width="100%"
+                    >
+                        <horizontal_scroll class="d-flex">
+                            <template v-slot="{data}">
+                                <v-sheet class="d-flex align-center px-0" color="transparent">
+                                    <template v-for="(item , index) of pageData.data.game_list">
+                                        <GameItem class="mr-2" :item="item" :key="index + 'game_item'" @onItemClick="onGameItemClick" />
+                                    </template>
+                                </v-sheet>
+                            </template>
+                        </horizontal_scroll>
+                    </v-sheet>
+                </v-card>
+                <v-card
+                    v-else
+                    flat
+                    height="100%"
+                    class="d-flex flex-column align-center pa-2 rounded10"
+                    style="background-color: rgba(255, 255, 255, 0.3)"
+                    width="100%"
+                >
+                    <v-sheet class="d-flex align-center justify-center flex-column" width="100%" color="transparent">
+                        <v-sheet class="d-flex align-center justify-center flex-column" width="100%" color="transparent" min-height="42">
+                            <v-sheet v-if="isRunningActivity" color="transparent" class="text-16 font-weight-bold navTextHover--text"
+                                >{{pageData.data.last_time_txt}}</v-sheet
+                            >
+                            <v-sheet v-else color="transparent" class="text-16 font-weight-bold navTextHover--text"
+                                >{{pageData.data.activity_name}}</v-sheet
+                            >
+                            <v-sheet
+                                v-if="pageData.data.start_time && pageData.data.end_time"
+                                color="transparent"
+                                class="text-12 navTextHover--text"
+                                >{{getStartDate(pageData.data.start_time)}}{{LangUtil("-")}}{{getEndDate(pageData.data.end_time)}}</v-sheet
+                            >
+                        </v-sheet>
+                        <v-divider width="100%" class="mt-1 mb-2" />
+                    </v-sheet>
+
+                    <v-sheet
+                        v-if="!rank_list || rank_list.length == 0"
+                        class="d-flex justify-center align-center"
+                        color="transparent"
+                        width="100%"
+                        height="300"
+                    >
+                        <div ref="nodata">
+                            <v-img src="~@/_skin005/assets/activity_rank_list/no_data.png" max-width="186" height="158"></v-img>
+                            <div class="text-14 textGray--text mt-2" style="text-align: center">{{LangUtil("暂无内容")}}</div>
+                        </div>
+                    </v-sheet>
+
+                    <v-sheet v-else color="transparent" width="100%" class="d-flex flex-column overflow-y-auto" height="100%">
+                        <v-sheet
+                            color="transparent"
+                            class="d-flex align-center text-14 font-weight-bold mb-2 navTextHover--text"
+                            width="100%"
+                            >{{LangUtil("往期排行榜")}}</v-sheet
+                        >
+                        <v-sheet
+                            class="d-flex align-center my-1"
+                            color="transparent"
+                            v-for="(item , index) of rank_list"
+                            :key="index+'last_activity'"
+                            width="100%"
+                            :class="isDisable(item) ? 'item_class_disabled ' : 'item_class_mob cursor-pointer'"
+                            @click.native.stop="onLastActivityItemClick(item)"
+                        >
+                            <v-sheet color="transparent" class="text-12 txt_color"> {{LangUtil(item.activity_name)}}</v-sheet>
+
+                            <v-sheet color="transparent" class="text-12 ml-2 txt_color"
+                                >{{getStartDate(item.start_time)}}{{LangUtil("-")}}{{getEndDate(item.end_time)}}</v-sheet
+                            >
+                        </v-sheet>
+                    </v-sheet>
+
+                    <div v-if="isShowOvertimeTag" ref="close_node" style="position: absolute; left: 0px">
+                        <v-img :src="overtimeImg" width="60" height="60"></v-img>
+                    </div>
+                </v-card>
+            </v-card>
+
+            <v-card flat color="transparent" class="d-flex flex-column pa-4 mt-3" width="100%" height="313" style="position: relative">
+                <Rank class="" />
+            </v-card>
+
+            <v-card flat color="transparent" class="d-flex pa-4 align-center justify-center" width="100%">
+                <v-sheet
+                    color="transparent"
+                    class="d-flex align-center cursor-pointer white--text mb-4 my-2"
+                    @click.native.stop="onBtnClickLastRank"
+                >
+                    <svg-icon
+                        icon="arrow_right"
+                        class="text-14 font-weight-bold"
+                        :class="pageData.cur_rank_type == 1 ? 'arrow' : 'arrow-show'"
+                    />
+                    <span class="ml-1 mr-4 text-14 font-weight-bold">{{lastRankTxt}}</span>
+                </v-sheet>
+            </v-card>
+        </v-card>
+    </div>
+</v-dialog>

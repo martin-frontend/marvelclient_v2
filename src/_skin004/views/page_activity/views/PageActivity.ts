@@ -6,6 +6,7 @@ import LangUtil from "@/core/global/LangUtil";
 import dialog_activity_detail from "@/_skin004/views/dialog_activity_detail";
 import dialog_activity_7days from "../../dialog_activity_7days";
 import dialog_activity_point_spin from "../../dialog_activity_point_spin";
+import dialog_activity_rank from "../../dialog_activity_rank";
 
 @Component
 export default class PageActivity extends AbstractView {
@@ -53,6 +54,10 @@ export default class PageActivity extends AbstractView {
         }
         if (item.model_type == 14) {
             dialog_activity_point_spin.show(item.id);
+            return;
+        }
+        if (item.model_type == 15) {
+            dialog_activity_rank.show(item.id);
             return;
         }
         dialog_activity_detail.show(item);

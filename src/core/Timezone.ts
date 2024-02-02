@@ -5,6 +5,7 @@ import LangUtil from "@/core/global/LangUtil";
 import GameConfig from "./config/GameConfig";
 import { dateFormat } from "./global/Functions";
 import * as moment from "moment-timezone";
+import GlobalVar from "./global/GlobalVar";
 interface timezoneItem {
     key: string;
     value: string;
@@ -227,7 +228,7 @@ export default class Timezone {
             return dateFormat(new Date(datetimeString), "yyyy-MM-dd hh:mm:ss");
         }
         const formattedDate = moment.tz(datetimeString, "Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
-        console.warn("转换之后的是", formattedDate);
+        // console.warn("转换之后的是", formattedDate);
 
         return this.convertTime_to_Locale(formattedDate);
     }
@@ -249,5 +250,15 @@ export default class Timezone {
         //console.log(" 修改之后的 ---" ,newstr);
         const newdata = this.addTime(datetimeString, newstr);
         return this.addTime(newdata, "+8:00");
+    }
+    /**
+     * 获取从传入的时间到现在的时间差，
+     * @param enddate 结束日期，这个地方传入的是 2023-01-18这样的日期，
+     */
+    static getTimeCountFromEndDateToNow(enddate: string) {
+        const now_date = GlobalVar.server_time;
+        const endTime = moment.tz(enddate, "Asia/Shanghai");
+        const end_date = endTime.valueOf() / 1000 + 24 * 60 * 60 - 1;
+        return end_date - now_date;
     }
 }

@@ -449,6 +449,10 @@ var net;
         api_plat_activity_every_point_lottery_var: "api/plat/activity/every_point_lottery/{id}",
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: "api/plat/{plat_id}/pop/index",
+        /**--排行榜活动 --排行榜-活动列表*/
+        api_plat_activity_index_rank_list: "api/plat/activity/index/rank_list",
+        /**--排行榜活动 --排行榜-用户列表*/
+        api_plat_activity_index_rank_user_list: "api/plat/activity/index/rank_user_list",
     };
     /**事件*/
     net.EventType = {
@@ -830,6 +834,10 @@ var net;
         api_plat_activity_every_point_lottery_var: "api_plat_activity_every_point_lottery_var",
         /**--获取弹窗 登录时要打开的弹窗列表--获取弹窗*/
         api_plat_var_pop_index: "api_plat_var_pop_index",
+        /**--排行榜活动 --排行榜-活动列表*/
+        api_plat_activity_index_rank_list: "api_plat_activity_index_rank_list",
+        /**--排行榜活动 --排行榜-用户列表*/
+        api_plat_activity_index_rank_user_list: "api_plat_activity_index_rank_user_list",
     };
     /**注册协议*/
     function initCommand() {
@@ -1055,6 +1063,9 @@ var net;
         facade.registerCommand(net.HttpType.api_plat_activity_every_point_lottery_var, net.cmd_api_plat_activity_every_point_lottery_var);
         //--获取弹窗 登录时要打开的弹窗列表
         facade.registerCommand(net.HttpType.api_plat_var_pop_index, net.cmd_api_plat_var_pop_index);
+        //--排行榜活动 
+        facade.registerCommand(net.HttpType.api_plat_activity_index_rank_list, net.cmd_api_plat_activity_index_rank_list);
+        facade.registerCommand(net.HttpType.api_plat_activity_index_rank_user_list, net.cmd_api_plat_activity_index_rank_user_list);
     }
     net.initCommand = initCommand;
     ;
@@ -1300,6 +1311,50 @@ var net;
         }
     }
     net.cmd_api_plat_activity_index_everyday = cmd_api_plat_activity_index_everyday;
+})(net || (net = {}));
+/**
+ * 排行榜-活动列表
+ */
+var net;
+/**
+ * 排行榜-活动列表
+ */
+(function (net) {
+    class cmd_api_plat_activity_index_rank_list extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_activity_index_rank_list, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_activity_index_rank_list, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_activity_index_rank_list = cmd_api_plat_activity_index_rank_list;
+})(net || (net = {}));
+/**
+ * 排行榜-用户列表
+ */
+var net;
+/**
+ * 排行榜-用户列表
+ */
+(function (net) {
+    class cmd_api_plat_activity_index_rank_user_list extends puremvc.SimpleCommand {
+        execute(notification) {
+            const body = notification.getBody() || {};
+            const url = net.getUrl(net.HttpType.api_plat_activity_index_rank_user_list, body);
+            net.Http.request(body || {}, url).then(this.response.bind(this));
+        }
+        response(result) {
+            if (result.status === 0) {
+                this.sendNotification(net.EventType.api_plat_activity_index_rank_user_list, result.data, result.extend.request_unique);
+            }
+        }
+    }
+    net.cmd_api_plat_activity_index_rank_user_list = cmd_api_plat_activity_index_rank_user_list;
 })(net || (net = {}));
 /**
  * 绑定赠金

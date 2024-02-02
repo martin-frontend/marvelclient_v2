@@ -1,0 +1,18 @@
+<v-sheet
+    flat
+    color="transparent"
+    class="d-flex align-center scroll_button_item"
+    @click="onItemClick"
+    :class="isDisable ? 'item_class_disabled ' : 'item_class cursor-pointer'"
+>
+    <v-sheet v-if="categoryType == 1" color="transparent" class="">
+        <v-img :src="imgPath" width="46" height="30"></v-img>
+    </v-sheet>
+    <v-sheet
+        color="transparent"
+        class="d-flex align-center font-weight-bold txt_color ml-2 text-no-wrap canntSelect"
+        :class="$vuetify.breakpoint.mobile ? 'text-12' : 'text-14'"
+    >
+        {{LangUtil(item.activity_name)}}</v-sheet
+    >
+</v-sheet>

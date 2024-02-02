@@ -64,7 +64,9 @@ input {
 .cursor-pointer {
     cursor: pointer;
 }
-
+.rounded10 {
+    border-radius: 10px !important;
+}
 .scroll-y {
     overflow-y: auto;
     -ms-overflow-style: none;

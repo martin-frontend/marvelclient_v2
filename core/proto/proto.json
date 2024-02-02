@@ -264,6 +264,11 @@
         ["api/plat/activity/every_point_lottery/{id}", "用户抽奖"],
 
         "--获取弹窗 登录时要打开的弹窗列表",
-        ["api/plat/{plat_id}/pop/index", "获取弹窗"]
+        ["api/plat/{plat_id}/pop/index", "获取弹窗"],
+
+        "--排行榜活动 ",
+        ["api/plat/activity/index/rank_list", "排行榜-活动列表"],
+        ["api/plat/activity/index/rank_user_list", "排行榜-用户列表"]
+
     ]
 }

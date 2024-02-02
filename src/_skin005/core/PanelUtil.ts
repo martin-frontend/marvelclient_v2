@@ -155,6 +155,7 @@ import dialog_spin_lottery from "@/_skin005/views/dialog_spin_lottery";
 import LangConfig from "@/core/config/LangConfig";
 import dialog_activity_point_spin from "@/_skin005/views/dialog_activity_point_spin";
 import dialog_kyc from "../views/dialog_kyc";
+import dialog_activity_rank from "../views/dialog_activity_rank";
 import dialog_marquee from "../views/dialog_marquee";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
@@ -897,6 +898,12 @@ export default class PanelUtil {
         MultDialogManager.onOpenPanel(DialogSpeedVerification);
         DialogSpeedVerification.show(successFun, failFun, verification);
     }
+    /**打开 排行榜活动 */
+    static openpanel_activity_ranklist(activity_id: number = 0) {
+        MultDialogManager.onOpenPanel(dialog_activity_rank);
+        PanelUtil.showNovigation(false);
+        dialog_activity_rank.show(activity_id);
+    }
     /**打开积分抽奖页面 */
     static openpanel_activity_point_spin(id: any = null) {
         LoginEnter(() => {
@@ -1517,6 +1524,12 @@ export default class PanelUtil {
                         PanelUtil.openpanel_spin_lottery();
                     },
                 },
+                {
+                    key: "openpanel_activity_ranklist",
+                    fun: () => {
+                        PanelUtil.openpanel_activity_ranklist();
+                    },
+                },
             ];
         }
         return this._mapList;
@@ -1583,18 +1596,14 @@ export default class PanelUtil {
                 //针对公告跳转到游戏
                 const strArr = item.open_mode_url.split("##");
                 if (strArr && strArr.length > 1) {
-                    const obj = JSON.parse(strArr[1]);
-                    if (isRun) PanelUtil.openpage_soccer(obj);
-                    return true;
-                    // fitterArr = PanelUtil.funcMap.filter((e: any, idx: any, array: any) => e.key == strArr[0]);
-                    // if (fitterArr && fitterArr.length > 0) {
-                    //     if (isRun) {
-                    //         console.log("执行方法------>>>" + strArr[0], strArr[1]);
-                    //         fitterArr[0].fun(JSON.parse(strArr[1]));
-                    //         //console.log("执行方法");
-                    //     }
-                    //     return true;
-                    // }
+                    if (strArr[0] == "openpanel_activity_ranklist_id") {
+                        if (isRun) PanelUtil.openpanel_activity_ranklist(strArr[1]);
+                        return true;
+                    } else {
+                        const obj = JSON.parse(strArr[1]);
+                        if (isRun) PanelUtil.openpage_soccer(obj);
+                        return true;
+                    }
                 }
             } catch {
                 console.log("打开失败");

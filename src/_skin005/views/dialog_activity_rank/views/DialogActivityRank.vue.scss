@@ -1,0 +1,52 @@
+.v-card--link,
+.v-card--link .v-chip {
+    cursor: revert;
+}
+.v-card--outlined:focus,
+.v-card--outlined:active,
+.v-card--outlined:hover {
+    box-shadow: none;
+}
+.v-card--link:focus:before {
+    opacity: 0;
+}
+
+.item_class {
+    .txt_color {
+        color: #0f1213;
+    }
+}
+.item_class_mob {
+    .txt_color {
+        color: #0f1213;
+    }
+}
+.item_class:hover {
+    .txt_color {
+        color: #fff870;
+    }
+}
+.item_class_disabled {
+    .txt_color {
+        color: #fff870;
+    }
+}
+
+::v-deep .v-divider {
+    border-color: rgb(66, 195, 206) !important;
+}
+.mob_class{
+    ::v-deep .v-divider {
+        border-color: rgb(255, 255, 255) !important;
+    }
+}
+.arrow {
+    transform: rotate(0deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-show {
+    transform: rotate(180deg);
+    font-weight: 600;
+    transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}

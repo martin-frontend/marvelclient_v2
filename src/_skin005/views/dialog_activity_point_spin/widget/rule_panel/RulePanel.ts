@@ -58,7 +58,7 @@ export default class RulePanel extends AbstractView {
             }
         }
     }
-    onBtnClickTest() {
+    onBtnClickStop() {
         // console.warn("测试按钮被点击");
     }
 }

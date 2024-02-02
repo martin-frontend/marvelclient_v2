@@ -103,6 +103,12 @@ export default class DialogActivityPointSpinProxy extends puremvc.Proxy {
         Object.assign(this.pageData.data, data);
         this.pageData.point_lottery_cons_cur = this.pageData.data.point_lottery_cons[0];
         this.pageData.routine_task_cur = this.pageData.data.routine_task[0];
+
+        this.setScoreData();
+        this.setPointLotteryCons();
+        this.setPointLotteryAward();
+    }
+    setScoreData() {
         const condition_totle = this.getItemCountValue(this.pageData.routine_task_cur.condition);
 
         this.pageData.scoreData.curScore = Math.min(condition_totle, this.pageData.data.user_point);
@@ -121,6 +127,8 @@ export default class DialogActivityPointSpinProxy extends puremvc.Proxy {
         setTimeout(() => {
             this.pageData.scoreData.progress_value = this.pageData.scoreData.progress_buffer_value;
         }, 1000);
+    }
+    setPointLotteryCons() {
         const point_lottery_cons = this.pageData.data.point_lottery_cons;
         this.pageData.isCanSpin = false;
         this.pageData.user_point = 0;
@@ -143,7 +151,8 @@ export default class DialogActivityPointSpinProxy extends puremvc.Proxy {
         } else {
             console.warn("---抽奖消耗配置不正确");
         }
-
+    }
+    setPointLotteryAward() {
         const point_lottery_award = this.pageData.data.point_lottery_award;
         for (let index = 0; index < point_lottery_award.length; index++) {
             const item = point_lottery_award[index];
@@ -157,6 +166,7 @@ export default class DialogActivityPointSpinProxy extends puremvc.Proxy {
             }
         }
     }
+
     setRankListData(data: any) {
         this.pageData.rankData.length = 0;
         this.pageData.isRankLoad = false;

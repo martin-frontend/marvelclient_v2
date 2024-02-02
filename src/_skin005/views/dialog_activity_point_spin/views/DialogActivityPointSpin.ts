@@ -19,11 +19,7 @@ export default class DialogActivityPointSpin extends AbstractView {
     constructor() {
         super(DialogActivityPointSpinMediator);
     }
-    mounted() {
-        this.$nextTick(() => {
-            // this.spinBgMoveAnim();
-        });
-    }
+    mounted() {}
     onClose() {
         if (this.pageData.isSpinRun) return;
         this.pageData.bShow = false;
@@ -70,7 +66,7 @@ export default class DialogActivityPointSpin extends AbstractView {
             }
         } else {
             const bodyW = document.body.clientWidth;
-            const bodyH = document.body.clientHeight;
+            // const bodyH = document.body.clientHeight;
             // console.warn("---bodyH>>as", bodyH);
             // let scale = (bodyH / 740) * 0.9;
             let scale = bodyW / 340;
@@ -108,18 +104,10 @@ export default class DialogActivityPointSpin extends AbstractView {
         } else {
             this.myProxy.regetData();
         }
-        // this.myProxy.api_plat_activity_index_everyday();
     }
     onBtnClickGet() {
         console.warn("消耗按钮被点击");
-
-        if (this.isDisable) return;
-        if (this.pageData.bShowAward) return;
-        if (this.pageData.bShowAward) {
-            this.pageData.bShowAward = false;
-            this.myProxy.regetData();
-            return;
-        }
+        if (this.isDisable || this.pageData.bShowAward) return;
         this.myProxy.api_plat_activity_every_point_lottery_var();
     }
 

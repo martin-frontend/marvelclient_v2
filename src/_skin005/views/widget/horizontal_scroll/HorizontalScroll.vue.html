@@ -1,3 +1,29 @@
-<div ref="divbox" class="d-flex divbox" @mousedown="onMouseDown" @mouseup="onMouseUp" @mousemove="onMouseMove" @mouseout="onMouseout">
-    <slot :data="dragData"></slot>
-</div>
+<v-sheet color="transparent" width="100%" height="100%" :class="(!isCanScroll && isNeedArrow) ? 'px-2' : ''">
+    <v-sheet v-if="isCanScroll && isNeedArrow" color="transparent" class="mx-1">
+        <v-sheet
+            color="transparent "
+            class="d-flex justify-center align-center"
+            width="18"
+            height="100%"
+            :class="isLeft ? 'textGray--text' : 'navTextHover--text cursor-pointer'"
+            @click.stop="onLeft"
+        >
+            <svg-icon icon="arrow_right" class="text-12 arrow-show" />
+        </v-sheet>
+    </v-sheet>
+    <div ref="divbox" class="d-flex divbox" @mousedown="onMouseDown" @mouseup="onMouseUp" @mousemove="onMouseMove" @mouseout="onMouseout">
+        <slot :data="dragData"></slot>
+    </div>
+    <v-sheet v-if="isCanScroll && isNeedArrow" color="transparent" class="mx-1">
+        <v-sheet
+            color="transparent "
+            class="d-flex justify-center align-center"
+            width="18"
+            height="100%"
+            :class="isRight ? 'textGray--text' : 'navTextHover--text cursor-pointer'"
+            @click.stop="onRight"
+        >
+            <svg-icon icon="arrow_right" class="text-12 arrow" />
+        </v-sheet>
+    </v-sheet>
+</v-sheet>

@@ -245,6 +245,9 @@ export default class APP extends AbstractView {
     onClickBtnSpin() {
         PanelUtil.openpanel_spin_lottery();
     }
+    onClickBtnRanklist() {
+        PanelUtil.openpanel_activity_ranklist();
+    }
     onClickBtnPointSpin() {
         const activity_id = this.activityConfig.every_point.activity_id_arr[0];
         if (!activity_id) {
@@ -258,6 +261,9 @@ export default class APP extends AbstractView {
     }
     get showSpinLottery() {
         return this.activityConfig.spin.is_open;
+    }
+    get showRankList() {
+        return this.activityConfig.rank_list.is_open;
     }
     get showPointSpin() {
         // return true;

@@ -153,8 +153,12 @@ export default class NetObserver extends AbstractMediator {
                     } else if (core.user_id) {
                         //获取用户信息
                         this.selfProxy.api_user_show_var([2, 3, 4, 5, 6]);
+                    } else {
+                        //获取弹窗列表
+                        this.sendNotification(net.HttpType.api_plat_var_pop_index, { plat_id: core.plat_id });
+                        //活动配置
+                        this.sendNotification(net.HttpType.api_plat_activity_config);
                     }
-
                     //获取大厅游戏列表
                     this.gameProxy.api_plat_var_lobby_index();
                     //添加客服

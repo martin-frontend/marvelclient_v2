@@ -79,6 +79,10 @@ export default class PageActivity extends AbstractView {
             PanelUtil.isCanJump(item, true);
             return;
         }
+        if (item.model_type == 15) {
+            PanelUtil.openpanel_activity_ranklist(item.id);
+            return;
+        }
         if (this.myProxy.activityDetailData && this.myProxy.activityDetailData[item.id]) {
             console.warn("line 79");
             PanelUtil.openpanel_activity_detail(this.myProxy.activityDetailData[item.id]);

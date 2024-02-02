@@ -80,6 +80,9 @@
             <v-btn v-if="showSpinLottery" id="activitySpinBtn" icon @click="onClickBtnSpin">
                 <v-img src="~@/_skin005/assets/activity_spin/spin_icon.png" width="62"></v-img>
             </v-btn>
+            <v-btn v-if="showRankList" id="rankList" icon @click="onClickBtnRanklist">
+                <v-img src="~@/_skin005/assets/activity_rank_list/icon.png" width="62"></v-img>
+            </v-btn>
 
             <v-sheet
                 v-if="showPointSpin"
@@ -162,6 +165,10 @@
                     <span>{{ spinTxt }}</span></v-sheet
                 >
             </v-sheet>
+            <v-btn v-if="showRankList" id="rankList" icon @click="onClickBtnRanklist">
+                <v-img src="~@/_skin005/assets/activity_rank_list/icon.png" width="54"></v-img>
+            </v-btn>
+
             <v-btn v-if="ModulesHelper.isShow_Kefu() && !SkinVariable.systemKefuTop && isShowFooter" icon @click="onService">
                 <btn-yellow class="text-20" min_width="0" width="40" height="40">
                     <svg-icon v-if="isUseColorfullIcon" class="text-32" icon="service_full"></svg-icon>

@@ -2,7 +2,6 @@ import AbstractView from "@/core/abstract/AbstractView";
 import { Prop, Watch, Component } from "vue-property-decorator";
 import LangUtil from "@/core/global/LangUtil";
 import DialogActivityPointSpinProxy from "../../proxy/DialogActivityPointSpinProxy";
-import { AnimRotation } from "@/_skin005/core/AnimationUtil";
 import gsap, { Linear } from "gsap";
 @Component
 export default class Award extends AbstractView {
@@ -32,9 +31,9 @@ export default class Award extends AbstractView {
             if (this.timeHandle) {
                 clearTimeout(this.timeHandle);
             }
-            this.timeHandle = setTimeout(() => {
-                // this.onClose();
-            }, 5 * 1000);
+            // this.timeHandle = setTimeout(() => {
+            //     this.onClose();
+            // }, 5 * 1000);
 
             this.$nextTick(() => {
                 this.bgAnimation();

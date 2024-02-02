@@ -1,0 +1,21 @@
+<v-card
+    flat
+    class="d-flex align-center rounded10 pa-1 cursor-pointer"
+    width="100%"
+    @click.stop="onItemClick"
+    height="42"
+    style="background-color: rgba(255, 255, 255, 0.3); position: relative; overflow: hidden"
+>
+    <div>
+        <v-img class="rounded10" :src="item.icon" width="38" height="38" />
+    </div>
+
+    <div class="ml-1 mr-8 navTextHover--text text-no-wrap">{{item.vendor_product_name}}</div>
+
+    <v-sheet ref="text_node" width="70" class="py-1 pt-2 text-10 tag_bg_class" style="position: absolute; right: 0px; text-align: center">
+        <span class="mt-0 navTextHover--text">{{LangUtil("活动")}}</span>
+    </v-sheet>
+    <!-- <div style="position: absolute; right: 0px; top: 0px; transform: rotateZ(45deg); background-color: #fff;width: 50px;">
+        <span class="mt-4">{{LangUtil("活动")}}</span>
+    </div> -->
+</v-card>

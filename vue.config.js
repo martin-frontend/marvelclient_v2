@@ -435,6 +435,7 @@ module.exports = {
             imagesRule.exclude.add(resolve("src/_skin003/icons"));
         } else if (
             [
+                "skin004",
                 "skin004_2",
                 "skin004_5",
                 "skin004_6",

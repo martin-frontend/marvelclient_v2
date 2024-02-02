@@ -1,0 +1,28 @@
+.v-card--link,
+.v-card--link .v-chip {
+    cursor: revert;
+}
+.v-card--outlined:focus,
+.v-card--outlined:active,
+.v-card--outlined:hover {
+    box-shadow: none;
+}
+.v-card--link:focus:before {
+    opacity: 0;
+}
+
+.item_class {
+    .txt_color {
+        color: #0f1213;
+    }
+}
+.item_class:hover {
+    .txt_color {
+        color: #fff870;
+    }
+}
+.item_class_disabled {
+    .txt_color {
+        color: #fff870;
+    }
+}

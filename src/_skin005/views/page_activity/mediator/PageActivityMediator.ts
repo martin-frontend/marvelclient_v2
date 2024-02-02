@@ -24,6 +24,9 @@ export default class PageActivityMediator extends AbstractMediator {
                     PanelUtil.openpanel_spin_lottery();
                     return;
                 }
+                if (body.model_type == 15) {
+                    return;
+                }
                 if (body.model_type == 14) {
                     return;
                 }

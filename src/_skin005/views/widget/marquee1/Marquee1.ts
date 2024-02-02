@@ -5,6 +5,7 @@ import Marquee1Proxy from "./Marquee1Proxy";
 import getProxy from "@/core/global/getProxy";
 import Marquee1Mediator from "./Marquee1Mediator";
 import gsap, { Linear, Elastic } from "gsap";
+import PanelUtil from "@/_skin005/core/PanelUtil";
 
 @Component
 export default class Marquee1 extends AbstractView {
@@ -52,5 +53,8 @@ export default class Marquee1 extends AbstractView {
         if (marqueeText) {
             gsap.killTweensOf(marqueeText);
         }
+    }
+    onNotifyClick() {
+        PanelUtil.openpanel_marquee();
     }
 }

@@ -1,0 +1,63 @@
+<v-dialog v-if="!pageData.bHidden" v-model="pageData.bShow" :retain-focus="false" persistent @click:outside="onClose">
+    <div class="d-flex align-center justify-center" @click.stop="onPhoneClose">
+        <!-- pc版 -->
+        <v-card
+            flat
+            color="transparent"
+            hide-overlay
+            ref="card_node"
+            class="d-flex flex-column align-center justify-center"
+            :ripple="false"
+            @click.stop="onPhoneCardClick"
+        >
+            <v-card flat color="bgBanner" class="d-flex flex-column rounded10" min-height="400" width="340" style="position: relative">
+                <com-dialog-title title="公告" @onClose="onClose" :isDialog="true">
+                    <template v-slot:pre>
+                        <svg-icon icon="notify" class="text-16 mx-2"></svg-icon>
+                    </template>
+                </com-dialog-title>
+
+                <v-sheet color="transparent" class="d-flex justify-start align-center text-14 px-4" width="100%"> {{marqueeText}} </v-sheet>
+
+                <v-spacer />
+                <v-sheet color="transparent" width="100%" class="d-flex align-center px-2 pb-4">
+                    <v-sheet color="transparent" class=" " style="width: calc(100% - 90px)">
+                        <horizontal_scroll ref="scroll_node" :updateCount="marqueeDataIndex">
+                            <template v-slot="{data}">
+                                <v-btn-toggle :lang="core.lang" mandatory group v-model="marqueeDataIndex">
+                                    <template v-for="(item,index) of marqueeData.org_list">
+                                        <v-btn
+                                            class="rounded-lg"
+                                            height="36"
+                                            min-width="36"
+                                            text
+                                            :value="index"
+                                            :key="'marquee' + index"
+                                            :ref="'marquee_' + index"
+                                        >
+                                            <span class="text-14">{{index + 1 }}</span>
+                                        </v-btn>
+                                    </template>
+                                </v-btn-toggle>
+                            </template>
+                        </horizontal_scroll>
+                    </v-sheet>
+
+                    <v-sheet
+                        v-if="marqueeData.org_list && marqueeData.org_list.length > 1"
+                        color="transparent"
+                        class="d-flex align-center justify-end"
+                        width="90"
+                    >
+                        <btn-yellow class="text-16" min_width="36" height="36 " @click.native.stop="onBtneClickPageLeft">
+                            <svg-icon icon="arrow_right" class="text-14 back_btn_icon" />
+                        </btn-yellow>
+                        <btn-yellow class="text-16 ml-2" min_width="36" height="36" @click.native.stop="onBtneClickPageRight">
+                            <svg-icon icon="arrow_right" class="text-14" />
+                        </btn-yellow>
+                    </v-sheet>
+                </v-sheet>
+            </v-card>
+        </v-card>
+    </div>
+</v-dialog>

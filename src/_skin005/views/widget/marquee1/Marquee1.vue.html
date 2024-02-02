@@ -3,10 +3,11 @@
     :min-height="$mobile ? 30 : 36"
     min-width="0"
     width="100%"
-    class="d-flex align-center pr-3 box"
+    class="d-flex align-center pr-3 box cursor-pointer"
     :class="$mobile ? 'laba_bg' : 'rounded-lg box_border'"
+    @click.native.stop="onNotifyClick"
 >
-    <div class="mx-3 textGray--text" :class="$mobile ? 'text-16' : 'text-16'">
+    <div class="mx-3 textGray--text text-16">
         <svg-icon icon="notify"></svg-icon>
     </div>
     <div ref="marqueeBox" class="marquee-box primary--text" :class="$mobile ? 'text-12' : 'text-14'">

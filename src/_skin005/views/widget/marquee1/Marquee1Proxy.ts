@@ -9,9 +9,12 @@ export default class Marquee1Proxy extends puremvc.Proxy {
         text: "",
         index: -1,
         list: <any>[],
+        org_list: <any>[],
     };
 
     public setData(data: any): void {
+        this.pageData.org_list.length = 0;
+        this.pageData.org_list.push(...data);
         if (data.length == 1) {
             const data1 = JSON.parse(JSON.stringify(data[0]));
             data1.content = data[0].content + " ";

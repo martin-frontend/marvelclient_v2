@@ -155,6 +155,7 @@ import dialog_spin_lottery from "@/_skin005/views/dialog_spin_lottery";
 import LangConfig from "@/core/config/LangConfig";
 import dialog_activity_point_spin from "@/_skin005/views/dialog_activity_point_spin";
 import dialog_kyc from "../views/dialog_kyc";
+import dialog_marquee from "../views/dialog_marquee";
 export default class PanelUtil {
     static get appproxy(): AppProxy {
         return getProxy(AppProxy);
@@ -904,7 +905,12 @@ export default class PanelUtil {
             dialog_activity_point_spin.show(id);
         });
     }
-
+    /**跑马灯弹窗 */
+    static openpanel_marquee() {
+        MultDialogManager.onOpenPanel(dialog_marquee);
+        PanelUtil.showNovigation(false);
+        dialog_marquee.show();
+    }
     public static get getProxy_speed_verification(): DialogSpeedVerificationProxy {
         return getProxy(DialogSpeedVerificationProxy);
     }

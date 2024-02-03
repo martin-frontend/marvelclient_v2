@@ -104,15 +104,15 @@ window["vueInit"] = () => {
         const lang = LangConfig.getRouterLang();
         const newPath = `${lang}${path}`;
         if (path == `/${lang}`) {
-            location.replace(lang);
+            location.replace(lang + location.search);
         } else if (allRoutes.includes("/" + newPath)) {
-            if (!location.pathname.includes(newPath) || !location.pathname.includes(lang)) location.replace(newPath);
+            if (!location.pathname.includes(newPath) || !location.pathname.includes(lang)) location.replace(newPath + location.search);
         } else {
             if (router.mode == "hash") {
                 const baseUrl = process.env.VUE_APP_URL_BASE || "";
-                location.replace(`${baseUrl}#${newPath}`);
+                location.replace(`${baseUrl}${location.search}#${newPath}`);
             } else {
-                location.replace(newPath);
+                location.replace(newPath + location.search);
             }
         }
     };

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <base href="/forbidden/" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Cache-control" content="no-cache" />
+        <meta http-equiv="Cache" content="no-cache" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <title>Forbidden</title>
+        <script>
+            // 获取 URL 参数的函数
+            function getParameterByName() {
+                // if (!url) url = window.location.href;
+                // name = name.replace(/[\[\]]/g, "\\$&");
+                // var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                //     results = regex.exec(url);
+                // if (!results) return null;
+                // if (!results[2]) return "";
+                // return decodeURIComponent(results[2].replace(/\+/g, " "));
+
+                let id = window.location.search.substr(1);
+                return id;
+            }
+
+            // 获取并显示 URL 参数
+            window.addEventListener("DOMContentLoaded", function () {
+                var paramValue = getParameterByName();
+                document.getElementById("ip_text").textContent = paramValue;
+            });
+        </script>
+    </head>
+    <body class="app container text_color">
+
+        <img src="assets/invalid.png?1" width="300" style="margin-top: 40px" />
+
+        <div class="title">
+            <h3>FORBIDDEN</h3>
+        </div>
+
+        <div class="ip_text_div">
+            <h3 id="ip_text"></h3>
+        </div>
+
+        <div class="txt">
+            <p>We are not serving your location. Apologise for any inconvenience that this may have caused.</p>
+        </div>
+        <div class="txt">
+            <p>您所在地区被禁止访问我们的网站，给您造成不便，敬请谅解。</p>
+        </div>
+
+        <div class="txt">
+            <p>저희는 고객님이 계신 지역에는 서비스를 제공하지 않습니다. 서비스 이용에 불편을 드린 점 양해 부탁드립니다.</p>
+        </div>
+        <div class="txt">
+            <p>Sua região está bloqueada para acessar nosso site, desculpe pelo transtorno causado.</p>
+        </div>
+        <div class="txt">
+            <p>No estamos sirviendo a su ubicación. Le pedimos disculpas por los inconvenientes causados.</p>
+        </div>
+
+        <div class="txt">
+            <p>お住まいの地域では、当社の Web サイトへのアクセスがブロックされています。 ご不便おかけしてすみません。</p>
+        </div>
+
+        <div class="txt">
+            <p>Kami tidak melayani lokasi anda. Mohon maaf atas ketidaknyamanan yang disebabkan.</p>
+        </div>
+        <img src="assets/logo.png?1" class="marge_top" />
+
+    </body>
+
+    <style>
+        .app {
+            background-color: #202124;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .marge_top {
+            margin-bottom: 80px;
+        }
+        .text_color {
+            color: #9aa0a5;
+        }
+        .title {
+            font-size: 25px;
+            color: #d6001e;
+        }
+        .txt {
+            font-size: 16px;
+            color: #9aa0a5;
+            max-width: 90%;
+        }
+        .ip_text_div {
+            font-size: 18px;
+            color: #FEBA00;
+        }
+    </style>
+    <script>
+        let id = window.location.search.substr(1);
+    </script>
+</html>

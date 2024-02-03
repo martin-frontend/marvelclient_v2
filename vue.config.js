@@ -343,6 +343,19 @@ const skinMap = {
             },
         },
     },
+    /**MG188 */
+    skin018: {
+        public_dir: "public_skin018",
+        pages: {
+            skin011: {
+                entry: "src/_skin018/main.ts",
+                template: "public_skin018/skin018.html",
+                filename: "index.html",
+                title: "MG188",
+                faviconName: "favicon.ico",
+            },
+        },
+    },
     /**开源 */
     skin030: {
         public_dir: "public_skin030",
@@ -452,6 +465,7 @@ module.exports = {
                 "skin015",
                 "skin016",
                 "skin017",
+                "skin018",
             ].includes(process.env.VUE_APP_SKIN)
         ) {
             imagesRule.exclude.add(resolve("src/_skin005/icons"));

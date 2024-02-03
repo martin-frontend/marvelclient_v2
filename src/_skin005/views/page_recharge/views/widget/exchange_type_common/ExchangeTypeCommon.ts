@@ -99,7 +99,7 @@ export default class ExchangeTypeCommon extends AbstractView {
     }
     mounted() {
         this.reSetRequir();
-        if (GlobalVar.skin != "skin010" && GlobalVar.skin != "skin011"  && GlobalVar.skin != "skin016") {
+        if (GlobalVar.skin != "skin010" && GlobalVar.skin != "skin011" && GlobalVar.skin != "skin016" && GlobalVar.skin != "skin018") {
             {
                 const fitter = this.exchangeProxy.pix_key_option.some((ele: any, index: any, arr: any) => {
                     return ele.key == 2;
@@ -221,7 +221,13 @@ export default class ExchangeTypeCommon extends AbstractView {
             }
         }
         //检测 CPF是否绑定
-        if ((ModulesHelper.IsShow_SetCPF() && ModulesHelper.IsShow_ExchangeCPF() ) || GlobalVar.skin == "skin010" || GlobalVar.skin == "skin011" || GlobalVar.skin == "skin016") {
+        if (
+            (ModulesHelper.IsShow_SetCPF() && ModulesHelper.IsShow_ExchangeCPF()) ||
+            GlobalVar.skin == "skin010" ||
+            GlobalVar.skin == "skin011" ||
+            GlobalVar.skin == "skin016" ||
+            GlobalVar.skin == "skin018"
+        ) {
             if (!this.selfProxy.userInfo.cpf) {
                 PanelUtil.message_confirm({
                     message: LangUtil("请先绑定CPF"),

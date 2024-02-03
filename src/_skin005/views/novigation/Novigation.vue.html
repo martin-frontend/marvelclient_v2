@@ -46,10 +46,12 @@
                                 <div v-if="!mini" class="ml-5 text-no-wrap" :class="(hover || isShowActive(item)) ? 'font-weight-bold' : '' ">
                                     {{LangUtil(getItemCategoryName(item))}}
                                 </div>
-                                <v-spacer />
-                                <div v-if="!mini" class="mr-0">
-                                    <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
-                                </div>
+                                <template v-if="!$mobile && ModulesHelper.IsShow_pcMenuTip() && item.vendor_type != 3">
+                                    <v-spacer />
+                                    <div v-if="!mini" class="mr-0">
+                                        <svg-icon :icon="commonIcon.arrow_right" :class="$mobile ? 'text-12' : 'text-12'"></svg-icon>
+                                    </div>
+                                </template>
                             </div>
                         </v-hover>
                     </v-sheet>
